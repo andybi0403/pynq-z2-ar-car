@@ -1,5 +1,7 @@
 # PYNQ-Z2 多传感器 AR 小车
 
+[![validate](https://github.com/andybi0403/pynq-z2-ar-car/actions/workflows/validate.yml/badge.svg)](https://github.com/andybi0403/pynq-z2-ar-car/actions/workflows/validate.yml)
+
 基于 PYNQ-Z2 / Zynq-7020、STM32F103C8T6 和 BST-4WD V4.5 底盘的低时延感知与显示系统。PL 负责统一时基、原子传感器快照、QEI 测速/里程、风险判定、视频帧关联、OSD 和无线视频 DMA；PS 负责设备、协议、控制监督、页面与证据链；STM32 负责电机闭环、锁车安全逻辑以及超声波/红外采集。
 
 当前公开交付物是**电机动力断开的 LAB_ONLY 台架版本**，不是可驾驶的整车 release。已完成的实板范围包括 STM32 烧录与 128 KiB 独立读回、正常启动、锁车双板 UART、超声波/红外进入 PL，以及 PYNQ 重启后的 UART/Overlay 恢复。
@@ -49,6 +51,11 @@ STM32F103 ──UART 115200──> PS UART1 ──> EXT_SENSOR_MODE=1 ──> PL
 - bit/HWH、契约、STM32 固件和运行 Python 文件必须来自同一发布记录。
 
 ## 快速开始
+
+```bash
+git clone https://github.com/andybi0403/pynq-z2-ar-car.git
+cd pynq-z2-ar-car
+```
 
 ### 1. 使用已打包运行文件
 

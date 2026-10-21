@@ -1,6 +1,7 @@
 {
   "schema": "pynq-z2-ar-car-release/v1",
   "name": "v010_uart_role_fix_20261014_r3_release_20261021",
+  "repository_url": "https://github.com/andybi0403/pynq-z2-ar-car",
   "release_date": "2026-10-21",
   "status": "LAB_ONLY_NO_MOTOR_BENCH_VALIDATED",
   "classification": "LAB_ONLY_NO_MOTOR_NON_RELEASE",
