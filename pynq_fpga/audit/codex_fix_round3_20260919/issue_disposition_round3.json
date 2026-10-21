@@ -1,0 +1,26 @@
+{
+  "audit_source": "pynq_fpga/audit/zcode_round3_20260919/issue_ledger_round3.json",
+  "date": "2026-09-19",
+  "new_product_issues": 0,
+  "observations": [
+    {
+      "id": "OBS-R3-01",
+      "status": "CLOSED_EVIDENCE_REFRESHED",
+      "description": "The isolated preintegration manifest reused an older synthesis log.",
+      "action": "Fresh software, RTL, HWH and Vivado synthesis evidence now share directory 20260919_161107; regression checks bind the synthesis log to that directory."
+    },
+    {
+      "id": "OBS-R3-02",
+      "status": "CLOSED_TOOL_OUTPUT_CONTAINED",
+      "description": "Vivado emitted retry_open_fs.log in the FPGA root.",
+      "action": "Vivado now runs from timestamped evidence directories in both acceptance scripts; the verified orphan log was removed."
+    }
+  ],
+  "verification": {
+    "preintegration": "PASS: pynq_fpga/fpga/build/task7_8_tests/20260919_161107",
+    "full_gate": "PASS: pynq_fpga/nightly/acceptance_20260918/run_20260919_161918",
+    "lab_zip_sha256": "fd813fdb509d252d703e3bb5741ffbbf5683eac594679a866f35a05d54c0a29e",
+    "release_gate": "BLOCKED_EXPECTED",
+    "hardware": "HARDWARE_PENDING"
+  }
+}

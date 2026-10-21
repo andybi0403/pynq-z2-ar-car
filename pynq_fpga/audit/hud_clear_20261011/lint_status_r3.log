@@ -1,0 +1,97 @@
+INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detected. Your current license is active and will expire on 16-sep-2027.
+#-----------------------------------------------------------
+# Vivado v2026.1 (64-bit)
+# SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+# IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+# SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+# Start of session at: Sun Oct 11 02:45:21 2026
+# Process ID         : 576
+# Current directory  : C:/Users/39909/Desktop/FPGA
+# Command line       : vivado.exe -mode batch -source pynq_fpga/audit/hud_clear_20261011/lint_status_r3.tcl -log pynq_fpga/audit/hud_clear_20261011/lint_status_r3.log -journal pynq_fpga/audit/hud_clear_20261011/lint_status_r3.jou
+# Log file           : C:/Users/39909/Desktop/FPGA/pynq_fpga/audit/hud_clear_20261011/lint_status_r3.log
+# Journal file       : C:/Users/39909/Desktop/FPGA\pynq_fpga/audit/hud_clear_20261011/lint_status_r3.jou
+# Running On         : BZY
+# Platform           : Windows 11
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) i7-14650HX
+# CPU Frequency      : 2419 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 33943 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68302 MB
+# Available Virtual  : 43283 MB
+#-----------------------------------------------------------
+source pynq_fpga/audit/hud_clear_20261011/lint_status_r3.tcl
+# set rtl {C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl}
+# create_project -in_memory -part xc7z020clg400-1
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 586.723 ; gain = 268.559
+# read_verilog [file join $rtl car_axis_status_osd.v]
+# add_files -norecurse [file join $rtl font_16x16_hud.mem]
+# add_files -norecurse [file join $rtl font_24x24_hud.mem]
+# add_files -norecurse [file join $rtl font_32x32_hud.mem]
+# synth_design -top car_axis_status_osd -part xc7z020clg400-1 -lint -file {C:/Users/39909/Desktop/FPGA/pynq_fpga/audit/hud_clear_20261011/car_axis_status_osd_lint_r3.csv}
+Command: synth_design -top car_axis_status_osd -part xc7z020clg400-1 -lint -file C:/Users/39909/Desktop/FPGA/pynq_fpga/audit/hud_clear_20261011/car_axis_status_osd_lint_r3.csv
+Starting synth_design
+Attempting to get a license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 27684
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1166.203 ; gain = 571.254
+---------------------------------------------------------------------------------
+Clean up Linter database...
+INFO: [Synth 8-6157] synthesizing module 'car_axis_status_osd' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_status_osd.v:6]
+INFO: [Synth 8-3876] $readmem data file 'font_24x24_hud.mem' is read successfully [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_status_osd.v:46]
+INFO: [Synth 8-6155] done synthesizing module 'car_axis_status_osd' (1#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_status_osd.v:6]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 1294.820 ; gain = 699.871
+---------------------------------------------------------------------------------
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date         : Sun Oct 11 02:45:39 2026
+| Host         : BZY running 64-bit major release  (build 9200)
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+RTL Linter Report
+
+Table of Contents
+-----------------
+1. Summary
+
+1. Summary
+----------
+
++-----------+----------+--------------+----------+
+| Rule ID   | Severity | # Violations | # Waived |
++-----------+----------+--------------+----------+
+| ASSIGN-1  | WARNING  | 1            | 0        |
+| ASSIGN-5  | WARNING  | 2            | 0        |
+| ASSIGN-6  | WARNING  | 2            | 0        |
+| ASSIGN-10 | WARNING  | 1            | 0        |
++-----------+----------+--------------+----------+
+
+
+WARNING: [Synth 37-77] [ASSIGN-1]Input operands(of sizes 5 16 5) of add/sub cluster ending with expression '(5'd23 - gx)' could yield maximum size of 17, but only width of 5 is being used.
+Hierarchy 'car_axis_status_osd', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_status_osd.v', Line 185, Additional lines 73.
+WARNING: [Synth 37-124] [ASSIGN-5]Some bits in 'dabble' are not set. First unset bit index is 0. 
+RTL Name 'dabble', Hierarchy 'car_axis_status_osd', File 'car_axis_status_osd.v', Line 37.
+WARNING: [Synth 37-124] [ASSIGN-5]Some bits in 'hexglyph' are not set. First unset bit index is 0. 
+RTL Name 'hexglyph', Hierarchy 'car_axis_status_osd', File 'car_axis_status_osd.v', Line 75.
+WARNING: [Synth 37-123] [ASSIGN-6]Some bits in 'net_abs' are not read. First unread bit index is 0. 
+RTL Name 'net_abs', Hierarchy 'car_axis_status_osd', File 'car_axis_status_osd.v', Line 35.
+WARNING: [Synth 37-123] [ASSIGN-6]Some bits in 'ty' are not read. First unread bit index is 5. 
+RTL Name 'ty', Hierarchy 'car_axis_status_osd', File 'car_axis_status_osd.v', Line 47.
+WARNING: [Synth 37-125] [ASSIGN-10]Some bits in IO 'state_path_q16' are not read. First unread bit index is 0. 
+RTL Name 'state_path_q16', Hierarchy 'car_axis_status_osd', File 'car_axis_status_osd.v', Line 14.
+INFO: [Synth 37-85] Total of 6 linter message(s) generated.
+INFO: [Synth 37-45] Linter Run Finished!
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 1294.820 ; gain = 699.871
+INFO: [Common 17-83] Releasing license: Vivado_Synthesis
+10 Infos, 6 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:04 ; elapsed = 00:00:07 . Memory (MB): peak = 1294.820 ; gain = 708.098
+# close_project
+INFO: [Common 17-206] Exiting Vivado at Sun Oct 11 02:45:39 2026...

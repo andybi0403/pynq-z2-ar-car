@@ -1,0 +1,269 @@
+INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detected. Your current license is active and will expire on 16-sep-2027.
+#-----------------------------------------------------------
+# Vivado v2026.1 (64-bit)
+# SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+# IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+# SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+# Start of session at: Sun Oct 11 03:15:51 2026
+# Process ID         : 44856
+# Current directory  : C:/Users/39909/Desktop/FPGA
+# Command line       : vivado.exe -mode batch -source C:\Users\39909\Desktop\FPGA\pynq_fpga\audit\hud_clear_20261011\lint_r4.tcl -log C:\Users\39909\Desktop\FPGA\pynq_fpga\audit\hud_clear_20261011\lint_r4.log -journal C:\Users\39909\Desktop\FPGA\pynq_fpga\audit\hud_clear_20261011\lint_r4.jou
+# Log file           : C:/Users/39909/Desktop/FPGA/pynq_fpga/audit/hud_clear_20261011/lint_r4.log
+# Journal file       : C:\Users\39909\Desktop\FPGA\pynq_fpga\audit\hud_clear_20261011\lint_r4.jou
+# Running On         : BZY
+# Platform           : Windows 11
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) i7-14650HX
+# CPU Frequency      : 2419 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 33943 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68302 MB
+# Available Virtual  : 41285 MB
+#-----------------------------------------------------------
+source {C:\Users\39909\Desktop\FPGA\pynq_fpga\audit\hud_clear_20261011\lint_r4.tcl}
+# set rtl {C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl}
+# create_project -in_memory -part xc7z020clg400-1
+create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:09 . Memory (MB): peak = 588.418 ; gain = 268.551
+# read_verilog [file join $rtl car_axis_osd.v]
+# add_files -norecurse [file join $rtl font_16x16_hud.mem]
+# add_files -norecurse [file join $rtl font_24x24_hud.mem]
+# add_files -norecurse [file join $rtl font_32x32_hud.mem]
+# synth_design -top car_axis_osd -part xc7z020clg400-1 -lint -file {C:/Users/39909/Desktop/FPGA/pynq_fpga/audit/hud_clear_20261011/car_axis_osd_lint_r4.csv}
+Command: synth_design -top car_axis_osd -part xc7z020clg400-1 -lint -file C:/Users/39909/Desktop/FPGA/pynq_fpga/audit/hud_clear_20261011/car_axis_osd_lint_r4.csv
+Starting synth_design
+Attempting to get a license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 40400
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1167.602 ; gain = 572.195
+---------------------------------------------------------------------------------
+Clean up Linter database...
+INFO: [Synth 8-6157] synthesizing module 'car_axis_osd' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v:10]
+INFO: [Synth 8-3876] $readmem data file 'font_24x24_hud.mem' is read successfully [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v:157]
+INFO: [Synth 8-3876] $readmem data file 'font_32x32_hud.mem' is read successfully [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v:158]
+WARNING: [Synth 8-6014] Unused sequential element active_locked_reg was removed.  [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v:51]
+INFO: [Synth 8-6155] done synthesizing module 'car_axis_osd' (1#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v:10]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1298.559 ; gain = 703.152
+---------------------------------------------------------------------------------
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date         : Sun Oct 11 03:16:12 2026
+| Host         : BZY running 64-bit major release  (build 9200)
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+RTL Linter Report
+
+Table of Contents
+-----------------
+1. Summary
+
+1. Summary
+----------
+
++----------+----------+--------------+----------+
+| Rule ID  | Severity | # Violations | # Waived |
++----------+----------+--------------+----------+
+| ASSIGN-1 | WARNING  | 8            | 0        |
+| ASSIGN-5 | WARNING  | 3            | 0        |
+| ASSIGN-6 | WARNING  | 6            | 0        |
+| QOR-1    | WARNING  | 1            | 0        |
++----------+----------+--------------+----------+
+
+
+WARNING: [Synth 37-77] [ASSIGN-1]Input operands(of sizes 6 16 8) of add/sub cluster ending with expression '(lamp_local - 8'd40)' could yield maximum size of 16, but only width of 8 is being used.
+Hierarchy 'car_axis_osd', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v', Line 69, Additional lines 68.
+WARNING: [Synth 37-77] [ASSIGN-1]Input operands(of sizes 16 6 8) of add/sub cluster ending with expression '(8'd40 - lamp_local)' could yield maximum size of 17, but only width of 8 is being used.
+Hierarchy 'car_axis_osd', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v', Line 69, Additional lines 68.
+WARNING: [Synth 37-78] [ASSIGN-1]Input operands(of sizes 16 6) of add/sub cluster ending with expression '(py[7:0] - 8'd48)' could yield maximum size of 16, but only width of 8 is being used.
+Hierarchy 'car_axis_osd', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v', Line 70.
+WARNING: [Synth 37-78] [ASSIGN-1]Input operands(of sizes 6 16) of add/sub cluster ending with expression '(8'd48 - py[7:0])' could yield maximum size of 17, but only width of 8 is being used.
+Hierarchy 'car_axis_osd', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v', Line 70.
+WARNING: [Synth 37-78] [ASSIGN-1]Input operands(of sizes 16 5) of add/sub cluster ending with expression '(py[7:0] - 8'd80)' could yield maximum size of 16, but only width of 5 is being used.
+Hierarchy 'car_axis_osd', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v', Line 133.
+WARNING: [Synth 37-78] [ASSIGN-1]Input operands(of sizes 16 7) of add/sub cluster ending with expression '(py - (line0 ? 16'd24 : 16'd64))' could yield maximum size of 16, but only width of 5 is being used.
+Hierarchy 'car_axis_osd', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v', Line 143.
+WARNING: [Synth 37-77] [ASSIGN-1]Input operands(of sizes 8 5 16 4) of add/sub cluster ending with expression '(5'd31 - lamp_tx[4:0])' could yield maximum size of 17, but only width of 5 is being used.
+Hierarchy 'car_axis_osd', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v', Line 316, Additional lines 68 133.
+WARNING: [Synth 37-77] [ASSIGN-1]Input operands(of sizes 5 16 5) of add/sub cluster ending with expression '(5'd23 - gx)' could yield maximum size of 17, but only width of 5 is being used.
+Hierarchy 'car_axis_osd', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v', Line 316, Additional lines 184.
+WARNING: [Synth 37-124] [ASSIGN-5]Some bits in 'circle_inner' are not set. First unset bit index is 0. 
+RTL Name 'circle_inner', Hierarchy 'car_axis_osd', File 'car_axis_osd.v', Line 101.
+WARNING: [Synth 37-124] [ASSIGN-5]Some bits in 'circle_outer' are not set. First unset bit index is 0. 
+RTL Name 'circle_outer', Hierarchy 'car_axis_osd', File 'car_axis_osd.v', Line 71.
+WARNING: [Synth 37-124] [ASSIGN-5]Some bits in 'dabble' are not set. First unset bit index is 0. 
+RTL Name 'dabble', Hierarchy 'car_axis_osd', File 'car_axis_osd.v', Line 161.
+WARNING: [Synth 37-93] [ASSIGN-6]Signal 'draw_locked' was assigned but not read. 
+RTL Name 'draw_locked', Hierarchy 'car_axis_osd', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v', Line 51.
+WARNING: [Synth 37-123] [ASSIGN-6]Some bits in 'lamp_tx' are not read. First unread bit index is 6. 
+RTL Name 'lamp_tx', Hierarchy 'car_axis_osd', File 'car_axis_osd.v', Line 133.
+WARNING: [Synth 37-123] [ASSIGN-6]Some bits in 'lamp_ty' are not read. First unread bit index is 5. 
+RTL Name 'lamp_ty', Hierarchy 'car_axis_osd', File 'car_axis_osd.v', Line 133.
+WARNING: [Synth 37-93] [ASSIGN-6]Signal 'risk_color' was assigned but not read. 
+RTL Name 'risk_color', Hierarchy 'car_axis_osd', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v', Line 57.
+WARNING: [Synth 37-93] [ASSIGN-6]Signal 'tx' was assigned but not read. 
+RTL Name 'tx', Hierarchy 'car_axis_osd', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v', Line 141.
+WARNING: [Synth 37-123] [ASSIGN-6]Some bits in 'ty' are not read. First unread bit index is 5. 
+RTL Name 'ty', Hierarchy 'car_axis_osd', File 'car_axis_osd.v', Line 143.
+WARNING: [Synth 37-74] [QOR-1]Arithmetic Operator '(px[7:0] - ((lamp_index == 2) ? LAMP_X2 : ((lamp_index == 1) ? LAMP_X1 : LAMP_X0)))' resulted in loss of precision. This prevented merging optimization to its load operator '(lamp_local - 8'd8)' from happening and may degrade QoR. Full precision width of preceding operator is 9, however only 6 bits are selected. 
+Hierarchy 'car_axis_osd', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v', Line 133
+INFO: [Synth 37-85] Total of 18 linter message(s) generated.
+INFO: [Synth 37-45] Linter Run Finished!
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1298.559 ; gain = 703.152
+INFO: [Common 17-83] Releasing license: Vivado_Synthesis
+11 Infos, 19 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1298.559 ; gain = 710.141
+# close_project
+# create_project -in_memory -part xc7z020clg400-1
+# read_verilog [file join $rtl car_axis_status_osd.v]
+# add_files -norecurse [file join $rtl font_16x16_hud.mem]
+# add_files -norecurse [file join $rtl font_24x24_hud.mem]
+# add_files -norecurse [file join $rtl font_32x32_hud.mem]
+# synth_design -top car_axis_status_osd -part xc7z020clg400-1 -lint -file {C:/Users/39909/Desktop/FPGA/pynq_fpga/audit/hud_clear_20261011/car_axis_status_osd_lint_r4.csv}
+Command: synth_design -top car_axis_status_osd -part xc7z020clg400-1 -lint -file C:/Users/39909/Desktop/FPGA/pynq_fpga/audit/hud_clear_20261011/car_axis_status_osd_lint_r4.csv
+Starting synth_design
+Attempting to get a license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1298.559 ; gain = 0.000
+---------------------------------------------------------------------------------
+Clean up Linter database...
+INFO: [Synth 8-6157] synthesizing module 'car_axis_status_osd' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_status_osd.v:6]
+INFO: [Synth 8-3876] $readmem data file 'font_24x24_hud.mem' is read successfully [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_status_osd.v:46]
+INFO: [Synth 8-6155] done synthesizing module 'car_axis_status_osd' (1#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_status_osd.v:6]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1305.059 ; gain = 6.500
+---------------------------------------------------------------------------------
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date         : Sun Oct 11 03:16:20 2026
+| Host         : BZY running 64-bit major release  (build 9200)
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+RTL Linter Report
+
+Table of Contents
+-----------------
+1. Summary
+
+1. Summary
+----------
+
++-----------+----------+--------------+----------+
+| Rule ID   | Severity | # Violations | # Waived |
++-----------+----------+--------------+----------+
+| ASSIGN-1  | WARNING  | 1            | 0        |
+| ASSIGN-5  | WARNING  | 2            | 0        |
+| ASSIGN-6  | WARNING  | 2            | 0        |
+| ASSIGN-10 | WARNING  | 1            | 0        |
++-----------+----------+--------------+----------+
+
+
+WARNING: [Synth 37-77] [ASSIGN-1]Input operands(of sizes 5 5 16) of add/sub cluster ending with expression '(5'd23 - gx)' could yield maximum size of 17, but only width of 5 is being used.
+Hierarchy 'car_axis_status_osd', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_status_osd.v', Line 185, Additional lines 73.
+WARNING: [Synth 37-124] [ASSIGN-5]Some bits in 'dabble' are not set. First unset bit index is 0. 
+RTL Name 'dabble', Hierarchy 'car_axis_status_osd', File 'car_axis_status_osd.v', Line 37.
+WARNING: [Synth 37-124] [ASSIGN-5]Some bits in 'hexglyph' are not set. First unset bit index is 0. 
+RTL Name 'hexglyph', Hierarchy 'car_axis_status_osd', File 'car_axis_status_osd.v', Line 75.
+WARNING: [Synth 37-123] [ASSIGN-6]Some bits in 'net_abs' are not read. First unread bit index is 0. 
+RTL Name 'net_abs', Hierarchy 'car_axis_status_osd', File 'car_axis_status_osd.v', Line 35.
+WARNING: [Synth 37-123] [ASSIGN-6]Some bits in 'ty' are not read. First unread bit index is 5. 
+RTL Name 'ty', Hierarchy 'car_axis_status_osd', File 'car_axis_status_osd.v', Line 47.
+WARNING: [Synth 37-125] [ASSIGN-10]Some bits in IO 'state_path_q16' are not read. First unread bit index is 0. 
+RTL Name 'state_path_q16', Hierarchy 'car_axis_status_osd', File 'car_axis_status_osd.v', Line 14.
+INFO: [Synth 37-85] Total of 6 linter message(s) generated.
+INFO: [Synth 37-45] Linter Run Finished!
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1305.059 ; gain = 6.500
+INFO: [Common 17-83] Releasing license: Vivado_Synthesis
+8 Infos, 6 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1305.059 ; gain = 6.500
+# close_project
+# create_project -in_memory -part xc7z020clg400-1
+# read_verilog [file join $rtl car_axis_front_overlay.v]
+# add_files -norecurse [file join $rtl font_16x16_hud.mem]
+# add_files -norecurse [file join $rtl font_24x24_hud.mem]
+# add_files -norecurse [file join $rtl font_32x32_hud.mem]
+# synth_design -top car_axis_front_overlay -part xc7z020clg400-1 -lint -file {C:/Users/39909/Desktop/FPGA/pynq_fpga/audit/hud_clear_20261011/car_axis_front_overlay_lint_r4.csv}
+Command: synth_design -top car_axis_front_overlay -part xc7z020clg400-1 -lint -file C:/Users/39909/Desktop/FPGA/pynq_fpga/audit/hud_clear_20261011/car_axis_front_overlay_lint_r4.csv
+Starting synth_design
+Attempting to get a license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1305.059 ; gain = 0.000
+---------------------------------------------------------------------------------
+Clean up Linter database...
+INFO: [Synth 8-6157] synthesizing module 'car_axis_front_overlay' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_front_overlay.v:9]
+INFO: [Synth 8-3876] $readmem data file 'font_24x24_hud.mem' is read successfully [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_front_overlay.v:68]
+WARNING: [Synth 8-6014] Unused sequential element b_box_reg was removed.  [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_front_overlay.v:125]
+WARNING: [Synth 8-6014] Unused sequential element c_box_reg was removed.  [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_front_overlay.v:127]
+INFO: [Synth 8-6155] done synthesizing module 'car_axis_front_overlay' (1#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_front_overlay.v:9]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 1312.207 ; gain = 7.148
+---------------------------------------------------------------------------------
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date         : Sun Oct 11 03:16:28 2026
+| Host         : BZY running 64-bit major release  (build 9200)
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+RTL Linter Report
+
+Table of Contents
+-----------------
+1. Summary
+
+1. Summary
+----------
+
++-----------+----------+--------------+----------+
+| Rule ID   | Severity | # Violations | # Waived |
++-----------+----------+--------------+----------+
+| ASSIGN-1  | WARNING  | 4            | 0        |
+| ASSIGN-5  | WARNING  | 1            | 0        |
+| ASSIGN-6  | WARNING  | 4            | 0        |
+| ASSIGN-10 | WARNING  | 2            | 0        |
++-----------+----------+--------------+----------+
+
+
+WARNING: [Synth 37-78] [ASSIGN-1]Input operands(of sizes 10 10 10) of add/sub cluster ending with expression '(({2'b0,s_axis_tdata[23:16]} + {1'b0,s_axis_tdata[15:8],1'b0}) + {2'b0,s_axis_tdata[7:0]})' could yield maximum size of 12, but only width of 10 is being used.
+Hierarchy 'car_axis_front_overlay', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_front_overlay.v', Line 38.
+WARNING: [Synth 37-78] [ASSIGN-1]Input operands(of sizes 2 4) of add/sub cluster ending with expression '(tx[4:3] + column[1:0])' could yield maximum size of 5, but only width of 2 is being used.
+Hierarchy 'car_axis_front_overlay', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_front_overlay.v', Line 84.
+WARNING: [Synth 37-78] [ASSIGN-1]Input operands(of sizes 16 16) of add/sub cluster ending with expression '(px - label_x)' could yield maximum size of 17, but only width of 9 is being used.
+Hierarchy 'car_axis_front_overlay', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_front_overlay.v', Line 70.
+WARNING: [Synth 37-78] [ASSIGN-1]Input operands(of sizes 16 16) of add/sub cluster ending with expression '(py - label_y)' could yield maximum size of 17, but only width of 5 is being used.
+Hierarchy 'car_axis_front_overlay', File 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_front_overlay.v', Line 70.
+WARNING: [Synth 37-124] [ASSIGN-5]Some bits in 'dabble' are not set. First unset bit index is 0. 
+RTL Name 'dabble', Hierarchy 'car_axis_front_overlay', File 'car_axis_front_overlay.v', Line 60.
+WARNING: [Synth 37-123] [ASSIGN-6]Some bits in 'font_word' are not read. First unread bit index is 0. 
+RTL Name 'font_word', Hierarchy 'car_axis_front_overlay', File 'car_axis_front_overlay.v', Line 103.
+WARNING: [Synth 37-123] [ASSIGN-6]Some bits in 'grey_sum' are not read. First unread bit index is 0. 
+RTL Name 'grey_sum', Hierarchy 'car_axis_front_overlay', File 'car_axis_front_overlay.v', Line 38.
+WARNING: [Synth 37-123] [ASSIGN-6]Some bits in 'tx' are not read. First unread bit index is 9. 
+RTL Name 'tx', Hierarchy 'car_axis_front_overlay', File 'car_axis_front_overlay.v', Line 70.
+WARNING: [Synth 37-123] [ASSIGN-6]Some bits in 'ty' are not read. First unread bit index is 5. 
+RTL Name 'ty', Hierarchy 'car_axis_front_overlay', File 'car_axis_front_overlay.v', Line 70.
+WARNING: [Synth 37-125] [ASSIGN-10]Some bits in IO 'state_risk_level' are not read. First unread bit index is 0. 
+RTL Name 'state_risk_level', Hierarchy 'car_axis_front_overlay', File 'car_axis_front_overlay.v', Line 21.
+WARNING: [Synth 37-125] [ASSIGN-10]Some bits in IO 'state_stop' are not read. First unread bit index is 0. 
+RTL Name 'state_stop', Hierarchy 'car_axis_front_overlay', File 'car_axis_front_overlay.v', Line 21.
+INFO: [Synth 37-85] Total of 11 linter message(s) generated.
+INFO: [Synth 37-45] Linter Run Finished!
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 1312.207 ; gain = 7.148
+INFO: [Common 17-83] Releasing license: Vivado_Synthesis
+8 Infos, 13 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:05 ; elapsed = 00:00:08 . Memory (MB): peak = 1312.207 ; gain = 7.148
+# close_project
+INFO: [Common 17-206] Exiting Vivado at Sun Oct 11 03:16:28 2026...

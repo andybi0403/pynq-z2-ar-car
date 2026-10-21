@@ -1,0 +1,7 @@
+{
+  "kind": "CAMERA_RAW_RETRIEVAL",
+  "hardware": true,
+  "scope": "native camera capture before unavailable optional v4l2-ctl call; not PL or stream performance",
+  "JPEG_bytes": 30882,
+  "sha256": "986dd5cce1d2faeca3439a386ef5318b29fa6cd95d204f6e148996745bd011ae"
+}

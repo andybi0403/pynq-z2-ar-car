@@ -1,0 +1,14 @@
+{
+  "schema": "current-board-verified-uart-runtime/v1",
+  "name": "v010_uart_role_fix_20261014_r3",
+  "kind": "SOFTWARE_PATCH_SAME_VERIFIED_FPGA",
+  "package_dir": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\lab\\task7_8_lab_only_v010_uart_role_fix_20261014_r3",
+  "board_package": "/home/xilinx/edge_console_v010_uart_role_fix_20261014_r3",
+  "firmware_sha256": "8b043a342c839414f021bbd68700ddfac48113509577872ace9074bb806f4f2d",
+  "bit_sha256": "d3287345221c56d0f0c120508ef1bc54771eeedd7b85050e50906c3ff282d7ad",
+  "proof": "C:\\Users\\39909\\Desktop\\FPGA\\work\\uart_live_fix_20261014\\completion_audit.json",
+  "hardware_subtests": "FLASH_UART_US_IR_PL_PASS",
+  "motor_output_allowed": false,
+  "board_startup_entry": "/home/xilinx/stm32_sensors_platform_20261013/start_hybrid.sh",
+  "PYNQ_reboot_reinitialization_verified": true
+}

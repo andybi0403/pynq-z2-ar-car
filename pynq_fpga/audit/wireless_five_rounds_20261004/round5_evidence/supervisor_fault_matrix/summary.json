@@ -1,0 +1,130 @@
+{
+  "schema": "car-supervisor-fault-matrix/v1",
+  "hardware": false,
+  "scope": "actual host/client/UART encoder and compiled production STM32 policy; simulated PL registers and transport",
+  "production_c": {
+    "schema": "car-production-c-build/v1",
+    "source": "C:\\Users\\39909\\Desktop\\FPGA\\stm32_pynq\u5bf9\u63a5\u7248\\Source\\APP\\safe_control.c",
+    "source_sha256": "ef32fb8a078fca7faf719377bcb728a908d450e8ef43a4bf2d85665e7be365d3",
+    "header": "C:\\Users\\39909\\Desktop\\FPGA\\stm32_pynq\u5bf9\u63a5\u7248\\Source\\APP\\safe_control.h",
+    "header_sha256": "da8d27cfb4c0c78b75282e8f7ec58758847d29355569580851bebe513e0ed3fe",
+    "dll_sha256": "43b0dacf451de24bb6557126c274f983c41cea495ac282035adb9af9f6a9ab20",
+    "compiler_command": "cl /nologo /W4 /wd4819 /WX /TC /LD /O2 \"C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\c_build\\safe_control_prod.c\" \"C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\c_build\\hybrid_protocol_prod.c\" /Fe\"C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\c_build\\safe_control.dll\" /FoC:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\c_build\\obj\\ /link /EXPORT:safe_init /EXPORT:safe_tick /EXPORT:safe_fault /EXPORT:safe_source_handover /EXPORT:safe_frame /EXPORT:safe_pframe /EXPORT:safe_outputs /EXPORT:hybrid_receive /EXPORT:hybrid_report /EXPORT:hybrid_crc16 /EXPORT:safe_local_sample"
+  },
+  "sources": {
+    "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\control_supervisor.py": "d014088c31a9d705d8be757928859dd825a26d121811ec0e934b15b0ea20f2c6",
+    "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\perception_client.py": "7dae116b3c32f12bcc1965e5ecfe8afa0bcde2cbebf9c22c62300718d86e6bd1",
+    "C:\\Users\\39909\\Desktop\\FPGA\\stm32\u9884\u5907\u7a0b\u5e8f\\pc\\pynq_link.py": "dbf4c034e208b2a37ee20435a9cbe727680e483a0482a2f46de2819a28775680",
+    "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\tests\\supervisor_c_fixture.py": "c32ddbd502430a36f71b286dc6c19f7b7cdd9c924c6f0f2376effacfa00b20f9",
+    "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\tests\\test_supervisor_c_loop.py": "a2ace6d75b8e6dcfa67d744e026c9a24a87d42a76ae28c71df06f1fe6779ec3a",
+    "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\preintegration\\run_supervisor_fault_matrix.py": "f114b1e5ac333c268177b768658af591b445de983c6b293a8762c9a0c47c0bb7"
+  },
+  "scenarios": [
+    {
+      "scenario": "test_frozen_car_feedback_stops_even_while_uart_tx_and_pl_are_healthy",
+      "passed": true,
+      "trace": "test_frozen_car_feedback_stops_even_while_uart_tx_and_pl_are_healthy.json",
+      "sha256": "a62c0d80dbc14afc4722fab1b366af8ebafb5729b8d82d09b7ece4c11d0b5686",
+      "failures": []
+    },
+    {
+      "scenario": "test_frozen_pl_sample_real_client_and_c_stop",
+      "passed": true,
+      "trace": "test_frozen_pl_sample_real_client_and_c_stop.json",
+      "sha256": "9be9e8c15f6ff233d02e116fd118bdfba87a9be648bd4a4446067dac8a89cefc",
+      "failures": []
+    },
+    {
+      "scenario": "test_illegal_qei_with_valid_zero_speed_stops_actual_c_and_never_auto_restarts",
+      "passed": true,
+      "trace": "test_illegal_qei_with_valid_zero_speed_stops_actual_c_and_never_auto_restarts.json",
+      "sha256": "489f5f3acfa283cce9bafeebb50a83007d0c29a67e0e08caf40e1849b831fafc",
+      "failures": []
+    },
+    {
+      "scenario": "test_intent_expiry_is_not_renewed_by_sampling_or_uart",
+      "passed": true,
+      "trace": "test_intent_expiry_is_not_renewed_by_sampling_or_uart.json",
+      "sha256": "ff0c17779151e62669a509dbd730f7a48f951aae067193a3818c5f2f5100d970",
+      "failures": []
+    },
+    {
+      "scenario": "test_ir_obstacle_keeps_actual_c_fault_source",
+      "passed": true,
+      "trace": "test_ir_obstacle_keeps_actual_c_fault_source.json",
+      "sha256": "ec407652f53207fd20696f9dd4a7140f60a922950c4e6e906f355bd6e7f37625",
+      "failures": []
+    },
+    {
+      "scenario": "test_missing_unlock_ack_times_out_without_any_motion",
+      "passed": true,
+      "trace": "test_missing_unlock_ack_times_out_without_any_motion.json",
+      "sha256": "b4d80ef6c05093a52dbb9d5501b907ff5ae9ca235a1be07b5df8830dafd05e1b",
+      "failures": []
+    },
+    {
+      "scenario": "test_mmio_failure_still_sends_stop_to_c",
+      "passed": true,
+      "trace": "test_mmio_failure_still_sends_stop_to_c.json",
+      "sha256": "243c2cb8f202367e04e5d0343e5001092b490b85a48b7e3f52238bd247817d08",
+      "failures": []
+    },
+    {
+      "scenario": "test_new_control_restart_cannot_replay_old_nonzero_request",
+      "passed": true,
+      "trace": "test_new_control_restart_cannot_replay_old_nonzero_request.json",
+      "sha256": "9861cd1111c498a83711f55eb0127046de412811e67878179593654eeeef1ab7",
+      "failures": []
+    },
+    {
+      "scenario": "test_red_stops_c_and_cannot_automatically_restart",
+      "passed": true,
+      "trace": "test_red_stops_c_and_cannot_automatically_restart.json",
+      "sha256": "b3fecd0d7a75510ab55d5f023c4e865f802afd4f437e1b3ea7adf5602679d549",
+      "failures": []
+    },
+    {
+      "scenario": "test_release_then_fresh_intent_is_required_by_actual_c_outputs",
+      "passed": true,
+      "trace": "test_release_then_fresh_intent_is_required_by_actual_c_outputs.json",
+      "sha256": "da331278aedb431ceb8754c62bff3cae53500df91442e5d3a2397223c89f80c1",
+      "failures": []
+    },
+    {
+      "scenario": "test_reverse_requests_encode_nonforward_and_reach_actual_c",
+      "passed": true,
+      "trace": "test_reverse_requests_encode_nonforward_and_reach_actual_c.json",
+      "sha256": "91e6ff3c4b780e2162cb0ac59bf2bed510369a6a63eba94699649f9349371fa9",
+      "failures": []
+    },
+    {
+      "scenario": "test_supervisor_stall_with_uart_running_revokes_old_request",
+      "passed": true,
+      "trace": "test_supervisor_stall_with_uart_running_revokes_old_request.json",
+      "sha256": "5b962698202b5aae685f6c84acde5191371fd56a0a41f2119c45f4a392eea7b1",
+      "failures": []
+    },
+    {
+      "scenario": "test_uart_blackout_actual_c_backstop",
+      "passed": true,
+      "trace": "test_uart_blackout_actual_c_backstop.json",
+      "sha256": "aab897375fec9744628a149ca3c22fe5ac486bc503da09fb2f37911af21b8ad9",
+      "failures": []
+    },
+    {
+      "scenario": "test_uint32_c_and_pl_wrap_preserve_hold_and_lease",
+      "passed": true,
+      "trace": "test_uint32_c_and_pl_wrap_preserve_hold_and_lease.json",
+      "sha256": "8f15077df4ca63980e4d9863e08789190cc5dac6cbd8a7dc4871051b67a46d2c",
+      "failures": []
+    },
+    {
+      "scenario": "test_yellow_reduces_actual_c_pwm_and_green_does_not_replay",
+      "passed": true,
+      "trace": "test_yellow_reduces_actual_c_pwm_and_green_does_not_replay.json",
+      "sha256": "2866ff9aff82ec182aefcca40907535e787fb29ee330724f7e03a53e9eab8028",
+      "failures": []
+    }
+  ],
+  "passed": true
+}

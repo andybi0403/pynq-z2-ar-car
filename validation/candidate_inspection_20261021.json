@@ -1,0 +1,18 @@
+{
+  "schema": "skill-candidate-inspection/v1",
+  "consistency_ok": true,
+  "failures": [],
+  "name": "v010_edge_console_20261014_r2",
+  "contract_id": "0xC425100A",
+  "classification": "LAB_ONLY_NO_MOTOR_NON_RELEASE",
+  "reported_hardware_status": "PENDING",
+  "hardware_checked": false,
+  "declared_sources_checked": 360,
+  "runtime_files_checked": 22,
+  "stages_checked": 8,
+  "package_payloads_checked": 40,
+  "limits": [
+    "declared identities only; use source_provenance.py for full input-set check",
+    "not semantic HWH, timing, board, calibration or motion acceptance"
+  ]
+}

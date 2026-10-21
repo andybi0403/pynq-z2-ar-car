@@ -1,0 +1,30 @@
+Codex round3-observation closure evidence, 2026-09-19
+
+[Fresh isolated preintegration]
+command: powershell -NoProfile -ExecutionPolicy Bypass -File pynq_fpga/preintegration/run_tests.ps1 -Vivado -Synthesis -RequireAEBlocked
+exit: 0
+evidence directory: pynq_fpga/fpga/build/task7_8_tests/20260919_161107
+results: Python 20/20; RTL 312/312 and 34/34; HWH contract PASS; PREINTEGRATION_FRAMEWORK_SYNTH_PASS; WNS +4.446 ns; A-E release gate BLOCKED as required.
+
+[Fresh unified gate]
+command: powershell -NoProfile -ExecutionPolicy Bypass -File pynq_fpga/fpga/scripts/run_acceptance.ps1 -Synthesis
+exit: 0
+evidence directory: pynq_fpga/nightly/acceptance_20260918/run_20260919_161918
+result: ARCHITECTURE_SOFTWARE_RTL_PASS (not hardware acceptance)
+counts: two STM32 C suites; communication 20; host 38; RTL 104/43/31/124/31/33/1326/114695/614400/12; 7x8192 and 307200 pixel comparisons; six OOC synthesis modules.
+
+[Tool-output containment]
+project-root retry_open_fs.log after both Vivado runs: absent
+Vivado logs/journals and .Xil working data: contained by timestamped evidence/build directories
+
+[LAB_ONLY]
+command: python -B pynq_fpga/lab/task7_8_lab_only_20260919/lab_acceptance.py contract
+exit: 0
+result: LAB_CONTRACT_PASS, classification LAB_ONLY_NO_MOTOR_NON_RELEASE, integrated_id 0xC4251006, release_gate BLOCKED_EXPECTED
+ZIP SHA-256: fd813fdb509d252d703e3bb5741ffbbf5683eac594679a866f35a05d54c0a29e
+package __pycache__: removed after verifying its resolved parent was the exact LAB_ONLY folder; final state absent
+
+[Release gate]
+command: python pynq_fpga/fpga/scripts/validate_board_manifest.py --release
+exit: 1 (expected)
+reason: external electrical checks for 10 signals and physical board revision are unconfirmed

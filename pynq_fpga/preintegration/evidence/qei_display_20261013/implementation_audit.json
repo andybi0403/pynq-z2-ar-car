@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "setup_worst_ns": 0.238,
+  "hold_worst_ns": 0.028,
+  "bus_skew_slacks_ns": [
+    8.815,
+    9.048
+  ],
+  "drc_advisories": {
+    "REQP-181": 2
+  },
+  "sources": {
+    "timing": {
+      "path": "pynq_fpga\\fpga\\build\\task7_8_v09_qei_display_20261013_r2\\timing_integrated_impl.rpt",
+      "sha256": "09bece49565c889c348d30dea1870b1c09fe5ee7b45f2b10914a2c2991468249"
+    },
+    "drc": {
+      "path": "pynq_fpga\\fpga\\build\\task7_8_v09_qei_display_20261013_r2\\drc_integrated_impl.rpt",
+      "sha256": "2375db40036cf2cbb58c0c8df0f751e9e7048beed65daffd954623fefdf26f17"
+    },
+    "bus_skew": {
+      "path": "pynq_fpga\\fpga\\build\\task7_8_v09_qei_display_20261013_r2\\task7_8_integrated.runs\\impl_1\\preintegration_bd_wrapper_bus_skew_routed.rpt",
+      "sha256": "3cb58e5055ee210cf90487fb970d7b7624f3b6cc5278f6b39957e3421e792aa0"
+    }
+  }
+}

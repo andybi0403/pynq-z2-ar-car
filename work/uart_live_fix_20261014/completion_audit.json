@@ -1,0 +1,76 @@
+{
+  "schema": "uart-goal-completion-audit/v1",
+  "objective": "完全解决烧录程序及两块板通信问题",
+  "requirements": [
+    {
+      "requirement": "烧录工具认证与ROM同步/容量解析可工作",
+      "evidence": [
+        "prompt_driven_auth.json",
+        "flash_result.json",
+        "test_flash_transport.py"
+      ],
+      "proved": true
+    },
+    {
+      "requirement": "STM32修复版实际写入且读回匹配",
+      "evidence": [
+        "independent_flash_audit.json",
+        "after_uart_role_fix.bin"
+      ],
+      "proved": true
+    },
+    {
+      "requirement": "BOOT0=0复位后双向CRC/会话匹配通信",
+      "evidence": [
+        "fixed_runtime_acceptance_summary.json",
+        "fixed_runtime_independent_audit.json"
+      ],
+      "proved": true
+    },
+    {
+      "requirement": "真实US/IR样本持续进入PL而非只收到串口字节",
+      "evidence": [
+        "fixed_runtime_samples.jsonl",
+        "fixed_runtime_independent_audit.json",
+        "high_sequence_independent_audit.json"
+      ],
+      "proved": true
+    },
+    {
+      "requirement": "同版固件与PYNQ主机部署且可找回",
+      "evidence": [
+        "new_runtime_complete_verified.json",
+        "final_runtime_entry_check.json"
+      ],
+      "proved": true
+    },
+    {
+      "requirement": "保持锁车及零实际PWM",
+      "evidence": [
+        "fixed_runtime_independent_audit.json",
+        "high_sequence_independent_audit.json"
+      ],
+      "proved": true
+    },
+    {
+      "requirement": "日常入口指向修复版且PYNQ重启后可重新启用UART恢复实测通信",
+      "evidence": [
+        "startup_entry_update.json",
+        "reboot_startup_entry_proof.json",
+        "reboot_independent_audit.json"
+      ],
+      "proved": true
+    }
+  ],
+  "all_requirements_proved": true,
+  "timestamp_utc": "2026-10-14T08:53:53.856423+00:00",
+  "scope": "locked no-motor flashing/UART/local-sensor-to-PL verification",
+  "current_runtime": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\lab\\task7_8_lab_only_v010_uart_role_fix_20261014_r3",
+  "firmware_sha256": "8b043a342c839414f021bbd68700ddfac48113509577872ace9074bb806f4f2d",
+  "source_hashes": {
+    "stm32_pynq对接版/Source/APP/safe_car.c": "a0d4471075c855aca01da22d4b4c9e5db5da14d1dbab7d30df2e6ee2c9bbe53f",
+    "pynq_fpga/host/perception_client.py": "7dae116b3c32f12bcc1965e5ecfe8afa0bcde2cbebf9c22c62300718d86e6bd1",
+    "work/uart_live_fix_20261014/upload_flash_via_pynq_console.py": "b5c66c7d984674c76edeadf9de3188f7c43b96d7dc503aa488f7274a0b591555",
+    "work/uart_live_fix_20261014/pynq_console_transport.py": "e1e90aa3f262057efdcc7ef160ba877c3792eccf7b70638f88016d5f11863fef"
+  }
+}

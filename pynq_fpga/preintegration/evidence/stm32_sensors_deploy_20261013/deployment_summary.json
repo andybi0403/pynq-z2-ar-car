@@ -1,0 +1,29 @@
+{
+  "kind": "HYBRID_DEPLOYMENT_COMPLETE",
+  "package": "/home/xilinx/stm32_sensors_v010_20261013_r3",
+  "platform": "/home/xilinx/stm32_sensors_platform_20261013",
+  "prepare_command": "sudo env XILINX_XRT=/usr /usr/local/share/pynq-venv/bin/python3 /home/xilinx/stm32_sensors_platform_20261013/prepare_hybrid.py",
+  "runtime_launcher": "/home/xilinx/stm32_sensors_platform_20261013/start_hybrid.sh",
+  "launcher_requires_operator_args": true,
+  "installed_file_sha256": {
+    "/home/xilinx/stm32_sensors_platform_20261013/prepare_hybrid.py": "8f085ea76d20050e8e2795576a5419455f1104389aa4683dc9782477e1659375",
+    "/home/xilinx/stm32_sensors_platform_20261013/pynq_car_uart1.dts": "61f9ac4ccf10fb87861f2f1066d219e98dc5b15993a8f8e2feaeea5e7d1b7f6d",
+    "/home/xilinx/stm32_sensors_platform_20261013/start_hybrid.sh": "06309f36151adb4d14955dc63501cdb9bad2abff2689473931877d866cddd594"
+  },
+  "registers": {
+    "ID_VERSION": 3290763274,
+    "EXT_SENSOR_MODE": 1,
+    "EXT_SENSOR_STATUS": 1,
+    "QEI0_SCALE": 0,
+    "QEI1_SCALE": 0,
+    "RISK_ENABLE": 0
+  },
+  "observed_timebase_hz": 99911365.95584606,
+  "native_abi": "car-video/2;libjpeg-turbo/3.1.2",
+  "uart_device_ready": true,
+  "stm32_connected": false,
+  "joint_tested": false,
+  "autostart_enabled": false,
+  "motor_commands_sent": false,
+  "bit_sha256": "cd7847bb47034f142c073d0f0a95e19eb23979b652265f1cec2448478f4be635"
+}

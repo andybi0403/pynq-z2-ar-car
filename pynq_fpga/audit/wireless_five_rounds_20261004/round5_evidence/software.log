@@ -1,0 +1,53 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261021233816
+Username: BZY\39909
+RunAs User: BZY\39909
+Configuration Name: 
+Machine: BZY (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File pynq_fpga\preintegration\run_software_round.ps1 -Round 5
+Process ID: 37908
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+正正在在生生成成代代码码...
+GOLDEN $S1,123,1,7,20,1,1000,8,1,1,0,0,0,1,1,0,0489#
+PASS hybrid: CRC, session, replay, wrap, local expiry, independent leases and re
+port
+test_bad_crc_and_drive_cannot_bind (__main__.UartRoleTests.test_bad_crc_and_driv
+e_cannot_bind) ... ok
+test_independent_partial_frames_and_overflow (__main__.UartRoleTests.test_indepe
+ndent_partial_frames_and_overflow) ... ok
+test_other_uart_cannot_change_session_or_accept_commands (__main__.UartRoleTests
+.test_other_uart_cannot_change_session_or_accept_commands) ... ok
+test_real_host_on_each_uart (__main__.UartRoleTests.test_real_host_on_each_uart)
+ ... ok
+test_secondary_halt_stops_nonzero_modeled_outputs (__main__.UartRoleTests.test_s
+econdary_halt_stops_nonzero_modeled_outputs) ... ok
+test_stop_does_not_release_or_unbind (__main__.UartRoleTests.test_stop_does_not_
+release_or_unbind) ... ok
+test_stray_bytes_and_framing_errors_cannot_take_over (__main__.UartRoleTests.tes
+t_stray_bytes_and_framing_errors_cannot_take_over) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 25.208s
+
+OK
+
+
+
+
+
+
+
+ROUND_5_SOFTWARE_PASS; hardware=PENDING
+**********************
+Windows PowerShell transcript end
+End time: 20261021233941
+**********************

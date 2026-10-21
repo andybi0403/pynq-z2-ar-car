@@ -1,0 +1,37 @@
+{
+  "locked_feedback_250ms": {
+    "available": false,
+    "estimated": true,
+    "mode": "unavailable",
+    "speed_mm_s": null,
+    "displacement_mm": null,
+    "travelled_mm": null,
+    "measurement_age_s": null,
+    "valid_for_s": 0.0,
+    "reasons": [
+      "qei0_invalid",
+      "qei1_invalid"
+    ],
+    "scope": "display_only_estimates"
+  },
+  "turning_clean_wheels": {
+    "available": false,
+    "estimated": true,
+    "mode": "unavailable",
+    "speed_mm_s": null,
+    "displacement_mm": null,
+    "travelled_mm": null,
+    "measurement_age_s": null,
+    "valid_for_s": 0.0,
+    "reasons": [
+      "wheel_disagreement"
+    ],
+    "scope": "display_only_estimates"
+  },
+  "closed_hub_accepts_frame": true,
+  "existing_evidence_overwritten": true,
+  "wired_disconnect": {
+    "cards_retained_after_disconnect": true,
+    "connection": "连接失败：offline"
+  }
+}

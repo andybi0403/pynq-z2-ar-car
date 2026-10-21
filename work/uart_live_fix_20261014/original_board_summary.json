@@ -1,0 +1,31 @@
+{
+  "kind": "HYBRID_UART_PL_TRIAL",
+  "hardware": true,
+  "motor_commands": "query and PSTOP only",
+  "sensor_joint_acceptance": false,
+  "duration_target_s": 15,
+  "package": "/home/xilinx/edge_console_v010_20261014_r2",
+  "observed_s": 15.016848045000074,
+  "sensor_errors": 0,
+  "transport_error": null,
+  "state_reports": 0,
+  "uart_rx_bytes": 0,
+  "final_scale": [
+    0,
+    0
+  ],
+  "final_external_status": 1,
+  "final_risk_enable": 0,
+  "tx_types": {
+    "Q1": 242,
+    "PSTOP": 243
+  },
+  "samples": 279,
+  "valid_us_pl_samples": 0,
+  "valid_ir_pl_samples": 0,
+  "first_report": null,
+  "last_report": null,
+  "passed": false,
+  "bit_sha256": "d3287345221c56d0f0c120508ef1bc54771eeedd7b85050e50906c3ff282d7ad",
+  "raw_archive_sha256": "eff0ba4cfe6e5af8fdfb694d6ae8d9cc1e92fd1204ed70292e17ffd4598b56e4"
+}

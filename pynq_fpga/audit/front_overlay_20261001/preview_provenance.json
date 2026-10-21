@@ -1,0 +1,10 @@
+{
+  "source": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\fpga\\build\\sim_tb_car_board_video_wrapper\\20261001_231543_425\\display_chain_f1.rgb",
+  "raw_sha256": "37253ca88ce6ea5a27318ff50488d66bec460f969f3608abf33e5710af659464",
+  "png_sha256": "58e63954b77dbd72adf86b8fe201a9dee6dd15556d5d0bbcc84f09585a2e1f8a",
+  "scope": "actual production wrapper RTL output of synthetic stimulus; not camera or hardware screenshot",
+  "image_dimensions": [
+    640,
+    480
+  ]
+}

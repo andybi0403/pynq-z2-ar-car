@@ -1,0 +1,13 @@
+{
+  "schema": "car-deployment-check/v1",
+  "passed": true,
+  "failures": [],
+  "contract_id": "0xC425100A",
+  "board_prerequisites_checked": false,
+  "hardware_acceptance": "PENDING",
+  "overlay_loaded": false,
+  "serial_opened": false,
+  "python": "3.14.0",
+  "machine": "AMD64",
+  "dependencies": {}
+}

@@ -1,0 +1,7 @@
+[x] Problem: final routed 100MHz setup paths from front_overlay/x to a_glyph violate by up to 0.280ns; osd coordinate/glyph paths also violate up to 0.053ns.
+[x] Cause: subtraction, constant /24 and %24, then variable BCD selection form 13-15 logic levels. No evidence of an incorrect clock constraint.
+[x] Intent: preserve native 24px glyph cells and one pixel per clock; all display markers, sensor state and geometry remain associated with accepted pixels.
+[x] Resolution: replace bounded /24 cell positioning with parallel one-hot constant interval comparisons; derive cell offset using exact modulo-32 arithmetic. Native glyphs and image layout are unchanged.
+[x] Alternatives: lowering clock or excluding setup paths would alter the validated design requirement; adding more latency is unnecessary for a bounded cell grid. Parallel comparison directly shortens the measured failing path.
+[x] Consequences: outside active text/label rectangles decoder values are don't-care; foreground composition is enabled only inside those rectangles. Independent pixel oracles and backpressure tests will verify all active cells and frame boundaries.
+[x] Classification: high-confidence RTL fix within the authorized HUD change. No XDC change, new clock relation, timing exception or waiver.

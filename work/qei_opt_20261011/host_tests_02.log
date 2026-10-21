@@ -1,0 +1,6 @@
+........................................................................PERCEPTION_IO_FAIL input=C:\Users\39909\AppData\Local\Temp\tmpeqfzhgl3\bad-record.jsonl schema=car-perception-replay/v1 contract=0xC4251009: C:\Users\39909\AppData\Local\Temp\tmpeqfzhgl3\bad-record.jsonl:2: event 0: missing registers ['US_TS']
+.................................................
+----------------------------------------------------------------------
+Ran 121 tests in 0.792s
+
+OK

@@ -1,0 +1,2497 @@
+{
+  "schema": "car-source-read-inventory/v1",
+  "files": [
+    {
+      "path": "fpga/board/board_manifest.json",
+      "sha256": "38f9f04f99ea6219c0ca7e06b2bc37d77f57bf5144f7ea7500dfb5671a4c5974",
+      "bytes": 8128,
+      "lines": 41,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/board/jtag_smoke/build.tcl",
+      "sha256": "b35e363da1293f9988895d02feef9198e12c77879243a248b05a315f4df38509",
+      "bytes": 537,
+      "lines": 14,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/board/jtag_smoke/led_switch.v",
+      "sha256": "a4b3bb42e41869fffc40d39ff190e3c6d707149c9390583e6eafbdb58a1f62b4",
+      "bytes": 240,
+      "lines": 8,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/board/jtag_smoke/led_switch.xdc",
+      "sha256": "dc7dbdb475eb3f4839d905f38bacc90452213242fbe5e0f2f5b0160e392be8ca",
+      "bytes": 703,
+      "lines": 9,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/board/jtag_smoke/probe.tcl",
+      "sha256": "8bf218ba30e796e9e0678aabc6550b174c0bbffa7d87bac2ee3875199df7d24f",
+      "bytes": 372,
+      "lines": 14,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/registers/generate_register_map.py",
+      "sha256": "bad1312653adbb9ec53037287aaa6a4558bc3f182bfbd7c19fabb85f130c234f",
+      "bytes": 4015,
+      "lines": 95,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/registers/register_map.json",
+      "sha256": "0c740d083d33f564f033e826b05fa13d45b7bb3b359fce35741457f4d4cc9a1d",
+      "bytes": 14727,
+      "lines": 569,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_axil_regs.v",
+      "sha256": "e2b8cff8ed49d882a9d11fc4c58a7b674ac7e38c4d31a6951edaa8d8ed87d9fb",
+      "bytes": 7013,
+      "lines": 171,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_axis_frame_metadata.v",
+      "sha256": "346a507698a89c0985c7f001f8780ec764cb20b02b07db11a011fe8f409f3a65",
+      "bytes": 4261,
+      "lines": 85,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_axis_front_overlay.v",
+      "sha256": "8e56b9456b16626e88cdba1dfec4c4b83775dea666af44f1a8211611a96e59bb",
+      "bytes": 7728,
+      "lines": 164,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_axis_osd.v",
+      "sha256": "eb16a838c61e2735a9bfc3894eeacddf8b3f6cebc0c433140a853895e5f828f2",
+      "bytes": 9789,
+      "lines": 223,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_axis_status_osd.v",
+      "sha256": "c815712205c67d88b3493291c780c77196c3f8027a6de74f69e966fdf915cc89",
+      "bytes": 5746,
+      "lines": 137,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_board_video_wrapper.v",
+      "sha256": "86fa1614ac29d09bd7906a7a7a22bb59d3b9a54d6e04393e06c4759a064338dc",
+      "bytes": 12573,
+      "lines": 166,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_ir.v",
+      "sha256": "5b9e831568a0728353a524d5c71489447ef45bb36d4228d1c42585eb3780e4cc",
+      "bytes": 2840,
+      "lines": 78,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_perception_top.v",
+      "sha256": "8c71f66014b7aa50448f7b0ac697eb4b193f2e4092a2a46da9d5f81eb825345a",
+      "bytes": 15887,
+      "lines": 219,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_qei.v",
+      "sha256": "341a89efef86529ba75e6337755587fdf025d05f29847f22d1864ab7e2dcaff1",
+      "bytes": 2534,
+      "lines": 62,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_qei_core.v",
+      "sha256": "a1ed8ed58dca86630019aacf14bd86f1e546d01e7e10429f43c274d9f011b1c8",
+      "bytes": 4495,
+      "lines": 72,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_qei_odometry.v",
+      "sha256": "34df585a0bccbefee7ba67c72a791f8c2ba4da19c014a12b45f244f1543dbb70",
+      "bytes": 2024,
+      "lines": 45,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_qei_top.v",
+      "sha256": "500849d30d93d4e4578b5964b0524efa3b61c2a235c787be5dc63deb48465992",
+      "bytes": 12230,
+      "lines": 280,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_qei_velocity.v",
+      "sha256": "f015ad1085eae40f11451d422ad33df7aacb59289aa525a6f5109d07536eaded",
+      "bytes": 4687,
+      "lines": 103,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_reg_defs.vh",
+      "sha256": "a1d821d393181067ff3dafb13f4d558ab04fd99e57d083e9255a25c8b912f00f",
+      "bytes": 2986,
+      "lines": 84,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_risk_core.v",
+      "sha256": "6cff40c5beb499d37a4a5446e49a4878d2a4646876eb68bd92322b0073aabc90",
+      "bytes": 11006,
+      "lines": 168,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_sensors_core.v",
+      "sha256": "2ec419f09e44c435ae64b6e27a6e70a08964daf88458e520f8a61c3f9e3d79b8",
+      "bytes": 1560,
+      "lines": 37,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_sensors_top.v",
+      "sha256": "5b1520a729c8d8fa89a7b47ed9617eaa117f4f0e743a8b4f3c33fa9e36a93040",
+      "bytes": 11020,
+      "lines": 264,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_snapshot.v",
+      "sha256": "fee6604d6ed2f3a2761c852881b9a82aa05b47b3e8cbfc4f4a8d85310af59d45",
+      "bytes": 3511,
+      "lines": 83,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_time_counter.v",
+      "sha256": "d71fcd2b4db9c6ce9ed5776cba4147a3e88c33b1d6996a5a7da7b5acec8a5667",
+      "bytes": 690,
+      "lines": 26,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/car_ultrasonic.v",
+      "sha256": "2364f817fc0b2473440c1ae45a0486bc87886228fb448171fa531a2a7bf70cf4",
+      "bytes": 10031,
+      "lines": 213,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/font_8x8_minimal.mem",
+      "sha256": "9aeeb57c77474ff33efb6da9b2d36ad3a6da72bf655db561a0266c271fe86c11",
+      "bytes": 384,
+      "lines": 128,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/rtl/font_8x8_status.mem",
+      "sha256": "8360c4b1037b51af71aa47a2f695a523472f858d0689683a59f0a6e57a17e665",
+      "bytes": 1024,
+      "lines": 256,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/scripts/check_architecture_project.tcl",
+      "sha256": "cf54a46c39ba1d46306c4e6b87c1e38734ff5e73f51572aaa3506485fa67d434",
+      "bytes": 759,
+      "lines": 14,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/scripts/create_architecture_project.tcl",
+      "sha256": "f77e8e8927dedd6cb45c557b8c40e77eaae65fb2d54cbda5032451a884d08716",
+      "bytes": 1153,
+      "lines": 19,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/scripts/run_acceptance.ps1",
+      "sha256": "1da236074b8146744428b8a23ea17183d26997e60b873b842036e717b5654861",
+      "bytes": 8371,
+      "lines": 106,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/scripts/run_sim.ps1",
+      "sha256": "dd79ba6444517e81331f07025aa72763ec20be317abf834b1b602af09f11aeda",
+      "bytes": 4749,
+      "lines": 116,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/scripts/synth_modules.tcl",
+      "sha256": "9d73d14d008ea3e959fc3b758b382f217bda6c0a60e2f6061ccdabaddc7d581d",
+      "bytes": 1362,
+      "lines": 23,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/scripts/validate_board_manifest.py",
+      "sha256": "da55d11847f06e2e17da7b9bcc6133fd912d0774fc7d70270db264f76668a207",
+      "bytes": 2773,
+      "lines": 57,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_car_axil_regs.sv",
+      "sha256": "78cd3708b2c7d9d90219d3e7fd4251962a325ccfab7327b1234bcb4b7e7d8140",
+      "bytes": 12408,
+      "lines": 301,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_car_axis_osd.sv",
+      "sha256": "dab6718a280b8f7c859579692b2995cb003d88d5fbd7a93954f2311d1b1ad612",
+      "bytes": 3414,
+      "lines": 58,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_car_board_video_wrapper.sv",
+      "sha256": "235333574794043b19f06625e7f7ede04f97dd725fdf3b285f936767b85151d9",
+      "bytes": 9310,
+      "lines": 166,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_car_frame_metadata.sv",
+      "sha256": "09cff1fcf5f9742a8a49697aa1a23def076bf8dcdf3ac55549b8de8fadc95f1d",
+      "bytes": 4295,
+      "lines": 87,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_car_front_numeric.sv",
+      "sha256": "6062e5919ffb89da73c74599ab2ab6c93c9e5ed0158a0b246cf239b692fec49c",
+      "bytes": 1332,
+      "lines": 28,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_car_front_overlay.sv",
+      "sha256": "5fab2e8f07062c4a7059d84c533adaa971020f6177ed3a82248b1c058ebf8946",
+      "bytes": 3939,
+      "lines": 83,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_car_osd_fullframe.sv",
+      "sha256": "7dd73cca68da8122fb98557bd8922789d23a2d30b70620f41eb1bee2adb37afb",
+      "bytes": 2244,
+      "lines": 55,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_car_osd_text.sv",
+      "sha256": "7c34feac5e1056ea560c7cc5706575cdab0d3e058d60d61b54590177d423f271",
+      "bytes": 3763,
+      "lines": 103,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_car_perception_arch.sv",
+      "sha256": "0646ea07da50ff7fb4640a41497af6ad1671ac822d3f33f471a1623827f77d09",
+      "bytes": 9194,
+      "lines": 123,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_car_qei.sv",
+      "sha256": "8402101ea29cfaad06c30774b4a1bec79c427501a9dc984c95c47567dd33f2c1",
+      "bytes": 6555,
+      "lines": 150,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_car_qei_odometry.sv",
+      "sha256": "a40a4c2cd25f5355a478b60b95fda8b15b698c5d87c1723e3aedad56034d32fb",
+      "bytes": 3406,
+      "lines": 56,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_car_risk_core.sv",
+      "sha256": "53dd40bd42d26d1f30fb54ca9e48429a5a73f551aa68ee7a400ad733cffe59d5",
+      "bytes": 4880,
+      "lines": 69,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_car_sensors.sv",
+      "sha256": "7096916a625cd308404504080fced8d7aadb94879897d429d85171b600025978",
+      "bytes": 17191,
+      "lines": 377,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_car_status_osd.sv",
+      "sha256": "2e6e5591453b0f8e209c23a7fee69a0155d7117792fc72ed11e639e8f1c19f68",
+      "bytes": 2582,
+      "lines": 62,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_car_velocity.sv",
+      "sha256": "f1fa825231064fbeb413fca16410b1f2353e0967f0268252a1d14a0b746dee67",
+      "bytes": 3061,
+      "lines": 62,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_risk_physics_sweep.sv",
+      "sha256": "614c9b534cb6c08016c61cba7134907b7ee7ff69c3adcb8c84133a322f27ed30",
+      "bytes": 2323,
+      "lines": 41,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "fpga/tb/tb_wireless_capture.sv",
+      "sha256": "7892d08feffe3fb92653fe8896cac23e4628030102adc544ba1754217ab0cf2c",
+      "bytes": 3404,
+      "lines": 60,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/c_build/build_car_c_dll.ps1",
+      "sha256": "8d9554fb4029bf96e761291937a5d4124cab601a27ea8961388bc91af0fcb396",
+      "bytes": 3684,
+      "lines": 80,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/calibration_config.py",
+      "sha256": "14dccb7b7b73c115a5d597bfe6e8b2fd3a8d0bcd64de19ae9bd6bb5de785e533",
+      "bytes": 4814,
+      "lines": 111,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/car_regs.py",
+      "sha256": "f52e7cfeba330e7b528645e5a3d6e4b4a0be93e7700d7e3fbec26d46e54320b0",
+      "bytes": 1680,
+      "lines": 82,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/control_supervisor.py",
+      "sha256": "d014088c31a9d705d8be757928859dd825a26d121811ec0e934b15b0ea20f2c6",
+      "bytes": 11546,
+      "lines": 226,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/perception_client.py",
+      "sha256": "56a6a8eb12e3057e12577bf5d58b625053f190eaed698f453b7e087d04eb2fa6",
+      "bytes": 19889,
+      "lines": 489,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/perception_replay.py",
+      "sha256": "72cbb4fc8670415b2202d8f6315793859f203552b8cd8d540544bae976c0230d",
+      "bytes": 13611,
+      "lines": 326,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/qei_calibration.py",
+      "sha256": "732c88ee00028c0a601c7c27adecc0be39d8f530717791dc09ee3416d6e52dd2",
+      "bytes": 6086,
+      "lines": 139,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/compare_frame_display_chain.py",
+      "sha256": "f8cdd1de84b5073e67515df35b85a2bf1470a289bd8a6c5567af7fab975dff3b",
+      "bytes": 2872,
+      "lines": 42,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/compare_front_overlay.py",
+      "sha256": "ba7da9b31e5b90e119c8b29be8044dd3b9f9164d3fae9455f67ef90555896378",
+      "bytes": 1325,
+      "lines": 25,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/compare_osd.py",
+      "sha256": "8f4294180448c086144cc256beb1374147c426b0f4dc11dea248a53c9670c1fe",
+      "bytes": 4963,
+      "lines": 125,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/compare_osd_fullframe.py",
+      "sha256": "c194d550bbd6cd3eedd7eea087c6f160cceb8347f2a75648c27d2e10be287f34",
+      "bytes": 1768,
+      "lines": 49,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/compare_status_osd.py",
+      "sha256": "e7073a36ac7ac6b05c3edde8f4ae99da83ebafbcc34263207980cd23fe6a69b9",
+      "bytes": 2157,
+      "lines": 44,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/front_overlay_ref.py",
+      "sha256": "2b62fd62bccc2c56657ba7ada72add408f6748ca6367711e4b50f5d27e733769",
+      "bytes": 2772,
+      "lines": 55,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/osd_ref_render.py",
+      "sha256": "b7223df3a6cbe5f902fe2c1cf0377efca4be35107619b25f97740dda0c4131a8",
+      "bytes": 4767,
+      "lines": 112,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/parser_probe.c",
+      "sha256": "b8566b0c1f4814b612f5e21a4e7676f80203c6660b1fc5a6609d4efb891468e2",
+      "bytes": 667,
+      "lines": 22,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/supervisor_c_fixture.py",
+      "sha256": "c32ddbd502430a36f71b286dc6c19f7b7cdd9c924c6f0f2376effacfa00b20f9",
+      "bytes": 6564,
+      "lines": 127,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/test_architecture_invariants.py",
+      "sha256": "0723c969e9924906eb3a6795abf9eec16821c8fa6fe88ec8195e235f6fd7fdf4",
+      "bytes": 4166,
+      "lines": 94,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/test_control_longrun.py",
+      "sha256": "da67eeae7590e42acb33183174cdadb8c9d71c543ac0205c12267ef7817b2559",
+      "bytes": 1635,
+      "lines": 26,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/test_control_supervisor.py",
+      "sha256": "9f43f0f18162882351cf21bca3f30e4389534e0b489ea95c1d362df7ea78a05e",
+      "bytes": 7967,
+      "lines": 197,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/test_night_a_loop.py",
+      "sha256": "954bf6c31d41200544b5b2fe847e01d5fe5bd76e821d1fe130b4a5ccd3b25e53",
+      "bytes": 24035,
+      "lines": 532,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/test_odometry_contract.py",
+      "sha256": "e256511eb1f450cdaf961f27f85d12ec6f7e6cef542b1d05c250cbf5eefd8219",
+      "bytes": 8555,
+      "lines": 174,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/test_perception_client.py",
+      "sha256": "a64b75882be2e7c16d4ab3b34266fd311e2a62add4469aafa49afec3ceccae1b",
+      "bytes": 11960,
+      "lines": 284,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/test_perception_replay.py",
+      "sha256": "20160450aeab7bf8f94b0e980b7f4ce155f569355f6ee8ff365e08f6203146c9",
+      "bytes": 7448,
+      "lines": 173,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/test_qei_calibration.py",
+      "sha256": "ad7ada2983bf4b2eefb3a5e2b9fa82f86d0af33ad2d31d24ca7cb4972b6ad19f",
+      "bytes": 4869,
+      "lines": 112,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/test_register_generator.py",
+      "sha256": "fb00e89544eda7fc52ad1b95d85a418d355e156b0a46fec542d8f363af8ecfd4",
+      "bytes": 1130,
+      "lines": 34,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/test_supervisor_c_loop.py",
+      "sha256": "bbce8dd84fc25b8afbeabbdff4aba383483dd6c65cc98dcb2e9e097560aa7f1c",
+      "bytes": 5211,
+      "lines": 104,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "host/tests/test_uart_lifecycle.py",
+      "sha256": "57d2bdaee3f09580148be147933508a1224d7ab4caa0279c9c58c6b4ccebe286",
+      "bytes": 2615,
+      "lines": 60,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/audit_source_inventory.py",
+      "sha256": "dd2f8ad79d0578795c8af9b794b6ccc77d57053b1ca8a6ecd3cc988d92ba7c03",
+      "bytes": 2092,
+      "lines": 30,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/benchmark_wireless_host.py",
+      "sha256": "f15c430789345f9cca83fa28b0873a259f9f2e27615a393121f7a74e3d13906c",
+      "bytes": 1191,
+      "lines": 28,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/board_repo/pynq-z2/A.0/board.xml",
+      "sha256": "a565dcb39737d551cbbbb73c0053b973c40bb3dce2274943370d3032c0fea9ae",
+      "bytes": 54479,
+      "lines": 1087,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/board_repo/pynq-z2/A.0/part0_pins.xml",
+      "sha256": "3c809473938e135a925b563b5371c8687ee05c4089376e7318c0c56524cc8a0f",
+      "bytes": 9007,
+      "lines": 134,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/board_repo/pynq-z2/A.0/preset.xml",
+      "sha256": "18528f84aea4da503cdb3104f7706fabfb3b6ad09b78b25199cc316afa4c8cfe",
+      "bytes": 74492,
+      "lines": 1098,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/build_complete.ps1",
+      "sha256": "d0e7b72f796d4f4cd0444724d9756acbf8105ad836e49a73faf75443e8e1656f",
+      "bytes": 5110,
+      "lines": 80,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/build_lab_only.ps1",
+      "sha256": "99178581333974f5acaf3859042af6cdbd85a5ad80ccdb02b22261264877fe4d",
+      "bytes": 11951,
+      "lines": 197,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/build_wireless_native.ps1",
+      "sha256": "31b08139f9df265117537a142d72fa2432ec057f91dee3ae680057d09aea6883",
+      "bytes": 938,
+      "lines": 13,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/camera/c270_windows_20260918.json",
+      "sha256": "5b7262a42a3ee22ced5716cff57ce766e0882396159b450a35ee20c333cdccfe",
+      "bytes": 961,
+      "lines": 32,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/camera/probe_uvc.py",
+      "sha256": "7dd367b3502f170df23497c5855f646cbe373aa91d1817332d348e08e7ee6440",
+      "bytes": 3054,
+      "lines": 92,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/constraints/task7_8_hdmi.xdc",
+      "sha256": "b838b7f61ceb7199a2dbb89c3c7af0a0c0b0e6951f0c63417aa302e87e154aac",
+      "bytes": 934,
+      "lines": 11,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/constraints/task7_8_integrated.xdc",
+      "sha256": "d79693aee15c6b3d6a619f47c72776d3fc0fb2fd886d8e297be81bd410334def",
+      "bytes": 2141,
+      "lines": 28,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/association_metrics.py",
+      "sha256": "31c2f4263a38bafb06aa2438b94174ca0b912eec0b9b531070404eb3af937588",
+      "bytes": 2941,
+      "lines": 50,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/audit_video_reliability.py",
+      "sha256": "0235eed936ef5818a7830693c7588e22dd2e3b1a005abe82e98ec0f6cd157b04",
+      "bytes": 4611,
+      "lines": 101,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/board_runtime.py",
+      "sha256": "9717225a350670d3c38f77989346ae4107298d4b070f82e8d9976d2cd337f7dc",
+      "bytes": 9827,
+      "lines": 254,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/check_ae_gate.py",
+      "sha256": "8732363476d8b9e85dffa3085e33b684c020cb81caecb51b8c20c5c7a8c9a0e9",
+      "bytes": 1488,
+      "lines": 47,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/deployment_check.py",
+      "sha256": "6d87edcb357d21341eee676a8fa0f8f71885cff23a7b7030fe0767dff4a26b08",
+      "bytes": 4062,
+      "lines": 75,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/frame_association.py",
+      "sha256": "c72e9c656d95b9160e89f08fa3d78fbd64d3259496d4120d1e22e6a07f853c17",
+      "bytes": 4155,
+      "lines": 79,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/frame_metadata.py",
+      "sha256": "43df01c59278301eae5b496365772b95b1f2ddb384f01154951b11320a454680",
+      "bytes": 3999,
+      "lines": 88,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/frame_pipeline.py",
+      "sha256": "0b1fde0ddde34456e47b55d53339d6df864ff0d70ea2f36e7377ba7edf2c5f1b",
+      "bytes": 13369,
+      "lines": 362,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/hwh_contract.py",
+      "sha256": "3ad6daf3a2b0de6495a05b60a0567dcb4a3254f42bf2a9ae09a734533a13eed5",
+      "bytes": 7731,
+      "lines": 189,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/joint_evidence.py",
+      "sha256": "48f3bad7348980ce877768147978e8a8b4e99ce6fbef711b901a357b205351af",
+      "bytes": 20751,
+      "lines": 294,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/lab_acceptance.py",
+      "sha256": "fc341f9cb04d4e96a996a652814761c0591f4d700d02577593acd2dfcbbb9fa7",
+      "bytes": 33298,
+      "lines": 712,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/native_video.py",
+      "sha256": "f840a496f0e601b03627e68be59f0ab44ad8cd92a1b2ea0602c5eb8e1eb5c295",
+      "bytes": 5068,
+      "lines": 103,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/overlay_session.py",
+      "sha256": "cad5c0be318afabfcfb8190d64fe558be97ddb8ef1efff8ecda687336ced650a",
+      "bytes": 4394,
+      "lines": 104,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/runtime_identity.py",
+      "sha256": "0a2bf5316937723011b55760c95dc9a22868669b1d02101ce4951b72f0747dd7",
+      "bytes": 2700,
+      "lines": 63,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/status_server.py",
+      "sha256": "48b16672163c5c3d8cbb69a1e2393b126b733d1fc0cbe1207bb014a5d0b4f9f8",
+      "bytes": 10293,
+      "lines": 112,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/system_runtime.py",
+      "sha256": "575298b3915c4eec636413be9a76d2880d21c71318899299d950dd73678cfa61",
+      "bytes": 24359,
+      "lines": 462,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/video_contract.py",
+      "sha256": "747b937a8216bceff5a3096f3d66123acc450e0abf649fa1bf5b5a52487b03c9",
+      "bytes": 2696,
+      "lines": 76,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/wireless_benchmark.py",
+      "sha256": "3c78347f10fd510774a19ef9c1914ca6cecdc1ef5a4d1ea36c769ab120277bdb",
+      "bytes": 6278,
+      "lines": 108,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/wireless_core.py",
+      "sha256": "bc8aa1f00703036582d558fc7d6e3a59018c398e12227809af1cc4aa23fb30bb",
+      "bytes": 12614,
+      "lines": 220,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/wireless_dma.py",
+      "sha256": "08a34c65d2661e735daf07ecad3073df5890e1913f222bbd68c2e76daa5a3e0c",
+      "bytes": 5975,
+      "lines": 110,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/wireless_page.html",
+      "sha256": "4552bd97846c40af7490b050e8ebe3692fb2190b668e1012ec840b721f70c763",
+      "bytes": 7568,
+      "lines": 31,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/wireless_player.js",
+      "sha256": "89eed357da906ad277258ab5dfd5f8b54bb68f741036cdd0d82f1a9b51735fee",
+      "bytes": 6126,
+      "lines": 109,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/wireless_policy.py",
+      "sha256": "d77452b64e522800194c71dd4835acebc9e085dcaf8ba137c853e2f1d9d304e3",
+      "bytes": 4751,
+      "lines": 77,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/wireless_requirements.txt",
+      "sha256": "7662de391d446d504ead09341c1bfef4d2429959f6eda6330bc20c9f3905c6a5",
+      "bytes": 96,
+      "lines": 2,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/wireless_runtime.py",
+      "sha256": "49fad31e4d8869234a5174d5603d46c4c370913902df95cc1084380e933a48f1",
+      "bytes": 16009,
+      "lines": 261,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/host/wireless_server.py",
+      "sha256": "e53a0715b3226388920f8f400c01c7514cd973311155efca27bb7e33580a471e",
+      "bytes": 12822,
+      "lines": 216,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/native/car_video.c",
+      "sha256": "c02e458f9adbfe3ca52de813bec26d23bc153676bc141fd08a02c6bcb73dd846",
+      "bytes": 8052,
+      "lines": 162,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/native/CMakeLists.txt",
+      "sha256": "1a5d355cdc5ae6d8ce3055c8fad63d721b63052ec9475c55374df151926273b1",
+      "bytes": 2145,
+      "lines": 47,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/package_inputs.ps1",
+      "sha256": "c5b13f640ad26be8412445f569ac62f299936a8dd7161493479fc44c858521c7",
+      "bytes": 685,
+      "lines": 14,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/rebuild_video_reliability.ps1",
+      "sha256": "aa7167473dc2b4463cc9231160bfddc96b975c0a57424b8721652228019e641d",
+      "bytes": 196,
+      "lines": 4,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/rtl/axi_control_slot_stub.v",
+      "sha256": "bc92d06c932b2f83cbb64d85892ad368a1bf63b6330e60141f6751220b4674f9",
+      "bytes": 4434,
+      "lines": 74,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/rtl/axis32_to_rgb24.v",
+      "sha256": "31bf74a3e1cb8c836e150aaeb0e6485a62436a1f30f869b166ad80d74e01e678",
+      "bytes": 2508,
+      "lines": 46,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/rtl/rgb24_to_axis32.v",
+      "sha256": "e79216c5f3cce7a710b23e2ef22b90ba0f254dd5865a5dbabbe1a8bc975c052b",
+      "bytes": 2116,
+      "lines": 32,
+      "group": "RTL",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/run_joint_software_evidence.py",
+      "sha256": "85585aad4ce9d6afa43a59d93d7c6b184d764a33e2a3db30270ada3925ddd9f7",
+      "bytes": 1632,
+      "lines": 36,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/run_software_round.ps1",
+      "sha256": "693a7929f6e1918950e8016d769ea1aa4563ab02829b77702991416832dabe8c",
+      "bytes": 2112,
+      "lines": 32,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/run_supervisor_fault_matrix.py",
+      "sha256": "f114b1e5ac333c268177b768658af591b445de983c6b293a8762c9a0c47c0bb7",
+      "bytes": 2818,
+      "lines": 50,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/run_tests.ps1",
+      "sha256": "746341e4b3b7c1dd1da609d93445a140b9068392fe9f36d82b8e7056ab0b5151",
+      "bytes": 4329,
+      "lines": 73,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/source_provenance.py",
+      "sha256": "3645ea108cab8eb4987f406a4321248af5cadb375bcf0ff976feb78a5ab1329c",
+      "bytes": 5153,
+      "lines": 107,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tb/tb_axi_control_slot_stub.sv",
+      "sha256": "6ef41278b9ee3bf579ef267e1ec71114b6b823d637ba61a97e9742fd10793e7e",
+      "bytes": 2833,
+      "lines": 34,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tb/tb_axis32_to_rgb24.sv",
+      "sha256": "38fe9a907f0084be0da5f58237c0a232fe5f45945fffb617ab513771454961db",
+      "bytes": 2488,
+      "lines": 48,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_deployment_check.py",
+      "sha256": "c98ceb2da0f98d244bc3abd34b67860fec82adc8b61c2657ca2f0f7c5b51f0d3",
+      "bytes": 3129,
+      "lines": 48,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_frame_association.py",
+      "sha256": "a7eaee1f7b5444ca745f5787e73c3800814b3bbdcd93654b5743b2e6fb6212f0",
+      "bytes": 2273,
+      "lines": 50,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_frame_failures.py",
+      "sha256": "59521ae08a1d59862901456689a3430cb5d263ae92eb2f3a2ff8665477e032b2",
+      "bytes": 3019,
+      "lines": 70,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_frame_metadata.py",
+      "sha256": "cf153531d72eaf770bcbbf9992fa7a6d4594b6a11d38105a6fcd6e4e879b25e6",
+      "bytes": 3451,
+      "lines": 66,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_framework.py",
+      "sha256": "ce1d0b0dc6ebdecd28d7b8df5da941c1e4faec2695d16cd871d218625f978b6f",
+      "bytes": 27598,
+      "lines": 550,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_joint_evidence.py",
+      "sha256": "88df85e81d71dffd369aa0c85f34f7cdea241e1e7864253e8c723f093c356bee",
+      "bytes": 8580,
+      "lines": 140,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_joint_runtime.py",
+      "sha256": "c1755c0cd1bbcce55bb1e36f1da7f19cc9229c80cb0b235d327720311d5c9159",
+      "bytes": 10759,
+      "lines": 215,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_long_metrics.py",
+      "sha256": "f4692cd2e78c29754b67251385b5065dcc64baa414d527ef8cbbe0dadce38598",
+      "bytes": 1367,
+      "lines": 26,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_overlay_session.py",
+      "sha256": "e6ac8b5f7f8ed42ac9b3ebccf1bcb888a69b1d98373edf743e803f6a72446f27",
+      "bytes": 3011,
+      "lines": 71,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_packaging_inputs.py",
+      "sha256": "003f8bc274fdb57f2e7b9564df4b85c1fd212ea6b427777f9b68c962882ac482",
+      "bytes": 1831,
+      "lines": 40,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_performance_paths.py",
+      "sha256": "c6b58c3f24663a1355369f1c76c1a8df227b04eeb5845446825cc7fecc58ebcf",
+      "bytes": 3004,
+      "lines": 60,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_runtime_identity.py",
+      "sha256": "35c88d90c4956534329e51be250380e1570bc02dcfae9358c0ebc5bb6d199bee",
+      "bytes": 3748,
+      "lines": 58,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_sensor_boundaries.py",
+      "sha256": "ecad98634ac29fa3ff1bed40c9390ab4d628a30ac38364572851f1aff12b0532",
+      "bytes": 906,
+      "lines": 19,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_source_provenance.py",
+      "sha256": "5bae0e042dcbdc66a5242c1a25a04735a33ca2f622a27c79696ea9c50648229a",
+      "bytes": 3656,
+      "lines": 68,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_status_server.py",
+      "sha256": "94fd0b3d5c31688a06601832e494c673993b6d7caa022122c074500a6ea99365",
+      "bytes": 5173,
+      "lines": 95,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_wireless.py",
+      "sha256": "d9db7bf4cb0527060d70c48ac43bc7bf002e88837c3f5fda37ae81c445f1f1a8",
+      "bytes": 19398,
+      "lines": 287,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_wireless_player.js",
+      "sha256": "e0a24f56371f87304fbd8f72145099463633ce844b721172f9c9faec9e100288",
+      "bytes": 2688,
+      "lines": 26,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_wireless_policy.py",
+      "sha256": "1276f044737d82a44a1608a3941f7ee6f8775cb3c9ea98b3f6affba815a69d37",
+      "bytes": 3100,
+      "lines": 52,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/tests/test_wireless_startup.py",
+      "sha256": "ee6d4940bb7873006b6809b60e47d5355b8528341d758a1db988e9ce774bb01e",
+      "bytes": 2736,
+      "lines": 37,
+      "group": "test",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/vivado/check_framework.tcl",
+      "sha256": "017a3a3b4dc42636df0895718620155668ac15920fa0140de7864ec34a64d087",
+      "bytes": 3261,
+      "lines": 38,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/vivado/create_framework.tcl",
+      "sha256": "d063963a351f31d6adaa3fa52eb5f37b8b4feaa6cb61f968d7417fee89cfeb14",
+      "bytes": 9389,
+      "lines": 122,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/vivado/create_integrated_candidate.tcl",
+      "sha256": "1219da9c07d477354e9ab33dcb5b6f14c7343cb27a2d678d00c612604ee78284",
+      "bytes": 12767,
+      "lines": 174,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/vivado/impl_framework.tcl",
+      "sha256": "b2dec1bb65ba9f6054dc1b7c2a8a26a1207a484b78911c6b2512f8ce3e5fbc32",
+      "bytes": 1626,
+      "lines": 36,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/vivado/impl_integrated_candidate.tcl",
+      "sha256": "d0a2fee04197a86f34d0b17a86ddf2aaac373c37d4dfdf5c0c74b37522c7bc34",
+      "bytes": 1998,
+      "lines": 42,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/vivado/probe_board_files.tcl",
+      "sha256": "6be55029c39a4c981a22779b18c5d58766bc8e9e77286849a204451a31a9228a",
+      "bytes": 310,
+      "lines": 7,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/vivado/rebuild_video_reliability.tcl",
+      "sha256": "407be85e0f447576ed9c2390464e4ed0debdb358988d365639d44ad1edfb0752",
+      "bytes": 761,
+      "lines": 16,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/vivado/synth_framework.tcl",
+      "sha256": "b039abe77e0ae64980a40361d79f686f5b6aaf92ee9980bee6301c6eea96d4e4",
+      "bytes": 1019,
+      "lines": 19,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "preintegration/vivado/write_lab_only_bitstream.tcl",
+      "sha256": "3e1c5f7f1d9a2d31e603cd76363de9f4168b711014634ac2e4fa0eb37f7e9451",
+      "bytes": 3250,
+      "lines": 66,
+      "group": "PS_build_contract",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/axi_dynclk_v1_0/component.xml",
+      "sha256": "21813665c84b1b75d9076f7e772730df199bc3ca71215d2a48a383cb37da38cd",
+      "bytes": 37106,
+      "lines": 840,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/axi_dynclk_v1_0/src/axi_dynclk.vhd",
+      "sha256": "2b8d2de5d2731fd0b83c06efb0566f83bd64016e699d067e39dc396de681ecaf",
+      "bytes": 10008,
+      "lines": 299,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/axi_dynclk_v1_0/src/axi_dynclk_S00_AXI.vhd",
+      "sha256": "871c0b0a56ad7caefecc844d23faf5af6ad904019c2cdbbb3ef5edc5048495e0",
+      "bytes": 18625,
+      "lines": 453,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/axi_dynclk_v1_0/src/mmcme2_drp.v",
+      "sha256": "3833e1439bc56a53d682cd4a8c99b6a9d3e6378b9e27667df290f0f8896faeac",
+      "bytes": 15355,
+      "lines": 423,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/axi_dynclk_v1_0/xgui/axi_dynclk_v1_0.tcl",
+      "sha256": "729c79ebdf8c55ede738aa3047c3e26d25926fb14317da1a741e4e10c0c2d7c3",
+      "bytes": 1891,
+      "lines": 38,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/if/tmds_v1_0/tmds.xml",
+      "sha256": "c6a3cbcfa3de47ca91a2fbe49de15f1f61c7196039f14381d1598a26233be489",
+      "bytes": 908,
+      "lines": 17,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/if/tmds_v1_0/tmds_rtl.xml",
+      "sha256": "f79979c9844723343c83a80cc6bb9d1e49bdeb0796729517f5e339965e70d2c1",
+      "bytes": 3607,
+      "lines": 91,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/component.xml",
+      "sha256": "1af6fd9c43ab6d824a7a2daff30b2cd12224afae7c8fa1a4982e0c1206e2cb22",
+      "bytes": 30780,
+      "lines": 681,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/ClockGen.vhd",
+      "sha256": "a3ac3a940d9455b342d5217b008502ebeef2da35a2b27a4074eb9ab3c58e6b1b",
+      "bytes": 8885,
+      "lines": 251,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/DVI_Constants.vhd",
+      "sha256": "d8dbbbc3c8696d4527ee0d3c4757f1a40d0acebc845899483bc61c2bb8270cde",
+      "bytes": 3151,
+      "lines": 69,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/OutputSERDES.vhd",
+      "sha256": "6205d58405919d4f899a525256e2cafa725408f6644642755cd0de63e69b286e",
+      "bytes": 8366,
+      "lines": 190,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/rgb2dvi.vhd",
+      "sha256": "7268a67d557e36200847d494536733026dc7e2ca0980b6d2138fe9bac735f0cc",
+      "bytes": 7781,
+      "lines": 191,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/rgb2dvi.xdc",
+      "sha256": "51b9ac7f1229a2250cddb1d490e45e536dd836eb5c42851f67359c7a5aef6130",
+      "bytes": 292,
+      "lines": 5,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/rgb2dvi_clocks.xdc",
+      "sha256": "d39d2f58a6cf74c30eef3c4b7d37c436359ea3fcfaff3ddcc0a1a69388b73ac8",
+      "bytes": 114,
+      "lines": 2,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/rgb2dvi_ooc.xdc",
+      "sha256": "77f9820235b2c3ce1e99d369db4932a76705633eeb5f950908855183931dc1a2",
+      "bytes": 136,
+      "lines": 2,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/SyncAsync.vhd",
+      "sha256": "5561ac8099ed13f3114e97387aab5f7f30ad28a8be2fc540004cbee3f19eb3a7",
+      "bytes": 3727,
+      "lines": 88,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/SyncAsyncReset.vhd",
+      "sha256": "3ce7ade3267959da59b4d448cc6641018e4f0ac3de9f8f998d0b9ff84a3794bc",
+      "bytes": 3734,
+      "lines": 90,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/TMDS_Encoder.vhd",
+      "sha256": "b047a257c1172412d1b354a98e3cc77d013d0f3c1af6ff646233abf8b669c196",
+      "bytes": 7863,
+      "lines": 190,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/xgui/rgb2dvi_v1_1.tcl",
+      "sha256": "44d93693f4a4eac11a86d7ff2be4dc03e2bab44a407c342bd3dd8f1477c55f92",
+      "bytes": 2930,
+      "lines": 60,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/xgui/rgb2dvi_v1_2.tcl",
+      "sha256": "b5c7922f8ce09ca0022acd406397ec1d1e602914851ea33e38934612344210b2",
+      "bytes": 3339,
+      "lines": 79,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/arbiter.v",
+      "sha256": "db0ba9a08a7e8eab28b838318139abbcac2dc179032119c04006e0a2dd2a9efe",
+      "bytes": 5186,
+      "lines": 159,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_adapter.v",
+      "sha256": "f9cfc375847037f8a23935fde28dc2b025a5b488fe8004b776a1639a5336789c",
+      "bytes": 11725,
+      "lines": 324,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_adapter_rd.v",
+      "sha256": "aef12feb8b9a0db7e3586b7f1a54cc551f042ca1025de64d3df7d1fb304ed54b",
+      "bytes": 29205,
+      "lines": 686,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_adapter_wr.v",
+      "sha256": "65be0663e09faf988f64aeaea3d63ec06ff92fbe607126f592c380b3b6c72827",
+      "bytes": 33924,
+      "lines": 779,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_axil_adapter.v",
+      "sha256": "d4eb0fc2a166351cf62ee167eecb1f56314304a264b40de57649887aaf348932",
+      "bytes": 8148,
+      "lines": 223,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_axil_adapter_rd.v",
+      "sha256": "a968360795d5f0bf8addcefd5504bcbeda98eb6afeb796db89c242bebf96d2d9",
+      "bytes": 21708,
+      "lines": 501,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_axil_adapter_wr.v",
+      "sha256": "53e86659fd3a6550cd7372bad26d7eb76fa3602aafabe77248a3bc56ee59c5e2",
+      "bytes": 24875,
+      "lines": 564,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_cdma.v",
+      "sha256": "e9de9f2a699686fefe28ebcc919844599f651cb5393da7111951923ecb359d77",
+      "bytes": 33963,
+      "lines": 798,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_cdma_desc_mux.v",
+      "sha256": "e6e803470d7a836735c60fb8c7904a2ab0fb5a43ed5dd051b4fe9d076e269ef5",
+      "bytes": 10641,
+      "lines": 265,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_crossbar.v",
+      "sha256": "b251ddc6e47ce66cd1c5d8e09539bafae307effc6f73f176d349df9757271c89",
+      "bytes": 15415,
+      "lines": 391,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_crossbar_addr.v",
+      "sha256": "0d88919fc78db33d3f505e89740258c95c216054dcae8e57c5f72463938298ff",
+      "bytes": 16193,
+      "lines": 418,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_crossbar_rd.v",
+      "sha256": "715be9547f9ac6b4a35be065382aa209c3c85455c412bfa4e107d7203487be41",
+      "bytes": 24263,
+      "lines": 569,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_crossbar_wr.v",
+      "sha256": "1902a8c52f810614d8c7ce2108583c89bf537ffa25fba92b2b05be56f1640a16",
+      "bytes": 28912,
+      "lines": 678,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_crossbar_wrap.py",
+      "sha256": "22d957015b0f137a7bbdf266b35d66699f5fd05cc9410d347f71e8c8a7327695",
+      "bytes": 26958,
+      "lines": 452,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_dma.v",
+      "sha256": "95fce64412c272d949dca41e7d677fb9ae72f15bd1137a65c39eea2f5f50d57f",
+      "bytes": 13438,
+      "lines": 361,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_dma_desc_mux.v",
+      "sha256": "7e8b6c27e0e126e901cddc66ac88b2f732a5f9f1bf7bfbb8133298f6618c0524",
+      "bytes": 13968,
+      "lines": 319,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_dma_rd.v",
+      "sha256": "9c733ba0cc5e48f15a91ddf4b5bd569954bbed3c9745b1973920921296c7b6f4",
+      "bytes": 30337,
+      "lines": 692,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_dma_wr.v",
+      "sha256": "161ecaf8ee934a55114b676f52b45bcedad9e5c488f9f3874175ef50457a6e4d",
+      "bytes": 42326,
+      "lines": 942,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_dp_ram.v",
+      "sha256": "322f0c4b541c10c4ed15134eadeebbd6aedab651f2d4230ed49ab6b053bc60db",
+      "bytes": 14974,
+      "lines": 426,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_fifo.v",
+      "sha256": "862682840566197baa3d02a329c6d801f3d17f6c7a86fa9df4e833066b9e6351",
+      "bytes": 11188,
+      "lines": 316,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_fifo_rd.v",
+      "sha256": "14e5c48a9e4cafa6e94ff4ba86baacf5d1818a4188ff7f55ae89908a4109a485",
+      "bytes": 14410,
+      "lines": 413,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_fifo_wr.v",
+      "sha256": "b6432fa450a38d517007a4fe8be08e4a7fee7617a761ec44b4f24e91eb2296df",
+      "bytes": 15665,
+      "lines": 453,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_interconnect.v",
+      "sha256": "f2613e44d30f7dc199428d75960d394a23cefdb8f44e80b31dee8a2d6b1b21b5",
+      "bytes": 44224,
+      "lines": 988,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_interconnect_wrap.py",
+      "sha256": "235c9238da6b3c87eeccc153dfec57e3a4b81adf6d878f6843bcae3d850a704b",
+      "bytes": 22063,
+      "lines": 363,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_ram.v",
+      "sha256": "1488318fd46a28f018817dfc61731075721581d9109efa07048a3ff5aff6eb46",
+      "bytes": 13589,
+      "lines": 373,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_ram_rd_if.v",
+      "sha256": "10e0b3c3e558b0c229559c801297d59a9f5e50ead702ed2530348873100cee9d",
+      "bytes": 10215,
+      "lines": 274,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_ram_wr_if.v",
+      "sha256": "f13ac6c41ce85ca353c14371f7e6d32b6dd36226edf6eb7791634155fa40be0b",
+      "bytes": 10810,
+      "lines": 292,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_ram_wr_rd_if.v",
+      "sha256": "38a9aca627d019ab2e4c89c7c06e8bd43c0e87df7593e52a2d181f93acd59361",
+      "bytes": 12510,
+      "lines": 343,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_register.v",
+      "sha256": "4775baca3600e65e0e2f9d2c864f4437fbedb688a3aac3c8405f80488eb25c0a",
+      "bytes": 11475,
+      "lines": 324,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_register_rd.v",
+      "sha256": "f07a5f71a625de6b924c82214e1ff356254d542089792f67057a15deffdda32f",
+      "bytes": 19435,
+      "lines": 530,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_register_wr.v",
+      "sha256": "6bef07487a7d0c03eafde4a755389418a4e71e70dcdb2e60ae697370484fb5d5",
+      "bytes": 24760,
+      "lines": 691,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_vfifo.v",
+      "sha256": "6d79781c8f96a73fcce3f464689672270400c5e22a4205c810b98132e17e761b",
+      "bytes": 23233,
+      "lines": 611,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_vfifo_dec.v",
+      "sha256": "7ec43bfcb49d4432de7d3020f4806206d2df53e67b77041f96d1d574fc258336",
+      "bytes": 28501,
+      "lines": 720,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_vfifo_enc.v",
+      "sha256": "3e4f9577cd1040bd84d8e8f16f6d3da23ff22c8577840bc1539c5487e13d4043",
+      "bytes": 29513,
+      "lines": 794,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_vfifo_raw.v",
+      "sha256": "0f13d9e20fdbdebe8df45bf0e50fd61bb14baf34b577b7ac10197c2ebdb921d9",
+      "bytes": 12508,
+      "lines": 381,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_vfifo_raw_rd.v",
+      "sha256": "05600e55e3a09a52c87ba0435d5f022245d6f1969ef3f7da61e25444da3321a2",
+      "bytes": 22112,
+      "lines": 580,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axi_vfifo_raw_wr.v",
+      "sha256": "62e1f9a19c8b339b10a156feeb2dc788453ecd0002c994aff597bfecc9547d7a",
+      "bytes": 21712,
+      "lines": 567,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_adapter.v",
+      "sha256": "6fa09d8101c427646ce3dcfd935de307f689146238fac5a222a0b80e4cb95629",
+      "bytes": 6014,
+      "lines": 178,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_adapter_rd.v",
+      "sha256": "af5275e47c6f8e4e46d40120d16c7606cf3be1948c5af70ab08bbd9536ee025c",
+      "bytes": 10493,
+      "lines": 277,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_adapter_wr.v",
+      "sha256": "3b54dc6b2f897181df8ef77438ed13c8900b563f479800b51b5d341a2b48f483",
+      "bytes": 13269,
+      "lines": 340,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_cdc.v",
+      "sha256": "ba5d639ff8b9692adfd75e0ce8ff3fa7e768155ed2094f5b3def61b2c53021f4",
+      "bytes": 5681,
+      "lines": 173,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_cdc_rd.v",
+      "sha256": "d1ff277fef15c279bf945a4bbce14f631559d31f2ab2c57a4f750866cd550baa",
+      "bytes": 6603,
+      "lines": 208,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_cdc_wr.v",
+      "sha256": "b8b865f0939d5a9ca0d38ddec0f8e486a280aca2bfd1e2c0d996f9e441fbf417",
+      "bytes": 7729,
+      "lines": 232,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_crossbar.v",
+      "sha256": "2171a5c5d5e92f3c2ee64b05feb321e707644537b823422f34cd99113c78c7ad",
+      "bytes": 9635,
+      "lines": 251,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_crossbar_addr.v",
+      "sha256": "aafcd6a7721341369da6da6d7a1ad2117749ef9cdc0f4c634769569eaf962bfa",
+      "bytes": 11909,
+      "lines": 309,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_crossbar_rd.v",
+      "sha256": "7255ed7f35ad5a7bcc770b89c870610cfeedbd991838984d51c9d5b2bc22b3c7",
+      "bytes": 16817,
+      "lines": 440,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_crossbar_wr.v",
+      "sha256": "44a4eb70cd1ed16a893e1c1f75d0b02fefdf1a128fb40b688222ab56632681f9",
+      "bytes": 21510,
+      "lines": 548,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_crossbar_wrap.py",
+      "sha256": "2c04abc8ecc29dc5d9999c019c751934938312ef7ada50dda2c1c740cfdf0287",
+      "bytes": 16527,
+      "lines": 316,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_dp_ram.v",
+      "sha256": "f0776ed8bafe1b8e020a530420450acbae91fb553304a2ac2cdf86696d0e39af",
+      "bytes": 11596,
+      "lines": 315,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_interconnect.v",
+      "sha256": "5fb2d332653f6da815b72717585f6447d63d9d721e1a31b8338099c81a280e45",
+      "bytes": 23923,
+      "lines": 564,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_interconnect_wrap.py",
+      "sha256": "70b338c831271824748132ecb370bddbb9684a378c8c4ed0ca61014480b87759",
+      "bytes": 12334,
+      "lines": 243,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_ram.v",
+      "sha256": "b4f8009bd69671dad829c4a06b42e8e989b2ddad3862e0eb986b827b3ec86376",
+      "bytes": 6276,
+      "lines": 183,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_reg_if.v",
+      "sha256": "8729c36d6d39a66f36d0b153f538010f7ca085be5481107fe47a50272cbd883d",
+      "bytes": 4831,
+      "lines": 158,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_reg_if_rd.v",
+      "sha256": "4f8c085b03c3ea5e004ece6ec3720a3a2eebe533707c475313666f4c77585f79",
+      "bytes": 4358,
+      "lines": 136,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_reg_if_wr.v",
+      "sha256": "00de2751dc9f0f6c923637cf13c66293810a7ddc7d12c6a6edd1eac0e4258f62",
+      "bytes": 5177,
+      "lines": 155,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_register.v",
+      "sha256": "38a5d5d3af6f594a0b730f601085d78b0d16b51db4393536d55900605db2c871",
+      "bytes": 6266,
+      "lines": 190,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_register_rd.v",
+      "sha256": "7e0929998aeef8c03f89d82ce6056cf634d5239650d9145bc994f81dfbd0e596",
+      "bytes": 12177,
+      "lines": 376,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/axil_register_wr.v",
+      "sha256": "8a1fe636de589554188ee4b5619fc54a87b06826a8739e9821f32687a73de43d",
+      "bytes": 16760,
+      "lines": 521,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "third_party/verilog-axi/rtl/priority_encoder.v",
+      "sha256": "07c610b8dda24daf67dec36c743f79fca30f9d01d5469e1e7f795a16f4c7aa97",
+      "bytes": 3345,
+      "lines": 92,
+      "group": "dependency",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/build_safe.ps1",
+      "sha256": "6339c5815aef249ed36855324c58c184d443dd6690f5512896fb2cb1e7251be0",
+      "bytes": 2564,
+      "lines": 40,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/safe_startup.c",
+      "sha256": "26bd3bcf190385a8773cc8fefb2bbce983150b49bc9ec561653b041507f0ba41",
+      "bytes": 835,
+      "lines": 26,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/safe_stm32f103c8.ld",
+      "sha256": "54e44972588b65524d688b61dd622ef798c2063c4e142b3e5fe2e6d711e726b1",
+      "bytes": 767,
+      "lines": 24,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/APP/main.c",
+      "sha256": "da18f5717849950d74fae329ab25e8053b421eb556bfaabca16239e452db37a6",
+      "bytes": 811,
+      "lines": 31,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/APP/safe_car.c",
+      "sha256": "0798f7451ba510787cdbbcd35a2cfb462d2863ebb9d10efa89e6535e80a60e28",
+      "bytes": 15563,
+      "lines": 336,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/APP/safe_car.h",
+      "sha256": "e03534a67204bea64796983f0206483263a86c5effc2ef1ee4afaee2347262c2",
+      "bytes": 430,
+      "lines": 14,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/APP/safe_control.c",
+      "sha256": "ef32fb8a078fca7faf719377bcb728a908d450e8ef43a4bf2d85665e7be365d3",
+      "bytes": 9692,
+      "lines": 212,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/APP/safe_control.h",
+      "sha256": "e41d8c3f15fd84719336e0475d3746ef1abe2b373a9b6714988194f9ee317f75",
+      "bytes": 4232,
+      "lines": 79,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/APP/stm32f10x_conf.h",
+      "sha256": "d5b09b9b28176d258d83b5b6193f72501a63c9e0e18d52b7b4e947977d3a5400",
+      "bytes": 3291,
+      "lines": 77,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/BSP/bsp_motor.h",
+      "sha256": "364100189f04afb24eecb5756ef46abbabd30855b9d65bfb86591d7fbe655538",
+      "bytes": 378,
+      "lines": 20,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/CMSIS/core_cm3.h",
+      "sha256": "de4668aa9d314d05769dfb29f028e205b50577c6b2150fc6bccb34bd34179bbb",
+      "bytes": 85714,
+      "lines": 1818,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/CMSIS/stm32f10x.h",
+      "sha256": "4ee722d262c1e7d7505d7dc7eeb8ccaaf67158b51ee4bc177397cd64e74e1b3a",
+      "bytes": 633941,
+      "lines": 8336,
+      "group": "STM32_PC",
+      "encoding": "legacy-text"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/CMSIS/system_stm32f10x.c",
+      "sha256": "45f52950f5fc6509920fb26d1362e8457907c2d62fa455cbe3c6ce6daa974a76",
+      "bytes": 36557,
+      "lines": 1094,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/CMSIS/system_stm32f10x.h",
+      "sha256": "919dc1f5c6bbba74cb712e8ec7cf73f1988eafa9438c706526fb401a2ab4672d",
+      "bytes": 2085,
+      "lines": 98,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/misc.h",
+      "sha256": "40c918f726035dfa67a7bfadefac8e922196d7918f915a7f2db1e652625c7e41",
+      "bytes": 8982,
+      "lines": 220,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/stm32f10x_dma.h",
+      "sha256": "2ba038050d07735a42645f2508e62078c217dc750878097f7f113660e0d58ffb",
+      "bytes": 20754,
+      "lines": 439,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/stm32f10x_exti.h",
+      "sha256": "661b039483459137a58bfdea7522528b9b6e923d61966d4c7c8a5035bd375f5f",
+      "bytes": 6824,
+      "lines": 184,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/stm32f10x_gpio.h",
+      "sha256": "ef945fe7b2e4a8f3bf8fa22d44274085444dec80424f91606a1467ea4e69626f",
+      "bytes": 20175,
+      "lines": 385,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/stm32f10x_i2c.h",
+      "sha256": "08b14d416090815765a02e6fecf78cbdd3de4ad330d3bc04b2133f8f4f3f2daa",
+      "bytes": 30029,
+      "lines": 684,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/stm32f10x_rcc.h",
+      "sha256": "894e140a70b0cdc94e4e96c5011def9dca5a103752783c3bb7cab538fc426f9e",
+      "bytes": 30452,
+      "lines": 727,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/stm32f10x_tim.h",
+      "sha256": "dddf89f9b7134a2f15ed9cc2521589ee9a2e18c0553a6017c71b5d5b394524e5",
+      "bytes": 52427,
+      "lines": 1164,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/stm32f10x_usart.h",
+      "sha256": "9d4c2067e54defd64b000076e6561726d758c872d354bed6eea66a6767c08bce",
+      "bytes": 16548,
+      "lines": 412,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/FWlib/src/misc.c",
+      "sha256": "152c632e56151b2564121c56ff359d0f041621f0da6ed101d7fd376a139a5c75",
+      "bytes": 7046,
+      "lines": 225,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/FWlib/src/stm32f10x_exti.c",
+      "sha256": "5783d10d46275d8baee9f2861cf434b5c12a4bc8f42ed4af9e503c1818941ebe",
+      "bytes": 6959,
+      "lines": 269,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/FWlib/src/stm32f10x_gpio.c",
+      "sha256": "8255650b583b2bab2c320e0974309a6ccf26f661e7ad1b54282c0f0e2b9a1acf",
+      "bytes": 23221,
+      "lines": 650,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/FWlib/src/stm32f10x_rcc.c",
+      "sha256": "f23bbc9b83e44e69f5dc34f072867f0087a3eb0452034ab09c363088d2354cd9",
+      "bytes": 51271,
+      "lines": 1470,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/FWlib/src/stm32f10x_tim.c",
+      "sha256": "bd12bf18b03b8585ac2ba6bd0e80ec39d8fd0c89307eb54f5a7be38a46894d03",
+      "bytes": 109159,
+      "lines": 2890,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/Source/FWlib/src/stm32f10x_usart.c",
+      "sha256": "6d7af47017b01eb260fb7699f5c483e0a8576b4c780069a99975b7c6443030dd",
+      "bytes": 38308,
+      "lines": 1058,
+      "group": "STM32_PC",
+      "encoding": "legacy-text"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/tests/fuzz_build.cmd",
+      "sha256": "91a6c50ddf3a11b4dd56fcf824f4db6933b6075aa663f7b0de6650e01bdcfcb1",
+      "bytes": 453,
+      "lines": 8,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/tests/run_tests.cmd",
+      "sha256": "a32afa135f72e894587deed22c711c8b5f3a55172a5121ecb02d9decc5489488",
+      "bytes": 441,
+      "lines": 11,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32_pynq对接版/tests/test_safe_control.c",
+      "sha256": "9dcb52f6b16805aa3227f674b49a276d10af68a6cea75e4e6f677b96215c2c44",
+      "bytes": 7793,
+      "lines": 155,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/build_minimal_uart2_test.ps1",
+      "sha256": "e24a9528b518c268f1f18e2c3fc6b7d94b542bfca01023bb52dd745f0cf2ff1c",
+      "bytes": 2185,
+      "lines": 34,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/build_minimal_uart_test.ps1",
+      "sha256": "c484d97288b5099cf4da8ea11e141dba186cc796070f1df9ddb64ffd1fe2e26d",
+      "bytes": 2164,
+      "lines": 34,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/build_safe.ps1",
+      "sha256": "6339c5815aef249ed36855324c58c184d443dd6690f5512896fb2cb1e7251be0",
+      "bytes": 2564,
+      "lines": 40,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/minimal_uart2_test.c",
+      "sha256": "932aa14cd931aa67cec13597a52b350050de2a960275ad941b0c0a4ae2374e39",
+      "bytes": 3692,
+      "lines": 116,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/minimal_uart_test.c",
+      "sha256": "1be4ab36f65b333a42132237e4f6bc2d9dec5575dce0d2728c05b62e467b68e1",
+      "bytes": 4412,
+      "lines": 133,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/pc/car_console.py",
+      "sha256": "1112fb1d885ade9e935b304aa1dbe39a8e4bb53b537f3848d63e79437781d5f9",
+      "bytes": 11634,
+      "lines": 246,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/pc/pynq_link.py",
+      "sha256": "4cd3a79bdc17c10b81343aff95c58cb9f1e0608e8e56d224f5ff06b33a883923",
+      "bytes": 18272,
+      "lines": 410,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/pc/test_console.py",
+      "sha256": "94c3fd46d10f9914ebb2f882c663bd1fa13024efc5ee48208ae1645a73b22edb",
+      "bytes": 884,
+      "lines": 27,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/pc/test_pynq_link.py",
+      "sha256": "695db8be4195d3a4dcdc84ccd87c47cf8394a22ff0dbfc68924b72c652133ff4",
+      "bytes": 11484,
+      "lines": 250,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/safe_startup.c",
+      "sha256": "974cc2e2552dcb83be8c4769aeb4948cfea07358e516e61ec47e72901491a247",
+      "bytes": 919,
+      "lines": 28,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/safe_stm32f103c8.ld",
+      "sha256": "54e44972588b65524d688b61dd622ef798c2063c4e142b3e5fe2e6d711e726b1",
+      "bytes": 767,
+      "lines": 24,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/APP/main.c",
+      "sha256": "da18f5717849950d74fae329ab25e8053b421eb556bfaabca16239e452db37a6",
+      "bytes": 811,
+      "lines": 31,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/APP/safe_car.c",
+      "sha256": "aa164dd448ecad7d1e325aa3efd6faef8cbf454a6f05775fcfbe851b9a9ac89a",
+      "bytes": 19173,
+      "lines": 426,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/APP/safe_car.h",
+      "sha256": "e03534a67204bea64796983f0206483263a86c5effc2ef1ee4afaee2347262c2",
+      "bytes": 430,
+      "lines": 14,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/APP/safe_control.c",
+      "sha256": "a5d9cc4c3cb1d51053099bedb78fff7fc594b7394335c4dd3fadc70c72133281",
+      "bytes": 9553,
+      "lines": 207,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/APP/safe_control.h",
+      "sha256": "ec16679be4f1a2ea0e61ee191fc912ff38ffa1f3ef54298175970a71dcda302d",
+      "bytes": 3984,
+      "lines": 82,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/APP/stm32f10x_conf.h",
+      "sha256": "d5b09b9b28176d258d83b5b6193f72501a63c9e0e18d52b7b4e947977d3a5400",
+      "bytes": 3291,
+      "lines": 77,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/BSP/bsp_iravoid.h",
+      "sha256": "5355a77ec7545788172c76329e26c71d60cf8783485d2a87b47c29427cd2bb80",
+      "bytes": 777,
+      "lines": 42,
+      "group": "STM32_PC",
+      "encoding": "legacy-text"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/BSP/bsp_motor.h",
+      "sha256": "364100189f04afb24eecb5756ef46abbabd30855b9d65bfb86591d7fbe655538",
+      "bytes": 378,
+      "lines": 20,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/BSP/bsp_servo.h",
+      "sha256": "f59679400107d5fccbd01fb19bf34a71546418f630599efb93cc15ed79abf50a",
+      "bytes": 1710,
+      "lines": 65,
+      "group": "STM32_PC",
+      "encoding": "legacy-text"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/BSP/bsp_ultrasonic.h",
+      "sha256": "da3423f4cf073db768755d74ad8b02a109ab8ee68b138e1a0d7d3d14c663a7cc",
+      "bytes": 686,
+      "lines": 36,
+      "group": "STM32_PC",
+      "encoding": "legacy-text"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/CMSIS/core_cm3.h",
+      "sha256": "de4668aa9d314d05769dfb29f028e205b50577c6b2150fc6bccb34bd34179bbb",
+      "bytes": 85714,
+      "lines": 1818,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/CMSIS/stm32f10x.h",
+      "sha256": "4ee722d262c1e7d7505d7dc7eeb8ccaaf67158b51ee4bc177397cd64e74e1b3a",
+      "bytes": 633941,
+      "lines": 8336,
+      "group": "STM32_PC",
+      "encoding": "legacy-text"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/CMSIS/system_stm32f10x.c",
+      "sha256": "45f52950f5fc6509920fb26d1362e8457907c2d62fa455cbe3c6ce6daa974a76",
+      "bytes": 36557,
+      "lines": 1094,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/CMSIS/system_stm32f10x.h",
+      "sha256": "919dc1f5c6bbba74cb712e8ec7cf73f1988eafa9438c706526fb401a2ab4672d",
+      "bytes": 2085,
+      "lines": 98,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/FWlib/inc/misc.h",
+      "sha256": "40c918f726035dfa67a7bfadefac8e922196d7918f915a7f2db1e652625c7e41",
+      "bytes": 8982,
+      "lines": 220,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/FWlib/inc/stm32f10x_dma.h",
+      "sha256": "2ba038050d07735a42645f2508e62078c217dc750878097f7f113660e0d58ffb",
+      "bytes": 20754,
+      "lines": 439,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/FWlib/inc/stm32f10x_exti.h",
+      "sha256": "661b039483459137a58bfdea7522528b9b6e923d61966d4c7c8a5035bd375f5f",
+      "bytes": 6824,
+      "lines": 184,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/FWlib/inc/stm32f10x_gpio.h",
+      "sha256": "ef945fe7b2e4a8f3bf8fa22d44274085444dec80424f91606a1467ea4e69626f",
+      "bytes": 20175,
+      "lines": 385,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/FWlib/inc/stm32f10x_i2c.h",
+      "sha256": "08b14d416090815765a02e6fecf78cbdd3de4ad330d3bc04b2133f8f4f3f2daa",
+      "bytes": 30029,
+      "lines": 684,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/FWlib/inc/stm32f10x_rcc.h",
+      "sha256": "894e140a70b0cdc94e4e96c5011def9dca5a103752783c3bb7cab538fc426f9e",
+      "bytes": 30452,
+      "lines": 727,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/FWlib/inc/stm32f10x_tim.h",
+      "sha256": "dddf89f9b7134a2f15ed9cc2521589ee9a2e18c0553a6017c71b5d5b394524e5",
+      "bytes": 52427,
+      "lines": 1164,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/FWlib/inc/stm32f10x_usart.h",
+      "sha256": "9d4c2067e54defd64b000076e6561726d758c872d354bed6eea66a6767c08bce",
+      "bytes": 16548,
+      "lines": 412,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/FWlib/src/misc.c",
+      "sha256": "152c632e56151b2564121c56ff359d0f041621f0da6ed101d7fd376a139a5c75",
+      "bytes": 7046,
+      "lines": 225,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/FWlib/src/stm32f10x_exti.c",
+      "sha256": "5783d10d46275d8baee9f2861cf434b5c12a4bc8f42ed4af9e503c1818941ebe",
+      "bytes": 6959,
+      "lines": 269,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/FWlib/src/stm32f10x_gpio.c",
+      "sha256": "8255650b583b2bab2c320e0974309a6ccf26f661e7ad1b54282c0f0e2b9a1acf",
+      "bytes": 23221,
+      "lines": 650,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/FWlib/src/stm32f10x_rcc.c",
+      "sha256": "f23bbc9b83e44e69f5dc34f072867f0087a3eb0452034ab09c363088d2354cd9",
+      "bytes": 51271,
+      "lines": 1470,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/FWlib/src/stm32f10x_tim.c",
+      "sha256": "bd12bf18b03b8585ac2ba6bd0e80ec39d8fd0c89307eb54f5a7be38a46894d03",
+      "bytes": 109159,
+      "lines": 2890,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/Source/FWlib/src/stm32f10x_usart.c",
+      "sha256": "6d7af47017b01eb260fb7699f5c483e0a8576b4c780069a99975b7c6443030dd",
+      "bytes": 38308,
+      "lines": 1058,
+      "group": "STM32_PC",
+      "encoding": "legacy-text"
+    },
+    {
+      "path": "workspace/stm32预备程序/tests/run_tests.cmd",
+      "sha256": "a32afa135f72e894587deed22c711c8b5f3a55172a5121ecb02d9decc5489488",
+      "bytes": 441,
+      "lines": 11,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "workspace/stm32预备程序/tests/test_safe_control.c",
+      "sha256": "875e712e728546aebcc6ae0333123e76ee726da66d5091b123550f2fa2f608c4",
+      "bytes": 8817,
+      "lines": 173,
+      "group": "STM32_PC",
+      "encoding": "utf-8"
+    }
+  ],
+  "groups": {
+    "PS_build_contract": 76,
+    "RTL": 25,
+    "test": 58,
+    "dependency": 79,
+    "STM32_PC": 72
+  },
+  "total_files": 310,
+  "total_lines": 96895,
+  "scope": "all provenance-bound production, tests, build, firmware/PC and pinned IP text; generated outputs excluded",
+  "semantic_review": "five-round reports cover critical behavior; Python syntax is checked without hardware imports",
+  "hardware_acceptance": "PENDING"
+}

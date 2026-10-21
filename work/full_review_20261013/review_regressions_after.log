@@ -1,0 +1,14 @@
+test_cli_rejects_existing_evidence_before_overlay_or_uart (test_review_regressions.EvidenceTests.test_cli_rejects_existing_evidence_before_overlay_or_uart) ... JOINT_SESSION_FAIL: evidence directory is not empty; choose a new --evidence-dir: C:\Users\39909\AppData\Local\Temp\tmp8mhqpsq5
+ok
+test_completed_runner_cannot_overwrite_its_own_evidence (test_review_regressions.EvidenceTests.test_completed_runner_cannot_overwrite_its_own_evidence) ... ok
+test_existing_session_artifacts_are_preserved_before_runner_start (test_review_regressions.EvidenceTests.test_existing_session_artifacts_are_preserved_before_runner_start) ... ok
+test_simultaneous_reservation_has_one_winner (test_review_regressions.EvidenceTests.test_simultaneous_reservation_has_one_winner) ... ok
+test_closed_hub_rejects_late_codec_completion_without_erasing_error (test_review_regressions.HubLifecycleTests.test_closed_hub_rejects_late_codec_completion_without_erasing_error) ... ok
+test_stop_during_native_encode_does_not_publish_or_count_completed_frame (test_review_regressions.HubLifecycleTests.test_stop_during_native_encode_does_not_publish_or_count_completed_frame) ... ok
+test_disconnect_and_stalled_response_body_clear_wired_numbers (test_review_regressions.PageFailureTests.test_disconnect_and_stalled_response_body_clear_wired_numbers) ... ok
+test_disconnect_and_stalled_response_body_clear_wireless_numbers (test_review_regressions.PageFailureTests.test_disconnect_and_stalled_response_body_clear_wireless_numbers) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.262s
+
+OK

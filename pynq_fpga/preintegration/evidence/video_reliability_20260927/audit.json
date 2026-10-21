@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "hwh": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\fpga\\build\\task7_8_video_reliability_20260927\\task7_8_integrated.gen\\sources_1\\bd\\preintegration_bd\\hw_handoff\\preintegration_bd.hwh",
+  "drc": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\fpga\\build\\task7_8_video_reliability_20260927\\drc_integrated_impl.rpt",
+  "video_interconnect": "smartconnect",
+  "clock_hz": 100000000,
+  "shared_peripheral_reset": true,
+  "remaining_drc": {
+    "DPIP-1 Warning": 8,
+    "DPOP-1 Warning": 2,
+    "DPOP-2 Warning": 7,
+    "REQP-181 Advisory": 1
+  },
+  "bus_skew_slack_ns": [
+    8.643,
+    8.808,
+    9.076
+  ],
+  "hardware_validated": false
+}

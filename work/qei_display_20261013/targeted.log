@@ -1,0 +1,15 @@
+test_distance_correction_is_bounded_and_long_gaps_are_not_integrated (test_motion_display.MotionDisplayTests.test_distance_correction_is_bounded_and_long_gaps_are_not_integrated) ... ok
+test_duplicate_samples_do_not_extend_hold_and_no_startup_number_is_invented (test_motion_display.MotionDisplayTests.test_duplicate_samples_do_not_extend_hold_and_no_startup_number_is_invented) ... ok
+test_epoch_change_and_clock_restart_discard_old_display_state (test_motion_display.MotionDisplayTests.test_epoch_change_and_clock_restart_discard_old_display_state) ... ok
+test_explicit_stationary_display_rejects_phantom_distance_and_does_not_fix_control (test_motion_display.MotionDisplayTests.test_explicit_stationary_display_rejects_phantom_distance_and_does_not_fix_control) ... ok
+test_locked_zero_requires_fresh_actual_feedback (test_motion_display.MotionDisplayTests.test_locked_zero_requires_fresh_actual_feedback) ... ok
+test_model_needs_measured_provenance_and_never_extrapolates (test_motion_display.MotionDisplayTests.test_model_needs_measured_provenance_and_never_extrapolates) ... ok
+test_normal_display_slew_is_bounded_and_raw_source_is_unchanged (test_motion_display.MotionDisplayTests.test_normal_display_slew_is_bounded_and_raw_source_is_unchanged) ... ok
+test_sampling_rate_changes_do_not_change_the_style_substantially (test_motion_display.MotionDisplayTests.test_sampling_rate_changes_do_not_change_the_style_substantially) ... ok
+test_source_age_is_correct_across_32_bit_tick_wrap (test_motion_display.MotionDisplayTests.test_source_age_is_correct_across_32_bit_tick_wrap) ... ok
+test_wheel_disagreement_does_not_select_the_smaller_value (test_motion_display.MotionDisplayTests.test_wheel_disagreement_does_not_select_the_smaller_value) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.004s
+
+OK

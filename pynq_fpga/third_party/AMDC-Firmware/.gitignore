@@ -1,0 +1,62 @@
+##########################
+# Working Vivado Project #
+##########################
+#
+# Do not version control the generated Vivado project
+
+amdc/
+*.log
+*.jou
+
+#######
+# SRC #
+#######
+
+# Keep only base source files
+hw/*
+!hw/amdc_revd.bd
+!hw/amdc_reve.bd
+!hw/amdc_revf.bd
+!hw/constraints_amdc_revd.xdc
+!hw/constraints_amdc_reve.xdc
+!hw/constraints_amdc_revf.xdc
+
+
+#######
+# SDK #
+#######
+
+Packages/
+
+sdk/.metadata/
+sdk/.sdk/
+
+sdk/webtalk/
+sdk/RemoteSystemsTempFiles/
+sdk/system.hdf_expanded/
+sdk/RemoteSystemsTempFiles/
+
+sdk/*_bsp/
+sdk/*_bsp_*/
+sdk/fsbl/
+sdk/*wrapper_hw_platform_*/
+
+sdk/**/Debug/
+sdk/**/Release/
+
+sdk/*.hdf
+
+sdk/**/*.bit
+sdk/**/*.a
+sdk/**/*.o
+sdk/**/*.d
+
+**/bootimage/
+
+
+##########
+# Python #
+##########
+
+scripts/__pycache__/
+**/.ipynb_checkpoints/

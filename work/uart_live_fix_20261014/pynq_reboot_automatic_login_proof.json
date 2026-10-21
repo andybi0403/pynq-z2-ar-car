@@ -1,0 +1,7 @@
+{
+  "kind": "PYNQ_REBOOT_AUTOMATIC_LOGIN_PROOF",
+  "passed": true,
+  "automatic_login": true,
+  "note": "First observer expected a manual login prompt and timed out after automatic login had already completed; no further reboot needed.",
+  "console_sha256": "863d103db51645802778e724561383bd5b0fed7860fddbce94cfd87e4e42240c"
+}

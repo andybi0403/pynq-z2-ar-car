@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "board": "PYNQ-Z2",
+  "board_files_revision": "A.0",
+  "part": "xc7z020clg400-1",
+  "clock_hz": 100000000,
+  "release_ready": false,
+  "hardware_revision_confirmed": false,
+  "evidence": {
+    "board_xdc": "pynq-z2资料/引脚约束文件/pynq-z2_v1.0.xdc",
+    "schematic_revision": "pynq-z2资料/原理图/TUL_PYNQ Schematic_R12.pdf sheets 3, 6 and 11",
+    "board_pin_map": "pynq-z2资料/board_files/pynq-z2/A.0/part0_pins.xml",
+    "electrical_review": "pynq_fpga/fpga/board/board_electrical_review.md"
+  },
+  "ports": [
+    {"name":"clk","direction":"input","physical":false,"connector":"PS FCLK_CLK0","package_pin":null,"bank":null,"voltage":null,"iostandard":null,"verified":true,"electrical_ready":true,"evidence":["PS7 board preset","preintegration BD FCLK0=100MHz"]},
+    {"name":"rst","direction":"input","physical":false,"connector":"proc_sys_reset/peripheral_reset","package_pin":null,"bank":null,"voltage":null,"iostandard":null,"verified":true,"electrical_ready":true,"evidence":["PS7 FCLK_RESET0_N","proc_sys_reset synchronized reset"]},
+
+    {"name":"qei0_a","direction":"input","physical":true,"connector":"Pmod B pin 1 / JB1","package_pin":"W14","bank":34,"voltage":3.3,"iostandard":"LVCMOS33","verified":true,"electrical_ready":false,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc PmodB jb[0]","part0_pins.xml JB1","TUL R12 sheets 3 and 11","QEI0=left front wheel; hall encoder board 4.5-5V with onboard pullup, 5V domain A/B must go through SN74LVC245A (docs/03_硬件与接线/10_霍尔编码器TT马达电气与QEI参数核定_20260919.md); shift-before/after levels and power sequencing unmeasured"]},
+    {"name":"qei0_b","direction":"input","physical":true,"connector":"Pmod B pin 2 / JB2","package_pin":"Y14","bank":34,"voltage":3.3,"iostandard":"LVCMOS33","verified":true,"electrical_ready":false,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc PmodB jb[1]","part0_pins.xml JB2","TUL R12 sheets 3 and 11","LVC245 output, no PULLUP on PL side; encoder board provides the pullup"]},
+    {"name":"qei1_a","direction":"input","physical":true,"connector":"Pmod B pin 3 / JB3","package_pin":"T11","bank":34,"voltage":3.3,"iostandard":"LVCMOS33","verified":true,"electrical_ready":false,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc PmodB jb[2]","part0_pins.xml JB3","TUL R12 sheets 3 and 11","QEI1=right front wheel; same hall encoder and LVC245 path as qei0 (see docs/03_硬件与接线/10)"]},
+    {"name":"qei1_b","direction":"input","physical":true,"connector":"Pmod B pin 4 / JB4","package_pin":"T10","bank":34,"voltage":3.3,"iostandard":"LVCMOS33","verified":true,"electrical_ready":false,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc PmodB jb[3]","part0_pins.xml JB4","TUL R12 sheets 3 and 11","LVC245 output, no PULLUP on PL side; encoder board provides the pullup"]},
+    {"name":"us_trig","direction":"output","physical":true,"connector":"Pmod B pin 7 / JB7","package_pin":"V16","bank":34,"voltage":3.3,"iostandard":"LVCMOS33","verified":true,"electrical_ready":false,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc PmodB jb[4]","part0_pins.xml JB7","TUL R12 sheets 3 and 11"]},
+    {"name":"us_echo","direction":"input","physical":true,"connector":"Pmod B pin 8 / JB8","package_pin":"W16","bank":34,"voltage":3.3,"iostandard":"LVCMOS33","verified":true,"electrical_ready":false,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc PmodB jb[5]","part0_pins.xml JB8","TUL R12 sheets 3 and 11"]},
+    {"name":"uart_txd","direction":"output","physical":true,"connector":"Pmod B pin 9 / JB9 to STM32 PA3","package_pin":"V12","bank":34,"voltage":3.3,"iostandard":"LVCMOS33","verified":true,"electrical_ready":false,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc PmodB jb[6]","part0_pins.xml JB9","TUL R12 sheets 3 and 11"]},
+    {"name":"uart_rxd","direction":"input","physical":true,"connector":"Pmod B pin 10 / JB10 from STM32 PA2","package_pin":"W13","bank":34,"voltage":3.3,"iostandard":"LVCMOS33","verified":true,"electrical_ready":false,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc PmodB jb[7]","part0_pins.xml JB10","TUL R12 sheets 3 and 11"]},
+    {"name":"ir_l_raw","direction":"input","physical":true,"connector":"Pmod A pin 1 / JA1","package_pin":"Y18","bank":34,"voltage":3.3,"iostandard":"LVCMOS33","verified":true,"electrical_ready":false,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc PmodA ja[0]","part0_pins.xml JA1","TUL R12 sheets 3 and 11"]},
+    {"name":"ir_r_raw","direction":"input","physical":true,"connector":"Pmod A pin 2 / JA2","package_pin":"Y19","bank":34,"voltage":3.3,"iostandard":"LVCMOS33","verified":true,"electrical_ready":false,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc PmodA ja[1]","part0_pins.xml JA2","TUL R12 sheets 3 and 11"]},
+    {"name":"qei_oe_n","direction":"output","physical":true,"connector":"Pmod A pin 9 / JA9","package_pin":"W18","bank":34,"voltage":3.3,"iostandard":"LVCMOS33","verified":true,"electrical_ready":false,"pull":"EXTERNAL_10K_TO_3V3","evidence":["pynq-z2_v1.0.xdc PmodA ja[6]","part0_pins.xml JA9","TUL R12 sheets 3 and 11","Active-low SN74LVC245A enable: 10k external pull-up disables before PL configuration; car_board_video_wrapper drives low only after synchronized reset release"]},
+
+    {"name":"hdmi_tx_hpdn","direction":"input","physical":true,"connector":"HDMI OUT pin 19 through Q8/R158","package_pin":"R19","bank":34,"voltage":3.3,"iostandard":"LVCMOS33","verified":true,"electrical_ready":true,"pull":"BOARD_4K7_TO_3V3","evidence":["pynq-z2_v1.0.xdc HDMI Tx","part0_pins.xml hdmi_tx_hpd","TUL R12 sheets 6 and 11"]},
+    {"name":"hdmi_tx_clk_p","direction":"output","physical":true,"connector":"HDMI OUT TMDS clock +","package_pin":"L16","bank":35,"voltage":3.3,"iostandard":"TMDS_33","verified":true,"electrical_ready":true,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc HDMI Tx","part0_pins.xml TMDS_OUT_clk_p","TUL R12 sheets 6 and 11"]},
+    {"name":"hdmi_tx_clk_n","direction":"output","physical":true,"connector":"HDMI OUT TMDS clock -","package_pin":"L17","bank":35,"voltage":3.3,"iostandard":"TMDS_33","verified":true,"electrical_ready":true,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc HDMI Tx","part0_pins.xml TMDS_OUT_clk_n","TUL R12 sheets 6 and 11"]},
+    {"name":"hdmi_tx_d_p[0]","direction":"output","physical":true,"connector":"HDMI OUT TMDS data0 +","package_pin":"K17","bank":35,"voltage":3.3,"iostandard":"TMDS_33","verified":true,"electrical_ready":true,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc HDMI Tx","part0_pins.xml TMDS_OUT_data_p_0","TUL R12 sheets 6 and 11"]},
+    {"name":"hdmi_tx_d_n[0]","direction":"output","physical":true,"connector":"HDMI OUT TMDS data0 -","package_pin":"K18","bank":35,"voltage":3.3,"iostandard":"TMDS_33","verified":true,"electrical_ready":true,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc HDMI Tx","part0_pins.xml TMDS_OUT_data_n_0","TUL R12 sheets 6 and 11"]},
+    {"name":"hdmi_tx_d_p[1]","direction":"output","physical":true,"connector":"HDMI OUT TMDS data1 +","package_pin":"K19","bank":35,"voltage":3.3,"iostandard":"TMDS_33","verified":true,"electrical_ready":true,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc HDMI Tx","part0_pins.xml TMDS_OUT_data_p_1","TUL R12 sheets 6 and 11"]},
+    {"name":"hdmi_tx_d_n[1]","direction":"output","physical":true,"connector":"HDMI OUT TMDS data1 -","package_pin":"J19","bank":35,"voltage":3.3,"iostandard":"TMDS_33","verified":true,"electrical_ready":true,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc HDMI Tx","part0_pins.xml TMDS_OUT_data_n_1","TUL R12 sheets 6 and 11"]},
+    {"name":"hdmi_tx_d_p[2]","direction":"output","physical":true,"connector":"HDMI OUT TMDS data2 +","package_pin":"J18","bank":35,"voltage":3.3,"iostandard":"TMDS_33","verified":true,"electrical_ready":true,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc HDMI Tx","part0_pins.xml TMDS_OUT_data_p_2","TUL R12 sheets 6 and 11"]},
+    {"name":"hdmi_tx_d_n[2]","direction":"output","physical":true,"connector":"HDMI OUT TMDS data2 -","package_pin":"H18","bank":35,"voltage":3.3,"iostandard":"TMDS_33","verified":true,"electrical_ready":true,"pull":"NONE","evidence":["pynq-z2_v1.0.xdc HDMI Tx","part0_pins.xml TMDS_OUT_data_n_2","TUL R12 sheets 6 and 11"]}
+  ]
+}

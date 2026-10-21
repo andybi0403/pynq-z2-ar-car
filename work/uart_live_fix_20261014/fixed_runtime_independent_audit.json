@@ -1,0 +1,35 @@
+{
+  "kind": "INDEPENDENT_HARDWARE_UART_PL_AUDIT",
+  "prefix": "fixed_runtime",
+  "reports": 921,
+  "reports_measured_before_close": 920,
+  "reply_drained_during_close": 1,
+  "tx_types": {
+    "Q1": 921,
+    "PSTOP": 922
+  },
+  "samples": 1103,
+  "matched_valid_PL_samples": {
+    "us": 1102,
+    "ir": 1102
+  },
+  "first_valid_PL_seconds": {
+    "us": 0.05881031399985659,
+    "ir": 0.05881031399985659
+  },
+  "first_IR_low16": 17781,
+  "distance_range_mm": [
+    177,
+    182
+  ],
+  "checks": {
+    "raw_crc_and_request_match": true,
+    "all_feedback_locked_zero": true,
+    "no_motor_release_or_drive_sent": true,
+    "PL_values_correspond_to_wire_samples": true,
+    "both_PL_channels_valid_over_90_percent": true,
+    "production_acceptance_passed": true
+  },
+  "passed": true,
+  "wire_sha256": "a6ace1cacce308fd20062617999b50f0aad9dfa00a1a873e080d0002dae1b996"
+}

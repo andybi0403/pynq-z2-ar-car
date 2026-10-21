@@ -1,0 +1,37 @@
+{
+  "kind": "GUARDED_WIFI_WINDOW",
+  "prior_profile": "SEU-WLAN",
+  "deadline": 1791913935.711636,
+  "timers": [
+    {
+      "pid": 17980,
+      "label": "edge_live_native_primary"
+    },
+    {
+      "pid": 38652,
+      "label": "edge_live_native_backup"
+    }
+  ],
+  "PC_network_mutated": true,
+  "started_epoch": 1791913880.8907168,
+  "stages": [
+    {
+      "view": "raw",
+      "actual_JPEG_frames": 53,
+      "seconds": 6.0351839999930235,
+      "received_fps": 8.781834897147617,
+      "passed": true
+    }
+  ],
+  "connection_request": {
+    "method": "Windows Native Wi-Fi",
+    "open_code": 0,
+    "profile_changed": false,
+    "scan_code": 0,
+    "connect_code": 0
+  },
+  "error": "TimeoutError: timed out",
+  "finished_epoch": 1791913910.9259608,
+  "ssid_after": "SEU-WLAN",
+  "restoration_verified": true
+}

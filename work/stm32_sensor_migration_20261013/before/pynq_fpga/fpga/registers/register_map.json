@@ -1,0 +1,569 @@
+{
+  "schema_version": 1,
+  "contract_version": 9,
+  "integrated_id": "0xC4251009",
+  "address_width": 12,
+  "data_width": 32,
+  "regions": [
+    {
+      "name": "common",
+      "start": "0x000",
+      "end": "0x03F"
+    },
+    {
+      "name": "sensors",
+      "start": "0x040",
+      "end": "0x07F"
+    },
+    {
+      "name": "qei",
+      "start": "0x080",
+      "end": "0x0BF"
+    },
+    {
+      "name": "risk",
+      "start": "0x0C0",
+      "end": "0x0FF"
+    },
+    {
+      "name": "config",
+      "start": "0x100",
+      "end": "0x1FF"
+    },
+    {
+      "name": "odometry",
+      "start": "0x200",
+      "end": "0x27F"
+    },
+    {
+      "name": "display",
+      "start": "0x280",
+      "end": "0x2DF"
+    }
+  ],
+  "registers": [
+    {
+      "name": "ID_VERSION",
+      "offset": "0x000",
+      "access": "RO",
+      "reset": "0xC4251009",
+      "description": "magic/type=integrated/version=09"
+    },
+    {
+      "name": "CTRL",
+      "offset": "0x004",
+      "access": "WO",
+      "reset": "0",
+      "description": "bit0 global snapshot; bit1 64-bit time latch"
+    },
+    {
+      "name": "STATUS",
+      "offset": "0x008",
+      "access": "RO",
+      "reset": "3",
+      "description": "bit0 snapshot done; bit1 time latch done"
+    },
+    {
+      "name": "SNAP_EPOCH",
+      "offset": "0x00C",
+      "access": "RO",
+      "reset": "0",
+      "description": "increments once per global snapshot"
+    },
+    {
+      "name": "TS_LIVE_LO",
+      "offset": "0x010",
+      "access": "RO",
+      "reset": "0",
+      "description": "debug live time low"
+    },
+    {
+      "name": "TS_LIVE_HI",
+      "offset": "0x014",
+      "access": "RO",
+      "reset": "0",
+      "description": "debug live time high"
+    },
+    {
+      "name": "TS_SNAP_LO",
+      "offset": "0x018",
+      "access": "RO",
+      "reset": "0",
+      "description": "atomically latched time low"
+    },
+    {
+      "name": "TS_SNAP_HI",
+      "offset": "0x01C",
+      "access": "RO",
+      "reset": "0",
+      "description": "atomically latched time high"
+    },
+    {
+      "name": "SCRATCH",
+      "offset": "0x020",
+      "access": "RW",
+      "reset": "0xA55A5A5A",
+      "description": "WSTRB test register"
+    },
+    {
+      "name": "US_DATA",
+      "offset": "0x040",
+      "access": "RO",
+      "reset": "0",
+      "description": "snapshot distance/fault"
+    },
+    {
+      "name": "US_TS",
+      "offset": "0x044",
+      "access": "RO",
+      "reset": "0",
+      "description": "snapshot full 32-bit sample time"
+    },
+    {
+      "name": "US_META",
+      "offset": "0x048",
+      "access": "RO",
+      "reset": "0",
+      "description": "bit31 valid; bits15:0 seq"
+    },
+    {
+      "name": "US_ERR",
+      "offset": "0x04C",
+      "access": "RO",
+      "reset": "0",
+      "description": "bits15:0 saturated error count"
+    },
+    {
+      "name": "IR_STATUS",
+      "offset": "0x050",
+      "access": "RO",
+      "reset": "0",
+      "description": "bit0 left obstacle; bit1 right; bit2 stable"
+    },
+    {
+      "name": "IR_TS",
+      "offset": "0x054",
+      "access": "RO",
+      "reset": "0",
+      "description": "snapshot full 32-bit change time"
+    },
+    {
+      "name": "IR_META",
+      "offset": "0x058",
+      "access": "RO",
+      "reset": "0",
+      "description": "bit31 valid; bits15:0 seq"
+    },
+    {
+      "name": "QEI0_POS",
+      "offset": "0x080",
+      "access": "RO",
+      "reset": "0",
+      "description": "snapshot batch position"
+    },
+    {
+      "name": "QEI0_PERIOD",
+      "offset": "0x084",
+      "access": "RO",
+      "reset": "0",
+      "description": "snapshot edge period"
+    },
+    {
+      "name": "QEI0_VEL",
+      "offset": "0x088",
+      "access": "RO",
+      "reset": "0",
+      "description": "signed Q16.16 mm/s"
+    },
+    {
+      "name": "QEI0_TS",
+      "offset": "0x08C",
+      "access": "RO",
+      "reset": "0",
+      "description": "snapshot full 32-bit sample time"
+    },
+    {
+      "name": "QEI0_META",
+      "offset": "0x090",
+      "access": "RO",
+      "reset": "0",
+      "description": "bit31 valid; bits15:0 seq"
+    },
+    {
+      "name": "QEI0_INFO",
+      "offset": "0x094",
+      "access": "RO",
+      "reset": "0",
+      "description": "direction/period/diagnostics"
+    },
+    {
+      "name": "QEI1_POS",
+      "offset": "0x098",
+      "access": "RO",
+      "reset": "0",
+      "description": "snapshot batch position"
+    },
+    {
+      "name": "QEI1_PERIOD",
+      "offset": "0x09C",
+      "access": "RO",
+      "reset": "0",
+      "description": "snapshot edge period"
+    },
+    {
+      "name": "QEI1_VEL",
+      "offset": "0x0A0",
+      "access": "RO",
+      "reset": "0",
+      "description": "signed Q16.16 mm/s"
+    },
+    {
+      "name": "QEI1_TS",
+      "offset": "0x0A4",
+      "access": "RO",
+      "reset": "0",
+      "description": "snapshot full 32-bit sample time"
+    },
+    {
+      "name": "QEI1_META",
+      "offset": "0x0A8",
+      "access": "RO",
+      "reset": "0",
+      "description": "bit31 valid; bits15:0 seq"
+    },
+    {
+      "name": "QEI1_INFO",
+      "offset": "0x0AC",
+      "access": "RO",
+      "reset": "0",
+      "description": "direction/period/diagnostics"
+    },
+    {
+      "name": "RISK_STATE",
+      "offset": "0x0C0",
+      "access": "RO",
+      "reset": "0",
+      "description": "bit0 stop; bits2:1 level; bits31:16 reasons"
+    },
+    {
+      "name": "RISK_REQUIRED_MM",
+      "offset": "0x0C4",
+      "access": "RO",
+      "reset": "0",
+      "description": "computed stopping requirement"
+    },
+    {
+      "name": "RISK_TS",
+      "offset": "0x0C8",
+      "access": "RO",
+      "reset": "0",
+      "description": "risk evaluation time"
+    },
+    {
+      "name": "RISK_META",
+      "offset": "0x0CC",
+      "access": "RO",
+      "reset": "0",
+      "description": "bit31 valid; bits15:0 seq"
+    },
+    {
+      "name": "CMD_STATE",
+      "offset": "0x0D0",
+      "access": "RO",
+      "reset": "0",
+      "description": "bit0 forward request; bit1 request valid"
+    },
+    {
+      "name": "CMD_TS",
+      "offset": "0x0D4",
+      "access": "RO",
+      "reset": "0",
+      "description": "last command write time"
+    },
+    {
+      "name": "US_CTRL",
+      "offset": "0x100",
+      "access": "RW",
+      "reset": "1",
+      "description": "bit0 enable"
+    },
+    {
+      "name": "US_PERIOD",
+      "offset": "0x104",
+      "access": "RW",
+      "reset": "6000000",
+      "description": "idle ticks"
+    },
+    {
+      "name": "US_MAX_ECHO",
+      "offset": "0x108",
+      "access": "RW",
+      "reset": "3000000",
+      "description": "single wait timeout ticks"
+    },
+    {
+      "name": "US_TRIG_TICKS",
+      "offset": "0x10C",
+      "access": "RW",
+      "reset": "1000",
+      "description": "trigger high ticks"
+    },
+    {
+      "name": "IR_FILTER",
+      "offset": "0x110",
+      "access": "RW",
+      "reset": "5000",
+      "description": "stable filter ticks"
+    },
+    {
+      "name": "QEI0_DIR",
+      "offset": "0x120",
+      "access": "RW",
+      "reset": "0",
+      "description": "bit0 direction invert"
+    },
+    {
+      "name": "QEI0_FILTER",
+      "offset": "0x124",
+      "access": "RW",
+      "reset": "0",
+      "description": "AB stable ticks"
+    },
+    {
+      "name": "QEI0_SCALE",
+      "offset": "0x128",
+      "access": "RW",
+      "reset": "0",
+      "description": "Q16.16 mm per wheel x4 count"
+    },
+    {
+      "name": "QEI0_ZERO",
+      "offset": "0x12C",
+      "access": "RW",
+      "reset": "10000000",
+      "description": "zero observation ticks"
+    },
+    {
+      "name": "QEI1_DIR",
+      "offset": "0x130",
+      "access": "RW",
+      "reset": "0",
+      "description": "bit0 direction invert"
+    },
+    {
+      "name": "QEI1_FILTER",
+      "offset": "0x134",
+      "access": "RW",
+      "reset": "0",
+      "description": "AB stable ticks"
+    },
+    {
+      "name": "QEI1_SCALE",
+      "offset": "0x138",
+      "access": "RW",
+      "reset": "0",
+      "description": "Q16.16 mm per wheel x4 count"
+    },
+    {
+      "name": "QEI1_ZERO",
+      "offset": "0x13C",
+      "access": "RW",
+      "reset": "10000000",
+      "description": "zero observation ticks"
+    },
+    {
+      "name": "RISK_CMD",
+      "offset": "0x140",
+      "access": "WO",
+      "reset": "0",
+      "description": "bit0 forward; bit1 valid; every write renews PL command lease"
+    },
+    {
+      "name": "RISK_ENABLE",
+      "offset": "0x144",
+      "access": "RW",
+      "reset": "1",
+      "description": "bit0 enable; zero forces stop"
+    },
+    {
+      "name": "ODOM_CTRL",
+      "offset": "0x148",
+      "access": "WO",
+      "reset": "0",
+      "description": "bit0 reset both wheel odometers; starts new epochs"
+    },
+    {
+      "name": "ODOM0_DISP_LO",
+      "offset": "0x200",
+      "access": "RO",
+      "reset": "0",
+      "description": "global snapshot signed 64-bit Q16.16 mm displacement low"
+    },
+    {
+      "name": "ODOM0_DISP_HI",
+      "offset": "0x204",
+      "access": "RO",
+      "reset": "0",
+      "description": "global snapshot signed displacement high"
+    },
+    {
+      "name": "ODOM0_PATH_LO",
+      "offset": "0x208",
+      "access": "RO",
+      "reset": "0",
+      "description": "global snapshot unsigned 64-bit Q16.16 mm travelled low"
+    },
+    {
+      "name": "ODOM0_PATH_HI",
+      "offset": "0x20C",
+      "access": "RO",
+      "reset": "0",
+      "description": "global snapshot travelled high"
+    },
+    {
+      "name": "ODOM0_TS",
+      "offset": "0x210",
+      "access": "RO",
+      "reset": "0",
+      "description": "global snapshot last edge/reset/fault timestamp; stationary does not age"
+    },
+    {
+      "name": "ODOM0_META",
+      "offset": "0x214",
+      "access": "RO",
+      "reset": "0",
+      "description": "global snapshot bit31 valid; bit30 sticky fault; bits15:0 sequence"
+    },
+    {
+      "name": "ODOM0_EPOCH",
+      "offset": "0x218",
+      "access": "RO",
+      "reset": "0",
+      "description": "global snapshot bits15:0 reset/calibration/phase epoch"
+    },
+    {
+      "name": "ODOM1_DISP_LO",
+      "offset": "0x220",
+      "access": "RO",
+      "reset": "0",
+      "description": "global snapshot signed 64-bit Q16.16 mm displacement low"
+    },
+    {
+      "name": "ODOM1_DISP_HI",
+      "offset": "0x224",
+      "access": "RO",
+      "reset": "0",
+      "description": "global snapshot signed displacement high"
+    },
+    {
+      "name": "ODOM1_PATH_LO",
+      "offset": "0x228",
+      "access": "RO",
+      "reset": "0",
+      "description": "global snapshot unsigned 64-bit Q16.16 mm travelled low"
+    },
+    {
+      "name": "ODOM1_PATH_HI",
+      "offset": "0x22C",
+      "access": "RO",
+      "reset": "0",
+      "description": "global snapshot travelled high"
+    },
+    {
+      "name": "ODOM1_TS",
+      "offset": "0x230",
+      "access": "RO",
+      "reset": "0",
+      "description": "global snapshot last edge/reset/fault timestamp; stationary does not age"
+    },
+    {
+      "name": "ODOM1_META",
+      "offset": "0x234",
+      "access": "RO",
+      "reset": "0",
+      "description": "global snapshot bit31 valid; bit30 sticky fault; bits15:0 sequence"
+    },
+    {
+      "name": "ODOM1_EPOCH",
+      "offset": "0x238",
+      "access": "RO",
+      "reset": "0",
+      "description": "global snapshot bits15:0 reset/calibration/phase epoch"
+    },
+    {
+      "name": "OSD_ERRORS",
+      "offset": "0x280",
+      "access": "RO",
+      "reset": "0",
+      "description": "OSD malformed SOF/EOL count, saturated"
+    },
+    {
+      "name": "DISPLAY_CAR_STATE",
+      "offset": "0x284",
+      "access": "RW",
+      "reset": "0",
+      "description": "bit0 actual STM32 LOCK; bit1 received valid; bits31:16 STM32 fault; write commits age and time"
+    },
+    {
+      "name": "DISPLAY_CAR_AGE",
+      "offset": "0x288",
+      "access": "RW",
+      "reset": "0",
+      "description": "UART reception age in 100MHz ticks, staged before STATE; display expires after total 700ms"
+    },
+    {
+      "name": "DISPLAY_CAR_TS",
+      "offset": "0x28C",
+      "access": "RO",
+      "reset": "0",
+      "description": "last STATE publication tick; publication must not renew same UART reception"
+    },
+    {
+      "name": "DISPLAY_FRAMES",
+      "offset": "0x290",
+      "access": "RO",
+      "reset": "0",
+      "description": "accepted HDMI SOF count, wraps uint32; not decoded-camera frame identity"
+    },
+    {
+      "name": "DISPLAY_FRAME_ID", "offset": "0x2A0", "access": "RO", "reset": "0",
+      "description": "last metadata SOF accepted before OSD: decoded camera frame id"
+    },
+    {
+      "name": "DISPLAY_FRAME_STATE", "offset": "0x2A4", "access": "RO", "reset": "0",
+      "description": "bit0 valid metadata; bit1 age below 200ms and not future; bits31:16 associated snapshot epoch"
+    },
+    {
+      "name": "DISPLAY_FRAME_TS_LO", "offset": "0x2A8", "access": "RO", "reset": "0",
+      "description": "estimated decoded reception PL ticks low32, committed on metadata SOF"
+    },
+    {
+      "name": "DISPLAY_FRAME_TS_HI", "offset": "0x2AC", "access": "RO", "reset": "0",
+      "description": "estimated decoded reception PL ticks high32"
+    },
+    {
+      "name": "DISPLAY_HEADER_ERRORS", "offset": "0x2B0", "access": "RO", "reset": "0",
+      "description": "saturated malformed/missing metadata prefix count"
+    },
+    {
+      "name": "DISPLAY_REPEATS", "offset": "0x2B4", "access": "RO", "reset": "0",
+      "description": "uint32 repeated valid frame id plus reception timestamp count"
+    },
+    {
+      "name": "DISPLAY_TAG_COUNT", "offset": "0x2B8", "access": "RO", "reset": "0",
+      "description": "all accepted metadata-parser SOFs, diagnostic coherence counter"
+    },
+    {
+      "name": "DISPLAY_FRAME_AGE", "offset": "0x2BC", "access": "RO", "reset": "0",
+      "description": "live age of committed reception in 100MHz ticks; uint32 saturation including future time"
+    },
+    {
+      "name": "DISPLAY_FRAME_SOF_LO", "offset": "0x2C0", "access": "RO", "reset": "0",
+      "description": "actual PL ticks when base OSD accepted last tagged SOF, low32"
+    },
+    {
+      "name": "DISPLAY_FRAME_SOF_HI", "offset": "0x2C4", "access": "RO", "reset": "0",
+      "description": "actual PL tagged SOF acceptance ticks high32; not HDMI scanout"
+    }
+  ]
+}

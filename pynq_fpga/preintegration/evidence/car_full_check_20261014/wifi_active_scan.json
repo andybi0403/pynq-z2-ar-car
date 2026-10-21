@@ -1,0 +1,12 @@
+{
+  "kind": "WINDOWS_WIFI_ACTIVE_SCAN",
+  "open_code": 0,
+  "network_profile_changed": false,
+  "privacy_permissions_changed": false,
+  "source": "https://learn.microsoft.com/en-us/windows/win32/api/wlanapi/nf-wlanapi-wlanscan",
+  "scan_code": 0,
+  "router_blocks": [
+    "SSID 5 : GL-SFT1200-0a0-5G\n    Network type            : Infrastructure\n    Authentication          : WPA2-Personal\n    Encryption              : CCMP \n    BSSID 1                 : 94:83:c4:30:00:a3\n         Signal             : 94%  \n         Radio type         : 802.11ac\n         Band               : 5 GHz\n         Channel            : 36 \n         Bss Load:\n             Connected Stations:         0\n             Channel Utilization:        253 (99 %)\n             Medium Available Capacity:  0 (0 us/s)\n         QoS MSCS Supported    : 0\n         QoS Map Supported     : 0\n         Basic rates (Mbps) : 6 12 24\n         Other rates (Mbps) : 9 18 36 48 54\n"
+  ],
+  "router_5g_visible": true
+}

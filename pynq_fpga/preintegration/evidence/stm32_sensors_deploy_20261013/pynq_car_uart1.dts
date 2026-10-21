@@ -1,0 +1,17 @@
+/dts-v1/;
+/plugin/;
+
+/* Actual PYNQ 3.0.1 board node inspected before deployment.
+ * Enable existing PS UART1 for the verified bitstream's Pmod EMIO route.
+ * Existing UART0 debug console, clocks and interrupt descriptions remain.
+ */
+/ {
+    fragment@0 {
+        target-path = "/axi/serial@e0001000";
+        __overlay__ { status = "okay"; };
+    };
+    fragment@1 {
+        target-path = "/aliases";
+        __overlay__ { serial1 = "/axi/serial@e0001000"; };
+    };
+};

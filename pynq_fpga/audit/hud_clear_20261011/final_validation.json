@@ -1,0 +1,121 @@
+{
+  "schema": "hud-display-validation/v1",
+  "candidate": "v09_hud_clear_20261011_r3",
+  "status": "LAB_ONLY_CANDIDATE",
+  "hardware": false,
+  "hardware_pipeline_status": "PENDING",
+  "rtl_simulations": [
+    "tb_car_axil_regs",
+    "tb_car_axis_osd",
+    "tb_car_board_video_wrapper",
+    "tb_car_frame_metadata",
+    "tb_car_front_numeric",
+    "tb_car_front_overlay",
+    "tb_car_osd_fullframe",
+    "tb_car_osd_text",
+    "tb_car_perception_arch",
+    "tb_car_qei",
+    "tb_car_qei_odometry",
+    "tb_car_risk_core",
+    "tb_car_risk_lamps",
+    "tb_car_sensors",
+    "tb_car_status_osd",
+    "tb_car_velocity",
+    "tb_risk_physics_sweep",
+    "tb_wireless_capture"
+  ],
+  "independent_pixel_checks": "PASS",
+  "setup_wns_ns": 0.28,
+  "hold_whs_ns": 0.011,
+  "methodology_before": {
+    "TIMING-18": {
+      "severity": "Warning",
+      "count": 10,
+      "details": [
+        "An input delay is missing on hdmi_tx_hpdn relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An input delay is missing on ir_l_raw relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An input delay is missing on ir_r_raw relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An input delay is missing on qei0_a relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An input delay is missing on qei0_b relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An input delay is missing on qei1_a relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An input delay is missing on qei1_b relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An input delay is missing on us_echo relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An output delay is missing on qei_oe_n relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An output delay is missing on us_trig relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>."
+      ]
+    },
+    "XDCB-5": {
+      "severity": "Warning",
+      "count": 1,
+      "details": [
+        "The option '-through : [get_pins -filter {NAME =~ *SyncAsync*/oSyncStages_reg[0]/D} -hier]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '5' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].\nCurrent XDC: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_v09_hud_clear_20261011_r2/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_rgb2dvi_0/src/rgb2dvi.xdc (Line: 5)"
+      ]
+    }
+  },
+  "methodology_after": {
+    "TIMING-18": {
+      "severity": "Warning",
+      "count": 10,
+      "details": [
+        "An input delay is missing on hdmi_tx_hpdn relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An input delay is missing on ir_l_raw relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An input delay is missing on ir_r_raw relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An input delay is missing on qei0_a relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An input delay is missing on qei0_b relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An input delay is missing on qei1_a relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An input delay is missing on qei1_b relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An input delay is missing on us_echo relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An output delay is missing on qei_oe_n relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>.",
+        "An output delay is missing on us_trig relative to the rising and/or falling clock edge(s) of <clock: clk_fpga_0>."
+      ]
+    },
+    "XDCB-5": {
+      "severity": "Warning",
+      "count": 1,
+      "details": [
+        "The option '-through : [get_pins -filter {NAME =~ *SyncAsync*/oSyncStages_reg[0]/D} -hier]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '5' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].\nCurrent XDC: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_v09_hud_clear_20261011_r3/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_rgb2dvi_0/src/rgb2dvi.xdc (Line: 5)"
+      ]
+    }
+  },
+  "xdc_sources_unchanged": true,
+  "risk_and_register_contract_unchanged": true,
+  "preview_matches_candidate_source": true,
+  "zip_path": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\lab\\task7_8_lab_only_v09_hud_clear_20261011_r3.zip",
+  "zip_sha256": "a6f8d02f4a98bbaf12026a634554548b6104bca27326305d15fbb0e1cfc0e8d2",
+  "lint": {
+    "execution": "local Vivado 2026.1; ROSS skills and documentation used; no active MCP Vivado session",
+    "report_format": "ASCII table despite .csv filename",
+    "modules": {
+      "car_axis_osd": {
+        "violations": 18,
+        "rules": {
+          "ASSIGN-1": 8,
+          "ASSIGN-5": 3,
+          "ASSIGN-6": 6,
+          "QOR-1": 1
+        },
+        "waivers": 0
+      },
+      "car_axis_status_osd": {
+        "violations": 6,
+        "rules": {
+          "ASSIGN-1": 1,
+          "ASSIGN-5": 2,
+          "ASSIGN-6": 2,
+          "ASSIGN-10": 1
+        },
+        "waivers": 0
+      },
+      "car_axis_front_overlay": {
+        "violations": 11,
+        "rules": {
+          "ASSIGN-1": 4,
+          "ASSIGN-5": 1,
+          "ASSIGN-6": 4,
+          "ASSIGN-10": 2
+        },
+        "waivers": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "kind": "GUARDED_WIFI_WINDOW",
+  "prior_profile": "SEU-WLAN",
+  "deadline": 1791912285.535848,
+  "timers": [
+    {
+      "pid": 5076,
+      "label": "edge_live_primary"
+    },
+    {
+      "pid": 16220,
+      "label": "edge_live_backup"
+    }
+  ],
+  "PC_network_mutated": true,
+  "started_epoch": 1791912230.7256072,
+  "stages": [],
+  "error": "RuntimeError: router Wi-Fi did not connect",
+  "finished_epoch": 1791912246.482024,
+  "ssid_after": "SEU-WLAN",
+  "restoration_verified": true
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "GUARDED_WIFI_WINDOW",
+  "prior_profile": "SEU-WLAN",
+  "deadline": 1791915199.6604388,
+  "timers": [
+    {
+      "pid": 32980,
+      "label": "edge_browser_only_primary"
+    },
+    {
+      "pid": 46184,
+      "label": "edge_browser_only_backup"
+    }
+  ],
+  "PC_network_mutated": true,
+  "started_epoch": 1791915144.8456678,
+  "stages": [],
+  "connection_request": {
+    "method": "Windows Native Wi-Fi",
+    "open_code": 0,
+    "profile_changed": false,
+    "scan_code": 0,
+    "connect_code": 0
+  },
+  "status_probe": {
+    "running": true,
+    "frames": 13250,
+    "scope": "video_only",
+    "control_available": false
+  },
+  "browser_ready": true,
+  "finished_epoch": 1791915201.176491,
+  "ssid_after": "SEU-WLAN",
+  "restoration_verified": true
+}

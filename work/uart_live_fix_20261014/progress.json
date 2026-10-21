@@ -1,0 +1,120 @@
+{
+  "schema": "uart-live-diagnosis-progress/v1",
+  "date": "2026-10-14",
+  "completed": true,
+  "goal": "Diagnose actual PYNQ/STM32 UART; repair software if causal; verify actual communication",
+  "ports": {
+    "PYNQ": "COM14",
+    "STM32_CH340": "COM9"
+  },
+  "PYNQ_original_overlay_loaded": true,
+  "PYNQ_UART_driver_bound": true,
+  "PYNQ_UART_opened_registers": {
+    "clock_control": "0xa03",
+    "mode": "0x20",
+    "baud_generation": 124,
+    "baud_divider": 6,
+    "level_shifters": "0xf"
+  },
+  "original_application_trial": {
+    "duration_s": 15.016848045000074,
+    "PYNQ_RX_bytes": 0,
+    "valid_state_reports": 0,
+    "PC_USB_diagnostics": 0
+  },
+  "STM32_ROM_handshake_succeeded": true,
+  "user_report": {
+    "core_board_lights": "none",
+    "expansion_board_light": "on"
+  },
+  "known_USB_takeover_defect_confirmed_on_current_hardware": true,
+  "software_changed": true,
+  "MCU_flashed": true,
+  "canceled_idea": "ROM through PA2/PA3: not supported by this F103; no USART2 ROM trial performed",
+  "pending": null,
+  "board_final_guard": {
+    "risk_enable": 0,
+    "qei_scale": [
+      0,
+      0
+    ],
+    "sent_only": [
+      "Q1",
+      "PSTOP"
+    ],
+    "motor_power": "user confirmed disconnected"
+  },
+  "latest_hardware_trials": {
+    "S5_ON": {
+      "observed_s": 15.03356963300007,
+      "rx_bytes": 3911,
+      "safe_reports": 60,
+      "safe_usb_values": [
+        0
+      ],
+      "valid_S1_reports": 0
+    },
+    "S5_OFF": {
+      "observed_s": 15.019835681999666,
+      "rx_bytes": 3960,
+      "safe_reports": 60,
+      "safe_usb_values": [
+        1
+      ],
+      "valid_S1_reports": 0
+    },
+    "safety": {
+      "motor_commands": [
+        "Q1",
+        "PSTOP"
+      ],
+      "motor_power": "disconnected",
+      "scale": [
+        0,
+        0
+      ],
+      "risk_enable": 0
+    }
+  },
+  "port_correction": "K1.3 -> STM32 PA3/USART2_RX; STM32 PA2/USART2_TX -> K1.4; USART1 USB/debug activity can claim old firmware ownership and suppress USART2 queries",
+  "STM32_ROM_backup": {
+    "chip_id": "0410",
+    "bytes": 131072,
+    "sha256": "4c9406d9cd4f8c048e6d3a31eae0d6cbc7de34bcc24769373769171dc9c460b2",
+    "matches_original_candidate": true
+  },
+  "new_firmware": {
+    "built": true,
+    "bytes": 9240,
+    "sha256": "8b043a342c839414f021bbd68700ddfac48113509577872ace9074bb806f4f2d",
+    "regression": "C safety/protocol suites PASS; 6 ARM instruction tests PASS"
+  },
+  "flash_attempt": {
+    "started": true,
+    "completed": true,
+    "written_bytes": 9240,
+    "full_readback_verified": true,
+    "outside_erase_span_preserved": true
+  },
+  "board_last_known_mode": {
+    "BOOT0": 0,
+    "normal_reset": "confirmed by user and tested",
+    "STM32": "role-fix application running",
+    "motor_power": "disconnected"
+  },
+  "hardware_route_contradiction": {
+    "schematic_K1": "PA3/USART2_RX and PA2/USART2_TX",
+    "old_firmware": "Q1/S1 on USART2; SAFE diagnostics on USART1; USART1 activity suppresses USART2 input",
+    "observed": "PYNQ RX capture contains SAFE frames; S5_OFF SAFE reports USB=1 and no S1",
+    "status": "operationally resolved by verified USART1/USART2 role binding; no rewiring required; exact connector trace not measured"
+  },
+  "auth_correction": "miniterm CRLF batch entry caused misleading failure; prompt-driven documented credential accepted UID0; no account reset needed",
+  "final_verification": {
+    "flash_audit": "independent_flash_audit.json",
+    "normal_boot": "fixed_runtime_independent_audit.json",
+    "IR_upper_half_regression": "high_sequence_independent_audit.json",
+    "completion_audit": "completion_audit.json",
+    "PYNQ_reboot": "reboot_independent_audit.json",
+    "startup_entry": "startup_entry_update.json"
+  }
+}

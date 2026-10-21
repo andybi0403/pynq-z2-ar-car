@@ -1,0 +1,29 @@
+{
+  "schema": "car-delivery-verification/v1",
+  "passed": true,
+  "candidate": "v09_wireless720_five_20261004_r3",
+  "zip_sha256": "f5d63e845d5079e1f8cd5f168f79b0911eb7af63983fd992d8e7ee0457adbc34",
+  "source_files": 310,
+  "runtime_files": 20,
+  "wireless_files": 13,
+  "timing": {
+    "wns_ns": 0.111,
+    "tns_ns": 0,
+    "whs_ns": 0.014,
+    "ths_ns": 0
+  },
+  "deployment": {
+    "schema": "car-deployment-check/v1",
+    "passed": true,
+    "failures": [],
+    "contract_id": "0xC4251009",
+    "board_prerequisites_checked": false,
+    "hardware_acceptance": "PENDING",
+    "overlay_loaded": false,
+    "serial_opened": false,
+    "python": "3.14.0",
+    "machine": "AMD64",
+    "dependencies": {}
+  },
+  "hardware_performance": "PENDING"
+}

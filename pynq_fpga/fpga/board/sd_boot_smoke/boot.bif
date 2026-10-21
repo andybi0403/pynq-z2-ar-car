@@ -1,0 +1,6 @@
+diagnostic:
+{
+    [bootloader] output/fsbl_original.elf
+    output/sd_boot_led.bit
+    output/idle.elf
+}

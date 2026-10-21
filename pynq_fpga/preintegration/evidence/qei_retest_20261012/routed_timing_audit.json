@@ -1,0 +1,18 @@
+{
+  "scope": "routed implementation, not external electrical or motion acceptance",
+  "wns_ns": 0.238,
+  "whs_ns": 0.028,
+  "setup_failing_endpoints": 0,
+  "hold_failing_endpoints": 0,
+  "bus_skew_slacks_ns": [
+    8.815,
+    9.048
+  ],
+  "drc_error_critical_warning_warning_count": 0,
+  "retained_advisory": "two REQP-181 vendor VDMA BRAM advisories",
+  "report_sha256": {
+    "timing_integrated_impl.rpt": "d54ada06013068cd75a29620a38fb748fe5f4d5ae95e6d1a69e78c47121757bd",
+    "preintegration_bd_wrapper_bus_skew_routed.rpt": "4b46686635f65a8ee278d90f2b10f35cd17d5eb9779a6fa73d0f23803e48e777",
+    "drc_integrated_impl.rpt": "ff6d79524a613c2ad1adc7343753deb9efb8b144a67ee78cf789c3a0056bfd96"
+  }
+}

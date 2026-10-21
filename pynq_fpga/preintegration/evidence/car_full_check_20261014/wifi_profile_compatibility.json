@@ -1,0 +1,31 @@
+{
+  "kind": "CAR_WIFI_PROFILE_COMPATIBILITY",
+  "network_changed": false,
+  "networks": [
+    {
+      "SSID": "GL-SFT1200-0a0-5G",
+      "profile": "GL-SFT1200-0a0-5G",
+      "connectable": true,
+      "reason_code": 0,
+      "reason": "操作成功。",
+      "signal": 94,
+      "auth": 7,
+      "cipher": 4,
+      "flags": 6
+    },
+    {
+      "SSID": "GL-SFT1200-0a0-5G",
+      "profile": "",
+      "connectable": true,
+      "reason_code": 0,
+      "reason": "操作成功。",
+      "signal": 94,
+      "auth": 7,
+      "cipher": 4,
+      "flags": 0
+    }
+  ],
+  "open_code": 0,
+  "scan_code": 0,
+  "list_code": 0
+}

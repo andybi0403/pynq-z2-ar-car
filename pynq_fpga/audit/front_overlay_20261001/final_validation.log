@@ -1,0 +1,122 @@
+{
+  "schema": "car-front-overlay-final-check/v1",
+  "passed": true,
+  "candidate": "v09_front_20261001_r1",
+  "source_files_bound": 284,
+  "feature_source_files_verified": 13,
+  "stage_logs_verified": 6,
+  "runtime_sources_verified": 20,
+  "zip_members_verified": 34,
+  "zip_sha256": "daed8eb693dcc68251c596a6aa2d1867b545f4b209b9fbafa545418eb73c1d11",
+  "timing": {
+    "wns_ns": 0.278,
+    "tns_ns": 0,
+    "whs_ns": 0.028,
+    "ths_ns": 0
+  },
+  "resources": {
+    "Slice LUTs": 8688.0,
+    "Slice Registers": 12734.0,
+    "Block RAM Tile": 4.0,
+    "DSPs": 9.0
+  },
+  "drc": {
+    "drc_integrated_impl.rpt": [
+      {
+        "rule": "REQP-181",
+        "severity": "Advisory",
+        "checks": 1
+      }
+    ],
+    "drc_LAB_ONLY.rpt": [
+      {
+        "rule": "REQP-181",
+        "severity": "Advisory",
+        "checks": 1
+      }
+    ]
+  },
+  "ooc_setup_slack_ns": {
+    "car_qei_top": 2.367,
+    "car_sensors_top": 2.536,
+    "car_axil_regs": 5.273,
+    "car_risk_core": 3.603,
+    "car_perception_top": 1.213,
+    "car_axis_osd": 0.981,
+    "car_axis_front_overlay": 3.323,
+    "car_axis_status_osd": 4.254,
+    "car_axis_frame_metadata": 4.299,
+    "car_board_video_wrapper": 0.296
+  },
+  "unrouted_nets": 0,
+  "partially_routed_nets": 0,
+  "python_test_counts": [
+    20,
+    105,
+    78
+  ],
+  "rtl_tests": [
+    {
+      "name": "tb_car_axil_regs",
+      "checks": 104
+    },
+    {
+      "name": "tb_car_sensors",
+      "checks": 43
+    },
+    {
+      "name": "tb_car_qei",
+      "checks": 31
+    },
+    {
+      "name": "tb_car_velocity",
+      "checks": 124
+    },
+    {
+      "name": "tb_car_qei_odometry",
+      "checks": 16
+    },
+    {
+      "name": "tb_car_risk_core",
+      "checks": 36
+    },
+    {
+      "name": "tb_car_perception_arch",
+      "checks": 66
+    },
+    {
+      "name": "tb_car_axis_osd",
+      "checks": 1326
+    },
+    {
+      "name": "tb_car_front_overlay",
+      "checks": 4198127
+    },
+    {
+      "name": "tb_car_front_numeric",
+      "checks": 4096
+    },
+    {
+      "name": "tb_car_status_osd",
+      "checks": 119544
+    },
+    {
+      "name": "tb_car_frame_metadata",
+      "checks": 4691
+    },
+    {
+      "name": "tb_car_osd_text",
+      "checks": 114695
+    },
+    {
+      "name": "tb_car_osd_fullframe",
+      "checks": 614400
+    },
+    {
+      "name": "tb_car_board_video_wrapper",
+      "checks": 5903
+    }
+  ],
+  "hardware": "PENDING",
+  "classification": "LAB_ONLY_NO_MOTOR_NON_RELEASE"
+}

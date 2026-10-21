@@ -1,0 +1,6 @@
+Vivado Simulator v2026.1
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/AMDDesignTools/2026.1/Vivado/bin/unwrapped/win64.o/xelab.exe tb_car_osd_text -debug typical -s tb_osd_text_sim 
+Multi-threading is on. Using 22 slave threads.
+ERROR: [XSIM 43-3225] Cannot find design unit work.tb_car_osd_text in library work located at xsim.dir/work.

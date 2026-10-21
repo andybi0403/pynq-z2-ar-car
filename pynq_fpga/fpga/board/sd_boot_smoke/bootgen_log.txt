@@ -1,0 +1,63 @@
+[INFO]   : Command line parsing completed successfully
+[INFO]   : BIF file parsed successfully - boot.bif 
+[INFO]   : Parsing Partition Data to Image
+[INFO]   : Building image - diagnostic
+[INFO]   : Building the Partition Header Table
+[INFO]   : After build 
+           -- Dump of Binary Image ----
+   Offset     Length      Reserve     Name
+ 00000000   000008a0   00000000   BootHeader
+ 00000000   00000040   00000000   ImageHeaderTable
+ 00000000   00000028   00000000   ImageHeader fsbl_original.elf
+ 00000000   00000024   00000000   ImageHeader sd_boot_led.bit
+ 00000000   00000020   00000300   ImageHeader idle.elf
+ 00000000   00000040   00000000   PartitionHeader fsbl_original.elf.0
+ 00000000   00000040   00000000   PartitionHeader sd_boot_led.bit.0
+ 00000000   00000040   00000000   PartitionHeader idle.elf.0
+ 00000000   00000040   000009c0   PartitionHeader Null
+ 00000000   00018008   00000000   fsbl_original.elf.0
+ 00000000   003dbb00   00000000   sd_boot_led.bit.0
+ 00000000   00000004   00000000   idle.elf.0
+           -- End of Dump
+[INFO]   : After align 
+           -- Dump of Binary Image ----
+   Offset     Length      Reserve     Name
+ 00000000   000008a0   00000000   BootHeader
+ 000008c0   00000040   00000000   ImageHeaderTable
+ 00000900   00000028   00000000   ImageHeader fsbl_original.elf
+ 00000940   00000024   00000000   ImageHeader sd_boot_led.bit
+ 00000980   00000020   00000300   ImageHeader idle.elf
+ 00000c80   00000040   00000000   PartitionHeader fsbl_original.elf.0
+ 00000cc0   00000040   00000000   PartitionHeader sd_boot_led.bit.0
+ 00000d00   00000040   00000000   PartitionHeader idle.elf.0
+ 00000d40   00000040   000009c0   PartitionHeader Null
+ 00001700   00018008   00000000   fsbl_original.elf.0
+ 00019740   003dbb00   00000000   sd_boot_led.bit.0
+ 003f5240   00000004   00000000   idle.elf.0
+           -- End of Dump
+[INFO]   : Partition Information: 
+[INFO]   : Image: fsbl_original.elf
+[INFO]   :        Partition 0: fsbl_original.elf.0,  Size: 98312
+[INFO]   : Image: sd_boot_led.bit
+[INFO]   :        Partition 1: sd_boot_led.bit.0,  Size: 4045568
+[INFO]   : Image: idle.elf
+[INFO]   :        Partition 2: idle.elf.0,  Size: 4
+[INFO]   : After Link 
+           -- Dump of Binary Image ----
+   Offset     Length      Reserve     Name
+ 00000000   000008a0   00000000   BootHeader
+ 000008c0   00000040   00000000   ImageHeaderTable
+ 00000900   00000028   00000000   ImageHeader fsbl_original.elf
+ 00000940   00000024   00000000   ImageHeader sd_boot_led.bit
+ 00000980   00000020   00000300   ImageHeader idle.elf
+ 00000c80   00000040   00000000   PartitionHeader fsbl_original.elf.0
+ 00000cc0   00000040   00000000   PartitionHeader sd_boot_led.bit.0
+ 00000d00   00000040   00000000   PartitionHeader idle.elf.0
+ 00000d40   00000040   000009c0   PartitionHeader Null
+ 00001700   00018008   00000000   fsbl_original.elf.0
+ 00019740   003dbb00   00000000   sd_boot_led.bit.0
+ 003f5240   00000004   00000000   idle.elf.0
+           -- End of Dump
+
+[INFO]   : Bootimage generated successfully
+

@@ -1,0 +1,30 @@
+{
+  "pin_headers": [
+    {
+      "source": "stm32预备程序\\Source\\BSP\\bsp_iravoid.h",
+      "destination": "stm32_pynq对接版\\Source\\BSP\\bsp_iravoid.h",
+      "sha256": "5355A77EC7545788172C76329E26C71D60CF8783485D2A87B47C29427CD2BB80",
+      "byte_identical": true
+    },
+    {
+      "source": "stm32预备程序\\Source\\BSP\\bsp_ultrasonic.h",
+      "destination": "stm32_pynq对接版\\Source\\BSP\\bsp_ultrasonic.h",
+      "sha256": "DA3423F4CF073DB768755D74AD8B02A109AB8EE68B138E1A0D7D3D14C663A7CC",
+      "byte_identical": true
+    }
+  ],
+  "acquisition_source": "stm32预备程序/Source/APP/safe_car.c",
+  "acquisition_source_sha256": "AA164DD448ECAD7D1E325AA3EFD6FAEF8CBF454A6F05775FCFBE851B9A9AC89A",
+  "functions": [
+    "EXTI15_10_IRQHandler",
+    "ultrasonic"
+  ],
+  "adaptations": [
+    "real sample sequence",
+    "invalid pulse clears mm",
+    "IR stable validity",
+    "UART v3 report"
+  ],
+  "architecture": "PCB encoders to PYNQ; ultrasound and IR to STM32",
+  "hardware_tested": false
+}

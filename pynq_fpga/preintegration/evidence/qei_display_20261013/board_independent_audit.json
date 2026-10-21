@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "samples": 1119,
+  "seconds": 59.981329339000695,
+  "stationary_assumption_display_samples": 1119,
+  "control_permits": 0,
+  "raw_sha256": "fe7275bcce64a511252e05fd7fe5a7202dcd831c6be68e8d73dc27d389826ba6",
+  "wheels": [
+    {
+      "net_count": 0,
+      "max_sample_delta_counts": 0,
+      "last_illegal": 255,
+      "raw_velocity_peak_mm_s": 0.0
+    },
+    {
+      "net_count": -1272,
+      "max_sample_delta_counts": 14,
+      "last_illegal": 255,
+      "raw_velocity_peak_mm_s": 7943.458923339844
+    }
+  ]
+}

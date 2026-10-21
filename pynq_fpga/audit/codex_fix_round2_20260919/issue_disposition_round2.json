@@ -1,0 +1,46 @@
+{
+  "audit_source": "pynq_fpga/audit/zcode_round2_20260919/issue_ledger_round2.json",
+  "date": "2026-09-19",
+  "owner": "Codex",
+  "issues": [
+    {
+      "id": "R2-01",
+      "status": "CLOSED_FIXED_AND_VERIFIED",
+      "fix": "Both C and real-DLL tests now establish left_req=1200 and right_req=-800 before handover, then assert both are cleared.",
+      "evidence": [
+        "stm32_pynq对接版/tests/test_safe_control.c:122",
+        "pynq_fpga/host/tests/test_night_a_loop.py:505",
+        "D3/D4 C mutations KILLED",
+        "D3/D4 host mutations KILLED"
+      ]
+    },
+    {
+      "id": "R2-02",
+      "status": "CLOSED_FIXED_AND_VERIFIED",
+      "fix": "Package verification converts ET.ParseError into a clean LAB_CONTRACT_FAIL without a traceback.",
+      "evidence": [
+        "pynq_fpga/preintegration/host/lab_acceptance.py:51",
+        "pynq_fpga/preintegration/tests/test_framework.py:82",
+        "malformed real-package copy exits 1 with one-line failure"
+      ]
+    },
+    {
+      "id": "R2-03",
+      "status": "SOFTWARE_EVIDENCE_FIXED_HARDWARE_PENDING",
+      "fix": "Risk state is decoded using the RTL layout; evidence records baseline and reason-bit changes; board documents explain the unwritten-command baseline.",
+      "correction": "The command-invalid-only value is 0x00020007, not the 0xC0000002 proposed by round2. Other invalid reasons may be present in the first snapshot.",
+      "evidence": [
+        "pynq_fpga/preintegration/host/lab_acceptance.py:157",
+        "pynq_fpga/fpga/board/no_motor_acceptance.md:5",
+        "pynq_fpga/preintegration/LAB_ONLY_README.md:82"
+      ],
+      "remaining": "Production RISK_CMD writer and 250 ms lease behavior require real-board integration and remain HARDWARE_PENDING."
+    }
+  ],
+  "acceptance": {
+    "result": "ARCHITECTURE_SOFTWARE_RTL_PASS (not hardware acceptance)",
+    "evidence_dir": "pynq_fpga/nightly/acceptance_20260918/run_20260919_152456",
+    "lab_zip_sha256": "fd813fdb509d252d703e3bb5741ffbbf5683eac594679a866f35a05d54c0a29e",
+    "release_gate": "BLOCKED_EXPECTED"
+  }
+}

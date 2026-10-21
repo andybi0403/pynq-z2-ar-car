@@ -1,0 +1,119 @@
+{
+  "association_metrics": {
+    "clock_uncertainty_ms": {
+      "count": 96,
+      "max": 0.00105,
+      "mean": 0.0003078125,
+      "min": 0.0001,
+      "p50": 0.0003,
+      "p95": 0.00065,
+      "p99": 0.0009
+    },
+    "frames": 96,
+    "invalid_associations": 0,
+    "qei0_age_ms": {
+      "count": 96,
+      "max": 55.02825,
+      "mean": 25.057274479166665,
+      "min": 0.52895,
+      "p50": 24.5483,
+      "p95": 48.2862,
+      "p99": 54.77145
+    },
+    "qei1_age_ms": {
+      "count": 96,
+      "max": 55.02825,
+      "mean": 25.057274479166665,
+      "min": 0.52895,
+      "p50": 24.5483,
+      "p95": 48.2862,
+      "p99": 54.77145
+    },
+    "receive_to_submit_ms": {
+      "count": 96,
+      "max": 2.2798,
+      "mean": 1.0938895833333333,
+      "min": 0.6379,
+      "p50": 1.0045,
+      "p95": 1.7759,
+      "p99": 2.0466
+    },
+    "risk_age_ms": {
+      "count": 96,
+      "max": 55.02825,
+      "mean": 25.057274479166665,
+      "min": 0.52895,
+      "p50": 24.5483,
+      "p95": 48.2862,
+      "p99": 54.77145
+    },
+    "scope": "decoded_frame_reception_to_submission_not_exposure_or_scanout",
+    "snapshot_host_age_ms": {
+      "count": 96,
+      "max": 55.00755,
+      "mean": 25.018358854166667,
+      "min": 0.47125,
+      "p50": 24.5088,
+      "p95": 48.241,
+      "p99": 54.61495
+    },
+    "us_age_ms": {
+      "count": 96,
+      "max": 55.02825,
+      "mean": 25.057274479166665,
+      "min": 0.52895,
+      "p50": 24.5483,
+      "p95": 48.2862,
+      "p99": 54.77145
+    }
+  },
+  "cleanup_duration_s": 1.9904454999996233,
+  "duration_observed_s": 3.0078283000002557,
+  "duration_requested_s": 3,
+  "failures": [],
+  "first_stop_response_ms": 0.5271999980323017,
+  "frames": 96,
+  "hardware": false,
+  "identity": {
+    "fixture": true,
+    "runtime_sources": {
+      "association_metrics.py": "a7bfa59b850505b639487862555daa5b5cbe969c85495ab8b67b87cc77b2cc52",
+      "board_runtime.py": "83f87d3f6c20b52cf5d7580e752adf38da3e49ef681db1ef2aee25b2e5f6466c",
+      "calibration_config.py": "2d55c9ffd4a6c11efb259620ecab500cf6523af392ea0c7605e83000e26b8b1a",
+      "car_regs.py": "7a1d94553e25e100368f54518a13fb5328ce67c9cf0b44e2091f1989a3e5e5af",
+      "control_supervisor.py": "e61353f4b81cd4ec1a4029d4dadc517872136da9fe3edbbc393c3f181fb3650f",
+      "frame_association.py": "1768540a3a03d0cea34f1b6a691488ef164aed46349d4369fbfe8fc4d4a5db40",
+      "frame_metadata.py": "bed2dc882b40370aff8fd95234e02b3b23dc8ac32b195243c27a431384441b77",
+      "frame_pipeline.py": "fa498be9ff6aa3874992f6f9dfae547ebd21cd5ec63aa1c0dc687774258f7f43",
+      "hwh_contract.py": "3ad6daf3a2b0de6495a05b60a0567dcb4a3254f42bf2a9ae09a734533a13eed5",
+      "joint_evidence.py": "a786ae2327776d479fc62d776e223c9899027f1f0e345da7813dc7d7fb2bdcf1",
+      "lab_acceptance.py": "fc341f9cb04d4e96a996a652814761c0591f4d700d02577593acd2dfcbbb9fa7",
+      "overlay_session.py": "cad5c0be318afabfcfb8190d64fe558be97ddb8ef1efff8ecda687336ced650a",
+      "perception_client.py": "c33e22b6b4e387acaca6de332a40a1f997a30bc87c368c65993aef3f4e1e2caf",
+      "perception_replay.py": "72cbb4fc8670415b2202d8f6315793859f203552b8cd8d540544bae976c0230d",
+      "pynq_link.py": "4cd3a79bdc17c10b81343aff95c58cb9f1e0608e8e56d224f5ff06b33a883923",
+      "qei_calibration.py": "732c88ee00028c0a601c7c27adecc0be39d8f530717791dc09ee3416d6e52dd2",
+      "runtime_identity.py": "669f0ba6682d08ed95a64b6c43dccfd8a86dc46458030de38a0585f64ef49c58",
+      "status_server.py": "bafdb0bfadd91191bbfacc99261c3ccbe04926bf973d98c08cad8be98adb1824",
+      "system_runtime.py": "3ab533dda06583672b32463cd9f543b114672d1b8cc0f8452bb50a4e193b6465"
+    },
+    "scope": "synthetic sensors/serial/display; real worker threads and child frame stream"
+  },
+  "journal_sha256": "ae3442c3d95a7c2494655308df3675c352ed2f7e1df4a594ec2714ea3677dbae",
+  "motion_allowed": false,
+  "passed": true,
+  "release_sent": false,
+  "samples": 60,
+  "schema": "car-joint-summary/v1",
+  "session_id": "3f810d90-49d8-4cca-bd6a-0d67735a3b36",
+  "video_enabled": true,
+  "video_metrics": {
+    "elapsed_s": 2.9527823,
+    "frames": 96,
+    "inferred_drops": 0,
+    "interval_p50_ms": 31.0683,
+    "interval_p95_ms": 31.5612,
+    "interval_p99_ms": 31.7012,
+    "measured_fps": 32.17304574062233
+  }
+}

@@ -1,0 +1,834 @@
+INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detected. Your current license is active and will expire on 16-sep-2027.
+#-----------------------------------------------------------
+# Vivado v2026.1 (64-bit)
+# SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+# IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+# SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+# Start of session at: Sun Oct 11 02:41:08 2026
+# Process ID         : 10656
+# Current directory  : C:/Users/39909/Desktop/FPGA
+# Command line       : vivado.exe -mode batch -source pynq_fpga/fpga/scripts/synth_modules.tcl -log pynq_fpga/audit/hud_clear_20261011/timing_repair.log -journal pynq_fpga/audit/hud_clear_20261011/timing_repair.jou -tclargs car_axis_osd car_axis_front_overlay car_axis_status_osd
+# Log file           : C:/Users/39909/Desktop/FPGA/pynq_fpga/audit/hud_clear_20261011/timing_repair.log
+# Journal file       : C:/Users/39909/Desktop/FPGA\pynq_fpga/audit/hud_clear_20261011/timing_repair.jou
+# Running On         : BZY
+# Platform           : Windows 11
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) i7-14650HX
+# CPU Frequency      : 2419 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 33943 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68302 MB
+# Available Virtual  : 43449 MB
+#-----------------------------------------------------------
+source pynq_fpga/fpga/scripts/synth_modules.tcl
+# set root [file normalize [file join [file dirname [info script]] ../..]]
+# set out [file join $root fpga build acceptance_synth]
+# if {[info exists ::env(PYNQ_OOC_OUT_DIR)]} {
+#  set out [file normalize $::env(PYNQ_OOC_OUT_DIR)]
+# }
+# file mkdir $out
+# set tops {car_qei_top car_sensors_top car_axil_regs car_risk_core car_perception_top car_axis_osd car_axis_front_overlay car_axis_status_osd car_axis_frame_metadata car_board_video_wrapper}
+# if {$argc > 0} {set tops $argv}
+# foreach top $tops {
+#  create_project -in_memory -part xc7z020clg400-1
+#  add_files -norecurse [file join $root fpga rtl font_8x8_minimal.mem]
+#  add_files -norecurse [file join $root fpga rtl font_16x16_hud.mem]
+#  add_files -norecurse [file join $root fpga rtl font_24x24_hud.mem]
+#  add_files -norecurse [file join $root fpga rtl font_32x32_hud.mem]
+#  add_files -norecurse [file join $root fpga rtl font_8x8_status.mem]
+#  read_verilog [glob [file join $root third_party verilog-axi rtl axil_reg_if*.v]]
+#  read_verilog -sv [glob [file join $root fpga rtl *.v]]
+#  synth_design -top $top -part xc7z020clg400-1 -mode out_of_context
+#  set clock_port [get_ports -quiet clk]
+#  if {[llength $clock_port]==0} {set clock_port [get_ports -quiet aclk]}
+#  if {[llength $clock_port]!=1} {error "Expected one 100MHz clock port for $top"}
+#  create_clock -name sys_clk -period 10.000 $clock_port
+#  report_utilization -file [file join $out ${top}_utilization.rpt]
+#  report_timing_summary -file [file join $out ${top}_timing.rpt]
+#  write_checkpoint -force [file join $out ${top}.dcp]
+#  close_project
+# }
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 590.293 ; gain = 272.723
+Command: synth_design -top car_axis_osd -part xc7z020clg400-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 2856
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1169.543 ; gain = 572.242
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-11065] parameter 'TIMEOUT_WIDTH' becomes localparam in 'axil_reg_if_rd' with formal parameter declaration list [C:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/verilog-axi/rtl/axil_reg_if_rd.v:71]
+WARNING: [Synth 8-11065] parameter 'TIMEOUT_WIDTH' becomes localparam in 'axil_reg_if_wr' with formal parameter declaration list [C:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/verilog-axi/rtl/axil_reg_if_wr.v:75]
+INFO: [Synth 8-6157] synthesizing module 'car_axis_osd' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v:10]
+INFO: [Synth 8-3876] $readmem data file 'font_24x24_hud.mem' is read successfully [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v:157]
+INFO: [Synth 8-3876] $readmem data file 'font_32x32_hud.mem' is read successfully [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v:158]
+INFO: [Synth 8-6155] done synthesizing module 'car_axis_osd' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v:10]
+WARNING: [Synth 8-6014] Unused sequential element active_locked_reg was removed.  [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v:51]
+WARNING: [Synth 8-7129] Port state_locked in module car_axis_osd is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 1301.730 ; gain = 704.430
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1301.730 ; gain = 704.430
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1301.730 ; gain = 704.430
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'cdc_st_reg' in module 'car_axis_osd'
+WARNING: [Synth 8-6014] Unused sequential element  was removed.  [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v:155]
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                   C_SPD |                               00 |                               00
+                   C_DST |                               01 |                               01
+                  iSTATE |                               10 |                               10
+*
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'cdc_st_reg' using encoding 'sequential' in module 'car_axis_osd'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1307.906 ; gain = 710.605
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 1     
+	   2 Input   16 Bit       Adders := 2     
+	   2 Input    9 Bit       Adders := 1     
+	   3 Input    8 Bit       Adders := 2     
+	   2 Input    8 Bit       Adders := 3     
+	   2 Input    6 Bit       Adders := 1     
+	   3 Input    6 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 2     
+	   3 Input    5 Bit       Adders := 1     
+	   2 Input    4 Bit       Adders := 5     
++---Registers : 
+	               36 Bit    Registers := 1     
+	               32 Bit    Registers := 1     
+	               24 Bit    Registers := 7     
+	               16 Bit    Registers := 4     
+	               12 Bit    Registers := 1     
+	               11 Bit    Registers := 2     
+	                8 Bit    Registers := 2     
+	                5 Bit    Registers := 2     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 24    
++---Muxes : 
+	   2 Input   36 Bit        Muxes := 1     
+	   3 Input   36 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 6     
+	   7 Input   24 Bit        Muxes := 1     
+	   6 Input   24 Bit        Muxes := 1     
+	   5 Input   24 Bit        Muxes := 1     
+	   2 Input   24 Bit        Muxes := 4     
+	   6 Input   21 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 1     
+	   2 Input   12 Bit        Muxes := 3     
+	   3 Input    8 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 2     
+	   2 Input    7 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 7     
+	   2 Input    5 Bit        Muxes := 2     
+	   3 Input    5 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 11    
+	   2 Input    2 Bit        Muxes := 5     
+	   3 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 14    
+	   3 Input    1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-6014] Unused sequential element p_1_out was removed.  [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v:154]
+WARNING: [Synth 8-6014] Unused sequential element p_1_out_rep was removed.  [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_osd.v:154]
+WARNING: [Synth 8-7129] Port state_locked in module car_axis_osd is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:00:46 . Memory (MB): peak = 1987.742 ; gain = 1390.441
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++-------------+---------------+---------------+----------------+
+|Module Name  | RTL Object    | Depth x Width | Implemented As | 
++-------------+---------------+---------------+----------------+
+|car_axis_osd | font_mem      | 2048x47       | LUT            | 
+|car_axis_osd | lamp_font_mem | 2048x61       | LUT            | 
+|car_axis_osd | circle_inner  | 32x5          | LUT            | 
+|car_axis_osd | circle_outer  | 32x5          | LUT            | 
+|car_axis_osd | p_0_out       | 2048x47       | LUT            | 
+|car_axis_osd | p_0_out       | 2048x61       | LUT            | 
+|car_axis_osd | circle_inner  | 32x5          | LUT            | 
+|car_axis_osd | circle_outer  | 32x5          | LUT            | 
++-------------+---------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:41 ; elapsed = 00:00:46 . Memory (MB): peak = 1987.742 ; gain = 1390.441
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:41 ; elapsed = 00:00:47 . Memory (MB): peak = 1987.742 ; gain = 1390.441
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:44 ; elapsed = 00:00:51 . Memory (MB): peak = 1987.742 ; gain = 1390.441
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:44 ; elapsed = 00:00:51 . Memory (MB): peak = 1987.742 ; gain = 1390.441
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:45 ; elapsed = 00:00:51 . Memory (MB): peak = 1987.742 ; gain = 1390.441
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:45 ; elapsed = 00:00:51 . Memory (MB): peak = 1987.742 ; gain = 1390.441
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:45 ; elapsed = 00:00:51 . Memory (MB): peak = 1987.742 ; gain = 1390.441
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:45 ; elapsed = 00:00:51 . Memory (MB): peak = 1987.742 ; gain = 1390.441
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY4 |    36|
+|2     |LUT1   |     8|
+|3     |LUT2   |    94|
+|4     |LUT3   |   189|
+|5     |LUT4   |   114|
+|6     |LUT5   |   271|
+|7     |LUT6   |  2693|
+|8     |MUXF7  |   773|
+|9     |MUXF8  |   265|
+|10    |FDRE   |   478|
+|11    |FDSE   |     5|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------+-------+------+
+|      |Instance |Module |Cells |
++------+---------+-------+------+
+|1     |top      |       |  4926|
++------+---------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:45 ; elapsed = 00:00:51 . Memory (MB): peak = 1987.742 ; gain = 1390.441
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 8 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:45 ; elapsed = 00:00:51 . Memory (MB): peak = 1987.742 ; gain = 1390.441
+Synthesis Optimization Complete : Time (s): cpu = 00:00:45 ; elapsed = 00:00:51 . Memory (MB): peak = 1987.742 ; gain = 1390.441
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 1987.742 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1074 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'car_axis_osd' is not ideal for floorplanning, since the cellview 'car_axis_osd' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1987.742 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 80a73365
+INFO: [Common 17-83] Releasing license: Vivado_Synthesis
+18 Infos, 9 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:48 ; elapsed = 00:00:55 . Memory (MB): peak = 1987.742 ; gain = 1397.449
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+WARNING: [Timing 38-242] The property HD.CLK_SRC of clock port "clk" is not set. In out-of-context mode, this prevents timing estimation for clock delay/skew
+Resolution: Set the HD.CLK_SRC property of the out-of-context port to the location of the clock buffer instance in the top-level design
+report_timing_summary: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1987.742 ; gain = 0.000
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1987.742 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/39909/Desktop/FPGA/pynq_fpga/audit/hud_clear_20261011/timing_repair/car_axis_osd.dcp' has been generated.
+Command: synth_design -top car_axis_front_overlay -part xc7z020clg400-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1987.742 ; gain = 0.000
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-11065] parameter 'TIMEOUT_WIDTH' becomes localparam in 'axil_reg_if_rd' with formal parameter declaration list [C:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/verilog-axi/rtl/axil_reg_if_rd.v:71]
+WARNING: [Synth 8-11065] parameter 'TIMEOUT_WIDTH' becomes localparam in 'axil_reg_if_wr' with formal parameter declaration list [C:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/verilog-axi/rtl/axil_reg_if_wr.v:75]
+INFO: [Synth 8-6157] synthesizing module 'car_axis_front_overlay' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_front_overlay.v:9]
+INFO: [Synth 8-3876] $readmem data file 'font_24x24_hud.mem' is read successfully [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_front_overlay.v:68]
+INFO: [Synth 8-6155] done synthesizing module 'car_axis_front_overlay' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_front_overlay.v:9]
+WARNING: [Synth 8-6014] Unused sequential element b_box_reg was removed.  [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_front_overlay.v:112]
+WARNING: [Synth 8-6014] Unused sequential element c_box_reg was removed.  [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_front_overlay.v:114]
+WARNING: [Synth 8-7129] Port state_risk_level[1] in module car_axis_front_overlay is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_risk_level[0] in module car_axis_front_overlay is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_stop in module car_axis_front_overlay is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1987.742 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1987.742 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1987.742 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1987.742 ; gain = 0.000
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input   18 Bit       Adders := 2     
+	   2 Input   16 Bit       Adders := 3     
+	   2 Input   13 Bit       Adders := 1     
+	   3 Input   12 Bit       Adders := 2     
+	   2 Input   12 Bit       Adders := 2     
+	   3 Input   10 Bit       Adders := 1     
+	   3 Input    9 Bit       Adders := 7     
+	   2 Input    5 Bit       Adders := 1     
+	   3 Input    5 Bit       Adders := 1     
+	   2 Input    4 Bit       Adders := 5     
++---Registers : 
+	               28 Bit    Registers := 1     
+	               24 Bit    Registers := 8     
+	               16 Bit    Registers := 11    
+	               12 Bit    Registers := 3     
+	                9 Bit    Registers := 6     
+	                8 Bit    Registers := 9     
+	                6 Bit    Registers := 3     
+	                5 Bit    Registers := 6     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 21    
++---RAMs : 
+	               5K Bit	(640 X 8 bit)          RAMs := 2     
++---Muxes : 
+	   3 Input   28 Bit        Muxes := 1     
+	   2 Input   28 Bit        Muxes := 1     
+	   6 Input   24 Bit        Muxes := 1     
+	   4 Input   24 Bit        Muxes := 1     
+	   2 Input   24 Bit        Muxes := 4     
+	   4 Input   22 Bit        Muxes := 1     
+	   2 Input   22 Bit        Muxes := 1     
+	   5 Input   21 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 3     
+	   5 Input   16 Bit        Muxes := 2     
+	   2 Input   12 Bit        Muxes := 2     
+	   4 Input    9 Bit        Muxes := 1     
+	   4 Input    7 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 2     
+	   2 Input    4 Bit        Muxes := 6     
+	   2 Input    1 Bit        Muxes := 7     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7129] Port state_risk_level[1] in module car_axis_front_overlay is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_risk_level[0] in module car_axis_front_overlay is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_stop in module car_axis_front_overlay is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1987.742 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++-----------------------+------------+---------------+----------------+
+|Module Name            | RTL Object | Depth x Width | Implemented As | 
++-----------------------+------------+---------------+----------------+
+|car_axis_front_overlay | font       | 2048x47       | LUT            | 
+|car_axis_front_overlay | p_0_out    | 2048x47       | LUT            | 
++-----------------------+------------+---------------+----------------+
+
+
+Block RAM: Preliminary Mapping Report (see note below)
++-----------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name            | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++-----------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|car_axis_front_overlay | line2_reg  | 640 x 8(READ_FIRST)    | W |   | 640 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|car_axis_front_overlay | line1_reg  | 640 x 8(READ_FIRST)    | W |   | 640 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
++-----------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1987.742 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++-----------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name            | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++-----------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|car_axis_front_overlay | line2_reg  | 640 x 8(READ_FIRST)    | W |   | 640 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
+|car_axis_front_overlay | line1_reg  | 640 x 8(READ_FIRST)    | W |   | 640 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
++-----------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance line2_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance line1_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1987.742 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1987.742 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1987.742 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1987.742 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1987.742 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1987.742 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1987.742 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |CARRY4   |    80|
+|2     |LUT1     |    42|
+|3     |LUT2     |   160|
+|4     |LUT3     |   127|
+|5     |LUT4     |   102|
+|6     |LUT5     |   130|
+|7     |LUT6     |   595|
+|8     |MUXF7    |   152|
+|9     |MUXF8    |    37|
+|10    |RAMB18E1 |     2|
+|11    |FDRE     |   532|
+|12    |FDSE     |    27|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1987.742 ; gain = 0.000
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 10 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1987.742 ; gain = 0.000
+Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1987.742 ; gain = 0.000
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1987.742 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 271 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'car_axis_front_overlay' is not ideal for floorplanning, since the cellview 'car_axis_front_overlay' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1988.156 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 177ada6b
+INFO: [Common 17-83] Releasing license: Vivado_Synthesis
+14 Infos, 11 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:26 . Memory (MB): peak = 2013.027 ; gain = 25.285
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+WARNING: [Timing 38-242] The property HD.CLK_SRC of clock port "clk" is not set. In out-of-context mode, this prevents timing estimation for clock delay/skew
+Resolution: Set the HD.CLK_SRC property of the out-of-context port to the location of the clock buffer instance in the top-level design
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2013.027 ; gain = 0.000
+INFO: [Timing 38-480] Writing timing data to binary archive.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/39909/Desktop/FPGA/pynq_fpga/audit/hud_clear_20261011/timing_repair/car_axis_front_overlay.dcp' has been generated.
+Command: synth_design -top car_axis_status_osd -part xc7z020clg400-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2013.027 ; gain = 0.000
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-11065] parameter 'TIMEOUT_WIDTH' becomes localparam in 'axil_reg_if_rd' with formal parameter declaration list [C:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/verilog-axi/rtl/axil_reg_if_rd.v:71]
+WARNING: [Synth 8-11065] parameter 'TIMEOUT_WIDTH' becomes localparam in 'axil_reg_if_wr' with formal parameter declaration list [C:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/verilog-axi/rtl/axil_reg_if_wr.v:75]
+INFO: [Synth 8-6157] synthesizing module 'car_axis_status_osd' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_status_osd.v:6]
+INFO: [Synth 8-3876] $readmem data file 'font_24x24_hud.mem' is read successfully [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_status_osd.v:46]
+INFO: [Synth 8-6155] done synthesizing module 'car_axis_status_osd' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/rtl/car_axis_status_osd.v:6]
+WARNING: [Synth 8-7129] Port state_path_q16[15] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[14] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[13] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[12] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[11] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[10] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[9] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[8] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[7] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[6] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[5] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[4] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[3] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[2] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[1] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[0] in module car_axis_status_osd is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2013.027 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 2013.027 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 2013.027 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2013.027 ; gain = 0.000
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   64 Bit       Adders := 1     
+	   2 Input   32 Bit       Adders := 3     
+	   2 Input   16 Bit       Adders := 2     
+	   2 Input    9 Bit       Adders := 1     
+	   2 Input    6 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 2     
+	   2 Input    4 Bit       Adders := 8     
++---Registers : 
+	               64 Bit    Registers := 1     
+	               32 Bit    Registers := 3     
+	               24 Bit    Registers := 2     
+	               16 Bit    Registers := 4     
+	                6 Bit    Registers := 2     
+	                5 Bit    Registers := 2     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 12    
++---Muxes : 
+	   2 Input   64 Bit        Muxes := 4     
+	   6 Input   64 Bit        Muxes := 1     
+	   2 Input   24 Bit        Muxes := 2     
+	   3 Input   24 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 14    
+	   6 Input    6 Bit        Muxes := 1     
+	   7 Input    6 Bit        Muxes := 1     
+	   8 Input    6 Bit        Muxes := 2     
+	   4 Input    6 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 5     
+	   7 Input    5 Bit        Muxes := 2     
+	   2 Input    4 Bit        Muxes := 9     
+	   7 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 7     
+	   3 Input    1 Bit        Muxes := 1     
+	   6 Input    1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7129] Port state_path_q16[15] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[14] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[13] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[12] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[11] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[10] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[9] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[8] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[7] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[6] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[5] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[4] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[3] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[2] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[1] in module car_axis_status_osd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port state_path_q16[0] in module car_axis_status_osd is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:24 . Memory (MB): peak = 2013.027 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++--------------------+------------+---------------+----------------+
+|Module Name         | RTL Object | Depth x Width | Implemented As | 
++--------------------+------------+---------------+----------------+
+|car_axis_status_osd | font       | 2048x47       | LUT            | 
+|car_axis_status_osd | p_0_out    | 2048x47       | LUT            | 
++--------------------+------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 2013.027 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 2013.027 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:24 ; elapsed = 00:00:28 . Memory (MB): peak = 2013.027 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:24 ; elapsed = 00:00:28 . Memory (MB): peak = 2013.027 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:24 ; elapsed = 00:00:28 . Memory (MB): peak = 2013.027 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:24 ; elapsed = 00:00:28 . Memory (MB): peak = 2013.027 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:24 ; elapsed = 00:00:28 . Memory (MB): peak = 2013.027 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:24 ; elapsed = 00:00:28 . Memory (MB): peak = 2013.027 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY4 |    42|
+|2     |LUT1   |    67|
+|3     |LUT2   |    99|
+|4     |LUT3   |    91|
+|5     |LUT4   |    87|
+|6     |LUT5   |   197|
+|7     |LUT6   |  1308|
+|8     |MUXF7  |   354|
+|9     |MUXF8  |    36|
+|10    |FDRE   |   381|
+|11    |FDSE   |    13|
++------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:24 ; elapsed = 00:00:28 . Memory (MB): peak = 2013.027 ; gain = 0.000
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 34 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:24 ; elapsed = 00:00:28 . Memory (MB): peak = 2013.027 ; gain = 0.000
+Synthesis Optimization Complete : Time (s): cpu = 00:00:24 ; elapsed = 00:00:28 . Memory (MB): peak = 2013.027 ; gain = 0.000
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 2013.027 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 432 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'car_axis_status_osd' is not ideal for floorplanning, since the cellview 'car_axis_status_osd' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2042.793 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 99b719b7
+INFO: [Common 17-83] Releasing license: Vivado_Synthesis
+12 Infos, 35 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:26 ; elapsed = 00:00:31 . Memory (MB): peak = 2067.680 ; gain = 54.652
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+WARNING: [Timing 38-242] The property HD.CLK_SRC of clock port "clk" is not set. In out-of-context mode, this prevents timing estimation for clock delay/skew
+Resolution: Set the HD.CLK_SRC property of the out-of-context port to the location of the clock buffer instance in the top-level design
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2067.680 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/39909/Desktop/FPGA/pynq_fpga/audit/hud_clear_20261011/timing_repair/car_axis_status_osd.dcp' has been generated.
+# puts "MODULE_SYNTHESIS_COMPLETED"
+MODULE_SYNTHESIS_COMPLETED
+INFO: [Common 17-206] Exiting Vivado at Sun Oct 11 02:43:33 2026...

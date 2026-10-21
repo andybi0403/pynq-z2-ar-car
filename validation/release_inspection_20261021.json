@@ -1,0 +1,27 @@
+{
+  "schema": "skill-release-inspection/v1",
+  "consistency_ok": true,
+  "failures": [],
+  "candidate": "v010_edge_console_20261014_r2",
+  "release": "v010_uart_role_fix_20261014_r3_release_20261021",
+  "contract_id": "0xC425100A",
+  "classification": "LAB_ONLY_NO_MOTOR_NON_RELEASE",
+  "candidate_artifacts_reused": true,
+  "changed_sources_after_candidate": [
+    "host/perception_client.py",
+    "host/tests/test_external_sensor_bridge.py",
+    "workspace/stm32_pynq�ԽӰ�/Source/APP/safe_car.c",
+    "workspace/stm32_pynq�ԽӰ�/Source/APP/safe_control.h",
+    "workspace/stm32_pynq�ԽӰ�/tests/run_tests.cmd"
+  ],
+  "source_files_checked": 360,
+  "package_payloads_checked": 40,
+  "hardware_proof": "work\\uart_live_fix_20261014\\completion_audit.json",
+  "runtime_evidence": "pynq_fpga\\release\\v010_uart_role_fix_20261014_r3\\UART_ROLE_FIX_RESULT.json",
+  "hardware_scope": "STM32 flashing/readback, normal boot, locked two-board UART, US/IR data into PL, and PYNQ reboot recovery; motor power disconnected",
+  "full_vehicle_acceptance": "NOT_CLAIMED",
+  "limits": [
+    "file identities and recorded evidence only",
+    "not a new Vivado, electrical, calibration or motion test"
+  ]
+}

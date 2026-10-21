@@ -1,0 +1,47 @@
+Codex round2-fix verification evidence, 2026-09-19
+
+[R2-01 C mutations]
+command: python pynq_fpga/audit/zcode_round2_20260919/mutation/run_handover_mutations.py --mut D3_left
+exit: 1 (expected mutation killed)
+result: D3_left -> KILLED; first assertion: s.left_req==0 && s.right_req==0
+
+command: python pynq_fpga/audit/zcode_round2_20260919/mutation/run_handover_mutations.py --mut D4_right
+exit: 1 (expected mutation killed)
+result: D4_right -> KILLED; first assertion: s.left_req==0 && s.right_req==0
+
+[R2-01 real-DLL host mutations]
+command: python pynq_fpga/audit/zcode_round2_20260919/mutation/run_handover_host_mutations.py --mut D3_left
+exit: 1 (expected mutation killed)
+result: host test_15 FAILED, 1 test, 1 failure
+
+command: python pynq_fpga/audit/zcode_round2_20260919/mutation/run_handover_host_mutations.py --mut D4_right
+exit: 1 (expected mutation killed)
+result: host test_15 FAILED, 1 test, 1 failure
+
+[R2-02 normal package]
+command: python pynq_fpga/lab/task7_8_lab_only_20260919/lab_acceptance.py contract
+exit: 0
+output: LAB_CONTRACT_PASS {"classification": "LAB_ONLY_NO_MOTOR_NON_RELEASE", "integrated_id": "0xC4251006", "release_gate": "BLOCKED_EXPECTED"}
+
+[R2-02 malformed package copy]
+mutation: replace copied task7_8_LAB_ONLY.hwh contents with <broken
+exit: 1
+output: LAB_CONTRACT_FAIL: hwh not well-formed: unclosed token: line 1, column 0
+traceback: absent
+
+[Package identity]
+ZIP SHA-256: fd813fdb509d252d703e3bb5741ffbbf5683eac594679a866f35a05d54c0a29e
+ZIP __pycache__/.pyc entries: 0
+authoritative lab_acceptance.py SHA-256: a8ca4a83e7e481856b8fe09be2e13b073ff355f6861ffeb88266d1bd2769e992
+packaged lab_acceptance.py SHA-256: a8ca4a83e7e481856b8fe09be2e13b073ff355f6861ffeb88266d1bd2769e992
+
+[Full gate]
+command: powershell -NoProfile -ExecutionPolicy Bypass -File pynq_fpga/fpga/scripts/run_acceptance.ps1 -Synthesis
+exit: 0
+result: ARCHITECTURE_SOFTWARE_RTL_PASS (not hardware acceptance)
+evidence: pynq_fpga/nightly/acceptance_20260918/run_20260919_152456/
+
+[Release gate]
+command: python pynq_fpga/fpga/scripts/validate_board_manifest.py --release
+exit: 1 (expected blocked)
+reason: 10 external electrical checks and physical board revision remain unconfirmed

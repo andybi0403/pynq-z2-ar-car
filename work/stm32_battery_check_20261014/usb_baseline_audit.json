@@ -1,0 +1,10 @@
+{
+  "kind": "USB_PRESENT_BASELINE_INDEPENDENT_AUDIT",
+  "supply_source": "user confirms core Micro-USB attached; battery-only not established",
+  "valid_reports": 922,
+  "all_crc_requests_locked_zero_verified": true,
+  "protocol_errors": 0,
+  "raw_sha256": "6392915fc2ad68e52ac9a362490d539fb766ed2d1d89627f89f91070ed57d515",
+  "passed": true,
+  "battery_only_test_pending": true
+}

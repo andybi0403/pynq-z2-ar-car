@@ -1,0 +1,13 @@
+{
+  "profile": "SEU-WLAN",
+  "ssid_after": "SEU-WLAN",
+  "verified": true,
+  "attempts": [
+    {
+      "returncode": 0,
+      "stdout": "宸叉垚鍔熷畬鎴愯繛鎺ヨ�锋眰銆�\n",
+      "stderr": ""
+    }
+  ],
+  "restored_epoch": 1791915201.1756403
+}

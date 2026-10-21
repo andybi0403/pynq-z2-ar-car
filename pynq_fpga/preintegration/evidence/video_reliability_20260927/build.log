@@ -1,0 +1,1801 @@
+INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detected. Your current license is active and will expire on 16-sep-2027.
+#-----------------------------------------------------------
+# Vivado v2026.1 (64-bit)
+# SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+# IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+# SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+# Start of session at: Sun Sep 27 21:46:18 2026
+# Process ID         : 10648
+# Current directory  : C:/Users/39909/Desktop/FPGA
+# Command line       : vivado.exe -mode batch -source pynq_fpga/preintegration/vivado/rebuild_video_reliability.tcl -log pynq_fpga/preintegration/evidence/video_reliability_20260927/build.log -journal pynq_fpga/preintegration/evidence/video_reliability_20260927/build.jou
+# Log file           : C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/evidence/video_reliability_20260927/build.log
+# Journal file       : C:/Users/39909/Desktop/FPGA\pynq_fpga/preintegration/evidence/video_reliability_20260927/build.jou
+# Running On         : BZY
+# Platform           : Windows 11
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) i7-14650HX
+# CPU Frequency      : 2419 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 33943 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68302 MB
+# Available Virtual  : 49407 MB
+#-----------------------------------------------------------
+source pynq_fpga/preintegration/vivado/rebuild_video_reliability.tcl
+# set script_dir [file dirname [file normalize [info script]]]
+# set root [file normalize [file join $script_dir ../..]]
+# if {![info exists ::env(PYNQ_INTEGRATED_BUILD_DIR)]} {
+#  set ::env(PYNQ_INTEGRATED_BUILD_DIR) [file join $root fpga build task7_8_video_reliability_20260927]
+# }
+# source [file join $script_dir create_integrated_candidate.tcl]
+## set pre_dir [file normalize [file join [file dirname [info script]] ..]]
+## set project_root [file normalize [file join $pre_dir ..]]
+## set workspace [file normalize [file join $project_root ..]]
+## set board_repo [file join $pre_dir board_repo]
+## set build_dir [file join $project_root fpga build task7_8_integrated]
+## if {[info exists ::env(PYNQ_INTEGRATED_BUILD_DIR)]} {
+##  set build_dir [file normalize $::env(PYNQ_INTEGRATED_BUILD_DIR)]
+## }
+## set rtl_adapter [file join $pre_dir rtl axis32_to_rgb24.v]
+## set hdmi_xdc [file join $pre_dir constraints task7_8_integrated.xdc]
+## set pynq_ip_repo [file join $project_root third_party PYNQ boards ip]
+## set rtl_dir [file join $project_root fpga rtl]
+## set axil_dir [file join $project_root third_party verilog-axi rtl]
+## set_param board.repoPaths [list $board_repo]
+## set board_part tul.com.tw:pynq-z2:part0:1.0
+## if {[llength [get_board_parts -quiet $board_part]] == 0} {
+##  error "Local PYNQ-Z2 board part not found at $board_repo"
+## }
+## create_project -force task7_8_integrated $build_dir -part xc7z020clg400-1
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927'
+## set_property board_part $board_part [current_project]
+## set_property target_language Verilog [current_project]
+## set_property ip_repo_paths [list $pynq_ip_repo] [current_project]
+## update_ip_catalog
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/PYNQ/boards/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/AMDDesignTools/2026.1/Vivado/data/ip'.
+## add_files -norecurse $rtl_adapter
+## add_files -norecurse [glob [file join $axil_dir axil_reg_if*.v]]
+## add_files -norecurse [glob [file join $rtl_dir *.v]]
+## add_files -norecurse [file join $rtl_dir car_reg_defs.vh]
+## add_files -norecurse [file join $rtl_dir font_8x8_minimal.mem]
+## set_property include_dirs [list $rtl_dir] [get_filesets sources_1]
+## add_files -fileset constrs_1 -norecurse $hdmi_xdc
+## set_property PROCESSING_ORDER LATE [get_files $hdmi_xdc]
+## create_bd_design preintegration_bd
+Wrote  : <C:\Users\39909\Desktop\FPGA\pynq_fpga\fpga\build\task7_8_video_reliability_20260927\task7_8_integrated.srcs\sources_1\bd\preintegration_bd\preintegration_bd.bd> 
+## set ps [create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 ps7]
+## apply_bd_automation -rule xilinx.com:bd_rule:processing_system7 -config {apply_board_preset "1" make_external "FIXED_IO, DDR" Master "Disable" Slave "Disable"} $ps
+## set_property CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {100.000000} $ps
+CRITICAL WARNING: [PSU-1]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_0 has negative value -0.051 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-2]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_1 has negative value -0.006 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-3]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_2 has negative value -0.009 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-4]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_3 has negative value -0.033 . PS DDR interfaces might fail when entering negative DQS skew values. 
+## set_property -dict [list CONFIG.PCW_USE_M_AXI_GP0 {1} CONFIG.PCW_USE_S_AXI_HP0 {1} CONFIG.PCW_USE_FABRIC_INTERRUPT {1} CONFIG.PCW_IRQ_F2P_INTR {1} CONFIG.PCW_IRQ_F2P_MODE {DIRECT} CONFIG.PCW_UART1_PERIPHERAL_ENABLE {1} CONFIG.PCW_UART1_UART1_IO {EMIO}] $ps
+CRITICAL WARNING: [PSU-1]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_0 has negative value -0.051 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-2]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_1 has negative value -0.006 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-3]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_2 has negative value -0.009 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-4]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_3 has negative value -0.033 . PS DDR interfaces might fail when entering negative DQS skew values. 
+INFO: [Ipptcl 7-1463] No Compatible Board Interface found. Board Tab not created in customize GUI
+## set rst [create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_100m]
+## set gp [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* gp_control_ic]
+## set_property -dict [list CONFIG.NUM_SI {1} CONFIG.NUM_MI {5}] $gp
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aclk' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aclk' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aresetn' of definition 'xilinx.com:signal:reset:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aresetn' of definition 'xilinx.com:signal:reset:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXI' of definition 'xilinx.com:interface:aximm:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXI' of definition 'xilinx.com:interface:aximm:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-4728] Bus Interface 'aclk': Added interface parameter 'ASSOCIATED_BUSIF' with value 'S_AXI'.
+INFO: [IP_Flow 19-4728] Bus Interface 'aclk': Added interface parameter 'ASSOCIATED_RESET' with value 'aresetn'.
+INFO: [IP_Flow 19-4728] Bus Interface 'aclk': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'aresetn': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXI': Added interface parameter 'PROTOCOL' with value 'AXI4LITE'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXI': Added interface parameter 'DATA_WIDTH' with value '32'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXI': Added interface parameter 'ADDR_WIDTH' with value '12'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXI': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXIS': Added interface parameter 'TDATA_NUM_BYTES' with value '3'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXIS': Added interface parameter 'TUSER_WIDTH' with value '1'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXIS': Added interface parameter 'HAS_TLAST' with value '1'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXIS': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXIS': Added interface parameter 'TDATA_NUM_BYTES' with value '3'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXIS': Added interface parameter 'TUSER_WIDTH' with value '1'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXIS': Added interface parameter 'HAS_TLAST' with value '1'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXIS': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-7067] Note that bus interface 'aclk' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+INFO: [IP_Flow 19-7067] Note that bus interface 'S_AXI' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+INFO: [IP_Flow 19-7067] Note that bus interface 'S_AXIS' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+INFO: [IP_Flow 19-7067] Note that bus interface 'M_AXIS' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+## set car_system [create_bd_cell -type module -reference car_board_video_wrapper car_system]
+## set vdma [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_vdma:* video_vdma]
+## set_property -dict [list CONFIG.c_include_mm2s {1} CONFIG.c_include_s2mm {0} CONFIG.c_num_fstores {3} CONFIG.c_m_axi_mm2s_data_width {64} CONFIG.c_m_axis_mm2s_tdata_width {32} CONFIG.c_mm2s_genlock_mode {0}] $vdma
+## set video_irq [create_bd_cell -type inline_hdl -vlnv xilinx.com:inline_hdl:ilconcat:1.0 video_irq_concat]
+## set_property CONFIG.NUM_PORTS {2} $video_irq
+## set mem [create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:1.0 video_hp0_ic]
+## set_property -dict [list CONFIG.NUM_SI {1} CONFIG.NUM_MI {1} CONFIG.NUM_CLKS {1} CONFIG.HAS_ARESETN {1}] $mem
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aclk' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aclk' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aresetn' of definition 'xilinx.com:signal:reset:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aresetn' of definition 'xilinx.com:signal:reset:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-4728] Bus Interface 'aclk': Added interface parameter 'ASSOCIATED_BUSIF' with value 'S_AXIS'.
+INFO: [IP_Flow 19-4728] Bus Interface 'aclk': Added interface parameter 'ASSOCIATED_RESET' with value 'aresetn'.
+INFO: [IP_Flow 19-4728] Bus Interface 'aclk': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'aresetn': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-7067] Note that bus interface 'aclk' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+## set adapter [create_bd_cell -type module -reference axis32_to_rgb24 video_width_adapter]
+## set dynclk [create_bd_cell -type ip -vlnv digilentinc.com:ip:axi_dynclk:1.0 hdmi_dynclk]
+## set vtc [create_bd_cell -type ip -vlnv xilinx.com:ip:v_tc:6.2 hdmi_vtc]
+## set_property CONFIG.enable_detection {false} $vtc
+## set vidout [create_bd_cell -type ip -vlnv xilinx.com:ip:v_axi4s_vid_out:4.0 hdmi_axis_to_video]
+## set_property -dict [list CONFIG.C_ADDR_WIDTH {11} CONFIG.C_HAS_ASYNC_CLK {1} CONFIG.C_HYSTERESIS_LEVEL {1024} CONFIG.C_VTG_MASTER_SLAVE {1}] $vidout
+## set rgb2dvi [create_bd_cell -type ip -vlnv digilentinc.com:ip:rgb2dvi:1.2 hdmi_rgb2dvi]
+## set_property -dict [list CONFIG.kClkRange {2} CONFIG.kGenerateSerialClk {false} CONFIG.kRstActiveHigh {false}] $rgb2dvi
+## set hpd_gpio [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 hdmi_hpd_gpio]
+## set_property -dict [list CONFIG.C_ALL_INPUTS {1} CONFIG.C_GPIO_WIDTH {1} CONFIG.C_INTERRUPT_PRESENT {1}] $hpd_gpio
+## make_bd_intf_pins_external [get_bd_intf_pins $rgb2dvi/TMDS]
+## set_property name hdmi_out [get_bd_intf_ports TMDS_0]
+## set hpd_port [create_bd_port -dir I hdmi_tx_hpdn]
+## connect_bd_net [get_bd_pins $hpd_gpio/gpio_io_i] $hpd_port
+WARNING: [BD 41-1306] The connection to interface pin </hdmi_hpd_gpio/gpio_io_i> is being overridden by the user with net <hdmi_tx_hpdn_1>. This pin will not be connected as a part of interface connection <GPIO>, and might not recreate the connectivity as expected using the writ_bd_tcl command.
+## foreach pin {us_echo ir_l_raw ir_r_raw qei0_a qei0_b qei1_a qei1_b} {
+##  set port [create_bd_port -dir I $pin]
+##  connect_bd_net $port [get_bd_pins $car_system/$pin]
+## }
+## set trig_port [create_bd_port -dir O us_trig]
+## connect_bd_net $trig_port [get_bd_pins $car_system/us_trig]
+## set qei_oe_port [create_bd_port -dir O qei_oe_n]
+## connect_bd_net $qei_oe_port [get_bd_pins $car_system/qei_oe_n]
+## make_bd_intf_pins_external [get_bd_intf_pins $ps/UART_1]
+## set_property name uart [get_bd_intf_ports UART_1_0]
+## connect_bd_intf_net [get_bd_intf_pins $ps/M_AXI_GP0] [get_bd_intf_pins $gp/S00_AXI]
+## connect_bd_intf_net [get_bd_intf_pins $gp/M00_AXI] [get_bd_intf_pins $vdma/S_AXI_LITE]
+## connect_bd_intf_net [get_bd_intf_pins $gp/M01_AXI] [get_bd_intf_pins $car_system/S_AXI]
+## connect_bd_intf_net [get_bd_intf_pins $gp/M02_AXI] [get_bd_intf_pins $dynclk/s00_axi]
+## connect_bd_intf_net [get_bd_intf_pins $gp/M03_AXI] [get_bd_intf_pins $vtc/ctrl]
+## connect_bd_intf_net [get_bd_intf_pins $gp/M04_AXI] [get_bd_intf_pins $hpd_gpio/S_AXI]
+## connect_bd_intf_net [get_bd_intf_pins $vdma/M_AXI_MM2S] [get_bd_intf_pins $mem/S00_AXI]
+## connect_bd_intf_net [get_bd_intf_pins $mem/M00_AXI] [get_bd_intf_pins $ps/S_AXI_HP0]
+## connect_bd_intf_net [get_bd_intf_pins $vdma/M_AXIS_MM2S] [get_bd_intf_pins $adapter/S_AXIS]
+## connect_bd_net [get_bd_pins $vdma/mm2s_introut] [get_bd_pins $video_irq/In0]
+## connect_bd_net [get_bd_pins $hpd_gpio/ip2intc_irpt] [get_bd_pins $video_irq/In1]
+## connect_bd_net [get_bd_pins $video_irq/dout] [get_bd_pins $ps/IRQ_F2P]
+## connect_bd_intf_net [get_bd_intf_pins $adapter/M_AXIS] [get_bd_intf_pins $car_system/S_AXIS]
+## connect_bd_intf_net [get_bd_intf_pins $car_system/M_AXIS] [get_bd_intf_pins $vidout/video_in]
+## connect_bd_intf_net [get_bd_intf_pins $vtc/vtiming_out] [get_bd_intf_pins $vidout/vtiming_in]
+## connect_bd_intf_net [get_bd_intf_pins $vidout/vid_io_out] [get_bd_intf_pins $rgb2dvi/RGB]
+## set clk [get_bd_pins $ps/FCLK_CLK0]
+## set resetn [get_bd_pins $rst/peripheral_aresetn]
+## connect_bd_net $clk [get_bd_pins $ps/M_AXI_GP0_ACLK] [get_bd_pins $ps/S_AXI_HP0_ACLK]
+## connect_bd_net $clk [get_bd_pins $rst/slowest_sync_clk] [get_bd_pins $gp/ACLK] [get_bd_pins $gp/S00_ACLK] [get_bd_pins $gp/M00_ACLK] [get_bd_pins $gp/M01_ACLK] [get_bd_pins $gp/M02_ACLK] [get_bd_pins $gp/M03_ACLK] [get_bd_pins $gp/M04_ACLK]
+## connect_bd_net $clk [get_bd_pins $car_system/aclk] [get_bd_pins $vdma/s_axi_lite_aclk] [get_bd_pins $vdma/m_axi_mm2s_aclk] [get_bd_pins $vdma/m_axis_mm2s_aclk]
+## connect_bd_net $clk [get_bd_pins $mem/aclk] [get_bd_pins $adapter/aclk] [get_bd_pins $vidout/aclk]
+## connect_bd_net $clk [get_bd_pins $dynclk/REF_CLK_I] [get_bd_pins $dynclk/s00_axi_aclk] [get_bd_pins $vtc/s_axi_aclk] [get_bd_pins $hpd_gpio/s_axi_aclk]
+## connect_bd_net [get_bd_pins $dynclk/PXL_CLK_O] [get_bd_pins $vidout/vid_io_out_clk] [get_bd_pins $vtc/clk] [get_bd_pins $rgb2dvi/PixelClk]
+## connect_bd_net [get_bd_pins $dynclk/PXL_CLK_5X_O] [get_bd_pins $rgb2dvi/SerialClk]
+## connect_bd_net [get_bd_pins $dynclk/LOCKED_O] [get_bd_pins $rgb2dvi/aRst_n]
+## connect_bd_net [get_bd_pins $ps/FCLK_RESET0_N] [get_bd_pins $rst/ext_reset_in]
+## connect_bd_net $resetn [get_bd_pins $gp/ARESETN] [get_bd_pins $gp/S00_ARESETN] [get_bd_pins $gp/M00_ARESETN] [get_bd_pins $gp/M01_ARESETN] [get_bd_pins $gp/M02_ARESETN] [get_bd_pins $gp/M03_ARESETN] [get_bd_pins $gp/M04_ARESETN]
+## connect_bd_net $resetn [get_bd_pins $car_system/aresetn] [get_bd_pins $vdma/axi_resetn]
+## connect_bd_net $resetn [get_bd_pins $mem/aresetn] [get_bd_pins $adapter/aresetn]
+## connect_bd_net $resetn [get_bd_pins $dynclk/s00_axi_aresetn] [get_bd_pins $vtc/s_axi_aresetn] [get_bd_pins $hpd_gpio/s_axi_aresetn]
+## assign_bd_address
+INFO: [BD 41-3093] Triggering Legacy Auto Assign Algorithm
+Slave segment '/ps7/S_AXI_HP0/HP0_DDR_LOWOCM' is being assigned into address space '/video_vdma/Data_MM2S' at <0x0000_0000 [ 512M ]>.
+Slave segment '/car_system/S_AXI/reg0' is being assigned into address space '/ps7/Data' at <0x4000_0000 [ 4K ]>.
+Slave segment '/hdmi_dynclk/s00_axi/reg0' is being assigned into address space '/ps7/Data' at <0x43C0_0000 [ 64K ]>.
+Slave segment '/hdmi_hpd_gpio/S_AXI/Reg' is being assigned into address space '/ps7/Data' at <0x4120_0000 [ 64K ]>.
+Slave segment '/hdmi_vtc/ctrl/Reg' is being assigned into address space '/ps7/Data' at <0x43C1_0000 [ 64K ]>.
+Slave segment '/video_vdma/S_AXI_LITE/Reg' is being assigned into address space '/ps7/Data' at <0x4300_0000 [ 64K ]>.
+## assign_bd_address -offset 0x43000000 -range 0x00010000 -target_address_space [get_bd_addr_spaces $ps/Data] [get_bd_addr_segs $vdma/S_AXI_LITE/Reg] -force
+## assign_bd_address -offset 0x43C00000 -range 0x00001000 -target_address_space [get_bd_addr_spaces $ps/Data] [get_bd_addr_segs $car_system/S_AXI/reg0] -force
+Slave segment '/car_system/S_AXI/reg0' is being assigned into address space '/ps7/Data' at <0x43C0_0000 [ 4K ]>.
+## assign_bd_address -offset 0x43C10000 -range 0x00010000 -target_address_space [get_bd_addr_spaces $ps/Data] [get_bd_addr_segs $dynclk/s00_axi/reg0] -force
+Slave segment '/hdmi_dynclk/s00_axi/reg0' is being assigned into address space '/ps7/Data' at <0x43C1_0000 [ 64K ]>.
+## assign_bd_address -offset 0x43C20000 -range 0x00010000 -target_address_space [get_bd_addr_spaces $ps/Data] [get_bd_addr_segs $vtc/ctrl/Reg] -force
+Slave segment '/hdmi_vtc/ctrl/Reg' is being assigned into address space '/ps7/Data' at <0x43C2_0000 [ 64K ]>.
+## assign_bd_address -offset 0x41230000 -range 0x00010000 -target_address_space [get_bd_addr_spaces $ps/Data] [get_bd_addr_segs $hpd_gpio/S_AXI/Reg] -force
+Slave segment '/hdmi_hpd_gpio/S_AXI/Reg' is being assigned into address space '/ps7/Data' at <0x4123_0000 [ 64K ]>.
+## assign_bd_address -offset 0x00000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces $vdma/Data_MM2S] [get_bd_addr_segs $ps/S_AXI_HP0/HP0_DDR_LOWOCM] -force
+## validate_bd_design
+WARNING: [BD 41-702] Propagation TCL tries to overwrite USER strength parameter PCW_M_AXI_GP0_FREQMHZ(10) on '/ps7' with propagated value(100). Command ignored
+CRITICAL WARNING: [PSU-1]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_0 has negative value -0.051 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-2]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_1 has negative value -0.006 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-3]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_2 has negative value -0.009 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-4]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_3 has negative value -0.033 . PS DDR interfaces might fail when entering negative DQS skew values. 
+INFO: [BD 5-943] Reserving offset range <0x0000_0000 [ 512M ]> from slave interface '/video_hp0_ic/S00_AXI' to master interface '/video_hp0_ic/M00_AXI'. This will be used by smartconnect on path for routing.
+INFO: [xilinx.com:ip:smartconnect:1.0-1] preintegration_bd_video_hp0_ic_0: SmartConnect preintegration_bd_video_hp0_ic_0 is in High-performance Mode.
+INFO: [Ipptcl 7-1463] No Compatible Board Interface found. Board Tab not created in customize GUI
+## save_bd_design
+Wrote  : <C:\Users\39909\Desktop\FPGA\pynq_fpga\fpga\build\task7_8_video_reliability_20260927\task7_8_integrated.srcs\sources_1\bd\preintegration_bd\preintegration_bd.bd> 
+## set bd_file [get_files preintegration_bd.bd]
+## generate_target all $bd_file
+INFO: [BD 41-1662] The design 'preintegration_bd.bd' is already validated. Therefore parameter propagation will not be re-run.
+Verilog Output written to : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v
+Verilog Output written to : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/sim/preintegration_bd.v
+Verilog Output written to : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/hdl/preintegration_bd_wrapper.v
+INFO: [IP_Flow 19-5611] Unable to find an associated reset port for the interface 'M_AXI_GP0'. A default connection has been created.
+INFO: [IP_Flow 19-5611] Unable to find an associated reset port for the interface 'S_AXI_HP0'. A default connection has been created.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps7 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block rst_100m .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block gp_control_ic/xbar .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_gp_control_ic_imp_auto_pc_0/preintegration_bd_gp_control_ic_imp_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block gp_control_ic/s00_couplers/auto_pc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block car_system .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block video_vdma .
+Exporting to file c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_hp0_ic_0/bd_0/hw_handoff/preintegration_bd_video_hp0_ic_0.hwh
+Generated Hardware Definition File c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_hp0_ic_0/bd_0/synth/preintegration_bd_video_hp0_ic_0.hwdef
+INFO: [BD 41-1029] Generation completed for the IP Integrator block video_hp0_ic .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block video_width_adapter .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block hdmi_dynclk .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block hdmi_vtc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block hdmi_axis_to_video .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block hdmi_rgb2dvi .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block hdmi_hpd_gpio .
+Exporting to file C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/hw_handoff/preintegration_bd.hwh
+Generated Hardware Definition File C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.hwdef
+INFO: [BD 41-3262] Generated VHDL Instantiation Template file c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/preintegration_bd.vho
+INFO: [BD 41-3262] Generated Verilog Instantiation Template file c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/preintegration_bd.veo
+INFO: [BD 41-3262] Generated System Verilog Instantiation Template file c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/preintegration_bd_sv.sveo
+generate_target: Time (s): cpu = 00:00:11 ; elapsed = 00:00:28 . Memory (MB): peak = 885.891 ; gain = 54.516
+## set rgb2dvi_clock_xdc [get_files -quiet *rgb2dvi_clocks.xdc]
+## if {[llength $rgb2dvi_clock_xdc] != 1} {error "Expected one rgb2dvi clock XDC"}
+## set_property USED_IN_SYNTHESIS false $rgb2dvi_clock_xdc
+## set_property USED_IN_IMPLEMENTATION false $rgb2dvi_clock_xdc
+## make_wrapper -files $bd_file -top
+## add_files -norecurse [file join [file dirname $bd_file] hdl preintegration_bd_wrapper.v]
+INFO: [Project 1-1716] Could not find the wrapper file C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.srcs/sources_1/bd/preintegration_bd/hdl/preintegration_bd_wrapper.v, checking in project .gen location instead.
+INFO: [Vivado 12-12390] Found file C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/hdl/preintegration_bd_wrapper.v, adding it to Project
+## set_property top preintegration_bd_wrapper [get_filesets sources_1]
+## update_compile_order -fileset sources_1
+## close_project
+## puts "TASK7_8_INTEGRATED_CREATED: [file join $build_dir task7_8_integrated.xpr]"
+TASK7_8_INTEGRATED_CREATED: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.xpr
+# open_project [file join $::env(PYNQ_INTEGRATED_BUILD_DIR) task7_8_integrated.xpr]
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927'
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/PYNQ/boards/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/AMDDesignTools/2026.1/Vivado/data/ip'.
+# launch_runs synth_1 -jobs 4
+[Sun Sep 27 21:47:28 2026] Launched preintegration_bd_hdmi_dynclk_0_synth_1, preintegration_bd_video_hp0_ic_0_synth_1, preintegration_bd_hdmi_axis_to_video_0_synth_1, preintegration_bd_rst_100m_0_synth_1, preintegration_bd_car_system_0_synth_1, preintegration_bd_ps7_0_synth_1, preintegration_bd_hdmi_rgb2dvi_0_synth_1, preintegration_bd_gp_control_ic_imp_auto_pc_0_synth_1, preintegration_bd_video_vdma_0_synth_1, preintegration_bd_gp_control_ic_imp_xbar_0_synth_1, preintegration_bd_video_width_adapter_0_synth_1, preintegration_bd_hdmi_vtc_0_synth_1, preintegration_bd_hdmi_hpd_gpio_0_synth_1...
+Run output will be captured here:
+preintegration_bd_hdmi_dynclk_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/preintegration_bd_hdmi_dynclk_0_synth_1/runme.log
+preintegration_bd_video_hp0_ic_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/preintegration_bd_video_hp0_ic_0_synth_1/runme.log
+preintegration_bd_hdmi_axis_to_video_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/preintegration_bd_hdmi_axis_to_video_0_synth_1/runme.log
+preintegration_bd_rst_100m_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/preintegration_bd_rst_100m_0_synth_1/runme.log
+preintegration_bd_car_system_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/preintegration_bd_car_system_0_synth_1/runme.log
+preintegration_bd_ps7_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/preintegration_bd_ps7_0_synth_1/runme.log
+preintegration_bd_hdmi_rgb2dvi_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/preintegration_bd_hdmi_rgb2dvi_0_synth_1/runme.log
+preintegration_bd_gp_control_ic_imp_auto_pc_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/preintegration_bd_gp_control_ic_imp_auto_pc_0_synth_1/runme.log
+preintegration_bd_video_vdma_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/preintegration_bd_video_vdma_0_synth_1/runme.log
+preintegration_bd_gp_control_ic_imp_xbar_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/preintegration_bd_gp_control_ic_imp_xbar_0_synth_1/runme.log
+preintegration_bd_video_width_adapter_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/preintegration_bd_video_width_adapter_0_synth_1/runme.log
+preintegration_bd_hdmi_vtc_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/preintegration_bd_hdmi_vtc_0_synth_1/runme.log
+preintegration_bd_hdmi_hpd_gpio_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/preintegration_bd_hdmi_hpd_gpio_0_synth_1/runme.log
+[Sun Sep 27 21:47:28 2026] Launched synth_1...
+Run output will be captured here: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/runme.log
+launch_runs: Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 885.891 ; gain = 0.000
+# wait_on_run synth_1
+[Sun Sep 27 21:47:28 2026] Waiting for synth_1 to finish...
+
+*** Running vivado
+    with args -log preintegration_bd_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source preintegration_bd_wrapper.tcl
+
+
+INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detected. Your current license is active and will expire on 16-sep-2027.
+#-----------------------------------------------------------
+# Vivado v2026.1 (64-bit)
+# SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+# IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+# SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+# Start of session at: Sun Sep 27 21:50:43 2026
+# Process ID         : 34096
+# Current directory  : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1
+# Command line       : vivado.exe -log preintegration_bd_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source preintegration_bd_wrapper.tcl
+# Log file           : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/preintegration_bd_wrapper.vds
+# Journal file       : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1\vivado.jou
+# Running On         : BZY
+# Platform           : Windows 11
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) i7-14650HX
+# CPU Frequency      : 2419 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 33943 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68302 MB
+# Available Virtual  : 48185 MB
+#-----------------------------------------------------------
+
+****** Vivado v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Sun Sep 27 21:50:43 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source preintegration_bd_wrapper.tcl -notrace
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 585.820 ; gain = 267.660
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/PYNQ/boards/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/AMDDesignTools/2026.1/Vivado/data/ip'.
+WARNING: [IP_Flow 19-4995] The host OS only allows 260 characters in a normal path. The IP cache path is more than 80 characters. If you experience issues with IP caching, please consider changing the IP cache to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. 
+Current IP cache path is c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.cache/ip 
+Command: synth_design -top preintegration_bd_wrapper -part xc7z020clg400-1
+Starting synth_design
+Attempting to get a license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Designutils 20-5008] Incremental synthesis strategy default
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 8624
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1438.918 ; gain = 577.902
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_wrapper' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/hdl/preintegration_bd_wrapper.v:13]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:606]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_car_system_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_car_system_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_car_system_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_car_system_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_gp_control_ic_0' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1406]
+INFO: [Synth 8-6157] synthesizing module 'm00_couplers_imp_1OZS59I' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'm00_couplers_imp_1OZS59I' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:13]
+INFO: [Synth 8-6157] synthesizing module 'm01_couplers_imp_1EBOIQV' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:122]
+INFO: [Synth 8-6155] done synthesizing module 'm01_couplers_imp_1EBOIQV' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:122]
+INFO: [Synth 8-6157] synthesizing module 'm02_couplers_imp_1VV484' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:249]
+INFO: [Synth 8-6155] done synthesizing module 'm02_couplers_imp_1VV484' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:249]
+INFO: [Synth 8-6157] synthesizing module 'm03_couplers_imp_SXLY79' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:376]
+INFO: [Synth 8-6155] done synthesizing module 'm03_couplers_imp_SXLY79' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:376]
+INFO: [Synth 8-6157] synthesizing module 'm04_couplers_imp_1FRLOTF' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:491]
+INFO: [Synth 8-6155] done synthesizing module 'm04_couplers_imp_1FRLOTF' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:491]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_RDEMXK' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:2233]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_gp_control_ic_imp_auto_pc_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_gp_control_ic_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_gp_control_ic_imp_auto_pc_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_gp_control_ic_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_RDEMXK' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:2233]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_gp_control_ic_imp_xbar_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_gp_control_ic_imp_xbar_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_gp_control_ic_imp_xbar_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_gp_control_ic_imp_xbar_0_stub.v:6]
+WARNING: [Synth 8-689] width (9) of port connection 'm_axi_arprot' does not match port width (15) of module 'preintegration_bd_gp_control_ic_imp_xbar_0' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:2194]
+WARNING: [Synth 8-689] width (9) of port connection 'm_axi_awprot' does not match port width (15) of module 'preintegration_bd_gp_control_ic_imp_xbar_0' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:2198]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_gp_control_ic_0' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1406]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_hdmi_axis_to_video_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_hdmi_axis_to_video_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_hdmi_axis_to_video_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_hdmi_axis_to_video_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'vid_vblank' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1091]
+WARNING: [Synth 8-7071] port 'vid_hblank' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1091]
+WARNING: [Synth 8-7071] port 'vid_field_id' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1091]
+WARNING: [Synth 8-7071] port 'vtg_ce' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1091]
+WARNING: [Synth 8-7071] port 'locked' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1091]
+WARNING: [Synth 8-7071] port 'overflow' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1091]
+WARNING: [Synth 8-7071] port 'underflow' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1091]
+WARNING: [Synth 8-7071] port 'fifo_read_level' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1091]
+WARNING: [Synth 8-7071] port 'status' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1091]
+WARNING: [Synth 8-7071] port 'sof_state_out' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1091]
+WARNING: [Synth 8-7023] instance 'hdmi_axis_to_video' of module 'preintegration_bd_hdmi_axis_to_video_0' has 32 connections declared, but only 22 given [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1091]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_hdmi_dynclk_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_hdmi_dynclk_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_hdmi_dynclk_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_hdmi_dynclk_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_hdmi_hpd_gpio_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_hdmi_hpd_gpio_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_hdmi_hpd_gpio_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_hdmi_hpd_gpio_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_hdmi_rgb2dvi_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_hdmi_rgb2dvi_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_hdmi_rgb2dvi_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_hdmi_rgb2dvi_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_hdmi_vtc_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_hdmi_vtc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_hdmi_vtc_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_hdmi_vtc_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'irq' of module 'preintegration_bd_hdmi_vtc_0' is unconnected for instance 'hdmi_vtc' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1174]
+WARNING: [Synth 8-7071] port 'fsync_out' of module 'preintegration_bd_hdmi_vtc_0' is unconnected for instance 'hdmi_vtc' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1174]
+WARNING: [Synth 8-7023] instance 'hdmi_vtc' of module 'preintegration_bd_hdmi_vtc_0' has 33 connections declared, but only 31 given [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1174]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_ps7_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_ps7_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_ps7_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_ps7_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'USB0_PORT_INDCTL' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1206]
+WARNING: [Synth 8-7071] port 'USB0_VBUS_PWRSELECT' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1206]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_AWREADY' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1206]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_BVALID' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1206]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WREADY' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1206]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_BRESP' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1206]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_BID' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1206]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RID' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1206]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RCOUNT' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1206]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WCOUNT' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1206]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RACOUNT' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1206]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WACOUNT' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1206]
+WARNING: [Synth 8-7023] instance 'ps7' of module 'preintegration_bd_ps7_0' has 113 connections declared, but only 101 given [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1206]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_rst_100m_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_rst_100m_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_rst_100m_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_rst_100m_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'mb_reset' of module 'preintegration_bd_rst_100m_0' is unconnected for instance 'rst_100m' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1308]
+WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'preintegration_bd_rst_100m_0' is unconnected for instance 'rst_100m' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1308]
+WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'preintegration_bd_rst_100m_0' is unconnected for instance 'rst_100m' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1308]
+WARNING: [Synth 8-7071] port 'interconnect_aresetn' of module 'preintegration_bd_rst_100m_0' is unconnected for instance 'rst_100m' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1308]
+WARNING: [Synth 8-7023] instance 'rst_100m' of module 'preintegration_bd_rst_100m_0' has 10 connections declared, but only 6 given [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1308]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_video_hp0_ic_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_video_hp0_ic_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_video_hp0_ic_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_video_hp0_ic_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_video_vdma_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_video_vdma_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_video_vdma_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_video_vdma_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'mm2s_frame_ptr_out' of module 'preintegration_bd_video_vdma_0' is unconnected for instance 'video_vdma' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1349]
+WARNING: [Synth 8-7023] instance 'video_vdma' of module 'preintegration_bd_video_vdma_0' has 41 connections declared, but only 40 given [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1349]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_video_width_adapter_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_video_width_adapter_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_video_width_adapter_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/.Xil/Vivado-34096-BZY/realtime/preintegration_bd_video_width_adapter_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'format_error_count' of module 'preintegration_bd_video_width_adapter_0' is unconnected for instance 'video_width_adapter' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1390]
+WARNING: [Synth 8-7023] instance 'video_width_adapter' of module 'preintegration_bd_video_width_adapter_0' has 14 connections declared, but only 13 given [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1390]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:606]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_wrapper' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/hdl/preintegration_bd_wrapper.v:13]
+WARNING: [Synth 8-7129] Port M_ACLK in module s00_couplers_imp_RDEMXK is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module s00_couplers_imp_RDEMXK is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m04_couplers_imp_1FRLOTF is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m04_couplers_imp_1FRLOTF is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m04_couplers_imp_1FRLOTF is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m04_couplers_imp_1FRLOTF is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m03_couplers_imp_SXLY79 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m03_couplers_imp_SXLY79 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m03_couplers_imp_SXLY79 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m03_couplers_imp_SXLY79 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m02_couplers_imp_1VV484 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m02_couplers_imp_1VV484 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m02_couplers_imp_1VV484 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m02_couplers_imp_1VV484 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m01_couplers_imp_1EBOIQV is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m01_couplers_imp_1EBOIQV is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m01_couplers_imp_1EBOIQV is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m01_couplers_imp_1EBOIQV is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m00_couplers_imp_1OZS59I is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m00_couplers_imp_1OZS59I is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m00_couplers_imp_1OZS59I is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m00_couplers_imp_1OZS59I is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M02_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M02_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M03_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M03_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M04_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M04_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 1571.137 ; gain = 710.121
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 1571.137 ; gain = 710.121
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 1571.137 ; gain = 710.121
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1571.137 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_ps7_0/preintegration_bd_ps7_0/preintegration_bd_ps7_0_in_context.xdc] for cell 'preintegration_bd_i/ps7'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_ps7_0/preintegration_bd_ps7_0/preintegration_bd_ps7_0_in_context.xdc] for cell 'preintegration_bd_i/ps7'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_rst_100m_0/preintegration_bd_rst_100m_0/preintegration_bd_rst_100m_0_in_context.xdc] for cell 'preintegration_bd_i/rst_100m'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_rst_100m_0/preintegration_bd_rst_100m_0/preintegration_bd_rst_100m_0_in_context.xdc] for cell 'preintegration_bd_i/rst_100m'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_gp_control_ic_imp_xbar_0/preintegration_bd_gp_control_ic_imp_xbar_0/preintegration_bd_gp_control_ic_imp_xbar_0_in_context.xdc] for cell 'preintegration_bd_i/gp_control_ic/xbar'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_gp_control_ic_imp_xbar_0/preintegration_bd_gp_control_ic_imp_xbar_0/preintegration_bd_gp_control_ic_imp_xbar_0_in_context.xdc] for cell 'preintegration_bd_i/gp_control_ic/xbar'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_gp_control_ic_imp_auto_pc_0/preintegration_bd_gp_control_ic_imp_auto_pc_0/preintegration_bd_gp_control_ic_imp_auto_pc_0_in_context.xdc] for cell 'preintegration_bd_i/gp_control_ic/s00_couplers/auto_pc'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_gp_control_ic_imp_auto_pc_0/preintegration_bd_gp_control_ic_imp_auto_pc_0/preintegration_bd_gp_control_ic_imp_auto_pc_0_in_context.xdc] for cell 'preintegration_bd_i/gp_control_ic/s00_couplers/auto_pc'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_car_system_0/preintegration_bd_car_system_0/preintegration_bd_car_system_0_in_context.xdc] for cell 'preintegration_bd_i/car_system'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_car_system_0/preintegration_bd_car_system_0/preintegration_bd_car_system_0_in_context.xdc] for cell 'preintegration_bd_i/car_system'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0_in_context.xdc] for cell 'preintegration_bd_i/video_vdma'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0_in_context.xdc] for cell 'preintegration_bd_i/video_vdma'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_hp0_ic_0/preintegration_bd_video_hp0_ic_0/preintegration_bd_video_hp0_ic_0_in_context.xdc] for cell 'preintegration_bd_i/video_hp0_ic'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_hp0_ic_0/preintegration_bd_video_hp0_ic_0/preintegration_bd_video_hp0_ic_0_in_context.xdc] for cell 'preintegration_bd_i/video_hp0_ic'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_width_adapter_0/preintegration_bd_video_width_adapter_0/preintegration_bd_video_width_adapter_0_in_context.xdc] for cell 'preintegration_bd_i/video_width_adapter'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_width_adapter_0/preintegration_bd_video_width_adapter_0/preintegration_bd_video_width_adapter_0_in_context.xdc] for cell 'preintegration_bd_i/video_width_adapter'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_dynclk_0/preintegration_bd_hdmi_dynclk_0/preintegration_bd_hdmi_dynclk_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_dynclk'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_dynclk_0/preintegration_bd_hdmi_dynclk_0/preintegration_bd_hdmi_dynclk_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_dynclk'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_vtc'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_vtc'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_axis_to_video_0/preintegration_bd_hdmi_axis_to_video_0/preintegration_bd_hdmi_axis_to_video_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_axis_to_video'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_axis_to_video_0/preintegration_bd_hdmi_axis_to_video_0/preintegration_bd_hdmi_axis_to_video_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_axis_to_video'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_rgb2dvi_0/preintegration_bd_hdmi_rgb2dvi_0/preintegration_bd_hdmi_rgb2dvi_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_rgb2dvi'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_rgb2dvi_0/preintegration_bd_hdmi_rgb2dvi_0/preintegration_bd_hdmi_rgb2dvi_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_rgb2dvi'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_hpd_gpio_0/preintegration_bd_hdmi_hpd_gpio_0/preintegration_bd_hdmi_hpd_gpio_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_hpd_gpio'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_hpd_gpio_0/preintegration_bd_hdmi_hpd_gpio_0/preintegration_bd_hdmi_hpd_gpio_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_hpd_gpio'
+Parsing XDC File [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/dont_touch.xdc]
+Parsing XDC File [C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/constraints/task7_8_integrated.xdc]
+Finished Parsing XDC File [C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/constraints/task7_8_integrated.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/constraints/task7_8_integrated.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/preintegration_bd_wrapper_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/preintegration_bd_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1571.137 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1571.137 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1571.137 ; gain = 710.121
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1571.137 ; gain = 710.121
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 1571.137 ; gain = 710.121
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 1571.137 ; gain = 710.121
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7129] Port M00_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M02_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M02_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M03_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M03_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M04_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M04_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1605.016 ; gain = 744.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1781.465 ; gain = 920.449
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1782.461 ; gain = 921.445
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1792.832 ; gain = 931.816
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 2066.973 ; gain = 1205.957
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 2066.973 ; gain = 1205.957
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 2066.973 ; gain = 1205.957
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 2066.973 ; gain = 1205.957
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 2066.973 ; gain = 1205.957
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 2066.973 ; gain = 1205.957
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+----------------------------------------------+----------+
+|      |BlackBox name                                 |Instances |
++------+----------------------------------------------+----------+
+|1     |preintegration_bd_car_system_0                |         1|
+|2     |preintegration_bd_gp_control_ic_imp_xbar_0    |         1|
+|3     |preintegration_bd_gp_control_ic_imp_auto_pc_0 |         1|
+|4     |preintegration_bd_hdmi_axis_to_video_0        |         1|
+|5     |preintegration_bd_hdmi_dynclk_0               |         1|
+|6     |preintegration_bd_hdmi_hpd_gpio_0             |         1|
+|7     |preintegration_bd_hdmi_rgb2dvi_0              |         1|
+|8     |preintegration_bd_hdmi_vtc_0                  |         1|
+|9     |preintegration_bd_ps7_0                       |         1|
+|10    |preintegration_bd_rst_100m_0                  |         1|
+|11    |preintegration_bd_video_hp0_ic_0              |         1|
+|12    |preintegration_bd_video_vdma_0                |         1|
+|13    |preintegration_bd_video_width_adapter_0       |         1|
++------+----------------------------------------------+----------+
+
+Report Cell Usage: 
++------+--------------------------------------------+------+
+|      |Cell                                        |Count |
++------+--------------------------------------------+------+
+|1     |preintegration_bd_car_system                |     1|
+|2     |preintegration_bd_gp_control_ic_imp_auto_pc |     1|
+|3     |preintegration_bd_gp_control_ic_imp_xbar    |     1|
+|4     |preintegration_bd_hdmi_axis_to_video        |     1|
+|5     |preintegration_bd_hdmi_dynclk               |     1|
+|6     |preintegration_bd_hdmi_hpd_gpio             |     1|
+|7     |preintegration_bd_hdmi_rgb2dvi              |     1|
+|8     |preintegration_bd_hdmi_vtc                  |     1|
+|9     |preintegration_bd_ps7                       |     1|
+|10    |preintegration_bd_rst_100m                  |     1|
+|11    |preintegration_bd_video_hp0_ic              |     1|
+|12    |preintegration_bd_video_vdma                |     1|
+|13    |preintegration_bd_video_width_adapter       |     1|
+|14    |IBUF                                        |     9|
+|15    |OBUF                                        |     3|
++------+--------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 2066.973 ; gain = 1205.957
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 12 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:19 . Memory (MB): peak = 2066.973 ; gain = 1205.957
+Synthesis Optimization Complete : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2066.973 ; gain = 1205.957
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2076.125 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2079.770 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 9e94119e
+INFO: [Common 17-83] Releasing license: Vivado_Synthesis
+61 Infos, 85 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:22 ; elapsed = 00:00:29 . Memory (MB): peak = 2079.770 ; gain = 1469.344
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2079.770 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/synth_1/preintegration_bd_wrapper.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file preintegration_bd_wrapper_utilization_synth.rpt -pb preintegration_bd_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Sep 27 21:51:28 2026...
+[Sun Sep 27 21:51:29 2026] synth_1 finished
+wait_on_runs: Time (s): cpu = 00:00:02 ; elapsed = 00:04:00 . Memory (MB): peak = 885.891 ; gain = 0.000
+# if {[get_property STATUS [get_runs synth_1]] ne "synth_design Complete!"} {
+#  error "Video reliability synthesis failed"
+# }
+# close_project
+# source [file join $script_dir impl_integrated_candidate.tcl]
+## set pre_dir [file normalize [file join [file dirname [info script]] ..]]
+## set root [file normalize [file join $pre_dir ..]]
+## set_param board.repoPaths [file join $pre_dir board_repo]
+## set build_dir [file join $root fpga build task7_8_integrated]
+## if {[info exists ::env(PYNQ_INTEGRATED_BUILD_DIR)]} {
+##  set build_dir [file normalize $::env(PYNQ_INTEGRATED_BUILD_DIR)]
+## }
+## set xpr [file join $build_dir task7_8_integrated.xpr]
+## open_project $xpr
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927'
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/PYNQ/boards/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/AMDDesignTools/2026.1/Vivado/data/ip'.
+## reset_run impl_1
+## launch_runs impl_1 -to_step route_design -jobs 4
+[Sun Sep 27 21:51:38 2026] Launched impl_1...
+Run output will be captured here: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/impl_1/runme.log
+launch_runs: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 885.891 ; gain = 0.000
+## wait_on_run impl_1
+[Sun Sep 27 21:51:38 2026] Waiting for impl_1 to finish...
+
+*** Running vivado
+    with args -log preintegration_bd_wrapper.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source preintegration_bd_wrapper.tcl -notrace
+
+
+INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detected. Your current license is active and will expire on 16-sep-2027.
+#-----------------------------------------------------------
+# Vivado v2026.1 (64-bit)
+# SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+# IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+# SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+# Start of session at: Sun Sep 27 21:51:44 2026
+# Process ID         : 32436
+# Current directory  : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/impl_1
+# Command line       : vivado.exe -log preintegration_bd_wrapper.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source preintegration_bd_wrapper.tcl -notrace
+# Log file           : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/impl_1/preintegration_bd_wrapper.vdi
+# Journal file       : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/impl_1\vivado.jou
+# Running On         : BZY
+# Platform           : Windows 11
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) i7-14650HX
+# CPU Frequency      : 2419 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 33943 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68302 MB
+# Available Virtual  : 48384 MB
+#-----------------------------------------------------------
+
+****** Vivado v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Sun Sep 27 21:51:44 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source preintegration_bd_wrapper.tcl -notrace
+create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 587.488 ; gain = 267.797
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/PYNQ/boards/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/AMDDesignTools/2026.1/Vivado/data/ip'.
+WARNING: [IP_Flow 19-4995] The host OS only allows 260 characters in a normal path. The IP cache path is more than 80 characters. If you experience issues with IP caching, please consider changing the IP cache to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. 
+Current IP cache path is C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.cache/ip 
+Command: link_design -top preintegration_bd_wrapper -part xc7z020clg400-1
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Project 1-5699] Read binary netlist with skipMacroContent - 1
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_car_system_0/preintegration_bd_car_system_0.dcp' for cell 'preintegration_bd_i/car_system'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_axis_to_video_0/preintegration_bd_hdmi_axis_to_video_0.dcp' for cell 'preintegration_bd_i/hdmi_axis_to_video'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_dynclk_0/preintegration_bd_hdmi_dynclk_0.dcp' for cell 'preintegration_bd_i/hdmi_dynclk'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_hpd_gpio_0/preintegration_bd_hdmi_hpd_gpio_0.dcp' for cell 'preintegration_bd_i/hdmi_hpd_gpio'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_rgb2dvi_0/preintegration_bd_hdmi_rgb2dvi_0.dcp' for cell 'preintegration_bd_i/hdmi_rgb2dvi'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0.dcp' for cell 'preintegration_bd_i/hdmi_vtc'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_ps7_0/preintegration_bd_ps7_0.dcp' for cell 'preintegration_bd_i/ps7'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_rst_100m_0/preintegration_bd_rst_100m_0.dcp' for cell 'preintegration_bd_i/rst_100m'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_hp0_ic_0/preintegration_bd_video_hp0_ic_0.dcp' for cell 'preintegration_bd_i/video_hp0_ic'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0.dcp' for cell 'preintegration_bd_i/video_vdma'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_width_adapter_0/preintegration_bd_video_width_adapter_0.dcp' for cell 'preintegration_bd_i/video_width_adapter'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_gp_control_ic_imp_xbar_0/preintegration_bd_gp_control_ic_imp_xbar_0.dcp' for cell 'preintegration_bd_i/gp_control_ic/xbar'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_gp_control_ic_imp_auto_pc_0/preintegration_bd_gp_control_ic_imp_auto_pc_0.dcp' for cell 'preintegration_bd_i/gp_control_ic/s00_couplers/auto_pc'
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.103 . Memory (MB): peak = 918.102 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1087 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2026.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_ps7_0/preintegration_bd_ps7_0.xdc] for cell 'preintegration_bd_i/ps7/inst'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_ps7_0/preintegration_bd_ps7_0.xdc] for cell 'preintegration_bd_i/ps7/inst'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_rst_100m_0/preintegration_bd_rst_100m_0_board.xdc] for cell 'preintegration_bd_i/rst_100m/U0'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_rst_100m_0/preintegration_bd_rst_100m_0_board.xdc] for cell 'preintegration_bd_i/rst_100m/U0'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0.xdc] for cell 'preintegration_bd_i/video_vdma/U0'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0.xdc] for cell 'preintegration_bd_i/video_vdma/U0'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_hp0_ic_0/bd_0/ip/ip_1/bd_c95d_psr_aclk_0_board.xdc] for cell 'preintegration_bd_i/video_hp0_ic/inst/clk_map/psr_aclk/U0'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_hp0_ic_0/bd_0/ip/ip_1/bd_c95d_psr_aclk_0_board.xdc] for cell 'preintegration_bd_i/video_hp0_ic/inst/clk_map/psr_aclk/U0'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_hp0_ic_0/smartconnect.xdc] for cell 'preintegration_bd_i/video_hp0_ic/inst'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_hp0_ic_0/smartconnect.xdc] for cell 'preintegration_bd_i/video_hp0_ic/inst'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_rgb2dvi_0/src/rgb2dvi.xdc] for cell 'preintegration_bd_i/hdmi_rgb2dvi/U0'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_rgb2dvi_0/src/rgb2dvi.xdc] for cell 'preintegration_bd_i/hdmi_rgb2dvi/U0'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_hpd_gpio_0/preintegration_bd_hdmi_hpd_gpio_0_board.xdc] for cell 'preintegration_bd_i/hdmi_hpd_gpio/U0'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_hpd_gpio_0/preintegration_bd_hdmi_hpd_gpio_0_board.xdc] for cell 'preintegration_bd_i/hdmi_hpd_gpio/U0'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0_clocks.xdc] for cell 'preintegration_bd_i/video_vdma/U0'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0_clocks.xdc] for cell 'preintegration_bd_i/video_vdma/U0'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0_clocks.xdc] for cell 'preintegration_bd_i/hdmi_vtc/U0'
+INFO: [Timing 38-35] Done setting XDC timing constraints. [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0_clocks.xdc:2]
+INFO: [Timing 38-2] Deriving generated clocks [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0_clocks.xdc:2]
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0_clocks.xdc] for cell 'preintegration_bd_i/hdmi_vtc/U0'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_axis_to_video_0/preintegration_bd_hdmi_axis_to_video_0_clocks.xdc] for cell 'preintegration_bd_i/hdmi_axis_to_video/inst'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_axis_to_video_0/preintegration_bd_hdmi_axis_to_video_0_clocks.xdc] for cell 'preintegration_bd_i/hdmi_axis_to_video/inst'
+Parsing XDC File [C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/constraints/task7_8_integrated.xdc]
+Finished Parsing XDC File [C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/constraints/task7_8_integrated.xdc]
+WARNING: [XPM_CDC_SINGLE: TCL-1000] The source and destination clocks are the same. 
+     Instance: preintegration_bd_i/video_vdma/U0/I_RST_MODULE/GEN_RESET_FOR_MM2S.RESET_I/GEN_RESET_FOR_ASYNC.AXIS_RESET_CDC_I 
+  This will add unnecessary latency to the design. Please check the design for the following: 
+ 1) Manually instantiated XPM_CDC modules: AMD recommends that you remove these modules. 
+ 2) AMD IP that contains XPM_CDC modules: Verify the connections to the IP to determine whether you can safely ignore this message.
+ [C:/AMDDesignTools/2026.1/Vivado/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl:5]
+WARNING: [XPM_CDC_SINGLE: TCL-1000] The source and destination clocks are the same. 
+     Instance: preintegration_bd_i/video_vdma/U0/I_RST_MODULE/GEN_RESET_FOR_MM2S.RESET_I/GEN_MIN_FOR_ASYNC.LITE_IDLE_CDC_I 
+  This will add unnecessary latency to the design. Please check the design for the following: 
+ 1) Manually instantiated XPM_CDC modules: AMD recommends that you remove these modules. 
+ 2) AMD IP that contains XPM_CDC modules: Verify the connections to the IP to determine whether you can safely ignore this message.
+ [C:/AMDDesignTools/2026.1/Vivado/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl:5]
+WARNING: [XPM_CDC_SINGLE: TCL-1000] The source and destination clocks are the same. 
+     Instance: preintegration_bd_i/video_vdma/U0/I_RST_MODULE/GEN_RESET_FOR_MM2S.RESET_I/GEN_MIN_FOR_ASYNC.LITE_MIN_CDC_I 
+  This will add unnecessary latency to the design. Please check the design for the following: 
+ 1) Manually instantiated XPM_CDC modules: AMD recommends that you remove these modules. 
+ 2) AMD IP that contains XPM_CDC modules: Verify the connections to the IP to determine whether you can safely ignore this message.
+ [C:/AMDDesignTools/2026.1/Vivado/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl:5]
+WARNING: [XPM_CDC_SINGLE: TCL-1000] The source and destination clocks are the same. 
+     Instance: preintegration_bd_i/video_vdma/U0/I_RST_MODULE/GEN_RESET_FOR_MM2S.RESET_I/GEN_MIN_FOR_ASYNC.AXIS_IDLE_CDC_I 
+  This will add unnecessary latency to the design. Please check the design for the following: 
+ 1) Manually instantiated XPM_CDC modules: AMD recommends that you remove these modules. 
+ 2) AMD IP that contains XPM_CDC modules: Verify the connections to the IP to determine whether you can safely ignore this message.
+ [C:/AMDDesignTools/2026.1/Vivado/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl:5]
+WARNING: [XPM_CDC_SINGLE: TCL-1000] The source and destination clocks are the same. 
+     Instance: preintegration_bd_i/video_vdma/U0/I_RST_MODULE/GEN_RESET_FOR_MM2S.RESET_I/GEN_MIN_FOR_ASYNC.AXIS_MIN_CDC_I 
+  This will add unnecessary latency to the design. Please check the design for the following: 
+ 1) Manually instantiated XPM_CDC modules: AMD recommends that you remove these modules. 
+ 2) AMD IP that contains XPM_CDC modules: Verify the connections to the IP to determine whether you can safely ignore this message.
+ [C:/AMDDesignTools/2026.1/Vivado/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl:5]
+WARNING: [XPM_CDC_SINGLE: TCL-1000] The source and destination clocks are the same. 
+     Instance: preintegration_bd_i/video_vdma/U0/I_RST_MODULE/GEN_RESET_FOR_MM2S.RESET_I/GEN_RESET_FOR_ASYNC.HARD_RESET_CDC_I 
+  This will add unnecessary latency to the design. Please check the design for the following: 
+ 1) Manually instantiated XPM_CDC modules: AMD recommends that you remove these modules. 
+ 2) AMD IP that contains XPM_CDC modules: Verify the connections to the IP to determine whether you can safely ignore this message.
+ [C:/AMDDesignTools/2026.1/Vivado/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl:5]
+WARNING: [XPM_CDC_SINGLE: TCL-1000] The source and destination clocks are the same. 
+     Instance: preintegration_bd_i/video_vdma/U0/AXI_LITE_REG_INTERFACE_I/GEN_MM2S_LITE_CROSSINGS.GEN_MM2S_CROSSINGS_ASYNC.MM2S_INTRPT_CROSSING_I 
+  This will add unnecessary latency to the design. Please check the design for the following: 
+ 1) Manually instantiated XPM_CDC modules: AMD recommends that you remove these modules. 
+ 2) AMD IP that contains XPM_CDC modules: Verify the connections to the IP to determine whether you can safely ignore this message.
+ [C:/AMDDesignTools/2026.1/Vivado/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl:5]
+INFO: [Project 1-1714] 39 XPM XDC files have been applied to the design.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1634.898 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 25 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 23 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 2 instances
+
+27 Infos, 8 Warnings, 0 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1634.898 ; gain = 996.941
+Command: opt_design
+Attempting to get a license for feature 'Vivado_Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Vivado_Implementation' and/or device 'xc7z020'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.882 . Memory (MB): peak = 1634.898 ; gain = 0.000
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 26992a570
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.421 . Memory (MB): peak = 1634.898 ; gain = 0.000
+
+Starting Logic Optimization Task
+
+Phase 1 Initialization
+
+Phase 1.1 Core Generation And Design Setup
+Phase 1.1 Core Generation And Design Setup | Checksum: 26992a570
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.016 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 1.2 Setup Constraints And Sort Netlist
+Phase 1.2 Setup Constraints And Sort Netlist | Checksum: 26992a570
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.026 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 1 Initialization | Checksum: 26992a570
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.028 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 2 Timer Update And Timing Data Collection
+
+Phase 2.1 Detect if minReqCache needed
+Phase 2.1 Detect if minReqCache needed | Checksum: 26992a570
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.048 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 2.2 Timer Update
+Phase 2.2 Timer Update | Checksum: 26992a570
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.338 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 2.3 Timing Data Collection
+Phase 2.3 Timing Data Collection | Checksum: 26992a570
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.348 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 2 Timer Update And Timing Data Collection | Checksum: 26992a570
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.349 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 3 Retarget
+INFO: [Opt 31-1851] Number of loadless carry chains removed were: 0
+INFO: [Opt 31-1834] Total Chains To Be Transformed Were: 0 AND Number of Transformed insts Created are: 0
+INFO: [Opt 31-1566] Pulled 4 inverters resulting in an inversion of 28 pins
+INFO: [Opt 31-138] Pushed 6 inverter(s) to 30 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 3 Retarget | Checksum: 22aa71700
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.734 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Retarget | Checksum: 22aa71700
+INFO: [Opt 31-389] Phase Retarget created 245 cells and removed 495 cells
+INFO: [Opt 31-1021] In phase Retarget, 60 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 4 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 4 Constant propagation | Checksum: 227587e57
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.902 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Constant propagation | Checksum: 227587e57
+INFO: [Opt 31-389] Phase Constant propagation created 26 cells and removed 439 cells
+INFO: [Opt 31-1021] In phase Constant propagation, 392 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 5 Sweep
+INFO: [Constraints 18-11670] Building netlist checker database with flags, 0x8
+Done building netlist checker database: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2116.180 ; gain = 0.000
+INFO: [Constraints 18-11670] Building netlist checker database with flags, 0x8
+Done building netlist checker database: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 5 Sweep | Checksum: 1852218a7
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Sweep | Checksum: 1852218a7
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 1067 cells
+INFO: [Opt 31-1021] In phase Sweep, 44 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 6 BUFG optimization
+Phase 6 BUFG optimization | Checksum: 1852218a7
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2116.180 ; gain = 0.000
+BUFG optimization | Checksum: 1852218a7
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 7 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 7 Shift Register Optimization | Checksum: 1852218a7
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Shift Register Optimization | Checksum: 1852218a7
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 8 Post Processing Netlist
+Phase 8 Post Processing Netlist | Checksum: 19241b193
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Post Processing Netlist | Checksum: 19241b193
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+INFO: [Opt 31-1021] In phase Post Processing Netlist, 8 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 9 Finalization
+
+Phase 9.1 Finalizing Design Cores and Updating Shapes
+Phase 9.1 Finalizing Design Cores and Updating Shapes | Checksum: 149536ffd
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 9.2 Verifying Netlist Connectivity
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 9.2 Verifying Netlist Connectivity | Checksum: 149536ffd
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 9 Finalization | Checksum: 149536ffd
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |             245  |             495  |                                             60  |
+|  Constant propagation         |              26  |             439  |                                            392  |
+|  Sweep                        |               0  |            1067  |                                             44  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                              8  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+Ending Logic Optimization Task | Checksum: 149536ffd
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 4 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 2 newly gated: 0 Total Ports: 8
+Ending PowerOpt Patch Enables Task | Checksum: 1773c09da
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.050 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Ending Power Optimization Task | Checksum: 1773c09da
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: 1773c09da
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2116.180 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Vivado_Implementation
+58 Infos, 8 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2116.180 ; gain = 481.281
+INFO: [Vivado 12-24828] Executing command : report_drc -file preintegration_bd_wrapper_drc_opted.rpt -pb preintegration_bd_wrapper_drc_opted.pb -rpx preintegration_bd_wrapper_drc_opted.rpx
+Command: report_drc -file preintegration_bd_wrapper_drc_opted.rpt -pb preintegration_bd_wrapper_drc_opted.pb -rpx preintegration_bd_wrapper_drc_opted.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/impl_1/preintegration_bd_wrapper_drc_opted.rpt.
+report_drc completed successfully
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Wrote PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Wrote PlaceStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.048 . Memory (MB): peak = 2116.180 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/impl_1/preintegration_bd_wrapper_opt.dcp' has been generated.
+Command: place_design
+Attempting to get a license for feature 'Vivado_Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Vivado_Implementation' and/or device 'xc7z020'
+INFO: [Common 17-83] Releasing license: Vivado_Implementation
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 2 CPUs
+
+Starting Placer Task
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: ede0d420
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 99b51d9f
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.859 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 1.3 Build Placer Netlist Model
+Phase 1.3 Build Placer Netlist Model | Checksum: 719a4521
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: 719a4521
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 1 Placer Initialization | Checksum: 719a4521
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 2 Global Placement
+
+Phase 2.1 Floorplanning
+Phase 2.1 Floorplanning | Checksum: 73744f3f
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:04 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 2.2 Update Timing before SLR Path Opt
+Phase 2.2 Update Timing before SLR Path Opt | Checksum: ca7c6ced
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:05 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 2.3 Post-Processing in Floorplanning
+Phase 2.3 Post-Processing in Floorplanning | Checksum: ca7c6ced
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:05 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 2.4 Global Place Phase1
+Phase 2.4 Global Place Phase1 | Checksum: 13041e3c0
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:11 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 2.5 Global Place Phase2
+
+Phase 2.5.1 UpdateTiming Before Physical Synthesis
+Phase 2.5.1 UpdateTiming Before Physical Synthesis | Checksum: f8049f48
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:12 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 2.5.2 Physical Synthesis In Placer
+INFO: [Physopt 32-1035] Found 0 LUTNM shape to break, 403 LUT instances to create LUTNM shape
+INFO: [Physopt 32-1044] Break lutnm for timing: one critical 0, two critical 0, total 0, new lutff created 0
+INFO: [Physopt 32-1138] End 1 Pass. Optimized 143 nets or LUTs. Breaked 0 LUT, combined 143 existing LUTs and moved 0 existing LUT
+INFO: [Physopt 32-65] No nets found for high-fanout optimization.
+INFO: [Physopt 32-232] Optimized 0 net. Created 0 new instance.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-456] No candidate cells for DSP register optimization found in the design.
+INFO: [Physopt 32-775] End 2 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-1123] No candidate cells found for Shift Register to Pipeline optimization
+INFO: [Physopt 32-775] End 2 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-1401] No candidate cells found for Shift Register optimization.
+INFO: [Physopt 32-677] No candidate cells for Shift Register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-526] No candidate cells for BRAM register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-846] No candidate cells for URAM register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-846] No candidate cells for URAM register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-949] No candidate nets found for dynamic/static region interface net replication
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Summary of Physical Synthesis Optimizations
+============================================
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization                                     |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  LUT Combining                                    |            0  |            143  |                   143  |           0  |           1  |  00:00:00  |
+|  Retime                                           |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Very High Fanout                                 |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  DSP Register                                     |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Shift Register to Pipeline                       |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Shift Register                                   |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  BRAM Register                                    |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  URAM Register                                    |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Dynamic/Static Region Interface Net Replication  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Total                                            |            0  |            143  |                   143  |           0  |           9  |  00:00:00  |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Phase 2.5.2 Physical Synthesis In Placer | Checksum: 107e35604
+
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:14 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 2.5 Global Place Phase2 | Checksum: cad02f81
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:14 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 2 Global Placement | Checksum: cad02f81
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:14 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: 11ed7234c
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:15 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 1401fcd2e
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:16 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 3.3 Area Swap Optimization
+Phase 3.3 Area Swap Optimization | Checksum: 12b1ccce6
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:17 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 3.4 Pipeline Register Optimization
+Phase 3.4 Pipeline Register Optimization | Checksum: 1281bdc9c
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:17 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 3.5 Fast Optimization
+Phase 3.5 Fast Optimization | Checksum: 179027721
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:18 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 3.6 Small Shape Detail Placement
+Phase 3.6 Small Shape Detail Placement | Checksum: c3325e23
+
+Time (s): cpu = 00:00:31 ; elapsed = 00:00:22 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 3.7 Re-assign LUT pins
+Phase 3.7 Re-assign LUT pins | Checksum: 8cdbf14c
+
+Time (s): cpu = 00:00:32 ; elapsed = 00:00:22 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 3.8 Pipeline Register Optimization
+Phase 3.8 Pipeline Register Optimization | Checksum: 1ae772a0e
+
+Time (s): cpu = 00:00:32 ; elapsed = 00:00:22 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 3.9 Fast Optimization
+Phase 3.9 Fast Optimization | Checksum: 1205da5b0
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:24 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 3 Detail Placement | Checksum: 1205da5b0
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:25 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 4.1.1 Post Placement Optimization
+Post Placement Optimization Initialization | Checksum: 1c5e5a136
+
+Phase 4.1.1.1 BUFG Insertion
+
+Starting Physical Synthesis Task
+
+Phase 1 Physical Synthesis Initialization
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 2 CPUs
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.128 | TNS=-101.053 |
+Phase 1 Physical Synthesis Initialization | Checksum: 1dfa37eaf
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.293 . Memory (MB): peak = 2116.180 ; gain = 0.000
+INFO: [Place 46-33] Processed net preintegration_bd_i/car_system/inst/perception/encoders/vel1/aresetn_0, BUFG insertion was skipped due to placement/routing conflicts.
+INFO: [Place 46-56] BUFG insertion identified 1 candidate nets. Inserted BUFG: 0, Replicated BUFG Driver: 0, Skipped due to Placement/Routing Conflicts: 1, Skipped due to Timing Degradation: 0, Skipped due to netlist editing failed: 0.
+Ending Physical Synthesis Task | Checksum: 1eb164c56
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.496 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 4.1.1.1 BUFG Insertion | Checksum: 1c5e5a136
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:27 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 4.1.1.2 Post Placement Timing Optimization
+INFO: [Place 30-746] Post Placement Timing Summary WNS=-0.497. For the most accurate timing information please run report_timing.
+Phase 4.1.1.2 Post Placement Timing Optimization | Checksum: 19c1be784
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:39 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:39 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 4.1 Post Commit Optimization | Checksum: 19c1be784
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:39 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: 19c1be784
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:39 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 4.3 Placer Reporting
+
+Phase 4.3.1 Print Estimated Congestion
+INFO: [Place 30-612] Post-Placement Estimated Congestion 
+ ____________________________________________________
+|           | Global Congestion | Short Congestion  |
+| Direction | Region Size       | Region Size       |
+|___________|___________________|___________________|
+|      North|                1x1|                2x2|
+|___________|___________________|___________________|
+|      South|                1x1|                2x2|
+|___________|___________________|___________________|
+|       East|                1x1|                1x1|
+|___________|___________________|___________________|
+|       West|                1x1|                1x1|
+|___________|___________________|___________________|
+
+Phase 4.3.1 Print Estimated Congestion | Checksum: 19c1be784
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:39 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 4.3 Placer Reporting | Checksum: 19c1be784
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:39 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 4.4 Final Placement Cleanup
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:39 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 19a81dbaa
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:39 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Ending Placer Task | Checksum: 113fa39b9
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:40 . Memory (MB): peak = 2116.180 ; gain = 0.000
+99 Infos, 8 Warnings, 0 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+place_design: Time (s): cpu = 00:00:54 ; elapsed = 00:00:42 . Memory (MB): peak = 2116.180 ; gain = 0.000
+INFO: [Vivado 12-24838] Running report commands "report_control_sets, report_io, report_utilization" in parallel.
+Running report generation with 2 threads.
+INFO: [Vivado 12-24828] Executing command : report_io -file preintegration_bd_wrapper_io_placed.rpt
+report_io: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.091 . Memory (MB): peak = 2116.180 ; gain = 0.000
+INFO: [Vivado 12-24828] Executing command : report_control_sets -verbose -file preintegration_bd_wrapper_control_sets_placed.rpt
+report_control_sets: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.046 . Memory (MB): peak = 2116.180 ; gain = 0.000
+INFO: [Vivado 12-24828] Executing command : report_utilization -file preintegration_bd_wrapper_utilization_placed.rpt -pb preintegration_bd_wrapper_utilization_placed.pb
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Wrote PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.035 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Wrote PlaceStorage: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.384 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.016 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.446 . Memory (MB): peak = 2116.180 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/impl_1/preintegration_bd_wrapper_placed.dcp' has been generated.
+Command: phys_opt_design
+Attempting to get a license for feature 'Vivado_Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Vivado_Implementation' and/or device 'xc7z020'
+
+Starting Initial Update Timing Task
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 2116.180 ; gain = 0.000
+INFO: [Vivado_Tcl 4-1435] PhysOpt_Tcl_Interface Runtime Before Starting Physical Synthesis Task | CPU: 4.00s |  WALL: 1.66s
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Starting Physical Synthesis Task
+
+Phase 1 Physical Synthesis Initialization
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 2 CPUs
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.497 | TNS=-28.821 |
+Phase 1 Physical Synthesis Initialization | Checksum: 1c38f58c5
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 2116.180 ; gain = 0.000
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.497 | TNS=-28.821 |
+
+Phase 2 DSP Register Optimization
+INFO: [Physopt 32-456] No candidate cells for DSP register optimization found in the design.
+INFO: [Physopt 32-775] End 2 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+Phase 2 DSP Register Optimization | Checksum: 1c38f58c5
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 3 Critical Path Optimization
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.497 | TNS=-28.821 |
+INFO: [Physopt 32-663] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[1].  Re-placed instance preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap_reg[1]
+INFO: [Physopt 32-735] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[1]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.497 | TNS=-28.613 |
+INFO: [Physopt 32-663] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[2].  Re-placed instance preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap_reg[2]
+INFO: [Physopt 32-735] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[2]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.497 | TNS=-28.405 |
+INFO: [Physopt 32-663] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[3].  Re-placed instance preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap_reg[3]
+INFO: [Physopt 32-735] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[3]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.497 | TNS=-28.197 |
+INFO: [Physopt 32-663] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[4].  Re-placed instance preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap_reg[4]
+INFO: [Physopt 32-735] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[4]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.493 | TNS=-27.989 |
+INFO: [Physopt 32-663] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[5].  Re-placed instance preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap_reg[5]
+INFO: [Physopt 32-735] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[5]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.493 | TNS=-27.834 |
+INFO: [Physopt 32-663] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[6].  Re-placed instance preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap_reg[6]
+INFO: [Physopt 32-735] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[6]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.493 | TNS=-27.814 |
+INFO: [Physopt 32-663] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[7].  Re-placed instance preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap_reg[7]
+INFO: [Physopt 32-735] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[7]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.493 | TNS=-27.794 |
+INFO: [Physopt 32-663] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[8].  Re-placed instance preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap_reg[8]
+INFO: [Physopt 32-735] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[8]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.488 | TNS=-27.774 |
+INFO: [Physopt 32-663] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[29].  Re-placed instance preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap_reg[29]
+INFO: [Physopt 32-735] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[29]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.488 | TNS=-27.772 |
+INFO: [Physopt 32-663] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[30].  Re-placed instance preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap_reg[30]
+INFO: [Physopt 32-735] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[30]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.488 | TNS=-27.770 |
+INFO: [Physopt 32-663] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[31].  Re-placed instance preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap_reg[31]
+INFO: [Physopt 32-735] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[31]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.480 | TNS=-27.768 |
+INFO: [Physopt 32-702] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/gap[29]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net preintegration_bd_i/ps7/inst/FCLK_CLK_unbuffered[0]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 22 pins.
+INFO: [Physopt 32-735] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/state_ab[1]_i_4__0_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.281 | TNS=-8.412 |
+INFO: [Physopt 32-702] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/state_ab[1]_i_4__0_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-663] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/have_edge_i_2__0_n_0.  Re-placed instance preintegration_bd_i/car_system/inst/perception/encoders/dec1/have_edge_i_2__0
+INFO: [Physopt 32-735] Processed net preintegration_bd_i/car_system/inst/perception/encoders/dec1/have_edge_i_2__0_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.224 | TNS=0.000 |
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.224 | TNS=0.000 |
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 3 Critical Path Optimization | Checksum: 1aaed83c6
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 4 Critical Path Optimization
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.224 | TNS=0.000 |
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.224 | TNS=0.000 |
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Phase 4 Critical Path Optimization | Checksum: 1aaed83c6
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2116.180 ; gain = 0.000
+INFO: [Physopt 32-603] Post Physical Optimization Timing Summary | WNS=0.224 | TNS=0.000 |
+
+Summary of Physical Synthesis Optimizations
+============================================
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization   |  WNS Gain (ns)  |  TNS Gain (ns)  |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  DSP Register   |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Critical Path  |          0.721  |         28.821  |            0  |              0  |                    13  |           0  |           2  |  00:00:01  |
+|  Total          |          0.721  |         28.821  |            0  |              0  |                    13  |           0  |           3  |  00:00:01  |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Ending Physical Synthesis Task | Checksum: 189f7d87f
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 2116.180 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Vivado_Implementation
+160 Infos, 8 Warnings, 0 Critical Warnings and 0 Errors encountered.
+phys_opt_design completed successfully
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Wrote PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Wrote PlaceStorage: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.391 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.016 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2116.180 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.454 . Memory (MB): peak = 2116.180 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/impl_1/preintegration_bd_wrapper_physopt.dcp' has been generated.
+Command: route_design
+Attempting to get a license for feature 'Vivado_Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Vivado_Implementation' and/or device 'xc7z020'
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 2 CPUs
+
+Phase 1 Build RT Design
+Checksum: PlaceDB: 46b1bda9 ConstDB: 0 ShapeSum: a974f571 RouteDB: 15f972f0
+Post Restoration Checksum: NetGraph: fc741270 | NumContArr: 7df1192 | Constraints: c2a8fa9d | Timing: c2a8fa9d
+Phase 1 Build RT Design | Checksum: 289a5193c
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 2 Router Initialization
+
+Phase 2.1 Fix Topology Constraints
+Phase 2.1 Fix Topology Constraints | Checksum: 289a5193c
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 2.2 Pre Route Cleanup
+Phase 2.2 Pre Route Cleanup | Checksum: 289a5193c
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2116.180 ; gain = 0.000
+ Number of Nodes with overlaps = 0
+
+Phase 2.3 Update Timing
+Phase 2.3 Update Timing | Checksum: 280f3c07b
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:20 . Memory (MB): peak = 2116.180 ; gain = 0.000
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.273  | TNS=0.000  | WHS=-0.333 | THS=-129.817|
+
+
+Phase 2.4 Update Timing for Bus Skew
+
+Phase 2.4.1 Update Timing
+Phase 2.4.1 Update Timing | Checksum: 2de7217e2
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:22 . Memory (MB): peak = 2116.180 ; gain = 0.000
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.273  | TNS=0.000  | WHS=-0.223 | THS=-2.432 |
+
+Phase 2.4 Update Timing for Bus Skew | Checksum: 2714d3a9a
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:22 . Memory (MB): peak = 2116.180 ; gain = 0.000
+
+Phase 2.5 Soft Constraint Pins - Fast Budgeting
+Phase 2.5 Soft Constraint Pins - Fast Budgeting | Checksum: 2714d3a9a
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:22 . Memory (MB): peak = 2140.266 ; gain = 24.086
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0.00222636 %
+  Global Horizontal Routing Utilization  = 0.00025355 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 14991
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 14990
+  Number of Partially Routed Nets     = 1
+  Number of Node Overlaps             = 0
+
+Phase 2 Router Initialization | Checksum: 2c476f5bc
+
+Time (s): cpu = 00:00:26 ; elapsed = 00:00:23 . Memory (MB): peak = 2140.266 ; gain = 24.086
+
+Phase 3 Global Routing
+Phase 3 Global Routing | Checksum: 2c476f5bc
+
+Time (s): cpu = 00:00:26 ; elapsed = 00:00:23 . Memory (MB): peak = 2140.266 ; gain = 24.086
+
+Phase 4 Initial Routing
+
+Phase 4.1 Initial Net Routing Pass
+Phase 4.1 Initial Net Routing Pass | Checksum: 26929a694
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:24 . Memory (MB): peak = 2140.266 ; gain = 24.086
+Phase 4 Initial Routing | Checksum: 26929a694
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:24 . Memory (MB): peak = 2140.266 ; gain = 24.086
+
+Phase 5 Rip-up And Reroute
+
+Phase 5.1 Global Iteration 0
+ Number of Nodes with overlaps = 1272
+ Number of Nodes with overlaps = 197
+ Number of Nodes with overlaps = 64
+ Number of Nodes with overlaps = 18
+ Number of Nodes with overlaps = 7
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.057  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 5.1 Global Iteration 0 | Checksum: 28b2b59ad
+
+Time (s): cpu = 00:00:33 ; elapsed = 00:00:29 . Memory (MB): peak = 2140.266 ; gain = 24.086
+
+Phase 5.2 Global Iteration 1
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.057  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 5.2 Global Iteration 1 | Checksum: 260a2d0bc
+
+Time (s): cpu = 00:00:34 ; elapsed = 00:00:29 . Memory (MB): peak = 2140.266 ; gain = 24.086
+Phase 5 Rip-up And Reroute | Checksum: 260a2d0bc
+
+Time (s): cpu = 00:00:34 ; elapsed = 00:00:29 . Memory (MB): peak = 2140.266 ; gain = 24.086
+
+Phase 6 Delay and Skew Optimization
+
+Phase 6.1 Delay CleanUp
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: 256f7a017
+
+Time (s): cpu = 00:00:34 ; elapsed = 00:00:30 . Memory (MB): peak = 2140.266 ; gain = 24.086
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.081  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 6.1 Delay CleanUp | Checksum: 2a52ad1e0
+
+Time (s): cpu = 00:00:34 ; elapsed = 00:00:30 . Memory (MB): peak = 2140.266 ; gain = 24.086
+
+Phase 6.2 Clock Skew Optimization
+Phase 6.2 Clock Skew Optimization | Checksum: 2a52ad1e0
+
+Time (s): cpu = 00:00:34 ; elapsed = 00:00:30 . Memory (MB): peak = 2140.266 ; gain = 24.086
+Phase 6 Delay and Skew Optimization | Checksum: 2a52ad1e0
+
+Time (s): cpu = 00:00:34 ; elapsed = 00:00:30 . Memory (MB): peak = 2140.266 ; gain = 24.086
+
+Phase 7 Post Hold Fix
+
+Phase 7.1 Hold Fix Iter
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.081  | TNS=0.000  | WHS=0.020  | THS=0.000  |
+
+Phase 7.1 Hold Fix Iter | Checksum: 211149613
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:30 . Memory (MB): peak = 2140.266 ; gain = 24.086
+Phase 7 Post Hold Fix | Checksum: 211149613
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:30 . Memory (MB): peak = 2140.266 ; gain = 24.086
+
+Phase 8 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 3.03505 %
+  Global Horizontal Routing Utilization  = 3.86579 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 8 Route finalize | Checksum: 211149613
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:30 . Memory (MB): peak = 2140.266 ; gain = 24.086
+
+Phase 9 Verifying routed nets
+
+ Verification completed successfully
+Phase 9 Verifying routed nets | Checksum: 211149613
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:30 . Memory (MB): peak = 2140.266 ; gain = 24.086
+
+Phase 10 Depositing Routes
+Phase 10 Depositing Routes | Checksum: 1ec54e445
+
+Time (s): cpu = 00:00:36 ; elapsed = 00:00:31 . Memory (MB): peak = 2140.266 ; gain = 24.086
+
+Phase 11 Post Process Routing
+Phase 11 Post Process Routing | Checksum: 1ec54e445
+
+Time (s): cpu = 00:00:36 ; elapsed = 00:00:31 . Memory (MB): peak = 2140.266 ; gain = 24.086
+
+Phase 12 Post Router Timing
+INFO: [Route 35-57] Estimated Timing Summary | WNS=0.081  | TNS=0.000  | WHS=0.020  | THS=0.000  |
+
+INFO: [Route 35-327] The final timing numbers are based on the router estimated timing analysis. For a complete and accurate timing signoff, please run report_timing_summary.
+Phase 12 Post Router Timing | Checksum: 1ec54e445
+
+Time (s): cpu = 00:00:36 ; elapsed = 00:00:31 . Memory (MB): peak = 2140.266 ; gain = 24.086
+Total Elapsed time in route_design: 31.232 secs
+
+Phase 13 Post-Route Event Processing
+Phase 13 Post-Route Event Processing | Checksum: 2533e22cf
+
+Time (s): cpu = 00:00:36 ; elapsed = 00:00:31 . Memory (MB): peak = 2140.266 ; gain = 24.086
+INFO: [Route 35-16] Router Completed Successfully
+Ending Routing Task | Checksum: 2533e22cf
+
+Time (s): cpu = 00:00:37 ; elapsed = 00:00:31 . Memory (MB): peak = 2140.266 ; gain = 24.086
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Vivado_Implementation
+174 Infos, 8 Warnings, 0 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:00:37 ; elapsed = 00:00:31 . Memory (MB): peak = 2140.266 ; gain = 24.086
+INFO: [Vivado 12-24828] Executing command : report_drc -file preintegration_bd_wrapper_drc_routed.rpt -pb preintegration_bd_wrapper_drc_routed.pb -rpx preintegration_bd_wrapper_drc_routed.rpx
+Command: report_drc -file preintegration_bd_wrapper_drc_routed.rpt -pb preintegration_bd_wrapper_drc_routed.pb -rpx preintegration_bd_wrapper_drc_routed.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/impl_1/preintegration_bd_wrapper_drc_routed.rpt.
+report_drc completed successfully
+INFO: [Vivado 12-24828] Executing command : report_methodology -file preintegration_bd_wrapper_methodology_drc_routed.rpt -pb preintegration_bd_wrapper_methodology_drc_routed.pb -rpx preintegration_bd_wrapper_methodology_drc_routed.rpx
+Command: report_methodology -file preintegration_bd_wrapper_methodology_drc_routed.rpt -pb preintegration_bd_wrapper_methodology_drc_routed.pb -rpx preintegration_bd_wrapper_methodology_drc_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [DRC 23-133] Running Methodology with 2 threads
+INFO: [Vivado_Tcl 2-1520] The results of Report Methodology are in file C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/impl_1/preintegration_bd_wrapper_methodology_drc_routed.rpt.
+report_methodology completed successfully
+INFO: [Vivado 12-24828] Executing command : report_timing_summary -max_paths 10 -routable_nets -report_unconstrained -file preintegration_bd_wrapper_timing_summary_routed.rpt -pb preintegration_bd_wrapper_timing_summary_routed.pb -rpx preintegration_bd_wrapper_timing_summary_routed.rpx -warn_on_violation 
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+WARNING: [Timing 38-436] There are set_bus_skew constraint(s) in this design. Please run report_bus_skew to ensure that bus skew requirements are met.
+INFO: [Vivado 12-24838] Running report commands "report_incremental_reuse, report_route_status" in parallel.
+Running report generation with 2 threads.
+INFO: [Vivado 12-24828] Executing command : report_incremental_reuse -file preintegration_bd_wrapper_incremental_reuse_routed.rpt
+INFO: [Vivado_Tcl 4-1062] Incremental flow is disabled. No incremental reuse Info to report.
+INFO: [Vivado 12-24828] Executing command : report_route_status -file preintegration_bd_wrapper_route_status.rpt -pb preintegration_bd_wrapper_route_status.pb
+INFO: [Vivado 12-24828] Executing command : report_power -file preintegration_bd_wrapper_power_routed.rpt -pb preintegration_bd_wrapper_power_summary_routed.pb -rpx preintegration_bd_wrapper_power_routed.rpx
+Command: report_power -file preintegration_bd_wrapper_power_routed.rpt -pb preintegration_bd_wrapper_power_summary_routed.pb -rpx preintegration_bd_wrapper_power_routed.rpx
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+WARNING: [Power 33-332] Found switching activity that implies high-fanout reset nets being asserted for excessive periods of time which may result in inaccurate power analysis.
+Resolution: To review and fix problems, please run Power Constraints Advisor in the GUI from Tools > Power Constraints Advisor or run report_power with the -advisory option to generate a text report.
+191 Infos, 10 Warnings, 0 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+INFO: [Vivado 12-24828] Executing command : report_clock_utilization -file preintegration_bd_wrapper_clock_utilization_routed.rpt
+INFO: [Vivado 12-24828] Executing command : report_bus_skew -warn_on_violation -file preintegration_bd_wrapper_bus_skew_routed.rpt -pb preintegration_bd_wrapper_bus_skew_routed.pb -rpx preintegration_bd_wrapper_bus_skew_routed.rpx
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+generate_parallel_reports: Time (s): cpu = 00:00:17 ; elapsed = 00:00:12 . Memory (MB): peak = 2140.266 ; gain = 0.000
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Wrote PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2140.266 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2140.266 ; gain = 0.000
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.023 . Memory (MB): peak = 2140.266 ; gain = 0.000
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.112 . Memory (MB): peak = 2143.402 ; gain = 3.137
+Wrote PlaceStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.389 . Memory (MB): peak = 2144.195 ; gain = 0.793
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.018 . Memory (MB): peak = 2144.195 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2144.195 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.540 . Memory (MB): peak = 2144.195 ; gain = 3.930
+INFO: [Common 17-1381] The checkpoint 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/task7_8_integrated.runs/impl_1/preintegration_bd_wrapper_routed.dcp' has been generated.
+INFO: [Common 17-206] Exiting Vivado at Sun Sep 27 21:54:02 2026...
+[Sun Sep 27 21:54:03 2026] impl_1 finished
+wait_on_runs: Time (s): cpu = 00:00:00 ; elapsed = 00:02:25 . Memory (MB): peak = 885.891 ; gain = 0.000
+## if {[get_property STATUS [get_runs impl_1]] ne "route_design Complete!"} {
+##   error "Framework implementation failed: [get_property STATUS [get_runs impl_1]]"
+## }
+## open_run impl_1
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.088 . Memory (MB): peak = 1105.816 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1056 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2026.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Read ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.026 . Memory (MB): peak = 1217.797 ; gain = 3.824
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1824.316 ; gain = 0.000
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1824.316 ; gain = 0.000
+Read PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1824.316 ; gain = 0.000
+Read placeStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.302 . Memory (MB): peak = 1843.773 ; gain = 19.457
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1843.773 ; gain = 0.000
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.108 . Memory (MB): peak = 1843.773 ; gain = 0.000
+Read Physdb Files: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.452 . Memory (MB): peak = 1843.773 ; gain = 19.457
+Restored from archive | CPU: 0.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.485 . Memory (MB): peak = 1843.773 ; gain = 21.047
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1843.773 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 25 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 23 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 2 instances
+
+open_run: Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1843.773 ; gain = 957.883
+## set report_dir $build_dir
+## report_utilization -file [file join $report_dir utilization_integrated_impl.rpt]
+## report_timing_summary -file [file join $report_dir timing_integrated_impl.rpt]
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+WARNING: [Timing 38-436] There are set_bus_skew constraint(s) in this design. Please run report_bus_skew to ensure that bus skew requirements are met.
+## report_drc -file [file join $report_dir drc_integrated_impl.rpt]
+Command: report_drc -file C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/drc_integrated_impl.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_video_reliability_20260927/drc_integrated_impl.rpt.
+report_drc completed successfully
+## report_io -file [file join $report_dir io_integrated_impl.rpt]
+report_io: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.082 . Memory (MB): peak = 1986.859 ; gain = 0.000
+## set setup_path [get_timing_paths -setup -max_paths 1]
+## set hold_path [get_timing_paths -hold -max_paths 1]
+## if {[llength $setup_path] == 0 || [llength $hold_path] == 0} {
+##   error "Implementation has no constrained setup/hold timing path"
+## }
+## set wns [get_property SLACK $setup_path]
+## set whs [get_property SLACK $hold_path]
+## if {$wns < 0 || $whs < 0} {
+##   error "Implementation timing failed: WNS=$wns ns WHS=$whs ns"
+## }
+## set bad_drc [get_drc_violations -quiet -filter {SEVERITY == "Error" || SEVERITY == "Critical Warning"}]
+## if {[llength $bad_drc] != 0} {
+##   error "Implementation has blocking DRC violations: $bad_drc"
+## }
+## puts "TASK7_8_INTEGRATED_IMPL_WNS_NS=$wns"
+TASK7_8_INTEGRATED_IMPL_WNS_NS=0.081
+## puts "TASK7_8_INTEGRATED_IMPL_WHS_NS=$whs"
+TASK7_8_INTEGRATED_IMPL_WHS_NS=0.020
+## close_project
+## puts "TASK7_8_INTEGRATED_IMPL_PASS"
+TASK7_8_INTEGRATED_IMPL_PASS
+# puts "VIDEO_RELIABILITY_BUILD_PASS"
+VIDEO_RELIABILITY_BUILD_PASS
+INFO: [Common 17-206] Exiting Vivado at Sun Sep 27 21:54:20 2026...

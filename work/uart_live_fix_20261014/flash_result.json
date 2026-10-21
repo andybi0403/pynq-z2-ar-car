@@ -1,0 +1,60 @@
+{
+  "kind": "STM32_UART_ROLE_FIX_FLASH_AND_LIVE_CHECK",
+  "hardware": true,
+  "chip_id": "0410",
+  "flash_bytes": 131072,
+  "old_full_flash_sha256": "4c9406d9cd4f8c048e6d3a31eae0d6cbc7de34bcc24769373769171dc9c460b2",
+  "old_application_sha256": "a5bd2bc31d27539bf8003a5457933afec441cd8a24ac9928c96934ecfbc3c2e8",
+  "firmware_bytes": 9240,
+  "firmware_sha256": "8b043a342c839414f021bbd68700ddfac48113509577872ace9074bb806f4f2d",
+  "erased_pages": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "already_target_before_run": false,
+  "written_bytes": 9240,
+  "readback_bytes": 131072,
+  "readback_sha256": "d327416b36ca5dfbd6b25a3a1c2ea87876560b983fd19c86ceff61b535a97e02",
+  "full_readback_matches_backup_plus_image": true,
+  "outside_erase_span_preserved": true,
+  "application_after_rom_go": {
+    "duration_s": 10.031,
+    "tx": {
+      "Q1": 369,
+      "PSTOP": 37,
+      "unexpected": 0
+    },
+    "valid_s1_reports": 369,
+    "safe_reports": 369,
+    "last_report": {
+      "session": 1511506142,
+      "request": 369,
+      "us_seq": 175,
+      "us_age_ms": 27,
+      "us_valid": 1,
+      "mm": 181,
+      "ir_seq": 10528,
+      "ir_age_ms": 0,
+      "ir_valid": 1,
+      "ir": 3,
+      "left": 0,
+      "right": 0,
+      "lock": 1,
+      "fault": 15,
+      "drop": 0
+    },
+    "motor_release_or_drive_sent": false,
+    "passed": true
+  },
+  "elapsed_s": 107.183,
+  "motor_power": "disconnected by user",
+  "motor_release_or_drive_sent": false
+}

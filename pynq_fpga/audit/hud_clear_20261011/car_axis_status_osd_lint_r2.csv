@@ -1,0 +1,45 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date         : Sun Oct 11 02:42:48 2026
+| Host         : BZY running 64-bit major release  (build 9200)
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+RTL Linter Report
+
+Table of Contents
+-----------------
+1. Summary
+2. Expanded
+
+1. Summary
+----------
+
++-----------+----------+--------------+----------+--------------------------------------------------------------------------------+
+| Rule ID   | Severity | # Violations | # Waived | Message Template                                                               |
++-----------+----------+--------------+----------+--------------------------------------------------------------------------------+
+| ASSIGN-1  | WARNING  | 1            | 0        | Arithmetic result not used with full precision, used bits: '(info)'            |
+| ASSIGN-5  | WARNING  | 2            | 0        | Some bits in '(rtl_name)' are not set. First unset bit index is '(info)'.      |
+| ASSIGN-6  | WARNING  | 3            | 0        | Some bits in '(rtl_name)' are not read. First unread bit index is '(info)'.    |
+| ASSIGN-10 | WARNING  | 1            | 0        | Some bits in IO '(rtl_name)' are not read. First unread bit index is '(info)'. |
++-----------+----------+--------------+----------+--------------------------------------------------------------------------------+
+
+
+2. Expanded
+-----------
+
++-----------+---------------------+----------------+------+---------------------+-----------------------+-------------+
+| Rule ID   | description         | rtl_name       | info | rtl_hierarchy       | rtl_file              | Line number |
++-----------+---------------------+----------------+------+---------------------+-----------------------+-------------+
+| ASSIGN-1  | Arithmetic overflow | -              | 9    | car_axis_status_osd | car_axis_status_osd.v | 58          |
+| ASSIGN-5  | Bit(s) not assigned | dabble         | 0    | car_axis_status_osd | car_axis_status_osd.v | 37          |
+| ASSIGN-5  | Bit(s) not assigned | hexglyph       | 0    | car_axis_status_osd | car_axis_status_osd.v | 62          |
+| ASSIGN-6  | Bit(s) not used     | net_abs        | 0    | car_axis_status_osd | car_axis_status_osd.v | 35          |
+| ASSIGN-6  | Bit(s) not used     | tx             | 9    | car_axis_status_osd | car_axis_status_osd.v | 58          |
+| ASSIGN-6  | Bit(s) not used     | ty             | 5    | car_axis_status_osd | car_axis_status_osd.v | 47          |
+| ASSIGN-10 | IO bit(s) not read  | state_path_q16 | 0    | car_axis_status_osd | car_axis_status_osd.v | 14          |
++-----------+---------------------+----------------+------+---------------------+-----------------------+-------------+
+* create_waiver can be used to apply waiver to linter violations.
+** For example, create_waiver -type LINT -id RULE_ID {-rtl_name RTL_NAME} {-rtl_hierarchy RTL_MODULE_NAME} {-rtl_file RTL_FILE_NAME}.
+
+

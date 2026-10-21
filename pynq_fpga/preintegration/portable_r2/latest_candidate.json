@@ -1,0 +1,78 @@
+{
+  "schema": "car-complete-build/v1",
+  "name": "v010_edge_console_20261014_r2",
+  "contract_id": "0xC425100A",
+  "started_utc": "2026-10-13T16:37:21.7101825Z",
+  "status": "LAB_ONLY_CANDIDATE",
+  "hardware": "PENDING",
+  "build_dir": "pynq_fpga/fpga/build/task7_8_v010_edge_console_20261014_r2",
+  "package_dir": "pynq_fpga/lab/task7_8_lab_only_v010_edge_console_20261014_r2",
+  "evidence_dir": "pynq_fpga/preintegration/portable_r2/evidence",
+  "stages": [
+    {
+      "name": "wireless_native",
+      "started_utc": "2026-10-13T16:37:21.7172061Z",
+      "status": "PASS",
+      "ended_utc": "2026-10-13T16:37:22.9320388Z",
+      "log_sha256": "9894cb3910c4818aa017d952b26de04e399f78e2275f5c1a89ba3e318efe0ecc"
+    },
+    {
+      "name": "stm32_firmware",
+      "started_utc": "2026-10-13T16:37:22.9817134Z",
+      "status": "PASS",
+      "ended_utc": "2026-10-13T16:37:25.6943482Z",
+      "log_sha256": "c4c6c5901b0ca3579688dda09a9a3042d30e372500ba1094c2f8348b04572c9a"
+    },
+    {
+      "name": "source_start",
+      "started_utc": "2026-10-13T16:37:25.69687Z",
+      "status": "PASS",
+      "ended_utc": "2026-10-13T16:37:26.0202214Z",
+      "log_sha256": "3cf8732dcd35e9619cd42e44fd777907c4bdf64ec71ced1768e5f52d770244ca"
+    },
+    {
+      "name": "regression",
+      "started_utc": "2026-10-13T16:37:26.022221Z",
+      "status": "PASS",
+      "ended_utc": "2026-10-13T16:50:40.2762595Z",
+      "log_sha256": "a56bcbeaab52096db7f16f885579b67d4dc80a5128acac234662728f711df97f"
+    },
+    {
+      "name": "source_after_regression",
+      "started_utc": "2026-10-13T16:50:40.2792744Z",
+      "status": "PASS",
+      "ended_utc": "2026-10-13T16:50:40.6271482Z",
+      "log_sha256": "3cf8732dcd35e9619cd42e44fd777907c4bdf64ec71ced1768e5f52d770244ca"
+    },
+    {
+      "name": "build",
+      "started_utc": "2026-10-13T16:50:40.6291431Z",
+      "status": "PASS",
+      "ended_utc": "2026-10-13T17:08:57.7793031Z",
+      "log_sha256": "4660573573664230057f4df156d5b383c6ffab9b453fdb2c8fa57633eaa915cc"
+    },
+    {
+      "name": "package",
+      "started_utc": "2026-10-13T17:08:57.7863112Z",
+      "status": "PASS",
+      "ended_utc": "2026-10-13T17:12:07.8598926Z",
+      "log_sha256": "28be12ab240b3aaef004a47d50da5cee89b8311711896ecc6ac7c6e923c01583"
+    },
+    {
+      "name": "source_final",
+      "started_utc": "2026-10-13T17:12:07.8658906Z",
+      "status": "PASS",
+      "ended_utc": "2026-10-13T17:12:08.1760503Z",
+      "log_sha256": "3cf8732dcd35e9619cd42e44fd777907c4bdf64ec71ced1768e5f52d770244ca"
+    }
+  ],
+  "video_profile": "wireless720",
+  "zip_path": "pynq_fpga/lab/task7_8_lab_only_v010_edge_console_20261014_r2.zip",
+  "zip_sha256": "0b751f7bf3d2c43322dfb50b79469db161f49564018901bd3f5dc8579d8cc561",
+  "ended_utc": "2026-10-13T17:12:08.1905903Z",
+  "portable_migration": {
+    "source_record": "pynq_fpga/preintegration/latest_candidate.json",
+    "source_record_sha256": "e2ae268d5e046d43195b4b8b9484f7f2996219ba750a7f20d016e35f06186f69",
+    "changes": "paths only; candidate name, contract, stages and digests unchanged"
+  }
+}

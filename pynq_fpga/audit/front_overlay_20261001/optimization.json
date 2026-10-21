@@ -1,0 +1,20 @@
+{
+  "initial": {
+    "ooc_setup_slack_ns": 1.791,
+    "critical_data_path_ns": 8.234,
+    "lut": 347,
+    "ff": 316,
+    "bram_tiles": 1.0,
+    "dsp": 0
+  },
+  "optimized": {
+    "ooc_setup_slack_ns": 3.323,
+    "critical_data_path_ns": 6.67,
+    "lut": 341,
+    "ff": 416,
+    "bram_tiles": 1.0,
+    "dsp": 0
+  },
+  "scope": "module synthesis estimation; board route and hardware latency separate",
+  "review_counterexample": "front SOF fresh; downstream SOF crosses 200ms; old base validity diverged; shared accepted_fresh resolves"
+}

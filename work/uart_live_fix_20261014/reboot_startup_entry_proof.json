@@ -1,0 +1,47 @@
+{
+  "kind": "POST_REBOOT_STARTUP_ENTRY_PROOF",
+  "initial_UART_driver_absent": true,
+  "receipt": {
+    "kind": "HYBRID_OVERLAY_AND_UART_READY",
+    "package": "/home/xilinx/edge_console_v010_uart_role_fix_20261014_r3",
+    "contract": "0xc425100a",
+    "ip_dict_checked": {
+      "video_vdma": {
+        "phys_addr": 1124073472,
+        "addr_range": 65536
+      },
+      "car_system": {
+        "phys_addr": 1136656384,
+        "addr_range": 4096
+      },
+      "hdmi_dynclk": {
+        "phys_addr": 1136721920,
+        "addr_range": 65536
+      },
+      "hdmi_vtc": {
+        "phys_addr": 1136787456,
+        "addr_range": 65536
+      },
+      "hdmi_hpd_gpio": {
+        "phys_addr": 1092812800,
+        "addr_range": 65536
+      }
+    },
+    "bit_sha256": "d3287345221c56d0f0c120508ef1bc54771eeedd7b85050e50906c3ff282d7ad",
+    "hwh_sha256": "b0b2aeaee963cfc4f018c18ce1d68b9dc96a6d74b3cf02b3e6ac43015af4e81d",
+    "sensor_source": "stm32_uart_v3",
+    "ext_sensor_mode": 1,
+    "uart_device": "/dev/ttyPS1",
+    "uart_of_node": "/sys/firmware/devicetree/base/axi/serial@e0001000",
+    "uart_dtbo_sha256": "08b08a51bcc82ef50473764bb1bef7048e8b2a1fbf9f8704763161616c8cbac2",
+    "debug_console_preserved": true,
+    "qei_scale": [
+      0,
+      0
+    ],
+    "risk_enable": 0,
+    "motor_command_sent": false,
+    "risk_evaluation_requested": false,
+    "kernel_messages": "[  186.756391] [drm] zocl_xclbin_read_axlf a335dbf9-a533-7364-4677-8c63a73c81ec ret: 0\n[  186.782929] [drm] bitstream a335dbf9-a533-7364-4677-8c63a73c81ec locked, ref=1\n[  186.782984] zocl-drm axi:zyxclmm_drm:  ffffffffc112dc10 kds_add_context: Client pid(878) add context Domain(0) CU(0xffffffff) shared(true)\n[  186.783071] zocl-drm axi:zyxclmm_drm:  ffffffffc112dc10 kds_del_context: Client pid(878) del context Domain(0) CU(0xffffffff)\n[  186.783097] [drm] bitstream a335dbf9-a533-7364-4677-8c63a73c81ec unlocked, ref=0\n[  186.915835] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /axi/serial@e0001000/status\n[  186.925161] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /aliases/serial1\n[  186.933905] xuartps e0001000.serial: No serial alias passed. Using the first free id\n[  186.933927] xuartps e0001000.serial: Checking id 0\n[  186.934344] e0001000.serial: ttyPS1 at MMIO 0xe0001000 (irq = 58, base_baud = 6250000) is a xuartps\n"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "manifest_sha256": "31879d7e7f169053ab9080bbecc2ca2ae99acf98d02d4523bbff21b59e9c2d4d",
+  "contract": "0xC4251009",
+  "tick_hz": 100000000,
+  "sources": [
+    {
+      "path": "fpga/rtl/car_qei.v",
+      "expected": "341a89efef86529ba75e6337755587fdf025d05f29847f22d1864ab7e2dcaff1",
+      "actual": "341a89efef86529ba75e6337755587fdf025d05f29847f22d1864ab7e2dcaff1",
+      "matched": true
+    },
+    {
+      "path": "fpga/rtl/car_qei_core.v",
+      "expected": "a1ed8ed58dca86630019aacf14bd86f1e546d01e7e10429f43c274d9f011b1c8",
+      "actual": "a1ed8ed58dca86630019aacf14bd86f1e546d01e7e10429f43c274d9f011b1c8",
+      "matched": true
+    },
+    {
+      "path": "fpga/rtl/car_qei_velocity.v",
+      "expected": "f015ad1085eae40f11451d422ad33df7aacb59289aa525a6f5109d07536eaded",
+      "actual": "f015ad1085eae40f11451d422ad33df7aacb59289aa525a6f5109d07536eaded",
+      "matched": true
+    },
+    {
+      "path": "fpga/rtl/car_perception_top.v",
+      "expected": "8c71f66014b7aa50448f7b0ac697eb4b193f2e4092a2a46da9d5f81eb825345a",
+      "actual": "8c71f66014b7aa50448f7b0ac697eb4b193f2e4092a2a46da9d5f81eb825345a",
+      "matched": true
+    },
+    {
+      "path": "fpga/rtl/car_board_video_wrapper.v",
+      "expected": "86fa1614ac29d09bd7906a7a7a22bb59d3b9a54d6e04393e06c4759a064338dc",
+      "actual": "86fa1614ac29d09bd7906a7a7a22bb59d3b9a54d6e04393e06c4759a064338dc",
+      "matched": true
+    },
+    {
+      "path": "fpga/board/board_manifest.json",
+      "expected": "38f9f04f99ea6219c0ca7e06b2bc37d77f57bf5144f7ea7500dfb5671a4c5974",
+      "actual": "38f9f04f99ea6219c0ca7e06b2bc37d77f57bf5144f7ea7500dfb5671a4c5974",
+      "matched": true
+    },
+    {
+      "path": "fpga/registers/register_map.json",
+      "expected": "0c740d083d33f564f033e826b05fa13d45b7bb3b359fce35741457f4d4cc9a1d",
+      "actual": "0c740d083d33f564f033e826b05fa13d45b7bb3b359fce35741457f4d4cc9a1d",
+      "matched": true
+    },
+    {
+      "path": "host/perception_client.py",
+      "expected": "56a6a8eb12e3057e12577bf5d58b625053f190eaed698f453b7e087d04eb2fa6",
+      "actual": "56a6a8eb12e3057e12577bf5d58b625053f190eaed698f453b7e087d04eb2fa6",
+      "matched": true
+    },
+    {
+      "path": "host/car_regs.py",
+      "expected": "f52e7cfeba330e7b528645e5a3d6e4b4a0be93e7700d7e3fbec26d46e54320b0",
+      "actual": "f52e7cfeba330e7b528645e5a3d6e4b4a0be93e7700d7e3fbec26d46e54320b0",
+      "matched": true
+    }
+  ],
+  "all_sources_matched": true,
+  "existing_same_candidate_simulation": [
+    "PASS: tb_car_qei simulation (31 checks)",
+    "PASS: tb_car_velocity simulation (124 checks)",
+    "PASS: tb_car_qei_odometry simulation (16 checks)",
+    "PASS: tb_car_perception_arch simulation (66 checks)"
+  ],
+  "new_rtl_regression_run": false,
+  "regression_log_sha256": "721c0e9980d53c7fc4e6640dc363052d7df40ea5538f84f7551c3b2534739971",
+  "pin_map": {
+    "left_a": "JB1/W14",
+    "left_b": "JB2/Y14",
+    "right_a": "JB3/T11",
+    "right_b": "JB4/T10",
+    "oe_n": "JA9/W18"
+  }
+}

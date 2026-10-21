@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+ <name>BST4WD_SafeBluetooth</name>
+ <comment>Vendor source adaptation; CubeIDE external GCC build, no ST-Link needed.</comment>
+ <projects/>
+ <buildSpec>
+  <buildCommand>
+   <name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+   <triggers>full,incremental,</triggers>
+   <arguments>
+    <dictionary>
+     <key>LaunchConfigHandle</key>
+     <value>&lt;project&gt;/.externalToolBuilders/BuildSafe.launch</value>
+    </dictionary>
+   </arguments>
+  </buildCommand>
+ </buildSpec>
+ <natures/>
+</projectDescription>
+

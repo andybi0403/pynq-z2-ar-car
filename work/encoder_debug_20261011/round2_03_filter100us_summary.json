@@ -1,0 +1,49 @@
+{
+  "trial": "round2_03_filter100us",
+  "filter_ticks": 10000,
+  "target_seconds": 45,
+  "physical_stationary_confirmed": true,
+  "motor_commands_sent": false,
+  "temporary_nominal_profile": "TT_48_ORIGINAL_WHEEL_FRONT_2",
+  "id": "0xc4251009",
+  "temperature_start_c": 49.093267822116005,
+  "completed": true,
+  "final_registers": {
+    "QEI0_SCALE": 0,
+    "QEI1_SCALE": 0,
+    "QEI0_FILTER": 0,
+    "QEI1_FILTER": 0,
+    "RISK_ENABLE": 0
+  },
+  "temperature_end_c": 48.231982421728006,
+  "restored": true,
+  "samples": 441,
+  "observed_seconds": 44.96331569900008,
+  "left": {
+    "start": 0,
+    "end": 0,
+    "net_delta": 0,
+    "min": 0,
+    "max": 0,
+    "observed_abs_delta": 0,
+    "illegal_start": 0,
+    "illegal_end": 0,
+    "filtered_start": 0,
+    "filtered_end": 255
+  },
+  "right": {
+    "start": 0,
+    "end": 0,
+    "net_delta": 0,
+    "min": 0,
+    "max": 0,
+    "observed_abs_delta": 0,
+    "illegal_start": 0,
+    "illegal_end": 255,
+    "filtered_start": 0,
+    "filtered_end": 255
+  },
+  "sample_archive_sha256": "c47b337253e2d847625b4d9b4e0564d650c67700044cb891de5a03694a41cd20",
+  "static_diagnostic_fault": true,
+  "first_diagnostic_event_seconds": 6.237656385000037
+}

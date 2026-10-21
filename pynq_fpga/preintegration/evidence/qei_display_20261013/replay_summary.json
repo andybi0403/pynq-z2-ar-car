@@ -1,0 +1,26 @@
+{
+  "scope": "offline replay of actual hardware captures; not a new board test",
+  "stationary_source": "direct user confirmation preserved in qei_retest_20261012/operator_confirmation.json",
+  "rounds": [
+    {
+      "name": "round1",
+      "samples": 5588,
+      "control_permits": 0,
+      "faulted_samples": 5588,
+      "faults_not_promoted_to_measured": 5588,
+      "stable_zero_estimates": 5588,
+      "original_sha256": "89db86b3167f9c62eb3825e19185c7b2cd30a8d08d845eb410f1ae04d3aad8a1",
+      "replay_sha256": "5ae96a1f95ec87cccc4db359e91fc5e7f7d473debf5cf1b3ae5d3ee7971606bf"
+    },
+    {
+      "name": "round2",
+      "samples": 8948,
+      "control_permits": 0,
+      "faulted_samples": 8947,
+      "faults_not_promoted_to_measured": 8947,
+      "stable_zero_estimates": 8948,
+      "original_sha256": "bc3ba59ceb042f20f20da74bc47a5c1182d990c495658b48c2a7730f6ab60959",
+      "replay_sha256": "581b372104cb0cb9d85073bef84ed75900566d23e1d153fad2ad9d4d78986839"
+    }
+  ]
+}

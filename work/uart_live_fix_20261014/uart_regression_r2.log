@@ -1,0 +1,24 @@
+test_safe_control.c
+safe_control.c
+正在生成代码...
+PASS: boot lock, IR from $P frame, RAW drive, distance hysteresis,
+V=0 sensor fault, 200/250ms dual guard, checksum rejection,
+field validation, PWM clamp, time wrap, source-handover isolation,
+legacy frame path.
+test_hybrid_protocol.c
+safe_control.c
+hybrid_protocol.c
+正在生成代码...
+GOLDEN $S1,123,1,7,20,1,1000,8,1,1,0,0,0,1,1,0,0489#
+PASS hybrid: CRC, session, replay, wrap, local expiry, independent leases and report
+test_bad_crc_and_drive_cannot_bind (__main__.UartRoleTests.test_bad_crc_and_drive_cannot_bind) ... ok
+test_independent_partial_frames_and_overflow (__main__.UartRoleTests.test_independent_partial_frames_and_overflow) ... ok
+test_other_uart_cannot_change_session_or_accept_commands (__main__.UartRoleTests.test_other_uart_cannot_change_session_or_accept_commands) ... ok
+test_real_host_on_each_uart (__main__.UartRoleTests.test_real_host_on_each_uart) ... ok
+test_stop_does_not_release_or_unbind (__main__.UartRoleTests.test_stop_does_not_release_or_unbind) ... ok
+test_stray_bytes_and_framing_errors_cannot_take_over (__main__.UartRoleTests.test_stray_bytes_and_framing_errors_cannot_take_over) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 14.753s
+
+OK

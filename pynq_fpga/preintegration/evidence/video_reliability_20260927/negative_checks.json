@@ -1,0 +1,22 @@
+[
+  {
+    "case": "wrong_clock",
+    "rejected": true,
+    "reason": "video_hp0_ic/aclk must share PS FCLK0 at 100 MHz"
+  },
+  {
+    "case": "wrong_reset",
+    "rejected": true,
+    "reason": "video_hp0_ic/aresetn must share the peripheral reset"
+  },
+  {
+    "case": "negative_bus_skew",
+    "rejected": true,
+    "reason": "missing or failing routed bus-skew evidence"
+  },
+  {
+    "case": "legacy_video_drc",
+    "rejected": true,
+    "reason": "blocking video/design DRC: [('PDCN-1569', 'Warning'), ('REQP-1839', 'Warning'), ('REQP-1839', 'Warning'), ('REQP-1839', 'Warning'), ('REQP-1839', 'Warning'), ('REQP-1839', 'Warning'), ('REQP-1839', 'Warning'), ('REQP-1839', 'Warning'), ('REQP-1839', 'Warning')]"
+  }
+]

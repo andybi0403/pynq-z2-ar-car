@@ -1,0 +1,58 @@
+[
+  {
+    "id": "R01",
+    "priority": "P1",
+    "title": "PL risk accepts faulted QEI",
+    "file": "fpga/rtl/car_perception_top.v",
+    "evidence": "rtl_repro.log",
+    "status": "reproduced_before_fix"
+  },
+  {
+    "id": "R02",
+    "priority": "P1",
+    "title": "US publishes completion timestamp before data/sequence",
+    "file": "fpga/rtl/car_ultrasonic.v",
+    "evidence": "rtl_repro.log",
+    "status": "reproduced_before_fix"
+  },
+  {
+    "id": "R03",
+    "priority": "P2",
+    "title": "Wired page retains numbers on disconnect; unbounded requests",
+    "file": "preintegration/host/status_server.py",
+    "evidence": "python_repro.json",
+    "status": "reproduced_before_fix"
+  },
+  {
+    "id": "R04",
+    "priority": "P2",
+    "title": "Display feedback expires at 200ms, CAR cadence is 300ms",
+    "file": "host/motion_display.py",
+    "evidence": "python_repro.json",
+    "status": "reproduced_before_fix"
+  },
+  {
+    "id": "R05",
+    "priority": "P2",
+    "title": "Straight-wheel disagreement rule rejects deliberate turns",
+    "file": "host/motion_display.py",
+    "evidence": "python_repro.json",
+    "status": "reproduced_before_fix"
+  },
+  {
+    "id": "R06",
+    "priority": "P1",
+    "title": "Rerun overwrites existing hardware evidence",
+    "file": "preintegration/host/system_runtime.py",
+    "evidence": "python_repro.json",
+    "status": "reproduced_before_fix"
+  },
+  {
+    "id": "R07",
+    "priority": "P2",
+    "title": "Closed VideoHub still accepts publication",
+    "file": "preintegration/host/wireless_core.py",
+    "evidence": "python_repro.json",
+    "status": "reproduced_before_fix"
+  }
+]

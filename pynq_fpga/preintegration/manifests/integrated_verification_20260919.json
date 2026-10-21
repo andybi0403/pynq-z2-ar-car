@@ -1,0 +1,59 @@
+{
+  "status": "INTEGRATED_CANDIDATE_PASS_HARDWARE_UNVERIFIED",
+  "product_scope": "task E board contract plus production car_perception_top and car_axis_osd integrated into task 7/8",
+  "tool": "Vivado 2026.1",
+  "part": "xc7z020clg400-1",
+  "production": {
+    "wrapper": "car_board_video_wrapper",
+    "integrated_id": "0xC4251006",
+    "placeholder_present": false,
+    "one_axil_slave": true,
+    "one_timebase": true,
+    "osd_in_video_path": true,
+    "uart1_emio": true
+  },
+  "verification": {
+    "board_manifest": "PASS_WITH_RELEASE_BLOCKERS",
+    "hwh_contract": "PASS",
+    "wrapper_sim_checks": 12,
+    "implementation": "FULLY_ROUTED",
+    "wns_ns": 0.079,
+    "whs_ns": 0.027,
+    "tns_ns": 0.0,
+    "ths_ns": 0.0,
+    "blocking_drc": 0
+  },
+  "resources": {
+    "slice_luts": 6350,
+    "slice_registers": 9635,
+    "bram_tiles": 3,
+    "dsps": 9,
+    "mmcm": 1,
+    "oserdes": 8
+  },
+  "commands": [
+    "python pynq_fpga/fpga/scripts/validate_board_manifest.py",
+    "python pynq_fpga/preintegration/host/hwh_contract.py --hwh pynq_fpga/fpga/build/task7_8_integrated/task7_8_integrated.gen/sources_1/bd/preintegration_bd/hw_handoff/preintegration_bd.hwh --integrated",
+    "powershell -NoProfile -ExecutionPolicy Bypass -File pynq_fpga/fpga/scripts/run_sim.ps1 -Top tb_car_board_video_wrapper -TbFile tb_car_board_video_wrapper.sv",
+    "vivado -mode batch -source pynq_fpga/preintegration/vivado/create_integrated_candidate.tcl",
+    "vivado -mode batch -source pynq_fpga/preintegration/vivado/impl_integrated_candidate.tcl"
+  ],
+  "logs": {
+    "wrapper_sim": "pynq_fpga/fpga/build/sim_tb_car_board_video_wrapper/20260919_102351_880/sim_run.log",
+    "implementation": "pynq_fpga/fpga/build/task7_8_integrated/impl_integrated.log",
+    "timing_report": "pynq_fpga/fpga/build/task7_8_integrated/timing_integrated_impl.rpt",
+    "drc_report": "pynq_fpga/fpga/build/task7_8_integrated/drc_integrated_impl.rpt",
+    "io_report": "pynq_fpga/fpga/build/task7_8_integrated/io_integrated_impl.rpt"
+  },
+  "release_gate": {
+    "release_ready": false,
+    "bitstream_generated": false,
+    "lab_only_bitstream_generated": true,
+    "lab_only_package": "pynq_fpga/lab/task7_8_lab_only_20260919.zip",
+    "hardware_revision_confirmed": false,
+    "external_electrical_levels_confirmed": false,
+    "real_pynq_mmio_tested": false,
+    "no_motor_acceptance_run": false,
+    "physical_hdmi_tested": false
+  }
+}

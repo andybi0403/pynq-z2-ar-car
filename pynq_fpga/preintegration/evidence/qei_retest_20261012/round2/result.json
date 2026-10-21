@@ -1,0 +1,89 @@
+{
+  "kind": "QEI_QUALITY_TRIAL",
+  "duration_target_s": 480,
+  "physical_motion_expected": false,
+  "physical_stationary_confirmed": true,
+  "operator_confirmation_date": "2026-10-12",
+  "motor_disconnected_confirmed_in_session": true,
+  "motor_commands_sent": false,
+  "temporary_scale_profile": "TT_48_ORIGINAL_WHEEL_FRONT_2",
+  "rollout_calibrated": false,
+  "package": "/home/xilinx/qei_retest_20261012_candidate_r2",
+  "filter_ticks": 1000,
+  "contract_id": "0xc4251009",
+  "bit_sha256": "e04210b572146a42250f2831c4eef8a579c264666981ade1934d37f338f78932",
+  "temperature_start_c": 48.231982421728006,
+  "temporary_scales": [
+    5362,
+    5362
+  ],
+  "completed": true,
+  "final_registers": {
+    "QEI0_SCALE": 0,
+    "QEI1_SCALE": 0,
+    "QEI0_FILTER": 1000,
+    "QEI1_FILTER": 1000,
+    "RISK_ENABLE": 0
+  },
+  "temperature_end_c": 47.247656249856,
+  "safe_unconfigured": true,
+  "samples": 8948,
+  "observed_seconds": 479.9944160539999,
+  "unexpected_control_permits": 0,
+  "channels": {
+    "left": {
+      "start": 0,
+      "end": 3852,
+      "net_delta": 3852,
+      "observed_abs_delta": 4240,
+      "illegal_start": 0,
+      "illegal_end": 255,
+      "filtered_end": 255,
+      "overrun_start": 0,
+      "overrun_end": 0,
+      "nonzero_raw_velocity_samples": 2117,
+      "maximum_abs_raw_velocity_q16": 535664335,
+      "first_quality_fault_s": 0.11070259699999951,
+      "raw_valid_samples": 6656,
+      "quality_fault_samples": 8946,
+      "faulted_samples_displayed_as_valid": 0,
+      "display_valid_samples": 0,
+      "display_reasons": {
+        "invalid": 2292,
+        "illegal_transition": 8946,
+        "odometry_fault": 8946,
+        "diagnostic_saturated": 8885,
+        "stale": 1
+      }
+    },
+    "right": {
+      "start": 0,
+      "end": 9934,
+      "net_delta": 9934,
+      "observed_abs_delta": 13982,
+      "illegal_start": 0,
+      "illegal_end": 255,
+      "filtered_end": 255,
+      "overrun_start": 0,
+      "overrun_end": 0,
+      "nonzero_raw_velocity_samples": 7978,
+      "maximum_abs_raw_velocity_q16": 536200000,
+      "first_quality_fault_s": 0.05708146500001021,
+      "raw_valid_samples": 3556,
+      "quality_fault_samples": 8947,
+      "faulted_samples_displayed_as_valid": 0,
+      "display_valid_samples": 0,
+      "display_reasons": {
+        "invalid": 5392,
+        "illegal_transition": 8947,
+        "odometry_fault": 8947,
+        "diagnostic_saturated": 8916,
+        "stale": 1
+      }
+    }
+  },
+  "raw_archive": {
+    "bytes": 18130110,
+    "sha256": "bc3ba59ceb042f20f20da74bc47a5c1182d990c495658b48c2a7730f6ab60959"
+  }
+}

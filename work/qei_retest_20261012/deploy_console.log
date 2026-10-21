@@ -1,0 +1,2 @@
+{"phase": "UART_TRANSFER", "files": 49, "compressed_recipe_bytes": 759228}
+{"remote": "/home/xilinx/qei_retest_20261012_candidate_r2", "board_files_exactly_match_candidate": true, "native_sha256": "f4c2a0e2edf64c09f9bc25b3ad5bfc8a5e5f4825d141b0717f91ada5b6bd5bcf"}

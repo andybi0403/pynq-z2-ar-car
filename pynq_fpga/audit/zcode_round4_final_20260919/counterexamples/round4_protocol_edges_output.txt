@@ -1,0 +1,16 @@
+  ok  E5a shortest valid 18B accepted 
+  ok  E5b longest valid 29B accepted 
+  ok  E5c max 29B rejected at 30B (pad) 
+  ok  E1 embedded NUL rejected 
+  ok  E2 non-ASCII byte rejected 
+  ok  E3 no terminator rejected 
+  ok  E4 empty field rejected 
+  ok  E6a +5位PWM=99999 parses (clamped later) 
+  ok  E6b clamped to +2400/-2400... actually |99999|>2400 → outputs via DRIVE_RAW clamped 
+  ok  E7 6位PWM=1234567 rejected 
+  ok  E8 负零-0 accepted as 0 
+  ok  E11 前导+ accepted 
+  ok  E10 距离前导零09999 accepted as 9999 
+  ok  E9 距离10000 rejected 
+  ok  E12 rejected frame refreshes nothing sample_ms=1300==1300 cmd_ms=1300==1300 tracking保持=1
+PROTOCOL EDGE BATTERY: PASS

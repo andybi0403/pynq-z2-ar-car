@@ -1,0 +1,36 @@
+{
+  "scope": "offline algorithm mutation, not hardware",
+  "baseline_source": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\lab\\task7_8_lab_only_v09_qei_quality_20261012_r1\\qei_quality.py",
+  "checks": [
+    {
+      "test": "test_reversal_does_not_publish_the_previous_direction",
+      "failures": 1,
+      "errors": 0,
+      "old_algorithm_rejected": true
+    },
+    {
+      "test": "test_reversal_through_zero_and_other_channel_are_independent",
+      "failures": 1,
+      "errors": 0,
+      "old_algorithm_rejected": true
+    },
+    {
+      "test": "test_sequence_regression_and_half_wrap_ambiguity_are_rejected",
+      "failures": 2,
+      "errors": 0,
+      "old_algorithm_rejected": true
+    },
+    {
+      "test": "test_long_gap_requires_new_window_even_if_latest_batch_is_fresh",
+      "failures": 1,
+      "errors": 0,
+      "old_algorithm_rejected": true
+    },
+    {
+      "test": "test_divider_recovery_does_not_erase_overrun_diagnostic",
+      "failures": 1,
+      "errors": 0,
+      "old_algorithm_rejected": true
+    }
+  ]
+}

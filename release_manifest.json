@@ -1,0 +1,30 @@
+{
+  "schema": "pynq-z2-ar-car-release/v1",
+  "name": "v010_uart_role_fix_20261014_r3_release_20261021",
+  "release_date": "2026-10-21",
+  "status": "LAB_ONLY_NO_MOTOR_BENCH_VALIDATED",
+  "classification": "LAB_ONLY_NO_MOTOR_NON_RELEASE",
+  "candidate_record": "pynq_fpga/preintegration/portable_r2/latest_candidate.json",
+  "package_dir": "pynq_fpga/release/v010_uart_role_fix_20261014_r3",
+  "zip_path": "pynq_fpga/release/v010_uart_role_fix_20261014_r3.zip",
+  "zip_sha256": "12d0c5796bb00af5c37f477752c60a010eb84698b05428d2f4c0e361b79f9acf",
+  "software_patch_sources": [
+    "host/perception_client.py",
+    "host/tests/test_external_sensor_bridge.py",
+    "workspace/stm32_pynq对接版/Source/APP/safe_car.c",
+    "workspace/stm32_pynq对接版/Source/APP/safe_control.h",
+    "workspace/stm32_pynq对接版/tests/run_tests.cmd"
+  ],
+  "hardware_scope": "STM32 flashing/readback, normal boot, locked two-board UART, US/IR data into PL, and PYNQ reboot recovery; motor power disconnected",
+  "full_vehicle_acceptance": "NOT_CLAIMED",
+  "hardware_evidence": {
+    "completion_audit": "work/uart_live_fix_20261014/completion_audit.json",
+    "runtime_result": "pynq_fpga/release/v010_uart_role_fix_20261014_r3/UART_ROLE_FIX_RESULT.json",
+    "final_report": "work/uart_live_fix_20261014/FINAL_RESULT.md"
+  },
+  "validation": {
+    "software_round": "pynq_fpga/audit/wireless_five_rounds_20261004/round5_evidence/software.log",
+    "rtl_acceptance": "pynq_fpga/nightly/acceptance_20260918/run_20261021_234039/regression.log",
+    "summary": "validation/20261021_software_rtl_validation.md"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "status": "PREINTEGRATION_ONLY",
+  "target_part": "xc7z020clg400-1",
+  "board_part": "tul.com.tw:pynq-z2:part0:1.0",
+  "clock_hz": 100000000,
+  "control": {
+    "ps_port": "M_AXI_GP0",
+    "placeholder": "axi_control_slot_stub",
+    "base_address": "0x43C00000",
+    "range_bytes": 4096,
+    "replacement_after_ae": "car_perception_top"
+  },
+  "video": {
+    "camera_transport": "USB UVC into PS/Linux",
+    "target_width": 640,
+    "target_height": 480,
+    "target_fps": 30,
+    "axis_pixel_bytes": 3,
+    "ddr_pixel_bytes": 4,
+    "ddr_pixel_format": "BGR0_LITTLE_ENDIAN",
+    "ddr_to_axis_mapping": "word[23:16]=R, word[15:8]=G, word[7:0]=B",
+    "buffer_count": 3,
+    "ps_memory_port": "S_AXI_HP0",
+    "vdma_mode": "MM2S_ONLY",
+    "vdma_stream_bits": 32,
+    "osd_slot_stream_bits": 24,
+    "pixel_lane_order": "UNVERIFIED_UNTIL_COLOR_BARS_ON_BOARD",
+    "base_address": "0x43000000",
+    "range_bytes": 65536,
+    "hdmi_output": "PYNQ-Z2 on-board HDMI TX via v_axi4s_vid_out + rgb2dvi",
+    "dynclk_base_address": "0x43C10000",
+    "vtc_base_address": "0x43C20000",
+    "hpd_gpio_base_address": "0x41230000",
+    "hpd_signal": "HDMI_TX_HPDN_ACTIVE_LOW_INPUT",
+    "interrupts": [
+      "video_vdma/mm2s_introut",
+      "hdmi_hpd_gpio/ip2intc_irpt"
+    ]
+  },
+  "generated_hwh_contract": {
+    "control_base_address": "0x43C00000",
+    "control_range_bytes": 4096,
+    "vdma_base_address": "0x43000000",
+    "vdma_range_bytes": 65536,
+    "osd_slot_stream_bits": 24,
+    "video_clock_hz": 100000000,
+    "video_reset_polarity": "ACTIVE_LOW",
+    "dynclk_base_address": "0x43C10000",
+    "dynclk_range_bytes": 65536,
+    "vtc_base_address": "0x43C20000",
+    "vtc_range_bytes": 65536,
+    "hpd_gpio_base_address": "0x41230000",
+    "hpd_gpio_range_bytes": 65536,
+    "hpd_direction": "INPUT",
+    "hpd_active_level": "LOW",
+    "mm2s_interrupt_to_ps": true
+  },
+  "integration_gate": {
+    "required_handoffs": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "reject_safety_skip": true,
+    "bitstream_allowed": false
+  },
+  "board_evidence": {
+    "xdc": "pynq-z2资料/引脚约束文件/pynq-z2_v1.0.xdc lines 177-188",
+    "schematic": "pynq-z2资料/原理图/TUL_PYNQ Schematic_R12.pdf sheet 6",
+    "hpd_reason": "HDMI pin 19 drives Q8 2N7002; HDMI_TX_HPDN is pulled up by R158 and is an active-low FPGA input"
+  }
+}

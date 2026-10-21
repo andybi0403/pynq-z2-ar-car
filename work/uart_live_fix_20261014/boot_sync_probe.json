@@ -1,0 +1,23 @@
+[
+  {
+    "baud": 115200,
+    "parity": "8E1",
+    "sent": "7f",
+    "rx_hex": "ff",
+    "ack": false
+  },
+  {
+    "baud": 9600,
+    "parity": "8E1",
+    "sent": "7f",
+    "rx_hex": "7f",
+    "ack": false
+  },
+  {
+    "baud": 57600,
+    "parity": "8E1",
+    "sent": "7f",
+    "rx_hex": "7f",
+    "ack": false
+  }
+]

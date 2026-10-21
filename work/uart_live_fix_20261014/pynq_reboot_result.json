@@ -1,0 +1,6 @@
+{
+  "kind": "PYNQ_REBOOT_AND_PROMPT_DRIVEN_LOGIN",
+  "phase": "boot",
+  "elapsed_seconds": 153.32577080000192,
+  "passed": false
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "uart-live-flash-access/v1",
+  "date": "2026-10-14",
+  "transport": "PYNQ COM14 local console",
+  "historical_record": "existing PYNQ helper scripts used only the documented default; no alternate saved path/credential found",
+  "sudo_authentication": "one authorized attempt rejected",
+  "flash_started": false,
+  "erase_pages": 0,
+  "bytes_written": 0,
+  "ROM_backup_sha256": "4c9406d9cd4f8c048e6d3a31eae0d6cbc7de34bcc24769373769171dc9c460b2",
+  "motor_power": "disconnected",
+  "next_requirement": "restore valid sudo access before any flash write"
+}

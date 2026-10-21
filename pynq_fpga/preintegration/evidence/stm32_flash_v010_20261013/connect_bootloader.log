@@ -1,0 +1,15 @@
+      -------------------------------------------------------------------
+                       STM32CubeProgrammer v2.22.0                  
+      -------------------------------------------------------------------
+
+Serial Port COM5 is successfully opened.
+Port configuration: parity = even, baudrate = 115200, data-bit = 8,                     stop-bit = 1.0, flow-control = off
+Activating device: OK
+Board       : --
+Chip ID: 0x410 
+BootLoader protocol version: 2.2
+Device name : STM32F101/F102/F103 Medium-density
+NVM size  : 128 KBytes (default)
+Device type : MCU
+Revision ID : --  
+Device CPU  : Cortex-M3

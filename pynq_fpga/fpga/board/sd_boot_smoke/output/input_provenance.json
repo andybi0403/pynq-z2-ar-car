@@ -1,0 +1,13 @@
+{
+  "official_image_version": "3.0.1",
+  "official_boot_bin_sha256": "3fcdd4303567d75ac1e7be96c4a93816acb6c150f6facbf1f123d729a5bd5def",
+  "fsbl_source_offset": 5888,
+  "fsbl_bytes": 98312,
+  "fsbl_load": 0,
+  "fsbl_entry": 0,
+  "fsbl_sha256": "11bdb01f40b1f8e1a277333e88d3cc15e883dd9daee7fc93f2b74fc6aeee3ecf",
+  "register_init_pairs": [],
+  "cpu_idle_load": 2097152,
+  "expected_led": "LED0 steady on; LED1-3 off",
+  "board_tested": false
+}

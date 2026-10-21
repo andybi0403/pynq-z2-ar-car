@@ -1,0 +1,29 @@
+{
+  "changed_backed_up_files": [
+    "stm32_pynq对接版\\build_safe.ps1",
+    "stm32_pynq对接版\\safe_startup.c",
+    "stm32预备程序\\pc\\pynq_link.py",
+    "stm32_pynq对接版\\tests\\run_tests.cmd",
+    "stm32_pynq对接版\\Source\\APP\\safe_car.c",
+    "pynq_fpga\\host\\perception_client.py",
+    "pynq_fpga\\preintegration\\build_lab_only.ps1",
+    "pynq_fpga\\preintegration\\host\\system_runtime.py",
+    "pynq_fpga\\preintegration\\host\\wireless_runtime.py",
+    "pynq_fpga\\fpga\\registers\\generate_register_map.py",
+    "pynq_fpga\\fpga\\registers\\register_map.json",
+    "pynq_fpga\\fpga\\rtl\\car_perception_top.v",
+    "pynq_fpga\\fpga\\scripts\\run_acceptance.ps1"
+  ],
+  "new_files": [
+    "stm32_pynq对接版/Source/APP/hybrid_protocol.c",
+    "stm32_pynq对接版/Source/APP/hybrid_protocol.h",
+    "stm32_pynq对接版/tests/test_hybrid_protocol.c",
+    "stm32预备程序/pc/test_hybrid_link.py",
+    "pynq_fpga/host/tests/test_hybrid_c_loop.py",
+    "pynq_fpga/host/tests/test_external_sensor_bridge.py",
+    "pynq_fpga/fpga/tb/tb_car_external_sensors.sv",
+    "stm32_pynq对接版/Source/BSP/bsp_iravoid.h",
+    "stm32_pynq对接版/Source/BSP/bsp_ultrasonic.h"
+  ],
+  "hardware_tested": false
+}

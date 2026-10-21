@@ -1,0 +1,118 @@
+{
+  "schema": "car-joint-audit/v1",
+  "hardware": false,
+  "passed": false,
+  "failures": [
+    "active session shorter than required duration",
+    "artifact/runtime hash binding is invalid",
+    "expected package/configuration identity is missing",
+    "hardware evidence is missing; software fixture cannot pass",
+    "measured calibration provenance is missing",
+    "odometry0 invalid or faulted",
+    "odometry1 invalid or faulted"
+  ],
+  "duration_s": 3.0078289,
+  "samples": 60,
+  "frames": 96,
+  "control_gap_ms": {
+    "count": 59,
+    "min": 39.6299,
+    "max": 63.8611,
+    "mean": 50.05995762711864,
+    "p50": 50.845,
+    "p95": 59.2169,
+    "p99": 63.0292
+  },
+  "association_metrics": {
+    "scope": "decoded_frame_reception_to_submission_not_exposure_or_scanout",
+    "frames": 96,
+    "invalid_associations": 0,
+    "receive_to_submit_ms": {
+      "count": 96,
+      "min": 0.6379,
+      "max": 2.2798,
+      "mean": 1.0938895833333333,
+      "p50": 1.0045,
+      "p95": 1.7759,
+      "p99": 2.0466
+    },
+    "snapshot_host_age_ms": {
+      "count": 96,
+      "min": 0.47125,
+      "max": 55.00755,
+      "mean": 25.018358854166667,
+      "p50": 24.5088,
+      "p95": 48.241,
+      "p99": 54.61495
+    },
+    "clock_uncertainty_ms": {
+      "count": 96,
+      "min": 0.0001,
+      "max": 0.00105,
+      "mean": 0.0003078125,
+      "p50": 0.0003,
+      "p95": 0.00065,
+      "p99": 0.0009
+    },
+    "us_age_ms": {
+      "count": 96,
+      "min": 0.52895,
+      "max": 55.02825,
+      "mean": 25.057274479166665,
+      "p50": 24.5483,
+      "p95": 48.2862,
+      "p99": 54.77145
+    },
+    "qei0_age_ms": {
+      "count": 96,
+      "min": 0.52895,
+      "max": 55.02825,
+      "mean": 25.057274479166665,
+      "p50": 24.5483,
+      "p95": 48.2862,
+      "p99": 54.77145
+    },
+    "qei1_age_ms": {
+      "count": 96,
+      "min": 0.52895,
+      "max": 55.02825,
+      "mean": 25.057274479166665,
+      "p50": 24.5483,
+      "p95": 48.2862,
+      "p99": 54.77145
+    },
+    "risk_age_ms": {
+      "count": 96,
+      "min": 0.52895,
+      "max": 55.02825,
+      "mean": 25.057274479166665,
+      "p50": 24.5483,
+      "p95": 48.2862,
+      "p99": 54.77145
+    }
+  },
+  "video_metrics": {
+    "frames": 96,
+    "inferred_drops": 0,
+    "elapsed_s": 2.9527823,
+    "measured_fps": 32.17304574062233,
+    "interval_p50_ms": 31.0683,
+    "interval_p95_ms": 31.5612,
+    "interval_p99_ms": 31.7012
+  },
+  "acquisition_health_checked": true,
+  "odometry_health_required": true,
+  "journal_sha256": "ae3442c3d95a7c2494655308df3675c352ed2f7e1df4a594ec2714ea3677dbae",
+  "summary_sha256": "63d2e2f046add9d9376304cb47b5daff68d681047c63ea87a8efcf6f3b0f546b",
+  "thresholds": {
+    "minimum_duration_s": 1800,
+    "min_fps": 25,
+    "max_interval_p95_ms": 50,
+    "max_submit_p95_ms": 100,
+    "max_uncertainty_ms": 5,
+    "max_control_gap_ms": 150,
+    "max_sample_age_ms": 200,
+    "max_inferred_drop_rate": 0.05
+  },
+  "scope": "log consistency and decoded-frame software timing; no exposure/scanout proof"
+}

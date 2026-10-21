@@ -1,0 +1,78 @@
+TASK7_8_BOARD_START_FAIL: camera removed
+LAB_UART_STOP_PASS states=1 output=C:\Users\39909\AppData\Local\Temp\tmps71mh6qq\fresh_uart.json
+LAB_SAFETY_LOOP_PASS samples=8 output=C:\Users\39909\AppData\Local\Temp\tmps71mh6qq\safety.json
+ENCODE_QUEUE_PASS superseded job skipped; latest encoded; all three DMA buffers returned exactly once
+PIPELINE_FAULT_PASS old encoder/capture race rejected; new capture restores service; cleanup confirmed
+�������ڣ�http://198.18.0.1:8080/#token=REDACTED
+..................F...............................EE...........................................................................................usage: python.exe -m unittest [-h] [--bit BIT] [--hwh HWH]
+                              [--manifest MANIFEST] [--native NATIVE]
+                              [--camera-device CAMERA_DEVICE] [--port PORT]
+                              [--bind BIND] [--web-port WEB_PORT]
+                              [--duration DURATION]
+                              [--video-mode {auto,manual,fixed}] [--fps FPS]
+                              [--quality QUALITY]
+                              [--jpeg-profile {balanced,balanced_fast,detail,legacy}]
+                              [--decode-dct {islow,ifast}] [--reuse-decoder]
+                              [--calibration CALIBRATION]
+                              [--motor-disconnected] [--video-only]
+                              [--headless] [--evidence-dir EVIDENCE_DIR]
+python.exe -m unittest: error: unsupported output fps
+�����ַ�ݲ����ã�network unreachable����Ƶ�������У����������˿� 8080
+�������ڣ�http://198.18.0.1:8080/#token=REDACTED
+...usage: python.exe -m unittest [-h] [--bit BIT] [--hwh HWH]
+                              [--manifest MANIFEST] [--native NATIVE]
+                              [--camera-device CAMERA_DEVICE] [--port PORT]
+                              [--bind BIND] [--web-port WEB_PORT]
+                              [--duration DURATION]
+                              [--video-mode {auto,manual,fixed}] [--fps FPS]
+                              [--quality QUALITY]
+                              [--jpeg-profile {balanced,balanced_fast,detail,legacy}]
+                              [--decode-dct {islow,ifast}] [--reuse-decoder]
+                              [--calibration CALIBRATION]
+                              [--motor-disconnected] [--video-only]
+                              [--headless] [--evidence-dir EVIDENCE_DIR]
+python.exe -m unittest: error: video-only sessions cannot apply calibration
+.
+======================================================================
+ERROR: test_browser_reads_cannot_refresh_the_selected_median_or_stopped_telemetry (test_joint_runtime.JointTests.test_browser_reads_cannot_refresh_the_selected_median_or_stopped_telemetry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\tests\test_joint_runtime.py", line 105, in test_browser_reads_cannot_refresh_the_selected_median_or_stopped_telemetry
+    for _ in range(3):runner.step()
+                      ~~~~~~~~~~~^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\system_runtime.py", line 184, in step
+    self.log(event)
+    ~~~~~~~~^^^^^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\system_runtime.py", line 116, in log
+    self._journal.write(json.dumps(item, sort_keys=True) + "\n")
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'write'
+
+======================================================================
+ERROR: test_browser_speed_warms_up_then_fault_disappears_immediately_and_retains_raw (test_joint_runtime.JointTests.test_browser_speed_warms_up_then_fault_disappears_immediately_and_retains_raw)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\tests\test_joint_runtime.py", line 87, in test_browser_speed_warms_up_then_fault_disappears_immediately_and_retains_raw
+    runner.step();runner.step()
+    ~~~~~~~~~~~^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\system_runtime.py", line 184, in step
+    self.log(event)
+    ~~~~~~~~^^^^^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\system_runtime.py", line 116, in log
+    self._journal.write(json.dumps(item, sort_keys=True) + "\n")
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'write'
+
+======================================================================
+FAIL: test_stale_sensor_and_faulted_odometry_keep_independent_invalid_flags (test_frame_metadata.MetadataTests.test_stale_sensor_and_faulted_odometry_keep_independent_invalid_flags)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\tests\test_frame_metadata.py", line 62, in test_stale_sensor_and_faulted_odometry_keep_independent_invalid_flags
+    self.assertTrue(decoded['speed_valid'])
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 147 tests in 34.661s
+
+FAILED (failures=1, errors=2)

@@ -1,0 +1,17 @@
+{
+  "kind": "FINAL_DEPLOYED_STARTUP_AND_PACKAGE_AUDIT",
+  "passed": true,
+  "entries": {
+    "/home/xilinx/stm32_sensors_platform_20261013/prepare_hybrid.py": "76a15423ef6b6973983bd25a9681f6854dee250b8fa1fadeb902701d27917a13",
+    "/home/xilinx/stm32_sensors_platform_20261013/start_hybrid.sh": "6e81aca071e43c126a8519bc4259487a25b18a9038796d168b563779f5b17378"
+  },
+  "files": {
+    "/home/xilinx/edge_console_v010_uart_role_fix_20261014_r3/UART_ROLE_FIX_README.md": "dc90e5a75df1e871cb5e43ef26d41d967d4247ab02c1bb346456625a1d7d4031",
+    "/home/xilinx/edge_console_v010_uart_role_fix_20261014_r3/UART_ROLE_FIX_RESULT.json": "980d94572eae74b8e0483348c20bd2eacda87f850d705316a4500d1fbb01c55a",
+    "/home/xilinx/edge_console_v010_uart_role_fix_20261014_r3/startup/prepare_hybrid.py": "83899cdcc14f6efb012c5ee9eb4c17be180b8b2e78c7be9b50d5b05dc92b2780",
+    "/home/xilinx/edge_console_v010_uart_role_fix_20261014_r3/startup/start_hybrid.sh": "3679f65f21a13241438ef6eda7c7ba62eeb1aa842c6b910f28b464f6dc8b8482",
+    "/home/xilinx/edge_console_v010_uart_role_fix_20261014_r3/startup/ENTRY_SHA256.json": "8ab1fa2d79cc15dac43a43fca8271a1778228567896e85560e0521af1bab0292",
+    "/home/xilinx/current_verified_uart_runtime.json": "e8a6f45658287642da97d00d490d654ba7a0bbd125cc07f27463af077c9e5c11",
+    "/home/xilinx/stm32_sensors_platform_20261013/uart_live_fix_20261014/FINAL_RESULT.md": "dc90e5a75df1e871cb5e43ef26d41d967d4247ab02c1bb346456625a1d7d4031"
+  }
+}

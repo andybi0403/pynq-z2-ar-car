@@ -1,0 +1,8 @@
+COMPLETE_BUILD_STAGE wireless_native log=C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\evidence\complete_v09_qei_quality_20261012_r1\wireless_native.log
+COMPLETE_BUILD_STAGE source_start log=C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\evidence\complete_v09_qei_quality_20261012_r1\source_start.log
+COMPLETE_BUILD_STAGE regression log=C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\evidence\complete_v09_qei_quality_20261012_r1\regression.log
+COMPLETE_BUILD_STAGE source_after_regression log=C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\evidence\complete_v09_qei_quality_20261012_r1\source_after_regression.log
+COMPLETE_BUILD_STAGE build log=C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\evidence\complete_v09_qei_quality_20261012_r1\build.log
+COMPLETE_BUILD_STAGE package log=C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\evidence\complete_v09_qei_quality_20261012_r1\package.log
+COMPLETE_BUILD_STAGE source_final log=C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\evidence\complete_v09_qei_quality_20261012_r1\source_final.log
+COMPLETE_BUILD_PASS package=C:\Users\39909\Desktop\FPGA\pynq_fpga\lab\task7_8_lab_only_v09_qei_quality_20261012_r1 zip=C:\Users\39909\Desktop\FPGA\pynq_fpga\lab\task7_8_lab_only_v09_qei_quality_20261012_r1.zip hardware=PENDING

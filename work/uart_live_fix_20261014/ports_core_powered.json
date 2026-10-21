@@ -1,0 +1,32 @@
+[
+  {
+    "device": "COM7",
+    "description": "\u84dd\u7259\u94fe\u63a5\u4e0a\u7684\u6807\u51c6\u4e32\u884c (COM7)",
+    "vid": null,
+    "pid": null
+  },
+  {
+    "device": "COM3",
+    "description": "\u84dd\u7259\u94fe\u63a5\u4e0a\u7684\u6807\u51c6\u4e32\u884c (COM3)",
+    "vid": null,
+    "pid": null
+  },
+  {
+    "device": "COM6",
+    "description": "\u84dd\u7259\u94fe\u63a5\u4e0a\u7684\u6807\u51c6\u4e32\u884c (COM6)",
+    "vid": null,
+    "pid": null
+  },
+  {
+    "device": "COM8",
+    "description": "\u84dd\u7259\u94fe\u63a5\u4e0a\u7684\u6807\u51c6\u4e32\u884c (COM8)",
+    "vid": null,
+    "pid": null
+  },
+  {
+    "device": "COM14",
+    "description": "USB Serial Port (COM14)",
+    "vid": 1027,
+    "pid": 24592
+  }
+]

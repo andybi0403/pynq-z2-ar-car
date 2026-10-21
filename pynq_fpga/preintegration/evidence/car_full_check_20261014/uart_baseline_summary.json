@@ -1,0 +1,31 @@
+{
+  "kind": "HYBRID_UART_PL_TRIAL",
+  "hardware": true,
+  "motor_commands": "query and PSTOP only",
+  "sensor_joint_acceptance": false,
+  "duration_target_s": 30,
+  "package": "/home/xilinx/stm32_sensors_v010_20261013_r3",
+  "observed_s": 30.016974508999965,
+  "sensor_errors": 0,
+  "transport_error": null,
+  "state_reports": 0,
+  "uart_rx_bytes": 0,
+  "final_scale": [
+    0,
+    0
+  ],
+  "final_external_status": 1,
+  "final_risk_enable": 0,
+  "tx_types": {
+    "Q1": 484,
+    "PSTOP": 485
+  },
+  "samples": 558,
+  "valid_us_pl_samples": 0,
+  "valid_ir_pl_samples": 0,
+  "first_report": null,
+  "last_report": null,
+  "passed": false,
+  "bit_sha256": "cd7847bb47034f142c073d0f0a95e19eb23979b652265f1cec2448478f4be635",
+  "raw_archive_sha256": "ac6d35121555d307995f67d03bb7fb5d61b6b0e445e467a73771b33f7735e951"
+}

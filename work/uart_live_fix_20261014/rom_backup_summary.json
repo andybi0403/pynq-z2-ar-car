@@ -1,0 +1,11 @@
+{
+  "kind": "STM32_LIVE_ROM_BACKUP",
+  "hardware": true,
+  "chip_id": "0410",
+  "flash_bytes": 131072,
+  "bytes_read": 131072,
+  "duration_s": 25.63479996199976,
+  "original_firmware_matches_candidate": true,
+  "backup_sha256": "4c9406d9cd4f8c048e6d3a31eae0d6cbc7de34bcc24769373769171dc9c460b2",
+  "wrote_flash": false
+}

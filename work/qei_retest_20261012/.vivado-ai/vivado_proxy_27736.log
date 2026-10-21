@@ -1,0 +1,10 @@
+2026/10/12 23:55:32.407607 vivado-proxy: starting PID=27736 host=BZY go=go1.25.11 GOARCH=amd64 GOOS=windows
+2026/10/12 23:55:32.408675 vivado-proxy: listening on 127.0.0.1:54024
+2026/10/12 23:55:32.408675 vivado-proxy: MCP_PROXY_PORT_DIR unset — running without connection authentication (loopback only)
+2026/10/12 23:55:32.409725 vivado-proxy: spawning: [C:/AMDDesignTools/2026.1/Vivado/bin/vivado.bat -mode tcl -log .vivado-ai\vivado_20532347_026f0cfe.log -journal .vivado-ai\vivado_20532347_026f0cfe.jou -notrace -source .vivado-ai\init_20532347_026f0cfe.tcl]
+2026/10/12 23:55:32.441723 vivado-proxy: child PID 16872
+2026/10/12 23:55:32.442503 vivado-proxy: HELLO handshake complete, protocol v3
+2026/10/12 23:55:32.442503 vivado-proxy: output stream client connected from 127.0.0.1:54025
+2026/10/12 23:55:32.443053 vivado-proxy: output stream resuming from stdout=0 stderr=0
+2026/10/12 23:55:32.558808 vivado-proxy: child exited: exit status 1
+2026/10/12 23:55:32.558808 vivado-proxy: Vivado produced no output before exiting

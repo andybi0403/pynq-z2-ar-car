@@ -1,0 +1,35 @@
+{
+  "kind": "INDEPENDENT_HARDWARE_UART_PL_AUDIT",
+  "prefix": "reboot",
+  "reports": 462,
+  "reports_measured_before_close": 461,
+  "reply_drained_during_close": 1,
+  "tx_types": {
+    "Q1": 462,
+    "PSTOP": 463
+  },
+  "samples": 552,
+  "matched_valid_PL_samples": {
+    "us": 551,
+    "ir": 551
+  },
+  "first_valid_PL_seconds": {
+    "us": 0.058752117000011594,
+    "ir": 0.058752117000011594
+  },
+  "first_IR_low16": 61093,
+  "distance_range_mm": [
+    432,
+    432
+  ],
+  "checks": {
+    "raw_crc_and_request_match": true,
+    "all_feedback_locked_zero": true,
+    "no_motor_release_or_drive_sent": true,
+    "PL_values_correspond_to_wire_samples": true,
+    "both_PL_channels_valid_over_90_percent": true,
+    "production_acceptance_passed": true
+  },
+  "passed": true,
+  "wire_sha256": "100966600c4de2793c836cd637ca51e60ea08d937ad21df7fabdd520ebcef758"
+}

@@ -1,0 +1,131 @@
+{
+  "returncode": 0,
+  "source_sha256": "c1265c8f530cbdf2df9c08ab905fb658da16c7a6c6ed51a6ad724b8a2038f79f",
+  "result": {
+    "kind": "AUTHENTICATED_ROUTER_RADIO",
+    "network_changed": false,
+    "config": {
+      "wifi_5g": {
+        "repeater_connected": false,
+        "device": "radio0",
+        "txpower": "25",
+        "band": "5G",
+        "channel": "auto",
+        "type": "5G",
+        "hwmodelist": [
+          "802.11a/n/ac",
+          "802.11a"
+        ],
+        "htmode": "20/40/80 MHz",
+        "hwmode": "802.11a/n/ac",
+        "htmodelist": [
+          "20 MHz",
+          "40 MHz",
+          "80 MHz",
+          "20/40/80 MHz"
+        ],
+        "txpower_max": "25",
+        "channels": [
+          "36",
+          "40",
+          "44",
+          "48",
+          "149",
+          "153",
+          "157",
+          "161",
+          "auto"
+        ],
+        "encryptions": [
+          "none",
+          "psk2",
+          "psk-mixed"
+        ],
+        "interfaces": [
+          {
+            "id": 0,
+            "ssid": "GL-SFT1200-0a0-5G",
+            "encrypt": "psk2",
+            "key": "[REDACTED]",
+            "guest": "0",
+            "ifname": "wlan0",
+            "mode": "ap",
+            "network": "lan",
+            "up": true,
+            "hidden": false,
+            "maxsta": "0"
+          },
+          {
+            "id": 2,
+            "ssid": "GL-SFT1200-0a0-Guest-5G",
+            "encrypt": "psk2",
+            "key": "[REDACTED]",
+            "guest": "1",
+            "ifname": "wlan2",
+            "mode": "ap",
+            "network": "guest",
+            "up": false,
+            "hidden": false,
+            "maxsta": "0"
+          }
+        ]
+      },
+      "wifi_2g": {
+        "repeater_connected": false,
+        "device": "radio1",
+        "txpower": "20",
+        "band": "2G",
+        "channel": "auto",
+        "type": "2.4G",
+        "hwmodelist": [
+          "802.11b/g/n",
+          "802.11g",
+          "802.11b"
+        ],
+        "htmode": "20/40 MHz",
+        "hwmode": "802.11b/g/n",
+        "htmodelist": [
+          "20 MHz",
+          "40 MHz",
+          "20/40 MHz"
+        ],
+        "txpower_max": "20",
+        "channels": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "auto"
+        ],
+        "encryptions": [
+          "none",
+          "psk2",
+          "psk-mixed"
+        ],
+        "interfaces": [
+          {
+            "id": 1,
+            "ssid": "GL-SFT1200-0a0",
+            "encrypt": "psk2",
+            "key": "[REDACTED]",
+            "guest": "0",
+            "ifname": "wlan1",
+            "mode": "ap",
+            "network": "lan",
+            "up": false,
+            "hidden": false,
+            "maxsta": "0"
+          }
+        ]
+      },
+      "code": 0
+    }
+  }
+}

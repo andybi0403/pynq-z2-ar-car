@@ -1,0 +1,18 @@
+test_blocked_video_does_not_block_control_and_is_stopped (test_joint_runtime.JointTests.test_blocked_video_does_not_block_control_and_is_stopped) ... ok
+test_browser_reads_cannot_refresh_the_selected_median_or_stopped_telemetry (test_joint_runtime.JointTests.test_browser_reads_cannot_refresh_the_selected_median_or_stopped_telemetry) ... ok
+test_browser_speed_warms_up_then_fault_disappears_immediately_and_retains_raw (test_joint_runtime.JointTests.test_browser_speed_warms_up_then_fault_disappears_immediately_and_retains_raw) ... ok
+test_completed_shutdown_submission_is_logged_without_active_frame_credit (test_joint_runtime.JointTests.test_completed_shutdown_submission_is_logged_without_active_frame_credit) ... ok
+test_configuration_is_deferred_to_mmio_owner (test_joint_runtime.JointTests.test_configuration_is_deferred_to_mmio_owner) ... ok
+test_display_estimate_does_not_promote_bad_measurements_or_control (test_joint_runtime.JointTests.test_display_estimate_does_not_promote_bad_measurements_or_control) ... ok
+test_frozen_snapshot_records_failure_and_stops_both_paths (test_joint_runtime.JointTests.test_frozen_snapshot_records_failure_and_stops_both_paths) ... ok
+test_one_session_concurrent_video_control_logs_association (test_joint_runtime.JointTests.test_one_session_concurrent_video_control_logs_association) ... ok
+test_same_car_reception_is_not_republished_to_extend_display_lease (test_joint_runtime.JointTests.test_same_car_reception_is_not_republished_to_extend_display_lease) ... ok
+test_slow_video_start_does_not_delay_control_or_leak_after_session_end (test_joint_runtime.JointTests.test_slow_video_start_does_not_delay_control_or_leak_after_session_end) ... ok
+test_startup_frozen_epoch_fails_without_starting_formal_session (test_joint_runtime.JointTests.test_startup_frozen_epoch_fails_without_starting_formal_session) ... ok
+test_startup_requires_stable_healthy_samples_and_invalidates_command (test_joint_runtime.JointTests.test_startup_requires_stable_healthy_samples_and_invalidates_command) ... ok
+test_stuck_driver_cleanup_is_failure_and_uart_still_closes (test_joint_runtime.JointTests.test_stuck_driver_cleanup_is_failure_and_uart_still_closes) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 9.427s
+
+OK

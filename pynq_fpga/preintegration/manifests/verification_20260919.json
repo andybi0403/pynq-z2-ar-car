@@ -1,0 +1,66 @@
+{
+  "status": "CURRENT_ENVIRONMENT_PASS_HARDWARE_UNVERIFIED",
+  "product_scope": "isolated task 7/8 preintegration; no A-E production RTL",
+  "python_tests": 20,
+  "rtl_checks": {
+    "axis32_to_rgb24": 312,
+    "axi_control_slot_stub": 34
+  },
+  "hwh_contract": "PASS",
+  "synthesis": {
+    "tool": "Vivado 2026.1",
+    "wns_ns": 4.446
+  },
+  "implementation": {
+    "status": "FULLY_ROUTED",
+    "wns_ns": 1.317,
+    "whs_ns": 0.026,
+    "tns_ns": 0.0,
+    "ths_ns": 0.0,
+    "routing_errors": 0,
+    "critical_warnings_final_run": 0,
+    "errors_final_run": 0,
+    "blocking_drc": 0,
+    "bus_skew": "MET"
+  },
+  "resources": {
+    "slice_luts": 3229,
+    "slice_registers": 5887,
+    "bram_tiles": 3,
+    "dsps": 0,
+    "mmcm": 1,
+    "oserdes": 8
+  },
+  "io_evidence": {
+    "hdmi_tx_hpdn": {
+      "pin": "R19",
+      "direction": "INPUT",
+      "iostandard": "LVCMOS33"
+    },
+    "tmds_bank": 35,
+    "tmds_iostandard": "TMDS_33"
+  },
+  "commands": [
+    "powershell -NoProfile -ExecutionPolicy Bypass -File pynq_fpga/preintegration/run_tests.ps1 -RequireAEBlocked",
+    "vivado -mode batch -source pynq_fpga/preintegration/vivado/impl_framework.tcl"
+  ],
+  "logs": {
+    "software_rtl": "pynq_fpga/fpga/build/task7_8_tests/20260919_161107",
+    "synthesis": "pynq_fpga/fpga/build/task7_8_tests/20260919_161107/synth.log",
+    "implementation": "pynq_fpga/fpga/build/task7_8_preintegration/impl_final_session_20260919_094906.log",
+    "timing_report": "pynq_fpga/fpga/build/task7_8_preintegration/timing_impl.rpt",
+    "drc_report": "pynq_fpga/fpga/build/task7_8_preintegration/drc_impl.rpt",
+    "io_report": "pynq_fpga/fpga/build/task7_8_preintegration/io_impl.rpt"
+  },
+  "gates": {
+    "ae_integration": "BLOCKED: D is PARTIAL and E handoff is absent",
+    "release_bitstream_generated": false
+  },
+  "unverified": [
+    "real PYNQ boot and MMIO",
+    "PYNQ interrupt discovery",
+    "C270 v4l2 capture",
+    "physical HDMI picture and color order",
+    "latency/drop rate/30-minute stability"
+  ]
+}

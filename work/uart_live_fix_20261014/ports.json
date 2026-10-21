@@ -1,0 +1,44 @@
+[
+  {
+    "port": "COM7",
+    "description": "蓝牙链接上的标准串行 (COM7)",
+    "vid": null,
+    "pid": null,
+    "serial": null
+  },
+  {
+    "port": "COM3",
+    "description": "蓝牙链接上的标准串行 (COM3)",
+    "vid": null,
+    "pid": null,
+    "serial": null
+  },
+  {
+    "port": "COM6",
+    "description": "蓝牙链接上的标准串行 (COM6)",
+    "vid": null,
+    "pid": null,
+    "serial": null
+  },
+  {
+    "port": "COM8",
+    "description": "蓝牙链接上的标准串行 (COM8)",
+    "vid": null,
+    "pid": null,
+    "serial": null
+  },
+  {
+    "port": "COM14",
+    "description": "USB Serial Port (COM14)",
+    "vid": 1027,
+    "pid": 24592,
+    "serial": "1234"
+  },
+  {
+    "port": "COM9",
+    "description": "USB-SERIAL CH340 (COM9)",
+    "vid": 6790,
+    "pid": 29987,
+    "serial": ""
+  }
+]

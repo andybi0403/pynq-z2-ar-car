@@ -1,0 +1,38 @@
+{
+  "status": "OFFLINE_VERIFIED_BOARD_PENDING",
+  "boot_bin_bytes": 4149828,
+  "boot_bin_sha256": "1c8c8fdec2c750b5112122dc694a6d981696f268fe7e2178a8289abce21d5d28",
+  "official_bootrom_header_identical": true,
+  "official_fsbl_payload_identical": true,
+  "partition_checksums_valid": true,
+  "compiled_bitstream_payload_identical": true,
+  "implemented_led0_high": true,
+  "expected": "DONE and LED0 steady on after successful early boot",
+  "drc_errors": 0,
+  "drc_warning": "ZPS7-1: PL-only diagnostic; PS initialization is performed by the preserved official FSBL",
+  "partitions": [
+    {
+      "size": 98312,
+      "load": 0,
+      "entry": 0,
+      "offset": 5888,
+      "attributes": 16
+    },
+    {
+      "size": 4045568,
+      "load": 0,
+      "entry": 0,
+      "offset": 104256,
+      "attributes": 32
+    },
+    {
+      "size": 4,
+      "load": 2097152,
+      "entry": 2097152,
+      "offset": 4149824,
+      "attributes": 16
+    }
+  ],
+  "board_boot_verified": false,
+  "sd_card_modified": false
+}

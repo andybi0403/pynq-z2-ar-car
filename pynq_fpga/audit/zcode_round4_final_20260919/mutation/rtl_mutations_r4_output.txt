@@ -1,0 +1,2 @@
+R1_snapshot_miss_us [快照漏锁US组] -> KILLED (4 errors; first: US same snapshot got=00000000 want=000003e8)
+R2_epoch_early [epoch在time_latch时也递增] -> KILLED (2 errors; first: snapshot epoch got=00000003 want=00000001)

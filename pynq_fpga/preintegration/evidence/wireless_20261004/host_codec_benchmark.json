@@ -1,0 +1,22 @@
+{
+  "kind": "decode_encode_benchmark",
+  "machine": "AMD64",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "native_version": "car-video/1;libjpeg-turbo/3.1.2",
+  "frames": 189,
+  "seconds": 5.012062199999491,
+  "combined_fps": 37.70902922952936,
+  "encode_only_fps": 75.8021613317708,
+  "decode_p95_ms": 14.063599999644794,
+  "encode_p95_ms": 14.028999999936786,
+  "mean_jpeg_bytes": 553517.0,
+  "mean_video_mbps_at_30fps": 132.84408,
+  "process_cpu_core_equivalents": 0.9913584073239363,
+  "quality": 75,
+  "subsampling": "4:2:0",
+  "hardware_performance_validated": false,
+  "note": "A host result cannot establish Cortex-A9 performance; combined PL/network load still required.",
+  "scene": "seeded random 720p RGB texture; synthetic HOST scene",
+  "simd": "OFF on Windows correctness build",
+  "arm_720p30_acceptance": "PENDING"
+}

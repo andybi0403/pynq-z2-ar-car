@@ -1,0 +1,13 @@
+{
+  "sources": {
+    "fpga/rtl/car_qei_velocity.v": "f015ad1085eae40f11451d422ad33df7aacb59289aa525a6f5109d07536eaded",
+    "fpga/rtl/car_ultrasonic.v": "2364f817fc0b2473440c1ae45a0486bc87886228fb448171fa531a2a7bf70cf4",
+    "fpga/rtl/car_risk_core.v": "28c9575f271e306b6342ca5571b5f4b2a337e376f9e05a2547402922966b7102",
+    "fpga/tb/tb_car_risk_core.sv": "53dd40bd42d26d1f30fb54ca9e48429a5a73f551aa68ee7a400ad733cffe59d5",
+    "preintegration/vivado/impl_integrated_candidate.tcl": "bb3ab8eb50184c62beacc3bcb792167d8866bd20361937bcc6b5eecfa080bc87",
+    "preintegration/vivado/write_lab_only_bitstream.tcl": "3cac541f96b3ccfaf20f02299b83b03ad5728159818ff2a0156bd2c30174df69"
+  },
+  "zip_sha256": "ad1f261053f3170c72f14c441a0a1c3e15ddaa546792e1883c4fd8b30992d0c4",
+  "warning_count": 0,
+  "advisory_count": 1
+}

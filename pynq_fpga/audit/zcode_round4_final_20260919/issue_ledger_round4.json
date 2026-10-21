@@ -1,0 +1,32 @@
+{
+  "audit": "zcode_round4_final_20260919 第四轮交付前最终全流程只读审查",
+  "date": "2026-09-19",
+  "new_issues": [],
+  "new_issues_note": "本轮未发现新的P0/P1/P2问题。所有历史问题及第三轮两条观察项经独立复验均为关闭/豁免状态（见dispositions）。四轮合计登记过的P1×1+P2×9全部闭环；deferred四项与硬件项维持。",
+  "dispositions": {
+    "前三轮P1/P2全部9项": "CLOSED_VERIFIED（round2/round3复验+round4抽查：AUD-02-01、AUD-AP-01/02、AUD-06-01、AUD-18-01、R2-01、R2-02、R2-03、OBS-R3-01、OBS-R3-02）",
+    "OBS-R3-01": "CLOSED_VERIFIED（verification manifest双指向20260919_161107、同目录、含SYNTH_PASS与WNS=4.446、无坏时钟诊断；篡改矩阵5/5：pristine OK、旧日志/不存在/删键/分目录全部FAILED；相对路径从测试文件位置解析，与cwd无关）",
+    "OBS-R3-02": "CLOSED_VERIFIED（run_acceptance与preintegration三处Vivado调用均在Push-Location+try/finally{Pop-Location}内；假Vivado实验：exit 1、throw 'Vivado framework creation failed'、无PASS行、无AE PASS；本轮门禁后FPGA根目录无retry_open_fs.log）",
+    "OBS-18-01": "OPEN_DEFERRED（V2.1不单边改；V0.7双端方案维持round2附录A）",
+    "R1-F1": "HARDWARE_PENDING（round4复查：lab循环0处RISK_CMD写者；接线方案维持round2附录B）",
+    "R1-F2": "OPEN_DEFERRED（显示口径UI决策）",
+    "R1-F4": "OPEN_DEFERRED（无实测不放宽200ms）"
+  },
+  "mutations_round4": {
+    "协议边界电池": "15/15 PASS（E1-E12：内嵌NUL/非ASCII/无终止符/空字段/18与29字节恰边界/30字节拒绝/5位PWM解析+限幅/6位拒绝/负零/前导+/前导零距离/10000拒绝/坏帧不刷新样本租约tracking）——电池脚本自身3处错误（csum剥位/漏逗号/E3标签）已在审计目录内自修并记录",
+    "主机层变异": "V0基线OK(32项)+V1版本检查移除/V2 epoch复核移除/V3 PS时间替换PL时间/V4 IR置V=0 → 全部FAILED（4/4 KILLED）",
+    "RTL变异": "R1快照漏锁US组→KILLED(4 errors, 'US same snapshot got=0 want=0x3e8')；R2 epoch在time_latch也递增→KILLED(2 errors, 'snapshot epoch got=3 want=1')",
+    "历史变异回归": "D3/D4非零前提重杀4/4（round3）；风险核M1-M11+T1b（round3）；C状态机12变异（round1）"
+  },
+  "hardware_pending": [
+    "真实PYNQ Overlay加载/MMIO/epoch门控实测",
+    "Pmod外设电平/输出类型/上拉/共地实测（5V Echo严禁直连PL）",
+    "实物板卡修订版与本地PA_v3/R12资料比对确认",
+    "UART实链路STOP响应<=300ms实测",
+    "C270 V4L2实测>=25fps/P95<=50ms/掉帧<=5%",
+    "VDMA/HDMI物理画面与人工色序确认（红绿蓝实帧）",
+    "编码器CPR/相序实测与SCALE标定（生产SCALE复位0）",
+    "30分钟联合稳定性（--duration 1800）",
+    "RISK_CMD生产唯一写者与250ms续租接线"
+  ]
+}

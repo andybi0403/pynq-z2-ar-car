@@ -1,0 +1,183 @@
+{
+  "schema": "UART-software-audit/v1",
+  "new_board_access_this_round": false,
+  "firmware_changed": false,
+  "deployed_candidate_changed": false,
+  "inputs": {
+    "stm32_pynq对接版\\Source\\APP\\safe_car.c": "e92555cb80fa5eaa031594e4068e1d9e74b61a5b50a6d03b0c7e0dc08b4aeda8",
+    "stm32_pynq对接版\\Source\\APP\\hybrid_protocol.c": "2c718a4275559a590912b1cf7c35c0015787ba18737fef20ae90e63523cb47e5",
+    "stm32预备程序\\pc\\pynq_link.py": "dbf4c034e208b2a37ee20435a9cbe727680e483a0482a2f46de2819a28775680",
+    "pynq_fpga\\lab\\task7_8_lab_only_v010_edge_console_20261014_r2\\stm32_hybrid_v3.bin": "a5bd2bc31d27539bf8003a5457933afec441cd8a24ac9928c96934ecfbc3c2e8",
+    "pynq_fpga\\lab\\task7_8_lab_only_v010_edge_console_20261014_r2\\stm32_hybrid_v3.elf": "bd278349febbe9d394f2ea28e57c67d1309ac114c5dbd9911e909664c0abfe0a",
+    "pynq_fpga\\lab\\task7_8_lab_only_v010_edge_console_20261014_r2\\task7_8_LAB_ONLY.hwh": "b0b2aeaee963cfc4f018c18ce1d68b9dc96a6d74b3cf02b3e6ac43015af4e81d",
+    "pynq_fpga\\lab\\task7_8_lab_only_v010_edge_console_20261014_r2\\io_LAB_ONLY.rpt": "45c2d955856fceaa9b2540e9834d2dbe12f243b1f1e7c29d94602055639f4da2"
+  },
+  "flashed_BIN_matches_current_candidate": true,
+  "previous_flash_startup_observations": 12,
+  "previous_USB_owner_values": [
+    0
+  ],
+  "previous_external_trial_RX_bytes": 0,
+  "protocol_tests": {
+    "Python_HybridLink": 8,
+    "C_safe_control": "PASS",
+    "C_hybrid_protocol": "PASS"
+  },
+  "ARM_emulation": {
+    "schema": "flashed-arm-uart-emulation/v1",
+    "hardware": false,
+    "firmware_sha256": "a5bd2bc31d27539bf8003a5457933afec441cd8a24ac9928c96934ecfbc3c2e8",
+    "matches_actual_flash_readback": true,
+    "scope": "actual ARM instructions with modeled MMIO; not board power/wires/IRQ timing",
+    "scenarios": [
+      {
+        "scenario": "clean USART1, valid PYNQ Q1; ultrasound has no echo",
+        "query_count": 25,
+        "full_host_accepted_S1": 25,
+        "full_host_parser_errors": 0,
+        "modeled_PWM_final": [
+          0,
+          0
+        ],
+        "uart2_tx_bytes": 1325,
+        "valid_S1": 25,
+        "modeled_initial_registers": {
+          "USART1_BRR": 625,
+          "USART2_BRR": 312,
+          "USART2_CR1": 8236,
+          "USART2_CR2": 0,
+          "USART2_CR3": 0,
+          "AFIO_MAPR": 33554432,
+          "SystemCoreClock": 72000000
+        },
+        "usb_owner": 0,
+        "diagnostic": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "all_replies_locked_zero": true
+      },
+      {
+        "scenario": "one stray USART1 byte then silence",
+        "query_count": 25,
+        "full_host_accepted_S1": 4,
+        "full_host_parser_errors": 0,
+        "modeled_PWM_final": [
+          0,
+          0
+        ],
+        "uart2_tx_bytes": 219,
+        "valid_S1": 4,
+        "modeled_initial_registers": {
+          "USART1_BRR": 625,
+          "USART2_BRR": 312,
+          "USART2_CR1": 8236,
+          "USART2_CR2": 0,
+          "USART2_CR3": 0,
+          "AFIO_MAPR": 33554432,
+          "SystemCoreClock": 72000000
+        },
+        "usb_owner": 0,
+        "diagnostic": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "all_replies_locked_zero": true
+      },
+      {
+        "scenario": "USART1 stray byte every 100ms",
+        "query_count": 25,
+        "full_host_accepted_S1": 0,
+        "full_host_parser_errors": 0,
+        "modeled_PWM_final": [
+          0,
+          0
+        ],
+        "uart2_tx_bytes": 0,
+        "valid_S1": 0,
+        "modeled_initial_registers": {
+          "USART1_BRR": 625,
+          "USART2_BRR": 312,
+          "USART2_CR1": 8236,
+          "USART2_CR2": 0,
+          "USART2_CR3": 0,
+          "AFIO_MAPR": 33554432,
+          "SystemCoreClock": 72000000
+        },
+        "usb_owner": 1,
+        "diagnostic": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "all_replies_locked_zero": false
+      },
+      {
+        "scenario": "USART1 framing-error byte every 100ms",
+        "query_count": 25,
+        "full_host_accepted_S1": 0,
+        "full_host_parser_errors": 0,
+        "modeled_PWM_final": [
+          0,
+          0
+        ],
+        "uart2_tx_bytes": 0,
+        "valid_S1": 0,
+        "modeled_initial_registers": {
+          "USART1_BRR": 625,
+          "USART2_BRR": 312,
+          "USART2_CR1": 8236,
+          "USART2_CR2": 0,
+          "USART2_CR3": 0,
+          "AFIO_MAPR": 33554432,
+          "SystemCoreClock": 72000000
+        },
+        "usb_owner": 1,
+        "diagnostic": [
+          1,
+          13,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          194
+        ],
+        "all_replies_locked_zero": false
+      }
+    ],
+    "passed": true
+  },
+  "confirmed_defect": "USART1 noise/errors can retain USB ownership and discard USART2 indefinitely",
+  "actual_board_trigger_proven": false,
+  "remaining_runtime_software_checks": [
+    "SLCR MIO routing/level shifters",
+    "actual STM32 USB ownership/error counters/current boot"
+  ],
+  "desktop_entry_scope": "video-only, opens no UART"
+}

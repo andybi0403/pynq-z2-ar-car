@@ -1,0 +1,43 @@
+TASK7_8_BOARD_START_FAIL: camera removed
+LAB_UART_STOP_PASS states=1 output=C:\Users\39909\AppData\Local\Temp\tmphqsqs_yg\fresh_uart.json
+LAB_SAFETY_LOOP_PASS samples=8 output=C:\Users\39909\AppData\Local\Temp\tmphqsqs_yg\safety.json
+ENCODE_QUEUE_PASS superseded job skipped; latest encoded; all three DMA buffers returned exactly once
+PIPELINE_FAULT_PASS old encoder/capture race rejected; new capture restores service; cleanup confirmed
+�������ڣ�http://198.18.0.1:8080/#token=REDACTED
+................................................................................................................................................usage: python.exe -m unittest [-h] [--bit BIT] [--hwh HWH]
+                              [--manifest MANIFEST] [--native NATIVE]
+                              [--camera-device CAMERA_DEVICE] [--port PORT]
+                              [--bind BIND] [--web-port WEB_PORT]
+                              [--duration DURATION]
+                              [--video-mode {auto,manual,fixed}] [--fps FPS]
+                              [--quality QUALITY]
+                              [--jpeg-profile {balanced,balanced_fast,detail,legacy}]
+                              [--decode-dct {islow,ifast}] [--reuse-decoder]
+                              [--calibration CALIBRATION]
+                              [--display-model DISPLAY_MODEL]
+                              [--display-stationary] [--motor-disconnected]
+                              [--video-only] [--headless]
+                              [--evidence-dir EVIDENCE_DIR]
+python.exe -m unittest: error: unsupported output fps
+�����ַ�ݲ����ã�network unreachable����Ƶ�������У����������˿� 8080
+�������ڣ�http://198.18.0.1:8080/#token=REDACTED
+...usage: python.exe -m unittest [-h] [--bit BIT] [--hwh HWH]
+                              [--manifest MANIFEST] [--native NATIVE]
+                              [--camera-device CAMERA_DEVICE] [--port PORT]
+                              [--bind BIND] [--web-port WEB_PORT]
+                              [--duration DURATION]
+                              [--video-mode {auto,manual,fixed}] [--fps FPS]
+                              [--quality QUALITY]
+                              [--jpeg-profile {balanced,balanced_fast,detail,legacy}]
+                              [--decode-dct {islow,ifast}] [--reuse-decoder]
+                              [--calibration CALIBRATION]
+                              [--display-model DISPLAY_MODEL]
+                              [--display-stationary] [--motor-disconnected]
+                              [--video-only] [--headless]
+                              [--evidence-dir EVIDENCE_DIR]
+python.exe -m unittest: error: video-only sessions cannot apply calibration
+.
+----------------------------------------------------------------------
+Ran 148 tests in 35.235s
+
+OK

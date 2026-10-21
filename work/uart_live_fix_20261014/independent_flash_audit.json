@@ -1,0 +1,9 @@
+{
+  "kind": "INDEPENDENT_PC_FULL_FLASH_AUDIT",
+  "hardware_readback": true,
+  "readback_bytes": 131072,
+  "readback_sha256": "d327416b36ca5dfbd6b25a3a1c2ea87876560b983fd19c86ceff61b535a97e02",
+  "firmware_sha256": "8b043a342c839414f021bbd68700ddfac48113509577872ace9074bb806f4f2d",
+  "matches_expected_full_flash": true,
+  "outside_erase_span_preserved": true
+}

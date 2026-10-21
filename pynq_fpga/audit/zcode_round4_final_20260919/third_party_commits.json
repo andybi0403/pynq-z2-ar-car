@@ -1,0 +1,8 @@
+{
+ "third_party_commit:verilog-axi": "516bd5dadc3365b7f9e225d2af8fe0b8d804fe53",
+ "third_party_commit:AMDC-Firmware": "5cf9769d33cc821fd55b4268ab80e285e3d4a607",
+ "third_party_commit:PYNQ": "e054c09c52db3244ef35c8ae08a2e62c1e4955fd",
+ "third_party_commit:PYNQ-Z2_sobel_filter_HDMI": "71a4409d76470fac7daed6552b9b3188ffe69d8f",
+ "third_party_commit:projf-explore": "dd212c2e5e0e0d8bdcf93ba077630dbfd49ae708",
+ "third_party_commit:HC-SR04-FPGA": "f4df022d27349fbf1dd71fb0aa99834365dfe0a9"
+}

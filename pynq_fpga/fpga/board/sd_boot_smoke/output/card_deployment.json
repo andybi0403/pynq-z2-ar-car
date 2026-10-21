@@ -1,0 +1,13 @@
+{
+  "stage": "complete",
+  "time": "2026-10-04 22:42:07",
+  "restore": true,
+  "boot_bin_sha256": "3fcdd4303567d75ac1e7be96c4a93816acb6c150f6facbf1f123d729a5bd5def",
+  "backup": "C:\\Users\\39909\\Desktop\\FPGA\\tmp\\sd_boot_smoke_backups\\20261004_224200\\BOOT.BIN",
+  "physical_fat_readback_pass": true,
+  "other_boot_files_verified": true,
+  "project_files_verified": 47,
+  "ejected": true,
+  "eject_error": null,
+  "board_boot_verified": false
+}

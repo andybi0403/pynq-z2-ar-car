@@ -1,0 +1,103 @@
+{
+  "schema": "car-full-bench-check/v1",
+  "completed_at": "2026-10-14T02:22:10.474105+08:00",
+  "candidate": "v010_edge_console_20261014_r2",
+  "contract_id": "0xC425100A",
+  "zip_sha256": "0b751f7bf3d2c43322dfb50b79469db161f49564018901bd3f5dc8579d8cc561",
+  "overall_joint_acceptance_passed": false,
+  "motion_acceptance_passed": false,
+  "desktop_shortcut": "C:/Users/39909/Desktop/PYNQ小车控制台.lnk",
+  "camera_capture_passed": true,
+  "board_HTTP_raw_processed_snapshot_passed": true,
+  "video_only_hour": {
+    "duration_s": 3601.281964289,
+    "frames": 14329,
+    "passed": true,
+    "resources_closed": true,
+    "active_fps": {
+      "captured": 28.707967260418858,
+      "encoded": 4.124616552996357,
+      "processed": 4.215963015752802,
+      "published": 3.9825921811804057,
+      "sent": 0.211732414924314
+    },
+    "joint_acceptance_validated": false
+  },
+  "browser": {
+    "surface": "Codex in-app Chromium browser; exact deployed candidate via local proxy",
+    "feedback_samples": 32,
+    "max_reported_received_fps": 7.327796775840542,
+    "max_reported_drawn_fps": 1.6199578810833601,
+    "freeze_frame_id": 97724,
+    "raw_and_processed_images_visibly_rendered": true,
+    "native_edge_UI_automated": false,
+    "steady_30fps_validated": false
+  },
+  "UART_final": {
+    "kind": "HYBRID_UART_PL_TRIAL",
+    "hardware": true,
+    "motor_commands": "query and PSTOP only",
+    "sensor_joint_acceptance": false,
+    "duration_target_s": 15,
+    "package": "/home/xilinx/edge_console_v010_20261014_r2",
+    "observed_s": 15.049280420999821,
+    "sensor_errors": 0,
+    "transport_error": null,
+    "state_reports": 0,
+    "uart_rx_bytes": 0,
+    "final_scale": [
+      0,
+      0
+    ],
+    "final_external_status": 1,
+    "final_risk_enable": 0,
+    "tx_types": {
+      "Q1": 243,
+      "PSTOP": 244
+    },
+    "samples": 279,
+    "valid_us_pl_samples": 0,
+    "valid_ir_pl_samples": 0,
+    "first_report": null,
+    "last_report": null,
+    "passed": false,
+    "bit_sha256": "d3287345221c56d0f0c120508ef1bc54771eeedd7b85050e50906c3ff282d7ad",
+    "raw_archive_sha256": "20b3d7393f4d804e504936bc6e075f1790f55a2df68309f158b3db7fc661cd32"
+  },
+  "QEI": {
+    "illegal_count": [
+      255,
+      255
+    ],
+    "odometry_fault": [
+      true,
+      true
+    ],
+    "scales": [
+      0,
+      0
+    ],
+    "physical_calibration_done": false
+  },
+  "cleanup": {
+    "own_board_video_process_closed": true,
+    "risk_enable": 0,
+    "scales": [
+      0,
+      0
+    ],
+    "campus_WiFi_restored": true,
+    "temporary_PC_servers_stopped": true,
+    "nonzero_motion_sent": false
+  },
+  "pending": [
+    "External UART/STM32 connection and reply",
+    "Actual US/IR response to physical stimuli",
+    "QEI electrical quality, hand rotation and wheel calibration",
+    "STM32 actual LOCK/PWM and stop latency",
+    "Qualified 30s/1800s joint run and fault cases",
+    "720p30 delivered/drawn video",
+    "Independent power reboot and USB removal physical test",
+    "Native Edge UI direct automation"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "hardware": false,
+  "source": "historical actual camera raw JPEG",
+  "source_snapshot": "pynq_fpga\\preintegration\\evidence\\video_six_rounds_20261008\\round6_formal_live_LAN_browser_r2_20261009\\snapshot_2142.json",
+  "frame_id": 2142,
+  "preview": "new RTL simulation, not current board output",
+  "sensors": "invalid fixture; no calibrated alarm acceptance",
+  "source_files": {
+    "car_axis_osd.v": "62d131cc382ea361443e7064cbae16134c0530c7da0accb14e583f7be1421acb",
+    "car_axis_status_osd.v": "763f27c5ddce41963a73a1322e73f138b8079c7eae32100922fc15d149592fec",
+    "car_axis_front_overlay.v": "b73cfa2f8ab90d1c69e7739c3b688c4f1a0f8a68288cf761d6b21e2f9dbfa15d",
+    "font_24x24_hud.mem": "26e859949ec2440c416102d885862505d677ef87ce0a0700a2258b52cac8630a",
+    "font_32x32_hud.mem": "54232b48b44c3b7c39c86a7a588386e90dab694fa37013b5942c6dd7c2fd2923"
+  },
+  "preview_directory": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\fpga\\build\\hud_preview_20261011_after_r4",
+  "candidate": "v09_hud_clear_20261011_r3",
+  "render_sha256": "6f13a88e3db03315159e6f2f5576eb3a28fa609e5ef0e47455e9316b35ff9ae2"
+}

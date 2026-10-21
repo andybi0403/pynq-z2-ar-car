@@ -1,0 +1,964 @@
+....................
+----------------------------------------------------------------------
+Ran 20 tests in 0.177s
+
+OK
+LAB_UART_STOP_PASS states=1 output=C:\Users\39909\AppData\Local\Temp\tmp8cjvk1zh\fresh_uart.json
+LAB_SAFETY_LOOP_PASS samples=8 output=C:\Users\39909\AppData\Local\Temp\tmp8cjvk1zh\safety.json
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/rtl/axis32_to_rgb24.v" into library work
+INFO: [VRFC 10-311] analyzing module axis32_to_rgb24
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/tb/tb_axis32_to_rgb24.sv" into library work
+INFO: [VRFC 10-311] analyzing module tb_axis32_to_rgb24
+Vivado Simulator v2026.1
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/AMDDesignTools/2026.1/Vivado/bin/unwrapped/win64.o/xelab.exe tb_axis32_to_rgb24 -s tb_axis32_to_rgb24_sim 
+Multi-threading is on. Using 22 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.axis32_to_rgb24
+Compiling module work.tb_axis32_to_rgb24
+Built simulation snapshot tb_axis32_to_rgb24_sim
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Sat Sep 19 18:31:28 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_axis32_to_rgb24_sim/xsim_script.tcl
+# xsim {tb_axis32_to_rgb24_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+TEST PASSED (312 checks)
+$finish called at time : 1786 ns : File "C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/tb/tb_axis32_to_rgb24.sv" Line 45
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 19 18:31:30 2026...
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/rtl/axi_control_slot_stub.v" into library work
+INFO: [VRFC 10-311] analyzing module axi_control_slot_stub
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/tb/tb_axi_control_slot_stub.sv" into library work
+INFO: [VRFC 10-311] analyzing module tb_axi_control_slot_stub
+Vivado Simulator v2026.1
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/AMDDesignTools/2026.1/Vivado/bin/unwrapped/win64.o/xelab.exe tb_axi_control_slot_stub -s tb_axi_control_slot_stub_sim 
+Multi-threading is on. Using 22 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.axi_control_slot_stub
+Compiling module work.tb_axi_control_slot_stub
+Built simulation snapshot tb_axi_control_slot_stub_sim
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Sat Sep 19 18:31:33 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_axi_control_slot_stub_sim/xsim_script.tcl
+# xsim {tb_axi_control_slot_stub_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+TEST PASSED (34 checks)
+$finish called at time : 566 ns : File "C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/tb/tb_axi_control_slot_stub.sv" Line 30
+exit
+INFO: [Common 17-206] Exiting xsim at Sat Sep 19 18:31:35 2026...
+AE_INTEGRATION_GATE_BLOCKED
+- D: no explicit PASS status
+AE_GATE_STATE=BLOCKED
+INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detected. Your current license is active and will expire on 16-sep-2027.
+
+****** Vivado v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Sat Sep 19 18:31:36 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source {C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\vivado\create_framework.tcl}
+# set pre_dir [file normalize [file join [file dirname [info script]] ..]]
+# set project_root [file normalize [file join $pre_dir ..]]
+# set workspace [file normalize [file join $project_root ..]]
+# set board_repo [file join $pre_dir board_repo]
+# set build_dir [file join $project_root fpga build task7_8_preintegration]
+# set rtl_adapter [file join $pre_dir rtl axis32_to_rgb24.v]
+# set rtl_control_slot [file join $pre_dir rtl axi_control_slot_stub.v]
+# set hdmi_xdc [file join $pre_dir constraints task7_8_hdmi.xdc]
+# set pynq_ip_repo [file join $project_root third_party PYNQ boards ip]
+# set_param board.repoPaths [list $board_repo]
+# set board_part tul.com.tw:pynq-z2:part0:1.0
+# if {[llength [get_board_parts -quiet $board_part]] == 0} {
+#  error "Local PYNQ-Z2 board part not found at $board_repo"
+# }
+# create_project -force task7_8_preintegration $build_dir -part xc7z020clg400-1
+# set_property board_part $board_part [current_project]
+# set_property target_language Verilog [current_project]
+# set_property ip_repo_paths [list $pynq_ip_repo] [current_project]
+# update_ip_catalog
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/PYNQ/boards/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/AMDDesignTools/2026.1/Vivado/data/ip'.
+# add_files -norecurse $rtl_adapter
+# add_files -norecurse $rtl_control_slot
+# add_files -fileset constrs_1 -norecurse $hdmi_xdc
+# set_property PROCESSING_ORDER LATE [get_files $hdmi_xdc]
+# create_bd_design preintegration_bd
+Wrote  : <C:\Users\39909\Desktop\FPGA\pynq_fpga\fpga\build\task7_8_preintegration\task7_8_preintegration.srcs\sources_1\bd\preintegration_bd\preintegration_bd.bd> 
+# set ps [create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 ps7]
+# apply_bd_automation -rule xilinx.com:bd_rule:processing_system7 -config {apply_board_preset "1" make_external "FIXED_IO, DDR" Master "Disable" Slave "Disable"} $ps
+# set_property CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {100.000000} $ps
+CRITICAL WARNING: [PSU-1]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_0 has negative value -0.051 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-2]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_1 has negative value -0.006 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-3]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_2 has negative value -0.009 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-4]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_3 has negative value -0.033 . PS DDR interfaces might fail when entering negative DQS skew values. 
+# set_property -dict [list CONFIG.PCW_USE_M_AXI_GP0 {1} CONFIG.PCW_USE_S_AXI_HP0 {1} CONFIG.PCW_USE_FABRIC_INTERRUPT {1} CONFIG.PCW_IRQ_F2P_INTR {1} CONFIG.PCW_IRQ_F2P_MODE {DIRECT}] $ps
+CRITICAL WARNING: [PSU-1]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_0 has negative value -0.051 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-2]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_1 has negative value -0.006 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-3]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_2 has negative value -0.009 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-4]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_3 has negative value -0.033 . PS DDR interfaces might fail when entering negative DQS skew values. 
+INFO: [Ipptcl 7-1463] No Compatible Board Interface found. Board Tab not created in customize GUI
+# set rst [create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_100m]
+# set gp [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* gp_control_ic]
+# set_property -dict [list CONFIG.NUM_SI {1} CONFIG.NUM_MI {5}] $gp
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aclk' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aclk' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aresetn' of definition 'xilinx.com:signal:reset:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aresetn' of definition 'xilinx.com:signal:reset:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXI' of definition 'xilinx.com:interface:aximm:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXI' of definition 'xilinx.com:interface:aximm:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-4728] Bus Interface 'aclk': Added interface parameter 'ASSOCIATED_BUSIF' with value 'S_AXI'.
+INFO: [IP_Flow 19-4728] Bus Interface 'aclk': Added interface parameter 'ASSOCIATED_RESET' with value 'aresetn'.
+INFO: [IP_Flow 19-4728] Bus Interface 'aclk': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'aresetn': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXI': Added interface parameter 'PROTOCOL' with value 'AXI4LITE'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXI': Added interface parameter 'DATA_WIDTH' with value '32'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXI': Added interface parameter 'ADDR_WIDTH' with value '12'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXI': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-7067] Note that bus interface 'aclk' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+INFO: [IP_Flow 19-7067] Note that bus interface 'S_AXI' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+# set slot [create_bd_cell -type module -reference axi_control_slot_stub control_slot_stub]
+# set vdma [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_vdma:* video_vdma]
+# set_property -dict [list CONFIG.c_include_mm2s {1} CONFIG.c_include_s2mm {0} CONFIG.c_num_fstores {3} CONFIG.c_m_axi_mm2s_data_width {64} CONFIG.c_m_axis_mm2s_tdata_width {32} CONFIG.c_mm2s_genlock_mode {0}] $vdma
+# set video_irq [create_bd_cell -type inline_hdl -vlnv xilinx.com:inline_hdl:ilconcat:1.0 video_irq_concat]
+# set_property CONFIG.NUM_PORTS {2} $video_irq
+# set mem [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* video_hp0_ic]
+# set_property -dict [list CONFIG.NUM_SI {1} CONFIG.NUM_MI {1}] $mem
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aclk' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aclk' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aresetn' of definition 'xilinx.com:signal:reset:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aresetn' of definition 'xilinx.com:signal:reset:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-4728] Bus Interface 'aclk': Added interface parameter 'ASSOCIATED_BUSIF' with value 'S_AXIS'.
+INFO: [IP_Flow 19-4728] Bus Interface 'aclk': Added interface parameter 'ASSOCIATED_RESET' with value 'aresetn'.
+INFO: [IP_Flow 19-4728] Bus Interface 'aclk': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'aresetn': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-7067] Note that bus interface 'aclk' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+# set adapter [create_bd_cell -type module -reference axis32_to_rgb24 video_width_adapter]
+# set osd_slot [create_bd_cell -type ip -vlnv xilinx.com:ip:axis_register_slice:1.1 osd_slot_stub]
+# set_property -dict [list CONFIG.TDATA_NUM_BYTES {3} CONFIG.TUSER_WIDTH {1}] $osd_slot
+# set dynclk [create_bd_cell -type ip -vlnv digilentinc.com:ip:axi_dynclk:1.0 hdmi_dynclk]
+# set vtc [create_bd_cell -type ip -vlnv xilinx.com:ip:v_tc:6.2 hdmi_vtc]
+# set_property CONFIG.enable_detection {false} $vtc
+# set vidout [create_bd_cell -type ip -vlnv xilinx.com:ip:v_axi4s_vid_out:4.0 hdmi_axis_to_video]
+# set_property -dict [list CONFIG.C_ADDR_WIDTH {11} CONFIG.C_HAS_ASYNC_CLK {1} CONFIG.C_HYSTERESIS_LEVEL {1024} CONFIG.C_VTG_MASTER_SLAVE {1}] $vidout
+# set rgb2dvi [create_bd_cell -type ip -vlnv digilentinc.com:ip:rgb2dvi:1.2 hdmi_rgb2dvi]
+# set_property -dict [list CONFIG.kClkRange {2} CONFIG.kGenerateSerialClk {false} CONFIG.kRstActiveHigh {false}] $rgb2dvi
+# set hpd_gpio [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 hdmi_hpd_gpio]
+# set_property -dict [list CONFIG.C_ALL_INPUTS {1} CONFIG.C_GPIO_WIDTH {1} CONFIG.C_INTERRUPT_PRESENT {1}] $hpd_gpio
+# make_bd_intf_pins_external [get_bd_intf_pins $rgb2dvi/TMDS]
+# set_property name hdmi_out [get_bd_intf_ports TMDS_0]
+# set hpd_port [create_bd_port -dir I hdmi_tx_hpdn]
+# connect_bd_net [get_bd_pins $hpd_gpio/gpio_io_i] $hpd_port
+WARNING: [BD 41-1306] The connection to interface pin </hdmi_hpd_gpio/gpio_io_i> is being overridden by the user with net <hdmi_tx_hpdn_1>. This pin will not be connected as a part of interface connection <GPIO>, and might not recreate the connectivity as expected using the writ_bd_tcl command.
+# connect_bd_intf_net [get_bd_intf_pins $ps/M_AXI_GP0] [get_bd_intf_pins $gp/S00_AXI]
+# connect_bd_intf_net [get_bd_intf_pins $gp/M00_AXI] [get_bd_intf_pins $vdma/S_AXI_LITE]
+# connect_bd_intf_net [get_bd_intf_pins $gp/M01_AXI] [get_bd_intf_pins $slot/S_AXI]
+# connect_bd_intf_net [get_bd_intf_pins $gp/M02_AXI] [get_bd_intf_pins $dynclk/s00_axi]
+# connect_bd_intf_net [get_bd_intf_pins $gp/M03_AXI] [get_bd_intf_pins $vtc/ctrl]
+# connect_bd_intf_net [get_bd_intf_pins $gp/M04_AXI] [get_bd_intf_pins $hpd_gpio/S_AXI]
+# connect_bd_intf_net [get_bd_intf_pins $vdma/M_AXI_MM2S] [get_bd_intf_pins $mem/S00_AXI]
+# connect_bd_intf_net [get_bd_intf_pins $mem/M00_AXI] [get_bd_intf_pins $ps/S_AXI_HP0]
+# connect_bd_intf_net [get_bd_intf_pins $vdma/M_AXIS_MM2S] [get_bd_intf_pins $adapter/S_AXIS]
+# connect_bd_net [get_bd_pins $vdma/mm2s_introut] [get_bd_pins $video_irq/In0]
+# connect_bd_net [get_bd_pins $hpd_gpio/ip2intc_irpt] [get_bd_pins $video_irq/In1]
+# connect_bd_net [get_bd_pins $video_irq/dout] [get_bd_pins $ps/IRQ_F2P]
+# connect_bd_intf_net [get_bd_intf_pins $adapter/M_AXIS] [get_bd_intf_pins $osd_slot/S_AXIS]
+# connect_bd_intf_net [get_bd_intf_pins $osd_slot/M_AXIS] [get_bd_intf_pins $vidout/video_in]
+# connect_bd_intf_net [get_bd_intf_pins $vtc/vtiming_out] [get_bd_intf_pins $vidout/vtiming_in]
+# connect_bd_intf_net [get_bd_intf_pins $vidout/vid_io_out] [get_bd_intf_pins $rgb2dvi/RGB]
+# set clk [get_bd_pins $ps/FCLK_CLK0]
+# set resetn [get_bd_pins $rst/peripheral_aresetn]
+# connect_bd_net $clk [get_bd_pins $ps/M_AXI_GP0_ACLK] [get_bd_pins $ps/S_AXI_HP0_ACLK]
+# connect_bd_net $clk [get_bd_pins $rst/slowest_sync_clk] [get_bd_pins $gp/ACLK] [get_bd_pins $gp/S00_ACLK] [get_bd_pins $gp/M00_ACLK] [get_bd_pins $gp/M01_ACLK] [get_bd_pins $gp/M02_ACLK] [get_bd_pins $gp/M03_ACLK] [get_bd_pins $gp/M04_ACLK]
+# connect_bd_net $clk [get_bd_pins $slot/aclk] [get_bd_pins $vdma/s_axi_lite_aclk] [get_bd_pins $vdma/m_axi_mm2s_aclk] [get_bd_pins $vdma/m_axis_mm2s_aclk]
+# connect_bd_net $clk [get_bd_pins $mem/ACLK] [get_bd_pins $mem/S00_ACLK] [get_bd_pins $mem/M00_ACLK] [get_bd_pins $adapter/aclk] [get_bd_pins $osd_slot/aclk] [get_bd_pins $vidout/aclk]
+# connect_bd_net $clk [get_bd_pins $dynclk/REF_CLK_I] [get_bd_pins $dynclk/s00_axi_aclk] [get_bd_pins $vtc/s_axi_aclk] [get_bd_pins $hpd_gpio/s_axi_aclk]
+# connect_bd_net [get_bd_pins $dynclk/PXL_CLK_O] [get_bd_pins $vidout/vid_io_out_clk] [get_bd_pins $vtc/clk] [get_bd_pins $rgb2dvi/PixelClk]
+# connect_bd_net [get_bd_pins $dynclk/PXL_CLK_5X_O] [get_bd_pins $rgb2dvi/SerialClk]
+# connect_bd_net [get_bd_pins $dynclk/LOCKED_O] [get_bd_pins $rgb2dvi/aRst_n]
+# connect_bd_net [get_bd_pins $ps/FCLK_RESET0_N] [get_bd_pins $rst/ext_reset_in]
+# connect_bd_net $resetn [get_bd_pins $gp/ARESETN] [get_bd_pins $gp/S00_ARESETN] [get_bd_pins $gp/M00_ARESETN] [get_bd_pins $gp/M01_ARESETN] [get_bd_pins $gp/M02_ARESETN] [get_bd_pins $gp/M03_ARESETN] [get_bd_pins $gp/M04_ARESETN]
+# connect_bd_net $resetn [get_bd_pins $slot/aresetn] [get_bd_pins $vdma/axi_resetn]
+# connect_bd_net $resetn [get_bd_pins $mem/ARESETN] [get_bd_pins $mem/S00_ARESETN] [get_bd_pins $mem/M00_ARESETN] [get_bd_pins $adapter/aresetn] [get_bd_pins $osd_slot/aresetn]
+# connect_bd_net $resetn [get_bd_pins $dynclk/s00_axi_aresetn] [get_bd_pins $vtc/s_axi_aresetn] [get_bd_pins $hpd_gpio/s_axi_aresetn]
+# assign_bd_address
+INFO: [BD 41-3093] Triggering Legacy Auto Assign Algorithm
+Slave segment '/ps7/S_AXI_HP0/HP0_DDR_LOWOCM' is being assigned into address space '/video_vdma/Data_MM2S' at <0x0000_0000 [ 512M ]>.
+Slave segment '/control_slot_stub/S_AXI/reg0' is being assigned into address space '/ps7/Data' at <0x4000_0000 [ 4K ]>.
+Slave segment '/hdmi_dynclk/s00_axi/reg0' is being assigned into address space '/ps7/Data' at <0x43C0_0000 [ 64K ]>.
+Slave segment '/hdmi_hpd_gpio/S_AXI/Reg' is being assigned into address space '/ps7/Data' at <0x4120_0000 [ 64K ]>.
+Slave segment '/hdmi_vtc/ctrl/Reg' is being assigned into address space '/ps7/Data' at <0x43C1_0000 [ 64K ]>.
+Slave segment '/video_vdma/S_AXI_LITE/Reg' is being assigned into address space '/ps7/Data' at <0x4300_0000 [ 64K ]>.
+# assign_bd_address -offset 0x43000000 -range 0x00010000 -target_address_space [get_bd_addr_spaces $ps/Data] [get_bd_addr_segs $vdma/S_AXI_LITE/Reg] -force
+# assign_bd_address -offset 0x43C00000 -range 0x00001000 -target_address_space [get_bd_addr_spaces $ps/Data] [get_bd_addr_segs $slot/S_AXI/reg0] -force
+Slave segment '/control_slot_stub/S_AXI/reg0' is being assigned into address space '/ps7/Data' at <0x43C0_0000 [ 4K ]>.
+# assign_bd_address -offset 0x43C10000 -range 0x00010000 -target_address_space [get_bd_addr_spaces $ps/Data] [get_bd_addr_segs $dynclk/s00_axi/reg0] -force
+Slave segment '/hdmi_dynclk/s00_axi/reg0' is being assigned into address space '/ps7/Data' at <0x43C1_0000 [ 64K ]>.
+# assign_bd_address -offset 0x43C20000 -range 0x00010000 -target_address_space [get_bd_addr_spaces $ps/Data] [get_bd_addr_segs $vtc/ctrl/Reg] -force
+Slave segment '/hdmi_vtc/ctrl/Reg' is being assigned into address space '/ps7/Data' at <0x43C2_0000 [ 64K ]>.
+# assign_bd_address -offset 0x41230000 -range 0x00010000 -target_address_space [get_bd_addr_spaces $ps/Data] [get_bd_addr_segs $hpd_gpio/S_AXI/Reg] -force
+Slave segment '/hdmi_hpd_gpio/S_AXI/Reg' is being assigned into address space '/ps7/Data' at <0x4123_0000 [ 64K ]>.
+# assign_bd_address -offset 0x00000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces $vdma/Data_MM2S] [get_bd_addr_segs $ps/S_AXI_HP0/HP0_DDR_LOWOCM] -force
+# validate_bd_design
+WARNING: [BD 41-702] Propagation TCL tries to overwrite USER strength parameter PCW_M_AXI_GP0_FREQMHZ(10) on '/ps7' with propagated value(100). Command ignored
+CRITICAL WARNING: [PSU-1]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_0 has negative value -0.051 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-2]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_1 has negative value -0.006 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-3]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_2 has negative value -0.009 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-4]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_3 has negative value -0.033 . PS DDR interfaces might fail when entering negative DQS skew values. 
+# save_bd_design
+Wrote  : <C:\Users\39909\Desktop\FPGA\pynq_fpga\fpga\build\task7_8_preintegration\task7_8_preintegration.srcs\sources_1\bd\preintegration_bd\preintegration_bd.bd> 
+# set bd_file [get_files preintegration_bd.bd]
+# generate_target all $bd_file
+INFO: [BD 41-1662] The design 'preintegration_bd.bd' is already validated. Therefore parameter propagation will not be re-run.
+Verilog Output written to : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v
+Verilog Output written to : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/sim/preintegration_bd.v
+Verilog Output written to : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/hdl/preintegration_bd_wrapper.v
+INFO: [IP_Flow 19-5611] Unable to find an associated reset port for the interface 'M_AXI_GP0'. A default connection has been created.
+INFO: [IP_Flow 19-5611] Unable to find an associated reset port for the interface 'S_AXI_HP0'. A default connection has been created.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps7 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block rst_100m .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block gp_control_ic/xbar .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_gp_control_ic_imp_auto_pc_0/preintegration_bd_gp_control_ic_imp_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block gp_control_ic/s00_couplers/auto_pc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block control_slot_stub .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block video_vdma .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_hp0_ic_imp_auto_pc_0/preintegration_bd_video_hp0_ic_imp_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block video_hp0_ic/s00_couplers/auto_pc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block video_width_adapter .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block osd_slot_stub .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block hdmi_dynclk .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block hdmi_vtc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block hdmi_axis_to_video .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block hdmi_rgb2dvi .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block hdmi_hpd_gpio .
+Exporting to file C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/hw_handoff/preintegration_bd.hwh
+Generated Hardware Definition File C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.hwdef
+INFO: [BD 41-3262] Generated VHDL Instantiation Template file c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/preintegration_bd.vho
+INFO: [BD 41-3262] Generated Verilog Instantiation Template file c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/preintegration_bd.veo
+INFO: [BD 41-3262] Generated System Verilog Instantiation Template file c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/preintegration_bd_sv.sveo
+generate_target: Time (s): cpu = 00:00:14 ; elapsed = 00:00:18 . Memory (MB): peak = 819.594 ; gain = 44.762
+# set rgb2dvi_clock_xdc [get_files -quiet *rgb2dvi_clocks.xdc]
+# if {[llength $rgb2dvi_clock_xdc] != 1} {error "Expected one rgb2dvi clock XDC"}
+# set_property USED_IN_SYNTHESIS false $rgb2dvi_clock_xdc
+# set_property USED_IN_IMPLEMENTATION false $rgb2dvi_clock_xdc
+# make_wrapper -files $bd_file -top
+# add_files -norecurse [file join [file dirname $bd_file] hdl preintegration_bd_wrapper.v]
+INFO: [Project 1-1716] Could not find the wrapper file C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.srcs/sources_1/bd/preintegration_bd/hdl/preintegration_bd_wrapper.v, checking in project .gen location instead.
+INFO: [Vivado 12-12390] Found file C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/hdl/preintegration_bd_wrapper.v, adding it to Project
+# set_property top preintegration_bd_wrapper [get_filesets sources_1]
+# update_compile_order -fileset sources_1
+# close_project
+# puts "PREINTEGRATION_FRAMEWORK_CREATED: [file join $build_dir task7_8_preintegration.xpr]"
+PREINTEGRATION_FRAMEWORK_CREATED: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.xpr
+INFO: [Common 17-206] Exiting Vivado at Sat Sep 19 18:32:22 2026...
+INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detected. Your current license is active and will expire on 16-sep-2027.
+
+****** Vivado v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Sat Sep 19 18:32:23 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source {C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\vivado\check_framework.tcl}
+# set pre_dir [file normalize [file join [file dirname [info script]] ..]]
+# set root [file normalize [file join $pre_dir ..]]
+# set_param board.repoPaths [file join $pre_dir board_repo]
+# set xpr [file join $root fpga build task7_8_preintegration task7_8_preintegration.xpr]
+# open_project $xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/PYNQ/boards/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/AMDDesignTools/2026.1/Vivado/data/ip'.
+open_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:10 . Memory (MB): peak = 601.902 ; gain = 283.555
+# open_bd_design C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.srcs/sources_1/bd/preintegration_bd/preintegration_bd.bd
+Reading block design file <C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.srcs/sources_1/bd/preintegration_bd/preintegration_bd.bd>...
+Adding component instance block -- xilinx.com:ip:processing_system7:5.5 - ps7
+Adding component instance block -- xilinx.com:ip:proc_sys_reset:5.0 - rst_100m
+Adding component instance block -- xilinx.com:ip:axi_interconnect:2.1 - gp_control_ic
+Adding component instance block -- xilinx.com:ip:axi_crossbar:2.1 - xbar
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:module_ref:axi_control_slot_stub:1.0 - control_slot_stub
+Adding component instance block -- xilinx.com:ip:axi_vdma:6.3 - video_vdma
+Adding component instance block -- xilinx.com:inline_hdl:ilconcat:1.0 - video_irq_concat
+Adding component instance block -- xilinx.com:ip:axi_interconnect:2.1 - video_hp0_ic
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:module_ref:axis32_to_rgb24:1.0 - video_width_adapter
+Adding component instance block -- xilinx.com:ip:axis_register_slice:1.1 - osd_slot_stub
+Adding component instance block -- digilentinc.com:ip:axi_dynclk:1.0 - hdmi_dynclk
+Adding component instance block -- xilinx.com:ip:v_tc:6.2 - hdmi_vtc
+Adding component instance block -- xilinx.com:ip:v_axi4s_vid_out:4.0 - hdmi_axis_to_video
+Adding component instance block -- digilentinc.com:ip:rgb2dvi:1.2 - hdmi_rgb2dvi
+Adding component instance block -- xilinx.com:ip:axi_gpio:2.0 - hdmi_hpd_gpio
+Successfully read diagram <preintegration_bd> from block design file <C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.srcs/sources_1/bd/preintegration_bd/preintegration_bd.bd>
+open_bd_design: Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 667.078 ; gain = 65.176
+# foreach cell {ps7 rst_100m gp_control_ic control_slot_stub video_vdma video_irq_concat video_hp0_ic video_width_adapter osd_slot_stub hdmi_dynclk hdmi_vtc hdmi_axis_to_video hdmi_rgb2dvi hdmi_hpd_gpio} {
+#  if {[llength [get_bd_cells -quiet $cell]] != 1} {error "Missing framework cell: $cell"}
+# }
+# set irq_net [get_bd_nets -quiet -of_objects [get_bd_pins video_vdma/mm2s_introut]]
+# set irq_concat_net [get_bd_nets -quiet -of_objects [get_bd_pins video_irq_concat/In0]]
+# if {[llength $irq_net] != 1 || $irq_net ne $irq_concat_net} {error "VDMA MM2S interrupt is not routed to the PS concat"}
+# set hpd_irq_net [get_bd_nets -quiet -of_objects [get_bd_pins hdmi_hpd_gpio/ip2intc_irpt]]
+# set hpd_concat_net [get_bd_nets -quiet -of_objects [get_bd_pins video_irq_concat/In1]]
+# if {[llength $hpd_irq_net] != 1 || $hpd_irq_net ne $hpd_concat_net} {error "HDMI HPD interrupt is not routed to the PS concat"}
+# set ps_irq_net [get_bd_nets -quiet -of_objects [get_bd_pins ps7/IRQ_F2P]]
+# set concat_out_net [get_bd_nets -quiet -of_objects [get_bd_pins video_irq_concat/dout]]
+# if {[llength $ps_irq_net] != 1 || $ps_irq_net ne $concat_out_net} {error "Video interrupt concat is not routed to PS IRQ_F2P"}
+# if {[llength [get_bd_intf_ports -quiet hdmi_out]] != 1} {error "Missing HDMI TMDS output"}
+# if {[llength [get_bd_ports -quiet hdmi_tx_hpdn]] != 1 || [get_property DIR [get_bd_ports hdmi_tx_hpdn]] ne "I"} {error "HDMI HPDN must be an input per local schematic sheet 6"}
+# set rgb2dvi_clock_xdc [get_files -quiet *rgb2dvi_clocks.xdc]
+# if {[llength $rgb2dvi_clock_xdc] != 1 || [get_property USED_IN_SYNTHESIS $rgb2dvi_clock_xdc] || [get_property USED_IN_IMPLEMENTATION $rgb2dvi_clock_xdc]} {error "External-clock rgb2dvi must not load its internal generated-clock XDC"}
+# foreach forbidden {car_perception_top.v car_axis_osd.v} {
+#  if {[llength [get_files -quiet *$forbidden]] != 0} {error "A-E production RTL leaked into framework: $forbidden"}
+# }
+# set slot_seg [get_bd_addr_segs -quiet ps7/Data/SEG_control_slot_stub_reg0]
+# set vdma_seg [get_bd_addr_segs -quiet ps7/Data/SEG_video_vdma_Reg]
+# set dynclk_seg [get_bd_addr_segs -quiet ps7/Data/SEG_hdmi_dynclk_reg0]
+# set vtc_seg [get_bd_addr_segs -quiet ps7/Data/SEG_hdmi_vtc_Reg]
+# set hpd_seg [get_bd_addr_segs -quiet ps7/Data/SEG_hdmi_hpd_gpio_Reg]
+# if {[llength $slot_seg] != 1 || [get_property OFFSET $slot_seg] ne "0x43C00000"} {error "Control slot address mismatch"}
+# if {[llength $vdma_seg] != 1 || [get_property OFFSET $vdma_seg] ne "0x43000000"} {error "VDMA address mismatch"}
+# if {[llength $dynclk_seg] != 1 || [get_property OFFSET $dynclk_seg] ne "0x43C10000"} {error "HDMI clock address mismatch"}
+# if {[llength $vtc_seg] != 1 || [get_property OFFSET $vtc_seg] ne "0x43C20000"} {error "HDMI VTC address mismatch"}
+# if {[llength $hpd_seg] != 1 || [get_property OFFSET $hpd_seg] ne "0x41230000"} {error "HDMI HPD address mismatch"}
+# validate_bd_design
+INFO: [BD 5-320] Validate design is not run, since the design is already validated.
+# close_project
+# puts "PREINTEGRATION_FRAMEWORK_CHECK_PASS"
+PREINTEGRATION_FRAMEWORK_CHECK_PASS
+INFO: [Common 17-206] Exiting Vivado at Sat Sep 19 18:32:44 2026...
+HWH_CONTRACT_PASS {"control_base": 1136656384, "control_size": 4096, "dynclk_base": 1136721920, "dynclk_size": 65536, "hpd_base": 1092812800, "hpd_is_input": true, "hpd_size": 65536, "interrupts_to_ps": true, "placeholder_present": true, "production_present": false, "reset_active_low": true, "sensor_ports_present": false, "uart_emio_present": false, "vdma_base": 1124073472, "vdma_size": 65536, "video_bits": 24, "video_clock_hz": 100000000, "vtc_base": 1136787456, "vtc_size": 65536}
+INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detected. Your current license is active and will expire on 16-sep-2027.
+
+****** Vivado v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Sat Sep 19 18:32:45 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source {C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\vivado\synth_framework.tcl}
+# set pre_dir [file normalize [file join [file dirname [info script]] ..]]
+# set root [file normalize [file join $pre_dir ..]]
+# set_param board.repoPaths [file join $pre_dir board_repo]
+# set xpr [file join $root fpga build task7_8_preintegration task7_8_preintegration.xpr]
+# open_project $xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/PYNQ/boards/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/AMDDesignTools/2026.1/Vivado/data/ip'.
+open_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 601.887 ; gain = 283.254
+# reset_run synth_1
+# launch_runs synth_1 -jobs 4
+
+[Sat Sep 19 18:33:07 2026] Launched preintegration_bd_rst_100m_0_synth_1, preintegration_bd_ps7_0_synth_1, preintegration_bd_control_slot_stub_0_synth_1, preintegration_bd_gp_control_ic_imp_xbar_0_synth_1, preintegration_bd_gp_control_ic_imp_auto_pc_0_synth_1, preintegration_bd_hdmi_vtc_0_synth_1, preintegration_bd_hdmi_dynclk_0_synth_1, preintegration_bd_video_vdma_0_synth_1, preintegration_bd_video_width_adapter_0_synth_1, preintegration_bd_hdmi_axis_to_video_0_synth_1, preintegration_bd_video_hp0_ic_imp_auto_pc_0_synth_1, preintegration_bd_osd_slot_stub_0_synth_1, preintegration_bd_hdmi_hpd_gpio_0_synth_1, preintegration_bd_hdmi_rgb2dvi_0_synth_1...
+Run output will be captured here:
+preintegration_bd_rst_100m_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/preintegration_bd_rst_100m_0_synth_1/runme.log
+preintegration_bd_ps7_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/preintegration_bd_ps7_0_synth_1/runme.log
+preintegration_bd_control_slot_stub_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/preintegration_bd_control_slot_stub_0_synth_1/runme.log
+preintegration_bd_gp_control_ic_imp_xbar_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/preintegration_bd_gp_control_ic_imp_xbar_0_synth_1/runme.log
+preintegration_bd_gp_control_ic_imp_auto_pc_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/preintegration_bd_gp_control_ic_imp_auto_pc_0_synth_1/runme.log
+preintegration_bd_hdmi_vtc_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/preintegration_bd_hdmi_vtc_0_synth_1/runme.log
+preintegration_bd_hdmi_dynclk_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/preintegration_bd_hdmi_dynclk_0_synth_1/runme.log
+preintegration_bd_video_vdma_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/preintegration_bd_video_vdma_0_synth_1/runme.log
+preintegration_bd_video_width_adapter_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/preintegration_bd_video_width_adapter_0_synth_1/runme.log
+preintegration_bd_hdmi_axis_to_video_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/preintegration_bd_hdmi_axis_to_video_0_synth_1/runme.log
+preintegration_bd_video_hp0_ic_imp_auto_pc_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/preintegration_bd_video_hp0_ic_imp_auto_pc_0_synth_1/runme.log
+preintegration_bd_osd_slot_stub_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/preintegration_bd_osd_slot_stub_0_synth_1/runme.log
+preintegration_bd_hdmi_hpd_gpio_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/preintegration_bd_hdmi_hpd_gpio_0_synth_1/runme.log
+preintegration_bd_hdmi_rgb2dvi_0_synth_1: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/preintegration_bd_hdmi_rgb2dvi_0_synth_1/runme.log
+[Sat Sep 19 18:33:07 2026] Launched synth_1...
+Run output will be captured here: C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/runme.log
+launch_runs: Time (s): cpu = 00:00:01 ; elapsed = 00:00:07 . Memory (MB): peak = 654.238 ; gain = 52.352
+# wait_on_run synth_1
+[Sat Sep 19 18:33:07 2026] Waiting for synth_1 to finish...
+
+*** Running vivado
+    with args -log preintegration_bd_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source preintegration_bd_wrapper.tcl
+
+
+INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detected. Your current license is active and will expire on 16-sep-2027.
+#-----------------------------------------------------------
+# Vivado v2026.1 (64-bit)
+# SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+# IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+# SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+# Start of session at: Sat Sep 19 18:37:15 2026
+# Process ID         : 43984
+# Current directory  : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1
+# Command line       : vivado.exe -log preintegration_bd_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source preintegration_bd_wrapper.tcl
+# Log file           : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/preintegration_bd_wrapper.vds
+# Journal file       : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1\vivado.jou
+# Running On         : BZY
+# Platform           : Windows 11
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) i7-14650HX
+# CPU Frequency      : 2419 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 33943 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68302 MB
+# Available Virtual  : 40702 MB
+#-----------------------------------------------------------
+
+****** Vivado v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Sat Sep 19 18:37:15 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source preintegration_bd_wrapper.tcl -notrace
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 587.441 ; gain = 267.266
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/PYNQ/boards/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/AMDDesignTools/2026.1/Vivado/data/ip'.
+WARNING: [IP_Flow 19-4995] The host OS only allows 260 characters in a normal path. The IP cache path is more than 80 characters. If you experience issues with IP caching, please consider changing the IP cache to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. 
+Current IP cache path is c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.cache/ip 
+Command: synth_design -top preintegration_bd_wrapper -part xc7z020clg400-1
+Starting synth_design
+Attempting to get a license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Designutils 20-5008] Incremental synthesis strategy default
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 48232
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1425.473 ; gain = 577.031
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_wrapper' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/hdl/preintegration_bd_wrapper.v:13]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:606]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_control_slot_stub_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_control_slot_stub_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_control_slot_stub_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_control_slot_stub_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_gp_control_ic_0' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1367]
+INFO: [Synth 8-6157] synthesizing module 'm00_couplers_imp_1OZS59I' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'm00_couplers_imp_1OZS59I' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:13]
+INFO: [Synth 8-6157] synthesizing module 'm01_couplers_imp_1EBOIQV' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:122]
+INFO: [Synth 8-6155] done synthesizing module 'm01_couplers_imp_1EBOIQV' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:122]
+INFO: [Synth 8-6157] synthesizing module 'm02_couplers_imp_1VV484' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:249]
+INFO: [Synth 8-6155] done synthesizing module 'm02_couplers_imp_1VV484' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:249]
+INFO: [Synth 8-6157] synthesizing module 'm03_couplers_imp_SXLY79' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:376]
+INFO: [Synth 8-6155] done synthesizing module 'm03_couplers_imp_SXLY79' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:376]
+INFO: [Synth 8-6157] synthesizing module 'm04_couplers_imp_1FRLOTF' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:491]
+INFO: [Synth 8-6155] done synthesizing module 'm04_couplers_imp_1FRLOTF' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:491]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_RDEMXK' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:2465]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_gp_control_ic_imp_auto_pc_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_gp_control_ic_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_gp_control_ic_imp_auto_pc_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_gp_control_ic_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_RDEMXK' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:2465]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_gp_control_ic_imp_xbar_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_gp_control_ic_imp_xbar_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_gp_control_ic_imp_xbar_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_gp_control_ic_imp_xbar_0_stub.v:6]
+WARNING: [Synth 8-689] width (9) of port connection 'm_axi_arprot' does not match port width (15) of module 'preintegration_bd_gp_control_ic_imp_xbar_0' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:2155]
+WARNING: [Synth 8-689] width (9) of port connection 'm_axi_awprot' does not match port width (15) of module 'preintegration_bd_gp_control_ic_imp_xbar_0' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:2159]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_gp_control_ic_0' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1367]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_hdmi_axis_to_video_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_hdmi_axis_to_video_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_hdmi_axis_to_video_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_hdmi_axis_to_video_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'vid_vblank' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1039]
+WARNING: [Synth 8-7071] port 'vid_hblank' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1039]
+WARNING: [Synth 8-7071] port 'vid_field_id' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1039]
+WARNING: [Synth 8-7071] port 'vtg_ce' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1039]
+WARNING: [Synth 8-7071] port 'locked' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1039]
+WARNING: [Synth 8-7071] port 'overflow' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1039]
+WARNING: [Synth 8-7071] port 'underflow' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1039]
+WARNING: [Synth 8-7071] port 'fifo_read_level' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1039]
+WARNING: [Synth 8-7071] port 'status' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1039]
+WARNING: [Synth 8-7071] port 'sof_state_out' of module 'preintegration_bd_hdmi_axis_to_video_0' is unconnected for instance 'hdmi_axis_to_video' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1039]
+WARNING: [Synth 8-7023] instance 'hdmi_axis_to_video' of module 'preintegration_bd_hdmi_axis_to_video_0' has 32 connections declared, but only 22 given [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1039]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_hdmi_dynclk_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_hdmi_dynclk_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_hdmi_dynclk_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_hdmi_dynclk_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_hdmi_hpd_gpio_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_hdmi_hpd_gpio_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_hdmi_hpd_gpio_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_hdmi_hpd_gpio_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_hdmi_rgb2dvi_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_hdmi_rgb2dvi_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_hdmi_rgb2dvi_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_hdmi_rgb2dvi_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_hdmi_vtc_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_hdmi_vtc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_hdmi_vtc_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_hdmi_vtc_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'irq' of module 'preintegration_bd_hdmi_vtc_0' is unconnected for instance 'hdmi_vtc' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1122]
+WARNING: [Synth 8-7071] port 'fsync_out' of module 'preintegration_bd_hdmi_vtc_0' is unconnected for instance 'hdmi_vtc' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1122]
+WARNING: [Synth 8-7023] instance 'hdmi_vtc' of module 'preintegration_bd_hdmi_vtc_0' has 33 connections declared, but only 31 given [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1122]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_osd_slot_stub_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_osd_slot_stub_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_osd_slot_stub_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_osd_slot_stub_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_ps7_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_ps7_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_ps7_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_ps7_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'USB0_PORT_INDCTL' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1167]
+WARNING: [Synth 8-7071] port 'USB0_VBUS_PWRSELECT' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1167]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_AWREADY' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1167]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_BVALID' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1167]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WREADY' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1167]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_BRESP' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1167]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_BID' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1167]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RID' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1167]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RCOUNT' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1167]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WCOUNT' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1167]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RACOUNT' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1167]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WACOUNT' of module 'preintegration_bd_ps7_0' is unconnected for instance 'ps7' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1167]
+WARNING: [Synth 8-7023] instance 'ps7' of module 'preintegration_bd_ps7_0' has 111 connections declared, but only 99 given [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1167]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_rst_100m_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_rst_100m_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_rst_100m_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_rst_100m_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'mb_reset' of module 'preintegration_bd_rst_100m_0' is unconnected for instance 'rst_100m' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1267]
+WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'preintegration_bd_rst_100m_0' is unconnected for instance 'rst_100m' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1267]
+WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'preintegration_bd_rst_100m_0' is unconnected for instance 'rst_100m' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1267]
+WARNING: [Synth 8-7071] port 'interconnect_aresetn' of module 'preintegration_bd_rst_100m_0' is unconnected for instance 'rst_100m' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1267]
+WARNING: [Synth 8-7023] instance 'rst_100m' of module 'preintegration_bd_rst_100m_0' has 10 connections declared, but only 6 given [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1267]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_video_hp0_ic_0' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:2194]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_175U25G' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:2332]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_video_hp0_ic_imp_auto_pc_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_video_hp0_ic_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_video_hp0_ic_imp_auto_pc_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_video_hp0_ic_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_175U25G' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:2332]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_video_hp0_ic_0' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:2194]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_video_vdma_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_video_vdma_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_video_vdma_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_video_vdma_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'mm2s_frame_ptr_out' of module 'preintegration_bd_video_vdma_0' is unconnected for instance 'video_vdma' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1310]
+WARNING: [Synth 8-7023] instance 'video_vdma' of module 'preintegration_bd_video_vdma_0' has 41 connections declared, but only 40 given [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1310]
+INFO: [Synth 8-6157] synthesizing module 'preintegration_bd_video_width_adapter_0' [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_video_width_adapter_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_video_width_adapter_0' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/.Xil/Vivado-43984-BZY/realtime/preintegration_bd_video_width_adapter_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'format_error_count' of module 'preintegration_bd_video_width_adapter_0' is unconnected for instance 'video_width_adapter' [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1351]
+WARNING: [Synth 8-7023] instance 'video_width_adapter' of module 'preintegration_bd_video_width_adapter_0' has 14 connections declared, but only 13 given [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:1351]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd' (0#1) [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/synth/preintegration_bd.v:606]
+INFO: [Synth 8-6155] done synthesizing module 'preintegration_bd_wrapper' (0#1) [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/hdl/preintegration_bd_wrapper.v:13]
+WARNING: [Synth 8-7129] Port M_ACLK in module s00_couplers_imp_175U25G is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module s00_couplers_imp_175U25G is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ACLK in module preintegration_bd_video_hp0_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ARESETN in module preintegration_bd_video_hp0_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module s00_couplers_imp_RDEMXK is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module s00_couplers_imp_RDEMXK is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m04_couplers_imp_1FRLOTF is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m04_couplers_imp_1FRLOTF is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m04_couplers_imp_1FRLOTF is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m04_couplers_imp_1FRLOTF is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m03_couplers_imp_SXLY79 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m03_couplers_imp_SXLY79 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m03_couplers_imp_SXLY79 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m03_couplers_imp_SXLY79 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m02_couplers_imp_1VV484 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m02_couplers_imp_1VV484 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m02_couplers_imp_1VV484 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m02_couplers_imp_1VV484 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m01_couplers_imp_1EBOIQV is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m01_couplers_imp_1EBOIQV is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m01_couplers_imp_1EBOIQV is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m01_couplers_imp_1EBOIQV is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m00_couplers_imp_1OZS59I is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m00_couplers_imp_1OZS59I is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m00_couplers_imp_1OZS59I is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m00_couplers_imp_1OZS59I is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M02_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M02_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M03_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M03_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M04_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M04_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1558.871 ; gain = 710.430
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1558.871 ; gain = 710.430
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1558.871 ; gain = 710.430
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1558.871 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_ps7_0/preintegration_bd_ps7_0/preintegration_bd_ps7_0_in_context.xdc] for cell 'preintegration_bd_i/ps7'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_ps7_0/preintegration_bd_ps7_0/preintegration_bd_ps7_0_in_context.xdc] for cell 'preintegration_bd_i/ps7'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_rst_100m_0/preintegration_bd_rst_100m_0/preintegration_bd_rst_100m_0_in_context.xdc] for cell 'preintegration_bd_i/rst_100m'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_rst_100m_0/preintegration_bd_rst_100m_0/preintegration_bd_rst_100m_0_in_context.xdc] for cell 'preintegration_bd_i/rst_100m'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_gp_control_ic_imp_xbar_0/preintegration_bd_gp_control_ic_imp_xbar_0/preintegration_bd_gp_control_ic_imp_xbar_0_in_context.xdc] for cell 'preintegration_bd_i/gp_control_ic/xbar'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_gp_control_ic_imp_xbar_0/preintegration_bd_gp_control_ic_imp_xbar_0/preintegration_bd_gp_control_ic_imp_xbar_0_in_context.xdc] for cell 'preintegration_bd_i/gp_control_ic/xbar'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_gp_control_ic_imp_auto_pc_0/preintegration_bd_gp_control_ic_imp_auto_pc_0/preintegration_bd_gp_control_ic_imp_auto_pc_0_in_context.xdc] for cell 'preintegration_bd_i/gp_control_ic/s00_couplers/auto_pc'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_gp_control_ic_imp_auto_pc_0/preintegration_bd_gp_control_ic_imp_auto_pc_0/preintegration_bd_gp_control_ic_imp_auto_pc_0_in_context.xdc] for cell 'preintegration_bd_i/gp_control_ic/s00_couplers/auto_pc'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_control_slot_stub_0/preintegration_bd_control_slot_stub_0/preintegration_bd_control_slot_stub_0_in_context.xdc] for cell 'preintegration_bd_i/control_slot_stub'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_control_slot_stub_0/preintegration_bd_control_slot_stub_0/preintegration_bd_control_slot_stub_0_in_context.xdc] for cell 'preintegration_bd_i/control_slot_stub'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0_in_context.xdc] for cell 'preintegration_bd_i/video_vdma'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0_in_context.xdc] for cell 'preintegration_bd_i/video_vdma'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_hp0_ic_imp_auto_pc_0/preintegration_bd_video_hp0_ic_imp_auto_pc_0/preintegration_bd_video_hp0_ic_imp_auto_pc_0_in_context.xdc] for cell 'preintegration_bd_i/video_hp0_ic/s00_couplers/auto_pc'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_hp0_ic_imp_auto_pc_0/preintegration_bd_video_hp0_ic_imp_auto_pc_0/preintegration_bd_video_hp0_ic_imp_auto_pc_0_in_context.xdc] for cell 'preintegration_bd_i/video_hp0_ic/s00_couplers/auto_pc'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_width_adapter_0/preintegration_bd_video_width_adapter_0/preintegration_bd_video_width_adapter_0_in_context.xdc] for cell 'preintegration_bd_i/video_width_adapter'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_width_adapter_0/preintegration_bd_video_width_adapter_0/preintegration_bd_video_width_adapter_0_in_context.xdc] for cell 'preintegration_bd_i/video_width_adapter'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_osd_slot_stub_0/preintegration_bd_osd_slot_stub_0/preintegration_bd_osd_slot_stub_0_in_context.xdc] for cell 'preintegration_bd_i/osd_slot_stub'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_osd_slot_stub_0/preintegration_bd_osd_slot_stub_0/preintegration_bd_osd_slot_stub_0_in_context.xdc] for cell 'preintegration_bd_i/osd_slot_stub'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_dynclk_0/preintegration_bd_hdmi_dynclk_0/preintegration_bd_hdmi_dynclk_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_dynclk'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_dynclk_0/preintegration_bd_hdmi_dynclk_0/preintegration_bd_hdmi_dynclk_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_dynclk'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_vtc'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_vtc'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_axis_to_video_0/preintegration_bd_hdmi_axis_to_video_0/preintegration_bd_hdmi_axis_to_video_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_axis_to_video'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_axis_to_video_0/preintegration_bd_hdmi_axis_to_video_0/preintegration_bd_hdmi_axis_to_video_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_axis_to_video'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_rgb2dvi_0/preintegration_bd_hdmi_rgb2dvi_0/preintegration_bd_hdmi_rgb2dvi_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_rgb2dvi'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_rgb2dvi_0/preintegration_bd_hdmi_rgb2dvi_0/preintegration_bd_hdmi_rgb2dvi_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_rgb2dvi'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_hpd_gpio_0/preintegration_bd_hdmi_hpd_gpio_0/preintegration_bd_hdmi_hpd_gpio_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_hpd_gpio'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_hpd_gpio_0/preintegration_bd_hdmi_hpd_gpio_0/preintegration_bd_hdmi_hpd_gpio_0_in_context.xdc] for cell 'preintegration_bd_i/hdmi_hpd_gpio'
+Parsing XDC File [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/dont_touch.xdc]
+Parsing XDC File [C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/constraints/task7_8_hdmi.xdc]
+Finished Parsing XDC File [C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/constraints/task7_8_hdmi.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/constraints/task7_8_hdmi.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/preintegration_bd_wrapper_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/preintegration_bd_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1558.871 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 1558.871 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1558.871 ; gain = 710.430
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1558.871 ; gain = 710.430
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1558.871 ; gain = 710.430
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1558.871 ; gain = 710.430
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7129] Port ACLK in module preintegration_bd_video_hp0_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ARESETN in module preintegration_bd_video_hp0_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ACLK in module preintegration_bd_video_hp0_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module preintegration_bd_video_hp0_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M02_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M02_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M03_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M03_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M04_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M04_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ACLK in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ARESETN in module preintegration_bd_gp_control_ic_0 is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1594.371 ; gain = 745.930
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1767.371 ; gain = 918.930
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1768.516 ; gain = 920.074
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1778.523 ; gain = 930.082
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2053.164 ; gain = 1204.723
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2053.164 ; gain = 1204.723
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2053.164 ; gain = 1204.723
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2053.164 ; gain = 1204.723
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2053.164 ; gain = 1204.723
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2053.164 ; gain = 1204.723
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+----------------------------------------------+----------+
+|      |BlackBox name                                 |Instances |
++------+----------------------------------------------+----------+
+|1     |preintegration_bd_control_slot_stub_0         |         1|
+|2     |preintegration_bd_gp_control_ic_imp_xbar_0    |         1|
+|3     |preintegration_bd_gp_control_ic_imp_auto_pc_0 |         1|
+|4     |preintegration_bd_hdmi_axis_to_video_0        |         1|
+|5     |preintegration_bd_hdmi_dynclk_0               |         1|
+|6     |preintegration_bd_hdmi_hpd_gpio_0             |         1|
+|7     |preintegration_bd_hdmi_rgb2dvi_0              |         1|
+|8     |preintegration_bd_hdmi_vtc_0                  |         1|
+|9     |preintegration_bd_osd_slot_stub_0             |         1|
+|10    |preintegration_bd_ps7_0                       |         1|
+|11    |preintegration_bd_rst_100m_0                  |         1|
+|12    |preintegration_bd_video_hp0_ic_imp_auto_pc_0  |         1|
+|13    |preintegration_bd_video_vdma_0                |         1|
+|14    |preintegration_bd_video_width_adapter_0       |         1|
++------+----------------------------------------------+----------+
+
+Report Cell Usage: 
++------+--------------------------------------------+------+
+|      |Cell                                        |Count |
++------+--------------------------------------------+------+
+|1     |preintegration_bd_control_slot_stub         |     1|
+|2     |preintegration_bd_gp_control_ic_imp_auto_pc |     1|
+|3     |preintegration_bd_gp_control_ic_imp_xbar    |     1|
+|4     |preintegration_bd_hdmi_axis_to_video        |     1|
+|5     |preintegration_bd_hdmi_dynclk               |     1|
+|6     |preintegration_bd_hdmi_hpd_gpio             |     1|
+|7     |preintegration_bd_hdmi_rgb2dvi              |     1|
+|8     |preintegration_bd_hdmi_vtc                  |     1|
+|9     |preintegration_bd_osd_slot_stub             |     1|
+|10    |preintegration_bd_ps7                       |     1|
+|11    |preintegration_bd_rst_100m                  |     1|
+|12    |preintegration_bd_video_hp0_ic_imp_auto_pc  |     1|
+|13    |preintegration_bd_video_vdma                |     1|
+|14    |preintegration_bd_video_width_adapter       |     1|
+|15    |IBUF                                        |     1|
++------+--------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2053.164 ; gain = 1204.723
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 16 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:20 . Memory (MB): peak = 2053.164 ; gain = 1204.723
+Synthesis Optimization Complete : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 2053.164 ; gain = 1204.723
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2058.305 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2061.992 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 309f5970
+INFO: [Common 17-83] Releasing license: Vivado_Synthesis
+67 Infos, 93 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:22 ; elapsed = 00:00:30 . Memory (MB): peak = 2061.992 ; gain = 1456.508
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2061.992 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.runs/synth_1/preintegration_bd_wrapper.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file preintegration_bd_wrapper_utilization_synth.rpt -pb preintegration_bd_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat Sep 19 18:38:01 2026...
+[Sat Sep 19 18:38:05 2026] synth_1 finished
+wait_on_runs: Time (s): cpu = 00:00:02 ; elapsed = 00:04:58 . Memory (MB): peak = 654.238 ; gain = 0.000
+# if {[get_property STATUS [get_runs synth_1]] ne "synth_design Complete!"} {error "Framework synthesis failed"}
+# open_run synth_1
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7z020clg400-1
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Project 1-5699] Read binary netlist with skipMacroContent - 1
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_control_slot_stub_0/preintegration_bd_control_slot_stub_0.dcp' for cell 'preintegration_bd_i/control_slot_stub'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_axis_to_video_0/preintegration_bd_hdmi_axis_to_video_0.dcp' for cell 'preintegration_bd_i/hdmi_axis_to_video'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_dynclk_0/preintegration_bd_hdmi_dynclk_0.dcp' for cell 'preintegration_bd_i/hdmi_dynclk'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_hpd_gpio_0/preintegration_bd_hdmi_hpd_gpio_0.dcp' for cell 'preintegration_bd_i/hdmi_hpd_gpio'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_rgb2dvi_0/preintegration_bd_hdmi_rgb2dvi_0.dcp' for cell 'preintegration_bd_i/hdmi_rgb2dvi'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0.dcp' for cell 'preintegration_bd_i/hdmi_vtc'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_osd_slot_stub_0/preintegration_bd_osd_slot_stub_0.dcp' for cell 'preintegration_bd_i/osd_slot_stub'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_ps7_0/preintegration_bd_ps7_0.dcp' for cell 'preintegration_bd_i/ps7'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_rst_100m_0/preintegration_bd_rst_100m_0.dcp' for cell 'preintegration_bd_i/rst_100m'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0.dcp' for cell 'preintegration_bd_i/video_vdma'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_width_adapter_0/preintegration_bd_video_width_adapter_0.dcp' for cell 'preintegration_bd_i/video_width_adapter'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_gp_control_ic_imp_xbar_0/preintegration_bd_gp_control_ic_imp_xbar_0.dcp' for cell 'preintegration_bd_i/gp_control_ic/xbar'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_gp_control_ic_imp_auto_pc_0/preintegration_bd_gp_control_ic_imp_auto_pc_0.dcp' for cell 'preintegration_bd_i/gp_control_ic/s00_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_hp0_ic_imp_auto_pc_0/preintegration_bd_video_hp0_ic_imp_auto_pc_0.dcp' for cell 'preintegration_bd_i/video_hp0_ic/s00_couplers/auto_pc'
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.057 . Memory (MB): peak = 929.250 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 357 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2026.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_ps7_0/preintegration_bd_ps7_0.xdc] for cell 'preintegration_bd_i/ps7/inst'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_ps7_0/preintegration_bd_ps7_0.xdc] for cell 'preintegration_bd_i/ps7/inst'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_rst_100m_0/preintegration_bd_rst_100m_0_board.xdc] for cell 'preintegration_bd_i/rst_100m/U0'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_rst_100m_0/preintegration_bd_rst_100m_0_board.xdc] for cell 'preintegration_bd_i/rst_100m/U0'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0.xdc] for cell 'preintegration_bd_i/video_vdma/U0'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0.xdc] for cell 'preintegration_bd_i/video_vdma/U0'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_rgb2dvi_0/src/rgb2dvi.xdc] for cell 'preintegration_bd_i/hdmi_rgb2dvi/U0'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_rgb2dvi_0/src/rgb2dvi.xdc] for cell 'preintegration_bd_i/hdmi_rgb2dvi/U0'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_hpd_gpio_0/preintegration_bd_hdmi_hpd_gpio_0_board.xdc] for cell 'preintegration_bd_i/hdmi_hpd_gpio/U0'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_hpd_gpio_0/preintegration_bd_hdmi_hpd_gpio_0_board.xdc] for cell 'preintegration_bd_i/hdmi_hpd_gpio/U0'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0_clocks.xdc] for cell 'preintegration_bd_i/video_vdma/U0'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_video_vdma_0/preintegration_bd_video_vdma_0_clocks.xdc] for cell 'preintegration_bd_i/video_vdma/U0'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_osd_slot_stub_0/preintegration_bd_osd_slot_stub_0_clocks.xdc] for cell 'preintegration_bd_i/osd_slot_stub/inst'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_osd_slot_stub_0/preintegration_bd_osd_slot_stub_0_clocks.xdc] for cell 'preintegration_bd_i/osd_slot_stub/inst'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0_clocks.xdc] for cell 'preintegration_bd_i/hdmi_vtc/U0'
+INFO: [Timing 38-35] Done setting XDC timing constraints. [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0_clocks.xdc:2]
+INFO: [Timing 38-2] Deriving generated clocks [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0_clocks.xdc:2]
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_vtc_0/preintegration_bd_hdmi_vtc_0_clocks.xdc] for cell 'preintegration_bd_i/hdmi_vtc/U0'
+Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_axis_to_video_0/preintegration_bd_hdmi_axis_to_video_0_clocks.xdc] for cell 'preintegration_bd_i/hdmi_axis_to_video/inst'
+Finished Parsing XDC File [c:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_preintegration/task7_8_preintegration.gen/sources_1/bd/preintegration_bd/ip/preintegration_bd_hdmi_axis_to_video_0/preintegration_bd_hdmi_axis_to_video_0_clocks.xdc] for cell 'preintegration_bd_i/hdmi_axis_to_video/inst'
+Parsing XDC File [C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/constraints/task7_8_hdmi.xdc]
+Finished Parsing XDC File [C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/constraints/task7_8_hdmi.xdc]
+WARNING: [XPM_CDC_SINGLE: TCL-1000] The source and destination clocks are the same. 
+     Instance: preintegration_bd_i/video_vdma/U0/I_RST_MODULE/GEN_RESET_FOR_MM2S.RESET_I/GEN_RESET_FOR_ASYNC.AXIS_RESET_CDC_I 
+  This will add unnecessary latency to the design. Please check the design for the following: 
+ 1) Manually instantiated XPM_CDC modules: AMD recommends that you remove these modules. 
+ 2) AMD IP that contains XPM_CDC modules: Verify the connections to the IP to determine whether you can safely ignore this message.
+ [C:/AMDDesignTools/2026.1/Vivado/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl:5]
+WARNING: [XPM_CDC_SINGLE: TCL-1000] The source and destination clocks are the same. 
+     Instance: preintegration_bd_i/video_vdma/U0/I_RST_MODULE/GEN_RESET_FOR_MM2S.RESET_I/GEN_MIN_FOR_ASYNC.LITE_IDLE_CDC_I 
+  This will add unnecessary latency to the design. Please check the design for the following: 
+ 1) Manually instantiated XPM_CDC modules: AMD recommends that you remove these modules. 
+ 2) AMD IP that contains XPM_CDC modules: Verify the connections to the IP to determine whether you can safely ignore this message.
+ [C:/AMDDesignTools/2026.1/Vivado/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl:5]
+WARNING: [XPM_CDC_SINGLE: TCL-1000] The source and destination clocks are the same. 
+     Instance: preintegration_bd_i/video_vdma/U0/I_RST_MODULE/GEN_RESET_FOR_MM2S.RESET_I/GEN_MIN_FOR_ASYNC.LITE_MIN_CDC_I 
+  This will add unnecessary latency to the design. Please check the design for the following: 
+ 1) Manually instantiated XPM_CDC modules: AMD recommends that you remove these modules. 
+ 2) AMD IP that contains XPM_CDC modules: Verify the connections to the IP to determine whether you can safely ignore this message.
+ [C:/AMDDesignTools/2026.1/Vivado/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl:5]
+WARNING: [XPM_CDC_SINGLE: TCL-1000] The source and destination clocks are the same. 
+     Instance: preintegration_bd_i/video_vdma/U0/I_RST_MODULE/GEN_RESET_FOR_MM2S.RESET_I/GEN_MIN_FOR_ASYNC.AXIS_IDLE_CDC_I 
+  This will add unnecessary latency to the design. Please check the design for the following: 
+ 1) Manually instantiated XPM_CDC modules: AMD recommends that you remove these modules. 
+ 2) AMD IP that contains XPM_CDC modules: Verify the connections to the IP to determine whether you can safely ignore this message.
+ [C:/AMDDesignTools/2026.1/Vivado/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl:5]
+WARNING: [XPM_CDC_SINGLE: TCL-1000] The source and destination clocks are the same. 
+     Instance: preintegration_bd_i/video_vdma/U0/I_RST_MODULE/GEN_RESET_FOR_MM2S.RESET_I/GEN_MIN_FOR_ASYNC.AXIS_MIN_CDC_I 
+  This will add unnecessary latency to the design. Please check the design for the following: 
+ 1) Manually instantiated XPM_CDC modules: AMD recommends that you remove these modules. 
+ 2) AMD IP that contains XPM_CDC modules: Verify the connections to the IP to determine whether you can safely ignore this message.
+ [C:/AMDDesignTools/2026.1/Vivado/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl:5]
+WARNING: [XPM_CDC_SINGLE: TCL-1000] The source and destination clocks are the same. 
+     Instance: preintegration_bd_i/video_vdma/U0/I_RST_MODULE/GEN_RESET_FOR_MM2S.RESET_I/GEN_RESET_FOR_ASYNC.HARD_RESET_CDC_I 
+  This will add unnecessary latency to the design. Please check the design for the following: 
+ 1) Manually instantiated XPM_CDC modules: AMD recommends that you remove these modules. 
+ 2) AMD IP that contains XPM_CDC modules: Verify the connections to the IP to determine whether you can safely ignore this message.
+ [C:/AMDDesignTools/2026.1/Vivado/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl:5]
+WARNING: [XPM_CDC_SINGLE: TCL-1000] The source and destination clocks are the same. 
+     Instance: preintegration_bd_i/video_vdma/U0/AXI_LITE_REG_INTERFACE_I/GEN_MM2S_LITE_CROSSINGS.GEN_MM2S_CROSSINGS_ASYNC.MM2S_INTRPT_CROSSING_I 
+  This will add unnecessary latency to the design. Please check the design for the following: 
+ 1) Manually instantiated XPM_CDC modules: AMD recommends that you remove these modules. 
+ 2) AMD IP that contains XPM_CDC modules: Verify the connections to the IP to determine whether you can safely ignore this message.
+ [C:/AMDDesignTools/2026.1/Vivado/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl:5]
+INFO: [Project 1-1714] 28 XPM XDC files have been applied to the design.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1639.133 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 1 instance 
+
+open_run: Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 1639.133 ; gain = 984.895
+# report_utilization -file [file join $root fpga build task7_8_preintegration utilization_synth.rpt]
+# report_timing_summary -file [file join $root fpga build task7_8_preintegration timing_synth.rpt]
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+WARNING: [Timing 38-436] There are set_bus_skew constraint(s) in this design. Please run report_bus_skew to ensure that bus skew requirements are met.
+# set worst_path [get_timing_paths -setup -max_paths 1]
+# if {[llength $worst_path] == 0} {error "No constrained setup timing path found"}
+# set wns [get_property SLACK $worst_path]
+# if {$wns < 0} {error "Negative framework synthesis WNS: $wns ns"}
+# puts "PREINTEGRATION_FRAMEWORK_WNS_NS=$wns"
+PREINTEGRATION_FRAMEWORK_WNS_NS=4.446
+# close_project
+# puts "PREINTEGRATION_FRAMEWORK_SYNTH_PASS"
+PREINTEGRATION_FRAMEWORK_SYNTH_PASS
+INFO: [Common 17-206] Exiting Vivado at Sat Sep 19 18:38:21 2026...
+TASK7_8_PREINTEGRATION_PASS (production integration is separate; release and physical board/HDMI remain gated)
+LOG_DIR=C:\Users\39909\Desktop\FPGA\pynq_fpga\fpga\build\task7_8_tests\20260919_183125
+PREINT_EXIT=0

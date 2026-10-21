@@ -1,0 +1,673 @@
+{
+  "kind": "OWN_VIDEO_SESSION_CLEANUP",
+  "pid": 928,
+  "signal_sent": false,
+  "process_closed": true,
+  "evidence_dir": "/home/xilinx/stm32_sensors_platform_20261013/receiver_sessions/20261008_233231_916981/evidence",
+  "files": [
+    {
+      "name": "session_reservation.json",
+      "bytes": 87,
+      "sha256": "b5fe931e0746b02ffcdf2510c498948649908e63ee532cee44af343a0f718a7b"
+    },
+    {
+      "name": "startup_readiness.json",
+      "bytes": 65,
+      "sha256": "4c75aed4d1ef028e1f5a7886725360968606b185bed48d7037e91d1017bfa67e"
+    },
+    {
+      "name": "video.jsonl",
+      "bytes": 189213728,
+      "sha256": "468f7ee6b69c4574b7807fc6b18251dd56cc14e41d785aaef91a012ecd65289e"
+    },
+    {
+      "name": "video_summary.json",
+      "bytes": 19572,
+      "sha256": "c89aedac10ebd3a33141d045b4ddc838b118895ea795c3ac449c90c6d8239181"
+    },
+    {
+      "name": "wireless_summary.json",
+      "bytes": 34581,
+      "sha256": "0d552c68d007849c76912a6cd71aeebfdefc722db8e2f3e53a805513f0f83519"
+    }
+  ],
+  "video_summary": {
+    "control_available": false,
+    "duration_observed_s": 3601.281964289,
+    "duration_requested_s": 3600.0,
+    "failures": [],
+    "frames": 14329,
+    "hardware": true,
+    "identity": {
+      "bit_sha256": "d3287345221c56d0f0c120508ef1bc54771eeedd7b85050e50906c3ff282d7ad",
+      "build_parameters": {
+        "BASE_MARGIN_MM": 100,
+        "BRAKE_DECEL_MMPS2": 500,
+        "COMMAND_LEASE_TICKS": 25000000,
+        "DATA_MAX_AGE_TICKS": 20000000,
+        "MAX_SPEED_MMPS": 5000,
+        "REACTION_MS": 150,
+        "YELLOW_BAND_MM": 100
+      },
+      "calibration": {
+        "source": "live registers; physical calibration pending"
+      },
+      "hwh_sha256": "b0b2aeaee963cfc4f018c18ce1d68b9dc96a6d74b3cf02b3e6ac43015af4e81d",
+      "manifest_sha256": "b7ea52f0bc7c4f64f865084c232469266b346fb3a829e4718758a787edc31f05",
+      "native_binary_sha256": "f4c2a0e2edf64c09f9bc25b3ad5bfc8a5e5f4825d141b0717f91ada5b6bd5bcf",
+      "native_version": "car-video/2;libjpeg-turbo/3.1.2",
+      "runtime_sources": {
+        "association_metrics.py": "921c3b54ed0f8bff28329c473295ab92fab3c75cd6c5ff0f3c3cd2968e01f622",
+        "board_runtime.py": "9717225a350670d3c38f77989346ae4107298d4b070f82e8d9976d2cd337f7dc",
+        "calibration_config.py": "14dccb7b7b73c115a5d597bfe6e8b2fd3a8d0bcd64de19ae9bd6bb5de785e533",
+        "car_regs.py": "8a56811ea4cf9de4837e50cbbc05e6d087995bf9f13ed9ee07128e2fa9e8231b",
+        "control_supervisor.py": "d014088c31a9d705d8be757928859dd825a26d121811ec0e934b15b0ea20f2c6",
+        "deployment_check.py": "6d87edcb357d21341eee676a8fa0f8f71885cff23a7b7030fe0767dff4a26b08",
+        "frame_association.py": "302b90dcd1229c2b95df642c583f77dddb1c35004e52e9ccf971130707ad7ae1",
+        "frame_metadata.py": "98f80d37e939b14aabe624e6a566c53e75d04ac90b300c36709417d9600d6250",
+        "frame_pipeline.py": "0b1fde0ddde34456e47b55d53339d6df864ff0d70ea2f36e7377ba7edf2c5f1b",
+        "hwh_contract.py": "3ad6daf3a2b0de6495a05b60a0567dcb4a3254f42bf2a9ae09a734533a13eed5",
+        "joint_evidence.py": "8cbe4967ce170e000539881b96bb440d541e09cecdec5ba5e9a0cb6de6109365",
+        "lab_acceptance.py": "e7ca984dd14ff401d69f669c5b056cab7fa4c39c0bbeb3ff0f0023184e4c618e",
+        "motion_display.py": "e775d20a2115a05b56c9f51c357aa0e50e4186a97912cf0a85c71f0594557254",
+        "overlay_session.py": "f549686b440e913458ade0ea309556057b172ace3c8e250bbce0855da9104d27",
+        "perception_client.py": "0b5f517952d883dd6a165731e4bbdb64b2b07471c7637ecc6106ccb7ee018131",
+        "perception_replay.py": "99a0b6a3697b33ed768db2caaaddf58de0ede0fa2188afce84c8a8244a892059",
+        "pynq_link.py": "dbf4c034e208b2a37ee20435a9cbe727680e483a0482a2f46de2819a28775680",
+        "qei_calibration.py": "732c88ee00028c0a601c7c27adecc0be39d8f530717791dc09ee3416d6e52dd2",
+        "qei_quality.py": "1e0dfa1305dc6c4a346b009f4a2fd0c6d506e6907a9256bba681460a8d2a192f",
+        "runtime_identity.py": "5f09d89e113e5872aa1874048ba219b0fd57343ef66aa3c24bf7a2fed26cd4cc",
+        "status_server.py": "aced8c3e4b00e8e5aa072cc4908ea0758821f025fdbc6b1461a355ca18b85d89",
+        "system_runtime.py": "6e20296005f214ae2061ad9da5f564ad8347d5c4f855eb2b60e4d7d3d143717a"
+      },
+      "sensor_source": "stm32_uart_v3",
+      "video_profile": "wireless720",
+      "wireless_sources": {
+        "WIRELESS_SETUP.md": "f42553e80bc51077a843b862f3b4010246558393e976c18ebb3774af57b3417c",
+        "native/CMakeLists.txt": "1a5d355cdc5ae6d8ce3055c8fad63d721b63052ec9475c55374df151926273b1",
+        "native/car_video.c": "fb8e13b9101ecbd77bf6b42d8d94fdb6c943977127a7afd3f5ebcd7e92ebd179",
+        "native_video.py": "8884e54e6ea74a622cc0c5e566a6714cc27712831c5447cfe820d9b1968de84e",
+        "wireless_benchmark.py": "e62dde269d5cf98cd6e7b894e5da32d41e35f7d0f78ce021694e0b3bdbd456e5",
+        "wireless_core.py": "1deb3db8339e986752242c77fc7679817f0b93f4b7844c886bf3cf309d6b555c",
+        "wireless_dma.py": "b4acb53f4fa6651e2891155b2a7f57811b495a662759faf1c470fe2a64f12ac6",
+        "wireless_page.html": "a3912f314a6cce6d4b0b97e62510068b3e6172f3381b17b8a98b3e8e170bdba5",
+        "wireless_player.js": "af311255fe7348dbd9d92286b66b2d49c4a595e765f6a2c46ff0d5b41515d829",
+        "wireless_policy.py": "d77452b64e522800194c71dd4835acebc9e085dcaf8ba137c853e2f1d9d304e3",
+        "wireless_requirements.txt": "7662de391d446d504ead09341c1bfef4d2429959f6eda6330bc20c9f3905c6a5",
+        "wireless_runtime.py": "39623c6620359992164cc2f0a9afe46ae71ed764b7cba8bbe17cf0faea23324c",
+        "wireless_server.py": "41593164c64135b011db0779d8cd065f99db26e91d8a800c9926088b00fa6367"
+      }
+    },
+    "joint_acceptance_validated": false,
+    "motion_allowed": false,
+    "passed": true,
+    "resources_closed": true,
+    "schema": "car-video-only-summary/v1",
+    "uart_opened": false,
+    "video": {
+      "active_fps": {
+        "captured": 28.707967260418858,
+        "encoded": 4.124616552996357,
+        "processed": 4.215963015752802,
+        "published": 3.9825921811804057,
+        "sent": 0.211732414924314
+      },
+      "active_fps_scope": "per_stage_first_event_to_now; includes recovery; not browser FPS",
+      "average_process_two_core_percent": 40.94269654821552,
+      "average_system_total_percent": 46.201180175634484,
+      "browser_rtt_scope": "client_reported_ack_roundtrip_not_wheel_stop",
+      "counts": {
+        "association_rejected": 26000,
+        "camera_dropped": 3854,
+        "camera_startup_waits": 5,
+        "capture_age_rejected": 5831,
+        "capture_queue_replaced": 15725,
+        "captured": 103293,
+        "corrupt_jpeg": 710,
+        "decode_dropped": 47556,
+        "decoded": 15169,
+        "encode_dropped": 1,
+        "encode_queue_replaced": 328,
+        "encode_wait": 0,
+        "encoded": 14840,
+        "fault_boundary_publication_rejected": 637,
+        "jpeg_restart_padding_warnings": 1090542,
+        "network_write": 0,
+        "processed": 15169,
+        "published": 14329,
+        "rate_limited": 39729,
+        "sent": 336,
+        "stale_completed_frame": 637,
+        "stale_publication_dropped": 637
+      },
+      "error": null,
+      "first_event_ns": {
+        "captured": 970167006506,
+        "encoded": 970317227170,
+        "processed": 970235708395,
+        "published": 970319514272,
+        "sent": 2981318810111
+      },
+      "fps_since_start": {
+        "captured": 28.59818030335499,
+        "encoded": 4.108671407566709,
+        "processed": 4.199759877451442,
+        "published": 3.9671935713627606,
+        "sent": 0.09302652243547264
+      },
+      "full_minute_fps": {
+        "0": {
+          "captured": 22.933333333333334,
+          "encoded": 4.2,
+          "processed": 4.416666666666667,
+          "published": 3.933333333333333,
+          "sent": 0.0
+        },
+        "1": {
+          "captured": 29.783333333333335,
+          "encoded": 3.6166666666666667,
+          "processed": 3.6666666666666665,
+          "published": 3.4,
+          "sent": 0.0
+        },
+        "10": {
+          "captured": 29.783333333333335,
+          "encoded": 5.95,
+          "processed": 6.05,
+          "published": 5.75,
+          "sent": 0.0
+        },
+        "11": {
+          "captured": 29.783333333333335,
+          "encoded": 3.5833333333333335,
+          "processed": 3.6166666666666667,
+          "published": 3.5,
+          "sent": 0.0
+        },
+        "12": {
+          "captured": 29.783333333333335,
+          "encoded": 4.916666666666667,
+          "processed": 5.183333333333334,
+          "published": 4.55,
+          "sent": 0.0
+        },
+        "13": {
+          "captured": 29.783333333333335,
+          "encoded": 4.683333333333334,
+          "processed": 4.733333333333333,
+          "published": 4.416666666666667,
+          "sent": 0.0
+        },
+        "14": {
+          "captured": 29.783333333333335,
+          "encoded": 3.65,
+          "processed": 3.85,
+          "published": 3.5,
+          "sent": 0.0
+        },
+        "15": {
+          "captured": 29.666666666666668,
+          "encoded": 5.616666666666666,
+          "processed": 5.7,
+          "published": 5.233333333333333,
+          "sent": 0.0
+        },
+        "16": {
+          "captured": 29.566666666666666,
+          "encoded": 3.5,
+          "processed": 3.55,
+          "published": 3.5,
+          "sent": 0.0
+        },
+        "17": {
+          "captured": 29.466666666666665,
+          "encoded": 4.483333333333333,
+          "processed": 4.65,
+          "published": 4.3,
+          "sent": 0.0
+        },
+        "18": {
+          "captured": 29.4,
+          "encoded": 4.5,
+          "processed": 4.566666666666666,
+          "published": 4.3,
+          "sent": 0.0
+        },
+        "19": {
+          "captured": 29.35,
+          "encoded": 3.2666666666666666,
+          "processed": 3.3666666666666667,
+          "published": 3.066666666666667,
+          "sent": 0.0
+        },
+        "2": {
+          "captured": 29.783333333333335,
+          "encoded": 5.633333333333334,
+          "processed": 5.816666666666666,
+          "published": 5.366666666666666,
+          "sent": 0.0
+        },
+        "20": {
+          "captured": 29.116666666666667,
+          "encoded": 5.55,
+          "processed": 5.683333333333334,
+          "published": 5.416666666666667,
+          "sent": 0.0
+        },
+        "21": {
+          "captured": 29.05,
+          "encoded": 3.4833333333333334,
+          "processed": 3.5166666666666666,
+          "published": 3.35,
+          "sent": 0.0
+        },
+        "22": {
+          "captured": 28.983333333333334,
+          "encoded": 4.4,
+          "processed": 4.516666666666667,
+          "published": 4.25,
+          "sent": 0.0
+        },
+        "23": {
+          "captured": 28.7,
+          "encoded": 4.55,
+          "processed": 4.6,
+          "published": 4.366666666666666,
+          "sent": 0.0
+        },
+        "24": {
+          "captured": 28.733333333333334,
+          "encoded": 3.0833333333333335,
+          "processed": 3.183333333333333,
+          "published": 2.933333333333333,
+          "sent": 0.0
+        },
+        "25": {
+          "captured": 28.466666666666665,
+          "encoded": 5.3,
+          "processed": 5.433333333333334,
+          "published": 5.25,
+          "sent": 0.0
+        },
+        "26": {
+          "captured": 28.483333333333334,
+          "encoded": 3.45,
+          "processed": 3.5,
+          "published": 3.316666666666667,
+          "sent": 0.0
+        },
+        "27": {
+          "captured": 28.4,
+          "encoded": 4.116666666666666,
+          "processed": 4.25,
+          "published": 3.966666666666667,
+          "sent": 0.0
+        },
+        "28": {
+          "captured": 28.416666666666668,
+          "encoded": 4.483333333333333,
+          "processed": 4.483333333333333,
+          "published": 4.283333333333333,
+          "sent": 0.0
+        },
+        "29": {
+          "captured": 28.416666666666668,
+          "encoded": 3.0166666666666666,
+          "processed": 3.0833333333333335,
+          "published": 2.933333333333333,
+          "sent": 0.0
+        },
+        "3": {
+          "captured": 29.8,
+          "encoded": 4.916666666666667,
+          "processed": 5.0,
+          "published": 4.633333333333334,
+          "sent": 0.0
+        },
+        "30": {
+          "captured": 28.316666666666666,
+          "encoded": 5.183333333333334,
+          "processed": 5.283333333333333,
+          "published": 4.933333333333334,
+          "sent": 0.0
+        },
+        "31": {
+          "captured": 28.35,
+          "encoded": 3.4166666666666665,
+          "processed": 3.433333333333333,
+          "published": 3.3833333333333333,
+          "sent": 0.0
+        },
+        "32": {
+          "captured": 28.416666666666668,
+          "encoded": 3.9166666666666665,
+          "processed": 4.0,
+          "published": 3.6333333333333333,
+          "sent": 0.0
+        },
+        "33": {
+          "captured": 28.45,
+          "encoded": 3.7333333333333334,
+          "processed": 3.85,
+          "published": 4.533333333333333,
+          "sent": 1.5
+        },
+        "34": {
+          "captured": 28.3,
+          "encoded": 2.9,
+          "processed": 2.95,
+          "published": 2.85,
+          "sent": 0.0
+        },
+        "35": {
+          "captured": 28.316666666666666,
+          "encoded": 4.983333333333333,
+          "processed": 5.15,
+          "published": 4.866666666666666,
+          "sent": 0.0
+        },
+        "36": {
+          "captured": 28.35,
+          "encoded": 3.4833333333333334,
+          "processed": 3.5166666666666666,
+          "published": 3.3833333333333333,
+          "sent": 0.0
+        },
+        "37": {
+          "captured": 28.333333333333332,
+          "encoded": 3.9166666666666665,
+          "processed": 3.9833333333333334,
+          "published": 3.716666666666667,
+          "sent": 0.0
+        },
+        "38": {
+          "captured": 28.066666666666666,
+          "encoded": 4.45,
+          "processed": 4.516666666666667,
+          "published": 4.35,
+          "sent": 0.0
+        },
+        "39": {
+          "captured": 28.3,
+          "encoded": 2.8,
+          "processed": 2.8666666666666667,
+          "published": 2.7,
+          "sent": 0.0
+        },
+        "4": {
+          "captured": 29.65,
+          "encoded": 3.8666666666666667,
+          "processed": 4.033333333333333,
+          "published": 3.6666666666666665,
+          "sent": 0.0
+        },
+        "40": {
+          "captured": 28.233333333333334,
+          "encoded": 4.966666666666667,
+          "processed": 5.116666666666666,
+          "published": 4.866666666666666,
+          "sent": 0.0
+        },
+        "41": {
+          "captured": 28.3,
+          "encoded": 3.45,
+          "processed": 3.5166666666666666,
+          "published": 3.2333333333333334,
+          "sent": 0.0
+        },
+        "42": {
+          "captured": 28.216666666666665,
+          "encoded": 2.8333333333333335,
+          "processed": 2.966666666666667,
+          "published": 3.8666666666666667,
+          "sent": 2.0
+        },
+        "43": {
+          "captured": 28.283333333333335,
+          "encoded": 4.666666666666667,
+          "processed": 4.683333333333334,
+          "published": 4.35,
+          "sent": 0.0
+        },
+        "44": {
+          "captured": 28.266666666666666,
+          "encoded": 2.7666666666666666,
+          "processed": 2.8,
+          "published": 2.6166666666666667,
+          "sent": 0.0
+        },
+        "45": {
+          "captured": 28.166666666666668,
+          "encoded": 4.833333333333333,
+          "processed": 4.933333333333334,
+          "published": 4.716666666666667,
+          "sent": 0.0
+        },
+        "46": {
+          "captured": 28.15,
+          "encoded": 3.55,
+          "processed": 3.5833333333333335,
+          "published": 3.35,
+          "sent": 0.0
+        },
+        "47": {
+          "captured": 28.266666666666666,
+          "encoded": 3.783333333333333,
+          "processed": 3.8833333333333333,
+          "published": 3.5833333333333335,
+          "sent": 0.0
+        },
+        "48": {
+          "captured": 28.183333333333334,
+          "encoded": 4.616666666666666,
+          "processed": 4.683333333333334,
+          "published": 4.416666666666667,
+          "sent": 0.0
+        },
+        "49": {
+          "captured": 28.35,
+          "encoded": 2.716666666666667,
+          "processed": 2.75,
+          "published": 2.55,
+          "sent": 0.0
+        },
+        "5": {
+          "captured": 29.783333333333335,
+          "encoded": 6.066666666666666,
+          "processed": 6.133333333333334,
+          "published": 5.716666666666667,
+          "sent": 0.0
+        },
+        "50": {
+          "captured": 28.116666666666667,
+          "encoded": 4.733333333333333,
+          "processed": 4.866666666666666,
+          "published": 4.583333333333333,
+          "sent": 0.0
+        },
+        "51": {
+          "captured": 28.233333333333334,
+          "encoded": 3.6333333333333333,
+          "processed": 3.683333333333333,
+          "published": 3.5,
+          "sent": 0.0
+        },
+        "52": {
+          "captured": 28.283333333333335,
+          "encoded": 3.716666666666667,
+          "processed": 3.8666666666666667,
+          "published": 3.65,
+          "sent": 0.0
+        },
+        "53": {
+          "captured": 28.2,
+          "encoded": 4.816666666666666,
+          "processed": 4.883333333333334,
+          "published": 4.616666666666666,
+          "sent": 0.0
+        },
+        "54": {
+          "captured": 27.666666666666668,
+          "encoded": 2.783333333333333,
+          "processed": 2.8666666666666667,
+          "published": 2.6,
+          "sent": 0.0
+        },
+        "55": {
+          "captured": 26.65,
+          "encoded": 4.0,
+          "processed": 4.0,
+          "published": 3.933333333333333,
+          "sent": 2.0833333333333335
+        },
+        "56": {
+          "captured": 27.283333333333335,
+          "encoded": 3.5166666666666666,
+          "processed": 3.566666666666667,
+          "published": 3.3333333333333335,
+          "sent": 0.016666666666666666
+        },
+        "57": {
+          "captured": 26.55,
+          "encoded": 2.933333333333333,
+          "processed": 3.0,
+          "published": 2.8,
+          "sent": 0.0
+        },
+        "58": {
+          "captured": 27.966666666666665,
+          "encoded": 4.7,
+          "processed": 4.733333333333333,
+          "published": 4.533333333333333,
+          "sent": 0.0
+        },
+        "59": {
+          "captured": 28.083333333333332,
+          "encoded": 2.6333333333333333,
+          "processed": 2.7,
+          "published": 2.5,
+          "sent": 0.0
+        },
+        "6": {
+          "captured": 29.8,
+          "encoded": 3.6666666666666665,
+          "processed": 3.7666666666666666,
+          "published": 3.45,
+          "sent": 0.0
+        },
+        "7": {
+          "captured": 29.783333333333335,
+          "encoded": 5.566666666666666,
+          "processed": 5.783333333333333,
+          "published": 5.316666666666666,
+          "sent": 0.0
+        },
+        "8": {
+          "captured": 29.783333333333335,
+          "encoded": 5.0,
+          "processed": 5.066666666666666,
+          "published": 4.783333333333333,
+          "sent": 0.0
+        },
+        "9": {
+          "captured": 29.716666666666665,
+          "encoded": 3.8333333333333335,
+          "processed": 3.9833333333333334,
+          "published": 3.533333333333333,
+          "sent": 0.0
+        }
+      },
+      "hardware_performance_validated": false,
+      "height": 720,
+      "jpeg_profile": "unknown",
+      "jpeg_quality": 55,
+      "latency": {
+        "decoded": {
+          "p50_ms": 43.531071,
+          "p95_ms": 53.031914,
+          "p99_ms": 72.855329
+        },
+        "encode_wait": {
+          "p50_ms": 1.139132,
+          "p95_ms": 47.957526,
+          "p99_ms": 81.409231
+        },
+        "encoded": {
+          "p50_ms": 77.782812,
+          "p95_ms": 93.643113,
+          "p99_ms": 109.722216
+        },
+        "network_write": {
+          "p50_ms": 4.767255,
+          "p95_ms": 14.039785,
+          "p99_ms": 34.066652
+        },
+        "processed": {
+          "p50_ms": 20.616665,
+          "p95_ms": 25.740578,
+          "p99_ms": 32.433668
+        }
+      },
+      "minute_history_scope": "last_120_full_minutes_since_service_start; no warmup exclusion",
+      "nominal_fps": 30,
+      "output_policy": {
+        "capture_fps": 30,
+        "fixed_acceptance": false,
+        "fps_options": [
+          30,
+          25,
+          24,
+          20,
+          15,
+          10,
+          5
+        ],
+        "height": 720,
+        "jpeg_quality": 55,
+        "level": 4,
+        "max_fps": 30,
+        "max_quality": 85,
+        "mode": "auto",
+        "output_fps": 10,
+        "quality_options": [
+          95,
+          85,
+          75,
+          65,
+          55,
+          45,
+          35
+        ],
+        "raw_quality_scope": "camera_native_JPEG; only output_fps is adjustable",
+        "reason": "measured_congestion_reduce_output",
+        "transitions": 562,
+        "width": 1280
+      },
+      "process_cpu": {
+        "dma_reserved_bytes": 25804800,
+        "interval_s": 1.044839537000371,
+        "memory": {
+          "MemAvailable_KiB": 294316,
+          "MemTotal_KiB": 505428,
+          "VmHWM_KiB": 84604,
+          "VmRSS_KiB": 84604
+        },
+        "scope": "process + Linux aggregate /proc/stat",
+        "system_total_percent": 67.43119266055047,
+        "two_core_percent": 60.52565323241287
+      },
+      "rolling_60s_fps": {
+        "captured": 27.483333333333334,
+        "encoded": 3.5833333333333335,
+        "processed": 3.7,
+        "published": 3.3833333333333333,
+        "sent": 0.0
+      },
+      "sent_payload_mbps": 0.027328199938403522,
+      "subsampling": "unknown",
+      "view": "processed",
+      "width": 1280
+    }
+  },
+  "log_tail": "{\"kind\": \"HYBRID_OVERLAY_AND_UART_READY\", \"package\": \"/home/xilinx/edge_console_v010_20261014_r2\", \"contract\": \"0xc425100a\", \"ip_dict_checked\": {\"video_vdma\": {\"phys_addr\": 1124073472, \"addr_range\": 65536}, \"car_system\": {\"phys_addr\": 1136656384, \"addr_range\": 4096}, \"hdmi_dynclk\": {\"phys_addr\": 1136721920, \"addr_range\": 65536}, \"hdmi_vtc\": {\"phys_addr\": 1136787456, \"addr_range\": 65536}, \"hdmi_hpd_gpio\": {\"phys_addr\": 1092812800, \"addr_range\": 65536}}, \"bit_sha256\": \"d3287345221c56d0f0c120508ef1bc54771eeedd7b85050e50906c3ff282d7ad\", \"hwh_sha256\": \"b0b2aeaee963cfc4f018c18ce1d68b9dc96a6d74b3cf02b3e6ac43015af4e81d\", \"sensor_source\": \"stm32_uart_v3\", \"ext_sensor_mode\": 1, \"uart_device\": \"/dev/ttyPS1\", \"uart_of_node\": \"/sys/firmware/devicetree/base/axi/serial@e0001000\", \"uart_dtbo_sha256\": \"08b08a51bcc82ef50473764bb1bef7048e8b2a1fbf9f8704763161616c8cbac2\", \"debug_console_preserved\": true, \"qei_scale\": [0, 0], \"risk_enable\": 1, \"motor_command_sent\": false, \"risk_evaluation_requested\": true, \"kernel_messages\": \"[  951.802342] [drm] skip kind 8(IP_LAYOUT) return code: -22\\n[  951.802357] [drm] skip kind 9(DEBUG_IP_LAYOUT) return code: -22\\n[  951.802369] [drm] skip kind 25(AIE_METADATA) return code: -22\\n[  951.802380] [drm] skip kind 7(CONNECTIVITY) return code: -22\\n[  951.802391] [drm] found kind 6(MEM_TOPOLOGY)\\n[  951.802505] [drm] Memory 0 is not reserved in device tree. Will allocate memory from CMA\\n[  951.802553] [drm] zocl_xclbin_read_axlf c4d2d822-e404-3100-9e91-f3c11c62bc17 ret: 0\\n[  951.828816] [drm] bitstream c4d2d822-e404-3100-9e91-f3c11c62bc17 locked, ref=1\\n[  951.828875] zocl-drm axi:zyxclmm_drm:  ffffffffc112dc10 kds_add_context: Client pid(929) add context Domain(0) CU(0xffffffff) shared(true)\\n[  951.828964] zocl-drm axi:zyxclmm_drm:  ffffffffc112dc10 kds_del_context: Client pid(929) del context Domain(0) CU(0xffffffff)\\n\"}\n浏览器入口：http://192.168.8.139:8080/#token=REDACTED\n"
+}

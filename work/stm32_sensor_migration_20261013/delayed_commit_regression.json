@@ -1,0 +1,9 @@
+{
+  "case": "MMIO commit delayed after sample age calculation",
+  "before_log": "pynq_fpga/fpga/build/sim_tb_car_external_sensors/20261013_220422_107/sim_run.log",
+  "before": "FAIL reproduced: delayed commit incorrectly valid",
+  "after_log": "pynq_fpga/fpga/build/sim_tb_car_external_sensors/20261013_220605_764/sim_run.log",
+  "after": "PASS 30 checks including delayed commit, low-word wrap, future anchor",
+  "host": "PASS 149 tests; post-latch host time and eight-field transaction verified",
+  "hardware_tested": false
+}

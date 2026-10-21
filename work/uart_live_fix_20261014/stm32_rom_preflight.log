@@ -1,0 +1,8 @@
+      -------------------------------------------------------------------
+                       STM32CubeProgrammer v2.22.0                  
+      -------------------------------------------------------------------
+
+Serial Port COM9 is successfully opened.
+Port configuration: parity = even, baudrate = 115200, data-bit = 8,                     stop-bit = 1.0, flow-control = off
+Timeout error occured while waiting for acknowledgement.
+Error: Activating device: KO. Please, verify the boot mode configuration and check the serial port configuration. Reset your device then try again... 

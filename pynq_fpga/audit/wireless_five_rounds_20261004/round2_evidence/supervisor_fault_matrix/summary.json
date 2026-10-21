@@ -1,0 +1,123 @@
+{
+  "schema": "car-supervisor-fault-matrix/v1",
+  "hardware": false,
+  "scope": "actual host/client/UART encoder and compiled production STM32 policy; simulated PL registers and transport",
+  "production_c": {
+    "schema": "car-production-c-build/v1",
+    "source": "C:\\Users\\39909\\Desktop\\FPGA\\stm32_pynq\u5bf9\u63a5\u7248\\Source\\APP\\safe_control.c",
+    "source_sha256": "ef32fb8a078fca7faf719377bcb728a908d450e8ef43a4bf2d85665e7be365d3",
+    "header": "C:\\Users\\39909\\Desktop\\FPGA\\stm32_pynq\u5bf9\u63a5\u7248\\Source\\APP\\safe_control.h",
+    "header_sha256": "e41d8c3f15fd84719336e0475d3746ef1abe2b373a9b6714988194f9ee317f75",
+    "dll_sha256": "8737fbaf64e4510ec71a8331db2170bbf3dd6b412a5b03ab1bf25872663933fa",
+    "compiler_command": "cl /nologo /W4 /wd4819 /WX /TC /LD /O2 \"C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\c_build\\safe_control_prod.c\" /Fe\"C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\c_build\\safe_control.dll\" /FoC:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\c_build\\obj\\ /link /EXPORT:safe_init /EXPORT:safe_tick /EXPORT:safe_fault /EXPORT:safe_source_handover /EXPORT:safe_frame /EXPORT:safe_pframe /EXPORT:safe_outputs"
+  },
+  "sources": {
+    "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\control_supervisor.py": "e61353f4b81cd4ec1a4029d4dadc517872136da9fe3edbbc393c3f181fb3650f",
+    "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\perception_client.py": "56a6a8eb12e3057e12577bf5d58b625053f190eaed698f453b7e087d04eb2fa6",
+    "C:\\Users\\39909\\Desktop\\FPGA\\stm32\u9884\u5907\u7a0b\u5e8f\\pc\\pynq_link.py": "4cd3a79bdc17c10b81343aff95c58cb9f1e0608e8e56d224f5ff06b33a883923",
+    "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\tests\\supervisor_c_fixture.py": "c32ddbd502430a36f71b286dc6c19f7b7cdd9c924c6f0f2376effacfa00b20f9",
+    "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\tests\\test_supervisor_c_loop.py": "bbce8dd84fc25b8afbeabbdff4aba383483dd6c65cc98dcb2e9e097560aa7f1c",
+    "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\preintegration\\run_supervisor_fault_matrix.py": "f114b1e5ac333c268177b768658af591b445de983c6b293a8762c9a0c47c0bb7"
+  },
+  "scenarios": [
+    {
+      "scenario": "test_frozen_car_feedback_stops_even_while_uart_tx_and_pl_are_healthy",
+      "passed": true,
+      "trace": "test_frozen_car_feedback_stops_even_while_uart_tx_and_pl_are_healthy.json",
+      "sha256": "65812f6058fad278cbcaf8d9f29290592bf87f2d58ae07cde29efa6003695396",
+      "failures": []
+    },
+    {
+      "scenario": "test_frozen_pl_sample_real_client_and_c_stop",
+      "passed": true,
+      "trace": "test_frozen_pl_sample_real_client_and_c_stop.json",
+      "sha256": "c5378e31f77b27839f46b96996ef5a54c483d5f1dc65b1a32015b90e479ec7a7",
+      "failures": []
+    },
+    {
+      "scenario": "test_intent_expiry_is_not_renewed_by_sampling_or_uart",
+      "passed": true,
+      "trace": "test_intent_expiry_is_not_renewed_by_sampling_or_uart.json",
+      "sha256": "34d683930a5d85a1706f1712185c670badaa9eaf54a6da76a853af95d1ffeec0",
+      "failures": []
+    },
+    {
+      "scenario": "test_ir_obstacle_keeps_actual_c_fault_source",
+      "passed": true,
+      "trace": "test_ir_obstacle_keeps_actual_c_fault_source.json",
+      "sha256": "6cc115bb5294788cfa8698b555b7600f82d0b1888eae45b52a564dc742758603",
+      "failures": []
+    },
+    {
+      "scenario": "test_missing_unlock_ack_times_out_without_any_motion",
+      "passed": true,
+      "trace": "test_missing_unlock_ack_times_out_without_any_motion.json",
+      "sha256": "2cc09033a058e10611236efac94640ec942a6bc8d1d69189e5b9f6931bf86c98",
+      "failures": []
+    },
+    {
+      "scenario": "test_mmio_failure_still_sends_stop_to_c",
+      "passed": true,
+      "trace": "test_mmio_failure_still_sends_stop_to_c.json",
+      "sha256": "694d8f9d63ee9951f9fa9a936ca8f9f3eb18b5046b01ccd6c64b246074d86b9b",
+      "failures": []
+    },
+    {
+      "scenario": "test_new_control_restart_cannot_replay_old_nonzero_request",
+      "passed": true,
+      "trace": "test_new_control_restart_cannot_replay_old_nonzero_request.json",
+      "sha256": "8550f7cae95c86eb3cef7168a8753534c8ffe1ce3d286c601261f741acc63917",
+      "failures": []
+    },
+    {
+      "scenario": "test_red_stops_c_and_cannot_automatically_restart",
+      "passed": true,
+      "trace": "test_red_stops_c_and_cannot_automatically_restart.json",
+      "sha256": "c79d4c3f51e8cc300c40f17defa75835bdef1464f478a1ae8fbf84de0c171d36",
+      "failures": []
+    },
+    {
+      "scenario": "test_release_then_fresh_intent_is_required_by_actual_c_outputs",
+      "passed": true,
+      "trace": "test_release_then_fresh_intent_is_required_by_actual_c_outputs.json",
+      "sha256": "ebc284a80266ee644a34472aac4bab302ce13d2ea43d86f4f545a30aa2b23da0",
+      "failures": []
+    },
+    {
+      "scenario": "test_reverse_requests_encode_nonforward_and_reach_actual_c",
+      "passed": true,
+      "trace": "test_reverse_requests_encode_nonforward_and_reach_actual_c.json",
+      "sha256": "2d8ec3607d13471215814538b301b7a620d8145996cbadecaf2ead1ba0d2d6f1",
+      "failures": []
+    },
+    {
+      "scenario": "test_supervisor_stall_with_uart_running_revokes_old_request",
+      "passed": true,
+      "trace": "test_supervisor_stall_with_uart_running_revokes_old_request.json",
+      "sha256": "db5464183929678d66678f2092caae981929751c01bdcbee6e3b4e130e3b74c3",
+      "failures": []
+    },
+    {
+      "scenario": "test_uart_blackout_actual_c_backstop",
+      "passed": true,
+      "trace": "test_uart_blackout_actual_c_backstop.json",
+      "sha256": "d842dcfe90bdcdaaab4e5fc4cf401fdc4a0a2bc7c9844a5e06a351bc80057651",
+      "failures": []
+    },
+    {
+      "scenario": "test_uint32_c_and_pl_wrap_preserve_hold_and_lease",
+      "passed": true,
+      "trace": "test_uint32_c_and_pl_wrap_preserve_hold_and_lease.json",
+      "sha256": "76b1f5e66f7164ffa6e2c7c9e86ab70106ebead1504573ad28ba9d8b0031f07b",
+      "failures": []
+    },
+    {
+      "scenario": "test_yellow_reduces_actual_c_pwm_and_green_does_not_replay",
+      "passed": true,
+      "trace": "test_yellow_reduces_actual_c_pwm_and_green_does_not_replay.json",
+      "sha256": "386ebb4f885b9148a61dbbe669fbc31973a4492e2a42a0f5945015ada44a8b25",
+      "failures": []
+    }
+  ],
+  "passed": true
+}

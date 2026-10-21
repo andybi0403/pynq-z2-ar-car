@@ -1,0 +1,47 @@
+{
+  "kind": "INDEPENDENT_QEI_BENCH_AUDIT",
+  "hardware": true,
+  "samples": 8948,
+  "observed_seconds": 479.9944160539999,
+  "zero_motor_commands": true,
+  "control_permits": 0,
+  "final_unconfigured": true,
+  "channels": {
+    "left": {
+      "net_delta": 3852,
+      "observed_abs_delta": 4240,
+      "illegal_first": 0,
+      "illegal_last": 255,
+      "overrun_last": 0,
+      "diagnostic_bad_samples": 8946,
+      "bad_display_valid_samples": 0,
+      "nonzero_raw_velocity_samples": 2117,
+      "nonzero_display_velocity_samples": 0,
+      "reason_counts": {
+        "illegal_transition": 8946,
+        "odometry_fault": 8946,
+        "diagnostic_saturated": 8885
+      },
+      "stationary_input_pass": false
+    },
+    "right": {
+      "net_delta": 9934,
+      "observed_abs_delta": 13982,
+      "illegal_first": 0,
+      "illegal_last": 255,
+      "overrun_last": 0,
+      "diagnostic_bad_samples": 8947,
+      "bad_display_valid_samples": 0,
+      "nonzero_raw_velocity_samples": 7978,
+      "nonzero_display_velocity_samples": 0,
+      "reason_counts": {
+        "illegal_transition": 8947,
+        "odometry_fault": 8947,
+        "diagnostic_saturated": 8916
+      },
+      "stationary_input_pass": false
+    }
+  },
+  "containment_pass": true,
+  "stationary_input_pass": false
+}

@@ -1,0 +1,186 @@
+TASK7_8_BOARD_START_FAIL: camera removed
+LAB_UART_STOP_PASS states=1 output=C:\Users\39909\AppData\Local\Temp\tmp6lvgdl8q\fresh_uart.json
+ENCODE_QUEUE_PASS superseded job skipped; latest encoded; all three DMA buffers returned exactly once
+PIPELINE_FAULT_PASS old encoder/capture race rejected; new capture restores service; cleanup confirmed
+�������ڣ�http://198.18.0.1:8080/#token=REDACTED
+...............EEEE..E................................................EEE...................................................................usage: python.exe -m unittest [-h] [--bit BIT] [--hwh HWH]
+                              [--manifest MANIFEST] [--native NATIVE]
+                              [--camera-device CAMERA_DEVICE] [--port PORT]
+                              [--bind BIND] [--web-port WEB_PORT]
+                              [--duration DURATION]
+                              [--video-mode {auto,manual,fixed}] [--fps FPS]
+                              [--quality QUALITY]
+                              [--jpeg-profile {balanced,balanced_fast,detail,legacy}]
+                              [--decode-dct {islow,ifast}] [--reuse-decoder]
+                              [--calibration CALIBRATION]
+                              [--motor-disconnected] [--video-only]
+                              [--headless] [--evidence-dir EVIDENCE_DIR]
+python.exe -m unittest: error: unsupported output fps
+�����ַ�ݲ����ã�network unreachable����Ƶ�������У����������˿� 8080
+�������ڣ�http://198.18.0.1:8080/#token=REDACTED
+...usage: python.exe -m unittest [-h] [--bit BIT] [--hwh HWH]
+                              [--manifest MANIFEST] [--native NATIVE]
+                              [--camera-device CAMERA_DEVICE] [--port PORT]
+                              [--bind BIND] [--web-port WEB_PORT]
+                              [--duration DURATION]
+                              [--video-mode {auto,manual,fixed}] [--fps FPS]
+                              [--quality QUALITY]
+                              [--jpeg-profile {balanced,balanced_fast,detail,legacy}]
+                              [--decode-dct {islow,ifast}] [--reuse-decoder]
+                              [--calibration CALIBRATION]
+                              [--motor-disconnected] [--video-only]
+                              [--headless] [--evidence-dir EVIDENCE_DIR]
+python.exe -m unittest: error: video-only sessions cannot apply calibration
+.
+======================================================================
+ERROR: test_corrupted_word_version_reserved_bits_and_range_rejected (test_frame_metadata.MetadataTests.test_corrupted_word_version_reserved_bits_and_range_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\tests\test_frame_metadata.py", line 37, in test_corrupted_word_version_reserved_bits_and_range_rejected
+    words=encode(association())
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\frame_metadata.py", line 46, in encode
+    not any(raw_fault_reasons(raw, channel) for channel in (0, 1)))
+        ^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\frame_metadata.py", line 46, in <genexpr>
+    not any(raw_fault_reasons(raw, channel) for channel in (0, 1)))
+            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\host\qei_quality.py", line 39, in raw_fault_reasons
+    return fault_reasons(raw[prefix+'INFO'],
+                         ~~~^^^^^^^^^^^^^^^
+KeyError: 'QEI0_INFO'
+
+======================================================================
+ERROR: test_exact_wire_layout_signed_physics_and_64bit_time (test_frame_metadata.MetadataTests.test_exact_wire_layout_signed_physics_and_64bit_time)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\tests\test_frame_metadata.py", line 24, in test_exact_wire_layout_signed_physics_and_64bit_time
+    words=encode(association())
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\frame_metadata.py", line 46, in encode
+    not any(raw_fault_reasons(raw, channel) for channel in (0, 1)))
+        ^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\frame_metadata.py", line 46, in <genexpr>
+    not any(raw_fault_reasons(raw, channel) for channel in (0, 1)))
+            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\host\qei_quality.py", line 39, in raw_fault_reasons
+    return fault_reasons(raw[prefix+'INFO'],
+                         ~~~^^^^^^^^^^^^^^^
+KeyError: 'QEI0_INFO'
+
+======================================================================
+ERROR: test_stale_sensor_and_faulted_odometry_keep_independent_invalid_flags (test_frame_metadata.MetadataTests.test_stale_sensor_and_faulted_odometry_keep_independent_invalid_flags)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\tests\test_frame_metadata.py", line 51, in test_stale_sensor_and_faulted_odometry_keep_independent_invalid_flags
+    decoded=decode(encode(item))
+                   ~~~~~~^^^^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\frame_metadata.py", line 46, in encode
+    not any(raw_fault_reasons(raw, channel) for channel in (0, 1)))
+        ^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\frame_metadata.py", line 46, in <genexpr>
+    not any(raw_fault_reasons(raw, channel) for channel in (0, 1)))
+            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\host\qei_quality.py", line 39, in raw_fault_reasons
+    return fault_reasons(raw[prefix+'INFO'],
+                         ~~~^^^^^^^^^^^^^^^
+KeyError: 'QEI0_INFO'
+
+======================================================================
+ERROR: test_stamping_preserves_source_and_every_nonreserved_pixel (test_frame_metadata.MetadataTests.test_stamping_preserves_source_and_every_nonreserved_pixel)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\tests\test_frame_metadata.py", line 58, in test_stamping_preserves_source_and_every_nonreserved_pixel
+    stamped=stamp_bgr0(source,association(),width=64,height=4)
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\frame_metadata.py", line 95, in stamp_bgr0
+    output[:WORDS*4] = prefix_bgr0(encode(association))
+                                   ~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\frame_metadata.py", line 46, in encode
+    not any(raw_fault_reasons(raw, channel) for channel in (0, 1)))
+        ^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\frame_metadata.py", line 46, in <genexpr>
+    not any(raw_fault_reasons(raw, channel) for channel in (0, 1)))
+            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\host\qei_quality.py", line 39, in raw_fault_reasons
+    return fault_reasons(raw[prefix+'INFO'],
+                         ~~~^^^^^^^^^^^^^^^
+KeyError: 'QEI0_INFO'
+
+======================================================================
+ERROR: test_board_runtime_ownership_and_active_low_hpd (test_framework.ContractTests.test_board_runtime_ownership_and_active_low_hpd)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\tests\test_framework.py", line 413, in test_board_runtime_ownership_and_active_low_hpd
+    run_safety_loop(
+    ~~~~~~~~~~~~~~~^
+        Path("unused.bit"), Path("unused.hwh"), Path("unused.json"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "unused", 0.02, 0.002, safety_output, True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        client_factory=FakeClient, link_factory=SafeLoopLink,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\lab_acceptance.py", line 451, in run_safety_loop
+    "registers": snapshot_registers(shot),
+                 ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\host\perception_replay.py", line 219, in snapshot_registers
+    "QEI0_INFO": shot.qei0_info,
+                 ^^^^^^^^^^^^^^
+AttributeError: 'types.SimpleNamespace' object has no attribute 'qei0_info'
+
+======================================================================
+ERROR: test_copy_failure_returns_unsubmitted_dma_buffer (test_performance_paths.PerformancePathTests.test_copy_failure_returns_unsubmitted_dma_buffer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\tests\test_performance_paths.py", line 43, in test_copy_failure_returns_unsubmitted_dma_buffer
+    with self.assertRaises(ValueError):runtime.write_associated(bytes(FRAME_BYTES),encode(association()))
+                                                                                   ~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\frame_metadata.py", line 46, in encode
+    not any(raw_fault_reasons(raw, channel) for channel in (0, 1)))
+        ^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\frame_metadata.py", line 46, in <genexpr>
+    not any(raw_fault_reasons(raw, channel) for channel in (0, 1)))
+            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\host\qei_quality.py", line 39, in raw_fault_reasons
+    return fault_reasons(raw[prefix+'INFO'],
+                         ~~~^^^^^^^^^^^^^^^
+KeyError: 'QEI0_INFO'
+
+======================================================================
+ERROR: test_dma_path_matches_all_pixels_and_keeps_source_immutable (test_performance_paths.PerformancePathTests.test_dma_path_matches_all_pixels_and_keeps_source_immutable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\tests\test_performance_paths.py", line 23, in test_dma_path_matches_all_pixels_and_keeps_source_immutable
+    runtime.write_associated(source,encode(association()))
+                                    ~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\frame_metadata.py", line 46, in encode
+    not any(raw_fault_reasons(raw, channel) for channel in (0, 1)))
+        ^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\frame_metadata.py", line 46, in <genexpr>
+    not any(raw_fault_reasons(raw, channel) for channel in (0, 1)))
+            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\host\qei_quality.py", line 39, in raw_fault_reasons
+    return fault_reasons(raw[prefix+'INFO'],
+                         ~~~^^^^^^^^^^^^^^^
+KeyError: 'QEI0_INFO'
+
+======================================================================
+ERROR: test_invalid_prefix_and_size_fail_before_dma_buffer_allocation (test_performance_paths.PerformancePathTests.test_invalid_prefix_and_size_fail_before_dma_buffer_allocation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\tests\test_performance_paths.py", line 31, in test_invalid_prefix_and_size_fail_before_dma_buffer_allocation
+    words=encode(association());words[0]^=1
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\frame_metadata.py", line 46, in encode
+    not any(raw_fault_reasons(raw, channel) for channel in (0, 1)))
+        ^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\host\frame_metadata.py", line 46, in <genexpr>
+    not any(raw_fault_reasons(raw, channel) for channel in (0, 1)))
+            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\host\qei_quality.py", line 39, in raw_fault_reasons
+    return fault_reasons(raw[prefix+'INFO'],
+                         ~~~^^^^^^^^^^^^^^^
+KeyError: 'QEI0_INFO'
+
+----------------------------------------------------------------------
+Ran 144 tests in 38.850s
+
+FAILED (errors=8)

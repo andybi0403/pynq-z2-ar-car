@@ -1,0 +1,29 @@
+      -------------------------------------------------------------------
+                       STM32CubeProgrammer v2.22.0                  
+      -------------------------------------------------------------------
+
+Serial Port COM5 is successfully opened.
+Port configuration: parity = even, baudrate = 115200, data-bit = 8,                     stop-bit = 1.0, flow-control = off
+Board       : --
+Chip ID: 0x410 
+BootLoader protocol version: 2.2
+Device name : STM32F101/F102/F103 Medium-density
+NVM size  : 128 KBytes (default)
+Device type : MCU
+Revision ID : --  
+Device CPU  : Cortex-M3
+
+UPLOADING ...
+  File          : C:/Users/39909/Desktop/FPGA/pynq_fpga/preintegration/evidence/stm32_flash_v010_20261013/after_flash_128k.bin
+  Size          : 131072 Bytes
+  Address:      : 0x8000000
+Read progress:
+�������������������������������������������������� 0%
+�������������������������������������������������� 100%�  2%�  4%�  6%�  8%� 10%� 12%� 14%� 16%� 18%� 20%� 22%� 24%� 26%� 28%� 30%� 32%� 34%� 36%� 38%� 40%� 42%� 44%� 46%� 48%� 50%� 52%� 54%� 56%� 58%� 60%� 62%� 64%� 66%� 68%� 70%� 72%� 74%� 76%� 78%� 80%� 82%� 84%� 86%� 88%� 90%� 92%� 94%� 96%� 98%� 100%
+
+Data read successfully
+Time elapsed during read operation is: 00:00:16.782
+�������������������������������������������������� 50%
+�������������������������������������������������� 100%
+
+0x1FFFF800 : A5 5A FF FF FF FF FF FF FF FF FF FF FF FF FF FF

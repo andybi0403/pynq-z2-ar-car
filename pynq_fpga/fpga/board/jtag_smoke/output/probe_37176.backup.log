@@ -1,0 +1,59 @@
+INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detected. Your current license is active and will expire on 16-sep-2027.
+#-----------------------------------------------------------
+# Vivado v2026.1 (64-bit)
+# SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+# IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+# SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+# Start of session at: Thu Sep 24 00:06:33 2026
+# Process ID         : 37176
+# Current directory  : C:/Users/39909/Desktop/FPGA
+# Command line       : vivado.exe -mode batch -source C:\Users\39909\Desktop\FPGA\pynq_fpga\fpga\board\jtag_smoke\probe.tcl -log C:\Users\39909\Desktop\FPGA\pynq_fpga\fpga\board\jtag_smoke\output\probe.log -journal C:\Users\39909\Desktop\FPGA\pynq_fpga\fpga\board\jtag_smoke\output\probe.jou
+# Log file           : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/board/jtag_smoke/output/probe.log
+# Journal file       : C:\Users\39909\Desktop\FPGA\pynq_fpga\fpga\board\jtag_smoke\output\probe.jou
+# Running On         : BZY
+# Platform           : Windows 11
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) i7-14650HX
+# CPU Frequency      : 2419 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 33943 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68302 MB
+# Available Virtual  : 48075 MB
+#-----------------------------------------------------------
+source {C:\Users\39909\Desktop\FPGA\pynq_fpga\fpga\board\jtag_smoke\probe.tcl}
+# open_hw_manager
+open_hw_manager: Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 591.496 ; gain = 273.941
+# connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx hw_server v2026.1
+  **** Build date : May 29 2026 at 14:55:19
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx cs_server v2026.1
+  **** Build Info : #60 | 2026-06-15 19:15 UTC | a9691a9
+    ** Copyright 2017-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+
+
+connect_hw_server: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 598.684 ; gain = 7.188
+ERROR: [Labtoolstcl 44-199] No matching targets found on connected servers: localhost
+Resolution: If needed connect the desired target to a server and use command refresh_hw_server. Then rerun the get_hw_targets command.
+ERROR: [Common 17-39] 'get_hw_targets' failed due to earlier errors.
+
+    while executing
+"get_hw_targets"
+    invoked from within
+"set targets [get_hw_targets]"
+    (file "C:\Users\39909\Desktop\FPGA\pynq_fpga\fpga\board\jtag_smoke\probe.tcl" line 3)
+INFO: [Common 17-206] Exiting Vivado at Thu Sep 24 00:06:51 2026...

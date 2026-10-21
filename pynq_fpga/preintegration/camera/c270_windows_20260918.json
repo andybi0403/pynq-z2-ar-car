@@ -1,0 +1,32 @@
+{
+  "captured_at": "2026-09-18",
+  "device_name": "Logi C270 HD WebCam",
+  "manufacturer": "Logitech",
+  "usb_vid": "046D",
+  "usb_pid": "0825",
+  "video_interface": "MI_00",
+  "usb_class": "0E",
+  "windows_service": "usbvideo",
+  "driver_provider": "Logitech",
+  "driver_version": "2.3.7.5",
+  "pnp_status": "OK",
+  "reported_modes": [
+    {"pixel_format": "yuyv422", "width": 1280, "height": 720, "fps": 30.0},
+    {"pixel_format": "nv12", "width": 1280, "height": 720, "fps": 30.0}
+  ],
+  "smoke_test": {
+    "method": "FFmpeg DirectShow to null sink, no image retained",
+    "requested": "1280x720 yuyv422 30fps for 3 seconds",
+    "exit_code": 0,
+    "last_reported_frame": 46,
+    "interpretation": "capture works; achieved end-to-end 30fps is not proven"
+  },
+  "board_retest_required": [
+    "lsusb VID:PID",
+    "v4l2-ctl format list",
+    "640x480 sustained capture",
+    "disconnect and stale-frame handling",
+    "P50/P95/P99 frame interval"
+  ]
+}
+

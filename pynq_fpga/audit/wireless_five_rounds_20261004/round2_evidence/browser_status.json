@@ -1,0 +1,132 @@
+{
+  "障碍距离mm": null,
+  "轮速mm/s": null,
+  "STM32实际锁存": null,
+  "实际左PWM": null,
+  "实际右PWM": null,
+  "远程接管及撤销原因": {
+    "connected": 1,
+    "owned": false,
+    "rejected": 0,
+    "motion_allowed": false,
+    "last_event": {
+      "reason": "operator_stop",
+      "server_ms": 11962500.359100001
+    }
+  },
+  "视频": {
+    "width": 1280,
+    "height": 720,
+    "nominal_fps": 30,
+    "jpeg_quality": 65,
+    "output_policy": {
+      "mode": "manual",
+      "width": 1280,
+      "height": 720,
+      "capture_fps": 30,
+      "max_fps": 24,
+      "max_quality": 65,
+      "output_fps": 24,
+      "jpeg_quality": 65,
+      "level": 0,
+      "reason": "operator_selected_manual",
+      "transitions": 0,
+      "fps_options": [
+        30,
+        25,
+        24,
+        20,
+        15,
+        10,
+        5
+      ],
+      "quality_options": [
+        95,
+        85,
+        75,
+        65,
+        55,
+        45,
+        35
+      ],
+      "raw_quality_scope": "camera_native_JPEG; only output_fps is adjustable",
+      "fixed_acceptance": false
+    },
+    "subsampling": "4:2:0",
+    "counts": {
+      "captured": 9955,
+      "processed": 0,
+      "encoded": 0,
+      "sent": 5838,
+      "camera_dropped": 0,
+      "decode_dropped": 0,
+      "encode_dropped": 0,
+      "network_write": 0,
+      "browser_control_rtt": 2292
+    },
+    "fps_since_start": {
+      "captured": 29.669843598177827,
+      "processed": 0,
+      "encoded": 0,
+      "sent": 17.399552679674752
+    },
+    "latency": {
+      "network_write": {
+        "p50_ms": 0.0905,
+        "p95_ms": 0.1245,
+        "p99_ms": 0.1954
+      },
+      "browser_control_rtt": {
+        "p50_ms": 0.5,
+        "p95_ms": 1.300000000745058,
+        "p99_ms": 2.699999999254942
+      }
+    },
+    "view": "processed",
+    "error": null,
+    "rolling_60s_fps": {
+      "captured": 29.716666666666665,
+      "sent": 23.983333333333334
+    },
+    "process_cpu": null,
+    "average_process_two_core_percent": null,
+    "average_system_total_percent": null,
+    "full_minute_fps": {
+      "0": {
+        "captured": 29.616666666666667,
+        "processed": 0,
+        "encoded": 0,
+        "sent": 0
+      },
+      "1": {
+        "captured": 29.616666666666667,
+        "processed": 0,
+        "encoded": 0,
+        "sent": 11.1
+      },
+      "2": {
+        "captured": 29.683333333333334,
+        "processed": 0,
+        "encoded": 0,
+        "sent": 24
+      },
+      "3": {
+        "captured": 29.7,
+        "processed": 0,
+        "encoded": 0,
+        "sent": 24.016666666666666
+      },
+      "4": {
+        "captured": 29.7,
+        "processed": 0,
+        "encoded": 0,
+        "sent": 23.983333333333334
+      }
+    },
+    "minute_history_scope": "last_120_full_minutes_since_service_start; no warmup exclusion",
+    "browser_rtt_scope": "client_reported_ack_roundtrip_not_wheel_stop",
+    "sent_payload_mbps": 3.127917883264744,
+    "hardware_performance_validated": false
+  },
+  "故障": []
+}

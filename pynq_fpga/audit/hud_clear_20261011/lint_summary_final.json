@@ -1,0 +1,36 @@
+{
+  "execution": "local Vivado 2026.1; ROSS skills and documentation used; no active MCP Vivado session",
+  "report_format": "ASCII table despite .csv filename",
+  "modules": {
+    "car_axis_osd": {
+      "violations": 18,
+      "rules": {
+        "ASSIGN-1": 8,
+        "ASSIGN-5": 3,
+        "ASSIGN-6": 6,
+        "QOR-1": 1
+      },
+      "waivers": 0
+    },
+    "car_axis_status_osd": {
+      "violations": 6,
+      "rules": {
+        "ASSIGN-1": 1,
+        "ASSIGN-5": 2,
+        "ASSIGN-6": 2,
+        "ASSIGN-10": 1
+      },
+      "waivers": 0
+    },
+    "car_axis_front_overlay": {
+      "violations": 11,
+      "rules": {
+        "ASSIGN-1": 4,
+        "ASSIGN-5": 1,
+        "ASSIGN-6": 4,
+        "ASSIGN-10": 2
+      },
+      "waivers": 0
+    }
+  }
+}

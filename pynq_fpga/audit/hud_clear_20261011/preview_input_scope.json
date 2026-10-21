@@ -1,0 +1,8 @@
+{
+  "hardware": false,
+  "source": "historical actual camera raw JPEG",
+  "source_snapshot": "pynq_fpga\\preintegration\\evidence\\video_six_rounds_20261008\\round6_formal_live_LAN_browser_r2_20261009\\snapshot_2142.json",
+  "frame_id": 2142,
+  "preview": "new RTL simulation, not current board output",
+  "sensors": "invalid fixture; no calibrated alarm acceptance"
+}

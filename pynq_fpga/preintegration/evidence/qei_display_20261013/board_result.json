@@ -1,0 +1,41 @@
+{
+  "kind": "DISPLAY_ESTIMATE_BENCH",
+  "scope": "actual board display-layer diagnostic; no motion or joint acceptance",
+  "stationary_display_assumed": true,
+  "motor_commands_sent": false,
+  "target_seconds": 60,
+  "temporary_nominal_scale_not_measured": true,
+  "package": "/home/xilinx/qei_display_20261013_candidate_r2",
+  "bit_sha256": "55307014d00f35dfe45f43c9adf2fa8f264aa0eb74da0333e017c00a9db41dce",
+  "configuration": {
+    "stationary_assumed": true,
+    "hold_s": 1.0,
+    "tau_s": 0.25,
+    "slew_mm_s2": 600.0,
+    "max_speed_mm_s": 2000.0,
+    "drive_model": null,
+    "scope": "display_only_estimates"
+  },
+  "completed": true,
+  "final_registers": {
+    "QEI0_SCALE": 0,
+    "QEI1_SCALE": 0,
+    "QEI0_FILTER": 1000,
+    "QEI1_FILTER": 1000,
+    "RISK_ENABLE": 0
+  },
+  "safe_unconfigured": true,
+  "samples": 1119,
+  "observed_seconds": 59.981329339000695,
+  "zero_estimated_samples": 1119,
+  "invalid_measurement_samples": 1119,
+  "control_permits": 0,
+  "illegal_last": [
+    255,
+    255
+  ],
+  "raw_archive": {
+    "bytes": 1519615,
+    "sha256": "fe7275bcce64a511252e05fd7fe5a7202dcd831c6be68e8d73dc27d389826ba6"
+  }
+}

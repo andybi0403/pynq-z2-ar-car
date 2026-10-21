@@ -1,0 +1,169 @@
+{
+  "schema": "uart-role-fix-hardware-result/v1",
+  "firmware": {
+    "kind": "INDEPENDENT_PC_FULL_FLASH_AUDIT",
+    "hardware_readback": true,
+    "readback_bytes": 131072,
+    "readback_sha256": "d327416b36ca5dfbd6b25a3a1c2ea87876560b983fd19c86ceff61b535a97e02",
+    "firmware_sha256": "8b043a342c839414f021bbd68700ddfac48113509577872ace9074bb806f4f2d",
+    "matches_expected_full_flash": true,
+    "outside_erase_span_preserved": true
+  },
+  "normal_boot_uart_PL": {
+    "kind": "INDEPENDENT_HARDWARE_UART_PL_AUDIT",
+    "prefix": "fixed_runtime",
+    "reports": 921,
+    "reports_measured_before_close": 920,
+    "reply_drained_during_close": 1,
+    "tx_types": {
+      "Q1": 921,
+      "PSTOP": 922
+    },
+    "samples": 1103,
+    "matched_valid_PL_samples": {
+      "us": 1102,
+      "ir": 1102
+    },
+    "first_valid_PL_seconds": {
+      "us": 0.05881031399985659,
+      "ir": 0.05881031399985659
+    },
+    "first_IR_low16": 17781,
+    "distance_range_mm": [
+      177,
+      182
+    ],
+    "checks": {
+      "raw_crc_and_request_match": true,
+      "all_feedback_locked_zero": true,
+      "no_motor_release_or_drive_sent": true,
+      "PL_values_correspond_to_wire_samples": true,
+      "both_PL_channels_valid_over_90_percent": true,
+      "production_acceptance_passed": true
+    },
+    "passed": true,
+    "wire_sha256": "a6ace1cacce308fd20062617999b50f0aad9dfa00a1a873e080d0002dae1b996"
+  },
+  "upper_half_IR_regression": {
+    "kind": "INDEPENDENT_HARDWARE_UART_PL_AUDIT",
+    "prefix": "high_sequence",
+    "reports": 1047,
+    "reports_measured_before_close": 1047,
+    "reply_drained_during_close": 0,
+    "tx_types": {
+      "Q1": 1047,
+      "PSTOP": 1048
+    },
+    "samples": 276,
+    "matched_valid_PL_samples": {
+      "us": 276,
+      "ir": 276
+    },
+    "first_valid_PL_seconds": {
+      "us": 0.0040697109998291126,
+      "ir": 0.0040697109998291126
+    },
+    "first_IR_low16": 50816,
+    "distance_range_mm": [
+      177,
+      181
+    ],
+    "checks": {
+      "raw_crc_and_request_match": true,
+      "all_feedback_locked_zero": true,
+      "no_motor_release_or_drive_sent": true,
+      "PL_values_correspond_to_wire_samples": true,
+      "both_PL_channels_valid_over_90_percent": true,
+      "production_acceptance_passed": true,
+      "upper_half_first_sample_accepted": true
+    },
+    "passed": true,
+    "wire_sha256": "b597ecfee41c62a67bf59fce77c3c4639df6a92ded88456f091a86a0ac77caa6"
+  },
+  "BOOT0": 0,
+  "normal_reset_confirmed_by_user": true,
+  "motor_power": "disconnected",
+  "overall_vehicle_acceptance": "NOT_CLAIMED",
+  "PYNQ_reboot_uart_PL": {
+    "kind": "INDEPENDENT_HARDWARE_UART_PL_AUDIT",
+    "prefix": "reboot",
+    "reports": 462,
+    "reports_measured_before_close": 461,
+    "reply_drained_during_close": 1,
+    "tx_types": {
+      "Q1": 462,
+      "PSTOP": 463
+    },
+    "samples": 552,
+    "matched_valid_PL_samples": {
+      "us": 551,
+      "ir": 551
+    },
+    "first_valid_PL_seconds": {
+      "us": 0.058752117000011594,
+      "ir": 0.058752117000011594
+    },
+    "first_IR_low16": 61093,
+    "distance_range_mm": [
+      432,
+      432
+    ],
+    "checks": {
+      "raw_crc_and_request_match": true,
+      "all_feedback_locked_zero": true,
+      "no_motor_release_or_drive_sent": true,
+      "PL_values_correspond_to_wire_samples": true,
+      "both_PL_channels_valid_over_90_percent": true,
+      "production_acceptance_passed": true
+    },
+    "passed": true,
+    "wire_sha256": "100966600c4de2793c836cd637ca51e60ea08d937ad21df7fabdd520ebcef758"
+  },
+  "startup_entry": {
+    "kind": "POST_REBOOT_STARTUP_ENTRY_PROOF",
+    "initial_UART_driver_absent": true,
+    "receipt": {
+      "kind": "HYBRID_OVERLAY_AND_UART_READY",
+      "package": "/home/xilinx/edge_console_v010_uart_role_fix_20261014_r3",
+      "contract": "0xc425100a",
+      "ip_dict_checked": {
+        "video_vdma": {
+          "phys_addr": 1124073472,
+          "addr_range": 65536
+        },
+        "car_system": {
+          "phys_addr": 1136656384,
+          "addr_range": 4096
+        },
+        "hdmi_dynclk": {
+          "phys_addr": 1136721920,
+          "addr_range": 65536
+        },
+        "hdmi_vtc": {
+          "phys_addr": 1136787456,
+          "addr_range": 65536
+        },
+        "hdmi_hpd_gpio": {
+          "phys_addr": 1092812800,
+          "addr_range": 65536
+        }
+      },
+      "bit_sha256": "d3287345221c56d0f0c120508ef1bc54771eeedd7b85050e50906c3ff282d7ad",
+      "hwh_sha256": "b0b2aeaee963cfc4f018c18ce1d68b9dc96a6d74b3cf02b3e6ac43015af4e81d",
+      "sensor_source": "stm32_uart_v3",
+      "ext_sensor_mode": 1,
+      "uart_device": "/dev/ttyPS1",
+      "uart_of_node": "/sys/firmware/devicetree/base/axi/serial@e0001000",
+      "uart_dtbo_sha256": "08b08a51bcc82ef50473764bb1bef7048e8b2a1fbf9f8704763161616c8cbac2",
+      "debug_console_preserved": true,
+      "qei_scale": [
+        0,
+        0
+      ],
+      "risk_enable": 0,
+      "motor_command_sent": false,
+      "risk_evaluation_requested": false,
+      "kernel_messages": "[  186.756391] [drm] zocl_xclbin_read_axlf a335dbf9-a533-7364-4677-8c63a73c81ec ret: 0\n[  186.782929] [drm] bitstream a335dbf9-a533-7364-4677-8c63a73c81ec locked, ref=1\n[  186.782984] zocl-drm axi:zyxclmm_drm:  ffffffffc112dc10 kds_add_context: Client pid(878) add context Domain(0) CU(0xffffffff) shared(true)\n[  186.783071] zocl-drm axi:zyxclmm_drm:  ffffffffc112dc10 kds_del_context: Client pid(878) del context Domain(0) CU(0xffffffff)\n[  186.783097] [drm] bitstream a335dbf9-a533-7364-4677-8c63a73c81ec unlocked, ref=0\n[  186.915835] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /axi/serial@e0001000/status\n[  186.925161] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /aliases/serial1\n[  186.933905] xuartps e0001000.serial: No serial alias passed. Using the first free id\n[  186.933927] xuartps e0001000.serial: Checking id 0\n[  186.934344] e0001000.serial: ttyPS1 at MMIO 0xe0001000 (irq = 58, base_baud = 6250000) is a xuartps\n"
+    }
+  }
+}

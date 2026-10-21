@@ -1,0 +1,7 @@
+test_wired_renderer_uses_estimated_field_without_changing_raw_validity (test_motion_display_page.DisplayPageTests.test_wired_renderer_uses_estimated_field_without_changing_raw_validity) ... ok
+test_wireless_renderer_removes_numbers_when_telemetry_stalls (test_motion_display_page.DisplayPageTests.test_wireless_renderer_removes_numbers_when_telemetry_stalls) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.118s
+
+OK

@@ -1,0 +1,10 @@
+{
+  "LICENSE": "e4ecb04d2d1c401e42f656f9994d78c16aaf923b532ce3124d23aceb86c9d602",
+  "provenance.json": "32ec2426a0cdd928c191d683cf4824e94232d7a9fedba2ea11db2e1d4030787b",
+  "README.md": "bdc25c6b8d1f58701b68d03aa6279b85896c68a34328294b05c5d3d5b2d8161d",
+  "sim/testbench.sv": "270b27485b3ac06b8545d615a8d69aa1eaa8a0b0e0521df4186ed1c09afd9367",
+  "src/ram_1r1w_sync.sv": "2c9b9f52d98495f332c30a85961a13d6774583e6f2d7e5a43fc419d50491b2f0",
+  "src/sobel_channel_filter.sv": "170c0e35b030b2eb710ec57fddc66882db0cd37d251ad7a6b23953fd4c2feb08",
+  "src/sobel_operator.sv": "e464631b9f4e069acf42c6f177f3eed76a5ddba23cb356753f5aa9fdc86122ed",
+  "src/sobel_pipeline.sv": "69448a2905c6a0f9688df10c9379f01ffb34dc6ffc6a79fdabe731a325779757"
+}

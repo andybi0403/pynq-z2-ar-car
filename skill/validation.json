@@ -1,0 +1,107 @@
+{
+  "created_at": "2026-10-21T23:39:41+08:00",
+  "updated_at": "2026-10-22T00:00:00+08:00",
+  "skill_name": "amd-pynq-project-workflow",
+  "skill_zip": {
+    "path": "skill/amd-pynq-project-workflow_20261021.zip",
+    "sha256": "7d2f0fb3d91659e524ff20b306840ec76552088f8a8177be4b75b215923cb63c"
+  },
+  "checks": {
+    "python_compile": {
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    "helper_regression": {
+      "exit_code": 0,
+      "result": "23 tests passed",
+      "candidate_counterexamples": 15,
+      "release_counterexamples": 8
+    },
+    "candidate_inspection": {
+      "exit_code": 0,
+      "consistency_ok": true,
+      "name": "v010_edge_console_20261014_r2",
+      "contract_id": "0xC425100A",
+      "declared_sources_checked": 360,
+      "runtime_files_checked": 22,
+      "stages_checked": 8,
+      "package_payloads_checked": 40
+    },
+    "release_inspection": {
+      "exit_code": 0,
+      "consistency_ok": true,
+      "release": "v010_uart_role_fix_20261014_r3_release_20261021",
+      "candidate_artifacts_reused": true,
+      "changed_sources_after_candidate": 5,
+      "source_files_checked": 360,
+      "package_payloads_checked": 40,
+      "full_vehicle_acceptance": "NOT_CLAIMED"
+    },
+    "source_identity": {
+      "path": "validation/source_identity_20261021.json",
+      "sha256": "089c597d4613b662e36c141b38775c1631291c728ba193c1ae1994af38062445",
+      "result": "SOURCE_PROVENANCE_PASS"
+    },
+    "software_regression": {
+      "result": "ROUND_5_SOFTWARE_PASS; hardware=PENDING",
+      "stm32_c_suites": 2,
+      "stm32_arm_uart_role_tests": 7,
+      "pc_link_tests": 20,
+      "host_python_tests": 150,
+      "preintegration_python_tests": 161,
+      "supervisor_fault_scenarios": 15,
+      "browser_player": "PASS"
+    },
+    "rtl_acceptance": {
+      "result": "ARCHITECTURE_SOFTWARE_RTL_PASS",
+      "rtl_testbenches": 20,
+      "pc_link_tests_integrated_entry": 28,
+      "forward_overlay_pixels": {
+        "frames": 6,
+        "pixels": 1843200,
+        "mismatches": 0
+      },
+      "frame_display_chain_pixels": {
+        "frames": 4,
+        "pixels": 1228800,
+        "mismatches": 0
+      },
+      "status_osd_pixels": {
+        "frames": 4,
+        "pixels": 614400,
+        "mismatches": 0
+      },
+      "full_osd_pixels": {
+        "pixels": 307200,
+        "mismatches": 0
+      }
+    },
+    "markdown_links": {
+      "result": "PASS",
+      "checked": 79,
+      "missing": 0
+    }
+  },
+  "review_scope": "Current-source STM32, PC, host, preintegration, browser, 20 RTL simulations and pixel comparisons; immutable candidate plus explicit software/MCU release-patch audit; repository link check. No new full synthesis, implementation, timing, DRC or HWH run on 2026-10-21.",
+  "hardware_operated_on_validation_date": false,
+  "hardware_evidence_date": "2026-10-14",
+  "project_status": "LAB_ONLY_NO_MOTOR_NON_RELEASE",
+  "full_vehicle_acceptance": "NOT_CLAIMED",
+  "installed_directory": "C:\\Users\\39909\\.codex\\skills\\amd-pynq-project-workflow",
+  "installed_copy": {
+    "result": "PASS",
+    "files": 13,
+    "updated_helpers": [
+      "inspect_candidate.py",
+      "inspect_release.py",
+      "test_inspect_candidate.py",
+      "test_inspect_release.py"
+    ]
+  },
+  "limits": [
+    "No motor-connected driving, calibration, braking-latency or 1800-second joint run is claimed.",
+    "QEI raw input remains unstable and is excluded from control by the existing validity gate.",
+    "The r3 package reuses the r2 bit/HWH; no new implementation result is claimed.",
+    "Recorded local evidence tokens are ephemeral and are not credentials to an external service."
+  ]
+}

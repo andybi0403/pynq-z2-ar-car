@@ -1,0 +1,53 @@
+test_safe_control.c
+safe_control.c
+正在生成代码...
+PASS: boot lock, IR from $P frame, RAW drive, distance hysteresis,
+V=0 sensor fault, 200/250ms dual guard, checksum rejection,
+field validation, PWM clamp, time wrap, source-handover isolation,
+legacy frame path.
+test_safe_control.c
+safe_control.c
+正在生成代码...
+PASS: boot lock, manual rearm, IR both sides, distance/hysteresis,
+sensor invalid/stale, command expiry, malformed/mode frames, PWM clamp, wrap,
+PYNQ $P frames (checksum, ext distance, RAW drive, 250ms lease).
+Source path: C:\Users\39909\Desktop\FPGA\stm32_pynq对接版\Source\APP\safe_control.c
+Source SHA256: EF32FB8A078FCA7FAF719377BCB728A908D450E8EF43A4BF2D85665E7BE365D3
+safe_control_prod.c
+  正在创建库 C:\Users\39909\Desktop\FPGA\pynq_fpga\host\c_build\safe_control.lib 和对象 C:\Users\39909\Desktop\FPGA\pynq_fpga\host\c_build\safe_control.exp
+OK: safe_control.dll built
+....................
+----------------------------------------------------------------------
+Ran 20 tests in 1.280s
+
+OK
+........................................................................PERCEPTION_IO_FAIL input=C:\Users\39909\AppData\Local\Temp\tmpzyo29zmq\bad-record.jsonl schema=car-perception-replay/v1 contract=0xC4251009: C:\Users\39909\AppData\Local\Temp\tmpzyo29zmq\bad-record.jsonl:2: event 0: missing registers ['US_TS']
+....................................
+----------------------------------------------------------------------
+Ran 108 tests in 0.772s
+
+OK
+.................................................................F..............................................
+======================================================================
+FAIL: test_exact_quantiles_match_independent_full_history_sort (test_performance_paths.PerformancePathTests.test_exact_quantiles_match_independent_full_history_sort)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\tests\test_performance_paths.py", line 57, in test_exact_quantiles_match_independent_full_history_sort
+    self.assertEqual(result[f'interval_p{p}_ms'],expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 48.843227 != 50.164024
+
+----------------------------------------------------------------------
+Ran 112 tests in 33.685s
+
+FAILED (failures=1)
+TASK7_8_BOARD_START_FAIL: camera removed
+LAB_UART_STOP_PASS states=1 output=C:\Users\39909\AppData\Local\Temp\tmp1rjv5p8w\fresh_uart.json
+LAB_SAFETY_LOOP_PASS samples=9 output=C:\Users\39909\AppData\Local\Temp\tmp1rjv5p8w\safety.json
+Python round regression failed
+At C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\run_software_round.ps1:25 char:33
++ ...       if($LASTEXITCODE -ne 0){throw 'Python round regression failed'}
++                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Python round regression failed:String) [], RuntimeException
+    + FullyQualifiedErrorId : Python round regression failed
+ 

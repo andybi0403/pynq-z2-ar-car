@@ -1,0 +1,2483 @@
+[
+  {
+    "path": "fpga/board/board_manifest.json",
+    "lines": 41,
+    "sha256": "38f9f04f99ea6219c0ca7e06b2bc37d77f57bf5144f7ea7500dfb5671a4c5974",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/jtag_smoke/build.tcl",
+    "lines": 14,
+    "sha256": "b35e363da1293f9988895d02feef9198e12c77879243a248b05a315f4df38509",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/jtag_smoke/led_switch.v",
+    "lines": 8,
+    "sha256": "a4b3bb42e41869fffc40d39ff190e3c6d707149c9390583e6eafbdb58a1f62b4",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/jtag_smoke/led_switch.xdc",
+    "lines": 9,
+    "sha256": "dc7dbdb475eb3f4839d905f38bacc90452213242fbe5e0f2f5b0160e392be8ca",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/jtag_smoke/probe.tcl",
+    "lines": 14,
+    "sha256": "8bf218ba30e796e9e0678aabc6550b174c0bbffa7d87bac2ee3875199df7d24f",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/sd_boot_smoke/apply_to_sd.py",
+    "lines": 156,
+    "sha256": "562d0edb3a7203262c4c99f723b1653d2ed13ec0584aedda4ffc3ff6d6cc9707",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/sd_boot_smoke/bootgen_log.txt",
+    "lines": 63,
+    "sha256": "7d8a656b611c0ff05019b582fe58a33a35d6c56f9428d77385519019c1973d00",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/sd_boot_smoke/build.tcl",
+    "lines": 23,
+    "sha256": "6d755cce09f5d27440553fa4926be1eb7a1d6df5ea2ec9b3b4dfcca0bc0653c4",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/sd_boot_smoke/output/bootgen_read.txt",
+    "lines": 91,
+    "sha256": "44c2c39f30d2fd06a3815371d4f6b7db11e98cc56bc31e33a6aa462e744d7ba7",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/sd_boot_smoke/output/card_deployment.json",
+    "lines": 13,
+    "sha256": "e62bc47515d79421ec35e25411f69cd12eb5e768c6ba77b2db5e9ffa69887269",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/sd_boot_smoke/output/card_diagnostic_install.json",
+    "lines": 13,
+    "sha256": "63c2e093a79f40135c1d2180cb8cc7c121436f3bd01c5762a714dc9ab7e5ea7b",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/sd_boot_smoke/output/implemented.v",
+    "lines": 43,
+    "sha256": "9b9dbaec1650453fdb677deed19bb65e10181b8e1c8ede5f1558671f680fb3be",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/sd_boot_smoke/output/input_provenance.json",
+    "lines": 13,
+    "sha256": "594e47606b77932749c60a27a820126281a898f60140d7f2456b9e5c170edef4",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/sd_boot_smoke/output/verification.json",
+    "lines": 38,
+    "sha256": "f20c8b19182378449fa9287cfa5206f3f4a95e4fc0b987c9da0301be603fbd73",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/sd_boot_smoke/prepare_boot_inputs.py",
+    "lines": 54,
+    "sha256": "990e4de0741e9363d92b9201b6ce7f4e26de603e9a48f64e5d77e686c874d1d9",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/sd_boot_smoke/prepare_jtag.tcl",
+    "lines": 5,
+    "sha256": "931cd6ae73ba8872484970720bd06409ad2bb87ec37d0b18423db8b3ae0a2991",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/sd_boot_smoke/program_jtag.tcl",
+    "lines": 25,
+    "sha256": "cc09ffee41079d1edbaf0086e7b7c39d2ae57b9da56875185581eb3d42d46ecd",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/sd_boot_smoke/sd_boot_led.v",
+    "lines": 4,
+    "sha256": "ba6fa6910c5e515b3cb2d73b6306e6caba3d6e50de16e241f569df4c39ea6cc2",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/sd_boot_smoke/sd_boot_led.xdc",
+    "lines": 5,
+    "sha256": "967aebd0d4a4b489c27125b883df05a65b928db77f53f75beb18908bf9fc4369",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/board/sd_boot_smoke/verify_boot.py",
+    "lines": 74,
+    "sha256": "754eb1d37b08ad015972172c4a84cc8e3057062a6fd9024f4ad2bb33667b323e",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/registers/generate_register_map.py",
+    "lines": 95,
+    "sha256": "bad1312653adbb9ec53037287aaa6a4558bc3f182bfbd7c19fabb85f130c234f",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/registers/register_map.json",
+    "lines": 569,
+    "sha256": "0c740d083d33f564f033e826b05fa13d45b7bb3b359fce35741457f4d4cc9a1d",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/car_axil_regs.v",
+    "lines": 171,
+    "sha256": "e2b8cff8ed49d882a9d11fc4c58a7b674ac7e38c4d31a6951edaa8d8ed87d9fb",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/car_axis_frame_metadata.v",
+    "lines": 85,
+    "sha256": "346a507698a89c0985c7f001f8780ec764cb20b02b07db11a011fe8f409f3a65",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/car_axis_front_overlay.v",
+    "lines": 199,
+    "sha256": "b73cfa2f8ab90d1c69e7739c3b688c4f1a0f8a68288cf761d6b21e2f9dbfa15d",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/car_axis_osd.v",
+    "lines": 332,
+    "sha256": "62d131cc382ea361443e7064cbae16134c0530c7da0accb14e583f7be1421acb",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/car_axis_status_osd.v",
+    "lines": 210,
+    "sha256": "763f27c5ddce41963a73a1322e73f138b8079c7eae32100922fc15d149592fec",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/car_board_video_wrapper.v",
+    "lines": 166,
+    "sha256": "86fa1614ac29d09bd7906a7a7a22bb59d3b9a54d6e04393e06c4759a064338dc",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/car_ir.v",
+    "lines": 78,
+    "sha256": "5b9e831568a0728353a524d5c71489447ef45bb36d4228d1c42585eb3780e4cc",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "fpga/rtl/car_perception_top.v",
+    "lines": 219,
+    "sha256": "8c71f66014b7aa50448f7b0ac697eb4b193f2e4092a2a46da9d5f81eb825345a",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "fpga/rtl/car_qei.v",
+    "lines": 62,
+    "sha256": "341a89efef86529ba75e6337755587fdf025d05f29847f22d1864ab7e2dcaff1",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "fpga/rtl/car_qei_core.v",
+    "lines": 76,
+    "sha256": "52826a246776ded65527d4c12d606f27be82ee0f001972dbe7f2e0b5e681d350",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "fpga/rtl/car_qei_odometry.v",
+    "lines": 45,
+    "sha256": "34df585a0bccbefee7ba67c72a791f8c2ba4da19c014a12b45f244f1543dbb70",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "fpga/rtl/car_qei_top.v",
+    "lines": 282,
+    "sha256": "1466414c262cce0e52dce32c3233513d0b8a9bd29524e271cc722bf9865d14fa",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "fpga/rtl/car_qei_velocity.v",
+    "lines": 103,
+    "sha256": "f015ad1085eae40f11451d422ad33df7aacb59289aa525a6f5109d07536eaded",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "fpga/rtl/car_reg_defs.vh",
+    "lines": 84,
+    "sha256": "a1d821d393181067ff3dafb13f4d558ab04fd99e57d083e9255a25c8b912f00f",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/car_risk_core.v",
+    "lines": 168,
+    "sha256": "6cff40c5beb499d37a4a5446e49a4878d2a4646876eb68bd92322b0073aabc90",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "fpga/rtl/car_sensors_core.v",
+    "lines": 37,
+    "sha256": "2ec419f09e44c435ae64b6e27a6e70a08964daf88458e520f8a61c3f9e3d79b8",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "fpga/rtl/car_sensors_top.v",
+    "lines": 264,
+    "sha256": "5b1520a729c8d8fa89a7b47ed9617eaa117f4f0e743a8b4f3c33fa9e36a93040",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/car_snapshot.v",
+    "lines": 83,
+    "sha256": "fee6604d6ed2f3a2761c852881b9a82aa05b47b3e8cbfc4f4a8d85310af59d45",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "fpga/rtl/car_time_counter.v",
+    "lines": 26,
+    "sha256": "d71fcd2b4db9c6ce9ed5776cba4147a3e88c33b1d6996a5a7da7b5acec8a5667",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/car_ultrasonic.v",
+    "lines": 213,
+    "sha256": "2364f817fc0b2473440c1ae45a0486bc87886228fb448171fa531a2a7bf70cf4",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "fpga/rtl/font_16x16_hud.json",
+    "lines": 67,
+    "sha256": "fa91a848e34cc24d8137fe963468569216429604e6c744c1f0ad61f535606c5c",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/font_16x16_hud.mem",
+    "lines": 1024,
+    "sha256": "51df349080c8cd77674a9fc4c1913ed8b80bfb570855322c622990baea00d6c5",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/font_16x16_hud_OFL.txt",
+    "lines": 93,
+    "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/font_24x24_hud.json",
+    "lines": 71,
+    "sha256": "c86e1475be83ae769bc2e0780f2ce62556c0117c97af8f5087f25012d3b41d7d",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/font_24x24_hud.mem",
+    "lines": 2048,
+    "sha256": "26e859949ec2440c416102d885862505d677ef87ce0a0700a2258b52cac8630a",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/font_32x32_hud.json",
+    "lines": 71,
+    "sha256": "207755aabc7ff80d77830d846bce7322a3dd6f2ec237f845c05c51002a392b09",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/font_32x32_hud.mem",
+    "lines": 2048,
+    "sha256": "54232b48b44c3b7c39c86a7a588386e90dab694fa37013b5942c6dd7c2fd2923",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/font_8x8_minimal.mem",
+    "lines": 128,
+    "sha256": "9aeeb57c77474ff33efb6da9b2d36ad3a6da72bf655db561a0266c271fe86c11",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/rtl/font_8x8_status.mem",
+    "lines": 256,
+    "sha256": "8360c4b1037b51af71aa47a2f695a523472f858d0689683a59f0a6e57a17e665",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/scripts/check_architecture_project.tcl",
+    "lines": 14,
+    "sha256": "cf54a46c39ba1d46306c4e6b87c1e38734ff5e73f51572aaa3506485fa67d434",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/scripts/create_architecture_project.tcl",
+    "lines": 22,
+    "sha256": "4c489ca7ab1d955c298fc21e9922d5a232bf63d999f99ed1c73aa2bb4684b8a1",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/scripts/generate_osd_font.py",
+    "lines": 49,
+    "sha256": "07bba66e452236d162992702cbd4630f64fd10d1a70332c6c8fdccc55156627c",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/scripts/run_acceptance.ps1",
+    "lines": 117,
+    "sha256": "26b39755199453d6d41f0bfecf7715e981aad1b8cd4aec7acde0e336a79c62f8",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "fpga/scripts/run_sim.ps1",
+    "lines": 119,
+    "sha256": "4f5dab479729cc83eb875ad59bf13536113d08ae0e90f4d3c53ac463a5748ab8",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "fpga/scripts/synth_modules.tcl",
+    "lines": 29,
+    "sha256": "d95ad302ec1c0a7efbaf3e3899f286297f887427ccb984744788bf244e9b8460",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/scripts/validate_board_manifest.py",
+    "lines": 57,
+    "sha256": "da55d11847f06e2e17da7b9bcc6133fd912d0774fc7d70270db264f76668a207",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_axil_regs.sv",
+    "lines": 301,
+    "sha256": "78cd3708b2c7d9d90219d3e7fd4251962a325ccfab7327b1234bcb4b7e7d8140",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_axis_osd.sv",
+    "lines": 64,
+    "sha256": "8b742e6eb024186a3d0253e830de5c4864ed9140ae583e3ffb943b1ba7b56d25",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_board_video_wrapper.sv",
+    "lines": 166,
+    "sha256": "235333574794043b19f06625e7f7ede04f97dd725fdf3b285f936767b85151d9",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_frame_metadata.sv",
+    "lines": 87,
+    "sha256": "09cff1fcf5f9742a8a49697aa1a23def076bf8dcdf3ac55549b8de8fadc95f1d",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_front_numeric.sv",
+    "lines": 28,
+    "sha256": "6062e5919ffb89da73c74599ab2ab6c93c9e5ed0158a0b246cf239b692fec49c",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_front_overlay.sv",
+    "lines": 83,
+    "sha256": "5fab2e8f07062c4a7059d84c533adaa971020f6177ed3a82248b1c058ebf8946",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_osd_fullframe.sv",
+    "lines": 55,
+    "sha256": "7dd73cca68da8122fb98557bd8922789d23a2d30b70620f41eb1bee2adb37afb",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_osd_text.sv",
+    "lines": 103,
+    "sha256": "9b3c498637d70730a98641ef6cf142ab37aacd57bf6486fcda36b7ed9a26a51f",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_perception_arch.sv",
+    "lines": 123,
+    "sha256": "0646ea07da50ff7fb4640a41497af6ad1671ac822d3f33f471a1623827f77d09",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_qei.sv",
+    "lines": 150,
+    "sha256": "8402101ea29cfaad06c30774b4a1bec79c427501a9dc984c95c47567dd33f2c1",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_qei_diagnostics.sv",
+    "lines": 45,
+    "sha256": "76b59f7efea98ec825b7f8d8b84de474292a477a0681ea20ae2a49c04f1a7eef",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_qei_odometry.sv",
+    "lines": 56,
+    "sha256": "a40a4c2cd25f5355a478b60b95fda8b15b698c5d87c1723e3aedad56034d32fb",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_risk_core.sv",
+    "lines": 69,
+    "sha256": "53dd40bd42d26d1f30fb54ca9e48429a5a73f551aa68ee7a400ad733cffe59d5",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_risk_lamps.sv",
+    "lines": 53,
+    "sha256": "171e2c97725a30b409e165d311e62042144030b09f3d842e6b8c185332bfb83b",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_sensors.sv",
+    "lines": 377,
+    "sha256": "7096916a625cd308404504080fced8d7aadb94879897d429d85171b600025978",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_status_osd.sv",
+    "lines": 62,
+    "sha256": "0bb5c09179bb2bcb237c663b5ed8f716ff9dfd8d92b539a22bf2f8c226775e0d",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_car_velocity.sv",
+    "lines": 62,
+    "sha256": "f1fa825231064fbeb413fca16410b1f2353e0967f0268252a1d14a0b746dee67",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_risk_physics_sweep.sv",
+    "lines": 41,
+    "sha256": "614c9b534cb6c08016c61cba7134907b7ee7ff69c3adcb8c84133a322f27ed30",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "fpga/tb/tb_wireless_capture.sv",
+    "lines": 60,
+    "sha256": "7892d08feffe3fb92653fe8896cac23e4628030102adc544ba1754217ab0cf2c",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/c_build/build_car_c_dll.ps1",
+    "lines": 80,
+    "sha256": "8d9554fb4029bf96e761291937a5d4124cab601a27ea8961388bc91af0fcb396",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/calibration_config.py",
+    "lines": 111,
+    "sha256": "14dccb7b7b73c115a5d597bfe6e8b2fd3a8d0bcd64de19ae9bd6bb5de785e533",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "host/car_regs.py",
+    "lines": 82,
+    "sha256": "f52e7cfeba330e7b528645e5a3d6e4b4a0be93e7700d7e3fbec26d46e54320b0",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/control_supervisor.py",
+    "lines": 226,
+    "sha256": "d014088c31a9d705d8be757928859dd825a26d121811ec0e934b15b0ea20f2c6",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "host/motion_display.py",
+    "lines": 168,
+    "sha256": "4d7ab965683ad59163ae1b1290fb9d2d46d6b1c26813a4c396e6d7ff85ad91f7",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "host/perception_client.py",
+    "lines": 520,
+    "sha256": "2d90d3bfb003666e1ac932fca5e28fc2456edbc01ec0c7114617e6342a8db62e",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "host/perception_replay.py",
+    "lines": 328,
+    "sha256": "99a0b6a3697b33ed768db2caaaddf58de0ede0fa2188afce84c8a8244a892059",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/qei_calibration.py",
+    "lines": 139,
+    "sha256": "732c88ee00028c0a601c7c27adecc0be39d8f530717791dc09ee3416d6e52dd2",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "host/qei_quality.py",
+    "lines": 123,
+    "sha256": "1e0dfa1305dc6c4a346b009f4a2fd0c6d506e6907a9256bba681460a8d2a192f",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "host/replays/safety_timeline_v1.jsonl",
+    "lines": 7,
+    "sha256": "ca30c4b8614519495d57e9bbe1068102b5d49f9d937120ec50e9c46cb0ec65a4",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/compare_frame_display_chain.py",
+    "lines": 47,
+    "sha256": "c51e214c4332705eb012d3496650e7ec96886d9f833034abe577649aef301884",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/compare_front_overlay.py",
+    "lines": 26,
+    "sha256": "faf64b6d06040c58c88e1523cfe67aa793f3e13e21fe0e162811515c76323edf",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/compare_osd.py",
+    "lines": 125,
+    "sha256": "9a46f5b042b1dab586adcca2af9a4945a744b27af5c445f926777ecf177cbf6a",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/compare_osd_fullframe.py",
+    "lines": 49,
+    "sha256": "c194d550bbd6cd3eedd7eea087c6f160cceb8347f2a75648c27d2e10be287f34",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/compare_status_osd.py",
+    "lines": 47,
+    "sha256": "7222c0aac6c4a0c5ba3cfdbb970f38000ff7d77670a3783b048efa8dde8c9097",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/front_overlay_ref.py",
+    "lines": 58,
+    "sha256": "3db614828f138ab5a3c007d2df8dd854bee9d9a5084713a3a49caced396747e6",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/hud_font_ref.py",
+    "lines": 25,
+    "sha256": "a41ed67ddfb09b48f41bbef18a1eb6b57052c483dca116d528da8c59719df80d",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/osd_ref_render.py",
+    "lines": 89,
+    "sha256": "0132a9ecb3876cd4012d5cfdd748bcbf4d45e991599691179a204d2d67ef7461",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/parser_probe.c",
+    "lines": 22,
+    "sha256": "b8566b0c1f4814b612f5e21a4e7676f80203c6660b1fc5a6609d4efb891468e2",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/supervisor_c_fixture.py",
+    "lines": 127,
+    "sha256": "c32ddbd502430a36f71b286dc6c19f7b7cdd9c924c6f0f2376effacfa00b20f9",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/test_architecture_invariants.py",
+    "lines": 94,
+    "sha256": "0723c969e9924906eb3a6795abf9eec16821c8fa6fe88ec8195e235f6fd7fdf4",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/test_control_longrun.py",
+    "lines": 26,
+    "sha256": "da67eeae7590e42acb33183174cdadb8c9d71c543ac0205c12267ef7817b2559",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/test_control_supervisor.py",
+    "lines": 197,
+    "sha256": "9f43f0f18162882351cf21bca3f30e4389534e0b489ea95c1d362df7ea78a05e",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/test_motion_display.py",
+    "lines": 124,
+    "sha256": "3c4e893abd994e3c8ab2bd401ae2242783481edd0f9cdf8e4b01b03a6be3e079",
+    "group": "tests",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "host/tests/test_night_a_loop.py",
+    "lines": 532,
+    "sha256": "954bf6c31d41200544b5b2fe847e01d5fe5bd76e821d1fe130b4a5ccd3b25e53",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/test_odometry_contract.py",
+    "lines": 174,
+    "sha256": "e256511eb1f450cdaf961f27f85d12ec6f7e6cef542b1d05c250cbf5eefd8219",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/test_perception_client.py",
+    "lines": 284,
+    "sha256": "a64b75882be2e7c16d4ab3b34266fd311e2a62add4469aafa49afec3ceccae1b",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/test_perception_replay.py",
+    "lines": 173,
+    "sha256": "20160450aeab7bf8f94b0e980b7f4ce155f569355f6ee8ff365e08f6203146c9",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/test_qei_calibration.py",
+    "lines": 112,
+    "sha256": "ad7ada2983bf4b2eefb3a5e2b9fa82f86d0af33ad2d31d24ca7cb4972b6ad19f",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/test_qei_quality.py",
+    "lines": 168,
+    "sha256": "f10fd1ce09afae8b0083fc9461c9bd4b5295718ada66e8283b7c18c0e75e54d0",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/test_register_generator.py",
+    "lines": 34,
+    "sha256": "fb00e89544eda7fc52ad1b95d85a418d355e156b0a46fec542d8f363af8ecfd4",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/test_supervisor_c_loop.py",
+    "lines": 115,
+    "sha256": "a2ace6d75b8e6dcfa67d744e026c9a24a87d42a76ae28c71df06f1fe6779ec3a",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "host/tests/test_uart_lifecycle.py",
+    "lines": 60,
+    "sha256": "57d2bdaee3f09580148be147933508a1224d7ab4caa0279c9c58c6b4ccebe286",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/audit_source_inventory.py",
+    "lines": 30,
+    "sha256": "dd2f8ad79d0578795c8af9b794b6ccc77d57053b1ca8a6ecd3cc988d92ba7c03",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/benchmark_wireless_host.py",
+    "lines": 28,
+    "sha256": "f15c430789345f9cca83fa28b0873a259f9f2e27615a393121f7a74e3d13906c",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/board_repo/pynq-z2/A.0/board.xml",
+    "lines": 1087,
+    "sha256": "a565dcb39737d551cbbbb73c0053b973c40bb3dce2274943370d3032c0fea9ae",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/board_repo/pynq-z2/A.0/part0_pins.xml",
+    "lines": 134,
+    "sha256": "3c809473938e135a925b563b5371c8687ee05c4089376e7318c0c56524cc8a0f",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/board_repo/pynq-z2/A.0/preset.xml",
+    "lines": 1098,
+    "sha256": "18528f84aea4da503cdb3104f7706fabfb3b6ad09b78b25199cc316afa4c8cfe",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/build_complete.ps1",
+    "lines": 80,
+    "sha256": "d0e7b72f796d4f4cd0444724d9756acbf8105ad836e49a73faf75443e8e1656f",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/build_lab_only.ps1",
+    "lines": 201,
+    "sha256": "fdb2d890f398357613ea60803065d42445f40bcf2f85d3b106bf587c2ce42286",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/build_wireless_native.ps1",
+    "lines": 13,
+    "sha256": "31b08139f9df265117537a142d72fa2432ec057f91dee3ae680057d09aea6883",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/camera/c270_windows_20260918.json",
+    "lines": 32,
+    "sha256": "5b7262a42a3ee22ced5716cff57ce766e0882396159b450a35ee20c333cdccfe",
+    "group": "generated_or_board",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/camera/probe_uvc.py",
+    "lines": 92,
+    "sha256": "7dd367b3502f170df23497c5855f646cbe373aa91d1817332d348e08e7ee6440",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/constraints/task7_8_hdmi.xdc",
+    "lines": 11,
+    "sha256": "b838b7f61ceb7199a2dbb89c3c7af0a0c0b0e6951f0c63417aa302e87e154aac",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/constraints/task7_8_integrated.xdc",
+    "lines": 28,
+    "sha256": "d79693aee15c6b3d6a619f47c72776d3fc0fb2fd886d8e297be81bd410334def",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/create_portable_zip.py",
+    "lines": 42,
+    "sha256": "771435871935ad1af34904a6d03d6a690b4524bc2a48f59548028427fd775670",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/association_metrics.py",
+    "lines": 57,
+    "sha256": "921c3b54ed0f8bff28329c473295ab92fab3c75cd6c5ff0f3c3cd2968e01f622",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/audit_video_reliability.py",
+    "lines": 101,
+    "sha256": "0235eed936ef5818a7830693c7588e22dd2e3b1a005abe82e98ec0f6cd157b04",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/host/board_runtime.py",
+    "lines": 254,
+    "sha256": "9717225a350670d3c38f77989346ae4107298d4b070f82e8d9976d2cd337f7dc",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/host/check_ae_gate.py",
+    "lines": 47,
+    "sha256": "8732363476d8b9e85dffa3085e33b684c020cb81caecb51b8c20c5c7a8c9a0e9",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/host/deployment_check.py",
+    "lines": 75,
+    "sha256": "6d87edcb357d21341eee676a8fa0f8f71885cff23a7b7030fe0767dff4a26b08",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/frame_association.py",
+    "lines": 89,
+    "sha256": "302b90dcd1229c2b95df642c583f77dddb1c35004e52e9ccf971130707ad7ae1",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/frame_metadata.py",
+    "lines": 96,
+    "sha256": "98f80d37e939b14aabe624e6a566c53e75d04ac90b300c36709417d9600d6250",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/frame_pipeline.py",
+    "lines": 362,
+    "sha256": "0b1fde0ddde34456e47b55d53339d6df864ff0d70ea2f36e7377ba7edf2c5f1b",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/hwh_contract.py",
+    "lines": 189,
+    "sha256": "3ad6daf3a2b0de6495a05b60a0567dcb4a3254f42bf2a9ae09a734533a13eed5",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/host/joint_evidence.py",
+    "lines": 300,
+    "sha256": "69b09e9e61d08dc5d79549d1c38ce63abd7eba52f4b939aabb5912e204b2ac43",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/host/lab_acceptance.py",
+    "lines": 712,
+    "sha256": "fc341f9cb04d4e96a996a652814761c0591f4d700d02577593acd2dfcbbb9fa7",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/host/native_video.py",
+    "lines": 151,
+    "sha256": "8884e54e6ea74a622cc0c5e566a6714cc27712831c5447cfe820d9b1968de84e",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/overlay_session.py",
+    "lines": 171,
+    "sha256": "f549686b440e913458ade0ea309556057b172ace3c8e250bbce0855da9104d27",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/runtime_identity.py",
+    "lines": 63,
+    "sha256": "b4ab7f8dbe1f99da690144831b383bfed4fd98ce3b21134ad061c44a0c7ab84b",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/status_server.py",
+    "lines": 114,
+    "sha256": "77f84dd95884f718e28b97e25936306d253d2145169610c5348bde27f0613429",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/system_runtime.py",
+    "lines": 502,
+    "sha256": "f944aa9d56f1a25aeabfae3fb7bf8c2e21e595d93eeba314ba77999c31e12807",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/video_contract.py",
+    "lines": 76,
+    "sha256": "747b937a8216bceff5a3096f3d66123acc450e0abf649fa1bf5b5a52487b03c9",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/host/wireless_benchmark.py",
+    "lines": 110,
+    "sha256": "e62dde269d5cf98cd6e7b894e5da32d41e35f7d0f78ce021694e0b3bdbd456e5",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/host/wireless_core.py",
+    "lines": 236,
+    "sha256": "76e3a4860081bfd0469772a155cb1b535e1f2f38f6d92e815a7a3a3908f3dc16",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/wireless_dma.py",
+    "lines": 131,
+    "sha256": "b4acb53f4fa6651e2891155b2a7f57811b495a662759faf1c470fe2a64f12ac6",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/wireless_page.html",
+    "lines": 34,
+    "sha256": "5e1d13b98f8887e0b352c6bf903ef073b778f916e0bd32d5f75cc97a40a357a6",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/wireless_player.js",
+    "lines": 138,
+    "sha256": "af311255fe7348dbd9d92286b66b2d49c4a595e765f6a2c46ff0d5b41515d829",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/host/wireless_policy.py",
+    "lines": 77,
+    "sha256": "d77452b64e522800194c71dd4835acebc9e085dcaf8ba137c853e2f1d9d304e3",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/wireless_requirements.txt",
+    "lines": 2,
+    "sha256": "7662de391d446d504ead09341c1bfef4d2429959f6eda6330bc20c9f3905c6a5",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/host/wireless_runtime.py",
+    "lines": 423,
+    "sha256": "1c559e28ec050fe76b13669493c5f5915965e141fa23675c713ef2d7272e46e3",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/host/wireless_server.py",
+    "lines": 221,
+    "sha256": "41593164c64135b011db0779d8cd065f99db26e91d8a800c9926088b00fa6367",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/native/car_video.c",
+    "lines": 287,
+    "sha256": "fb8e13b9101ecbd77bf6b42d8d94fdb6c943977127a7afd3f5ebcd7e92ebd179",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/native/CMakeLists.txt",
+    "lines": 47,
+    "sha256": "1a5d355cdc5ae6d8ce3055c8fad63d721b63052ec9475c55374df151926273b1",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/package_inputs.ps1",
+    "lines": 14,
+    "sha256": "c5b13f640ad26be8412445f569ac62f299936a8dd7161493479fc44c858521c7",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/rebuild_video_reliability.ps1",
+    "lines": 4,
+    "sha256": "aa7167473dc2b4463cc9231160bfddc96b975c0a57424b8721652228019e641d",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/rtl/axi_control_slot_stub.v",
+    "lines": 74,
+    "sha256": "bc92d06c932b2f83cbb64d85892ad368a1bf63b6330e60141f6751220b4674f9",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/rtl/axis32_to_rgb24.v",
+    "lines": 46,
+    "sha256": "31bf74a3e1cb8c836e150aaeb0e6485a62436a1f30f869b166ad80d74e01e678",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/rtl/rgb24_to_axis32.v",
+    "lines": 32,
+    "sha256": "e79216c5f3cce7a710b23e2ef22b90ba0f254dd5865a5dbabbe1a8bc975c052b",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/run_joint_software_evidence.py",
+    "lines": 36,
+    "sha256": "85585aad4ce9d6afa43a59d93d7c6b184d764a33e2a3db30270ada3925ddd9f7",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/run_software_round.ps1",
+    "lines": 32,
+    "sha256": "693a7929f6e1918950e8016d769ea1aa4563ab02829b77702991416832dabe8c",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/run_supervisor_fault_matrix.py",
+    "lines": 50,
+    "sha256": "f114b1e5ac333c268177b768658af591b445de983c6b293a8762c9a0c47c0bb7",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/run_tests.ps1",
+    "lines": 73,
+    "sha256": "746341e4b3b7c1dd1da609d93445a140b9068392fe9f36d82b8e7056ab0b5151",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/source_provenance.py",
+    "lines": 107,
+    "sha256": "995bd39021ce131148a0ce5f950767872abbe50362f80dd73fb902d7939b8962",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/tb/tb_axi_control_slot_stub.sv",
+    "lines": 34,
+    "sha256": "6ef41278b9ee3bf579ef267e1ec71114b6b823d637ba61a97e9742fd10793e7e",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tb/tb_axis32_to_rgb24.sv",
+    "lines": 48,
+    "sha256": "38fe9a907f0084be0da5f58237c0a232fe5f45945fffb617ab513771454961db",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_deployment_check.py",
+    "lines": 48,
+    "sha256": "c98ceb2da0f98d244bc3abd34b67860fec82adc8b61c2657ca2f0f7c5b51f0d3",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_frame_association.py",
+    "lines": 78,
+    "sha256": "bb101c2bd7ff0f99be1b9de9cec0e082330896685492c6292fdefaed258cc2aa",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_frame_failures.py",
+    "lines": 70,
+    "sha256": "59521ae08a1d59862901456689a3430cb5d263ae92eb2f3a2ff8665477e032b2",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_frame_metadata.py",
+    "lines": 74,
+    "sha256": "6b84147b9bdc658786ec82b4af4e07c5e1def974ef7aa2074f814fb4472e4963",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_framework.py",
+    "lines": 550,
+    "sha256": "8fdcb9cb62488d83b68480ec3a8300167a0d012298576e3f24d8b9e5ca902320",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_joint_evidence.py",
+    "lines": 140,
+    "sha256": "88df85e81d71dffd369aa0c85f34f7cdea241e1e7864253e8c723f093c356bee",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_joint_runtime.py",
+    "lines": 309,
+    "sha256": "278e1d19021ee8e8384b132de7c305611f0cc85489dca7bac70039b5a454966e",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_long_metrics.py",
+    "lines": 26,
+    "sha256": "f4692cd2e78c29754b67251385b5065dcc64baa414d527ef8cbbe0dadce38598",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_motion_display_page.py",
+    "lines": 33,
+    "sha256": "e89a6eb2faa34c18ed5f8931c05c5688741e30a01084811c3b6611dfca45f3f0",
+    "group": "tests",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/tests/test_overlay_session.py",
+    "lines": 163,
+    "sha256": "4bdb7891df847e8e34aa6663a678bb49e96f2a0d7756fb199a77fdf32dbdc9c4",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_packaging_inputs.py",
+    "lines": 40,
+    "sha256": "003f8bc274fdb57f2e7b9564df4b85c1fd212ea6b427777f9b68c962882ac482",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_performance_paths.py",
+    "lines": 60,
+    "sha256": "c6b58c3f24663a1355369f1c76c1a8df227b04eeb5845446825cc7fecc58ebcf",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_portable_zip.py",
+    "lines": 32,
+    "sha256": "363fe54a011a3658cfe9519a1032bbf07f43824dfd238db8a55098a2124d4f37",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_runtime_identity.py",
+    "lines": 58,
+    "sha256": "35c88d90c4956534329e51be250380e1570bc02dcfae9358c0ebc5bb6d199bee",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_sensor_boundaries.py",
+    "lines": 19,
+    "sha256": "ecad98634ac29fa3ff1bed40c9390ab4d628a30ac38364572851f1aff12b0532",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_source_provenance.py",
+    "lines": 68,
+    "sha256": "5bae0e042dcbdc66a5242c1a25a04735a33ca2f622a27c79696ea9c50648229a",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_status_server.py",
+    "lines": 95,
+    "sha256": "94fd0b3d5c31688a06601832e494c673993b6d7caa022122c074500a6ea99365",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_wireless.py",
+    "lines": 466,
+    "sha256": "d37932a44312022e153fe7cf0d6b27255fe3e7ca671f88e866aa80c6ffc08ac1",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_wireless_cleanup.py",
+    "lines": 28,
+    "sha256": "d211ad15e9cea585faee54ced0bd79f5fd88c8c39b3a93f4e6d8b71bd7bde334",
+    "group": "tests",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/tests/test_wireless_encode_queue.py",
+    "lines": 83,
+    "sha256": "058fea98dfb3cd4212dd50bd9c175e50404ca9d7155ef3f9ba85ca1f8bea146c",
+    "group": "tests",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/tests/test_wireless_player.js",
+    "lines": 79,
+    "sha256": "27711abf420d840bc9af08e3a589d75d39d2e17ed1656446e0290f0f98b36c8f",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_wireless_policy.py",
+    "lines": 52,
+    "sha256": "1276f044737d82a44a1608a3941f7ee6f8775cb3c9ea98b3f6affba815a69d37",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_wireless_stale_pipeline.py",
+    "lines": 81,
+    "sha256": "eb44b31c23dfaec2a3d4a906a0faeba975705aa1f6c1ed6d551ec836d576cc83",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/tests/test_wireless_startup.py",
+    "lines": 69,
+    "sha256": "cf37bfe00aba9bc75dd350fda0e46a539457bedc8e697ca3537edfd95cd14abc",
+    "group": "tests",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "preintegration/vivado/check_framework.tcl",
+    "lines": 38,
+    "sha256": "017a3a3b4dc42636df0895718620155668ac15920fa0140de7864ec34a64d087",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/vivado/create_framework.tcl",
+    "lines": 122,
+    "sha256": "d063963a351f31d6adaa3fa52eb5f37b8b4feaa6cb61f968d7417fee89cfeb14",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/vivado/create_integrated_candidate.tcl",
+    "lines": 177,
+    "sha256": "494f29a085cb157f9901db4f8ca0fae3ab034675a8da7a06fc3ba77e3462b87c",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/vivado/impl_framework.tcl",
+    "lines": 36,
+    "sha256": "b2dec1bb65ba9f6054dc1b7c2a8a26a1207a484b78911c6b2512f8ce3e5fbc32",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/vivado/impl_integrated_candidate.tcl",
+    "lines": 42,
+    "sha256": "d0a2fee04197a86f34d0b17a86ddf2aaac373c37d4dfdf5c0c74b37522c7bc34",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/vivado/probe_board_files.tcl",
+    "lines": 7,
+    "sha256": "6be55029c39a4c981a22779b18c5d58766bc8e9e77286849a204451a31a9228a",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/vivado/rebuild_video_reliability.tcl",
+    "lines": 16,
+    "sha256": "407be85e0f447576ed9c2390464e4ed0debdb358988d365639d44ad1edfb0752",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/vivado/synth_framework.tcl",
+    "lines": 19,
+    "sha256": "b039abe77e0ae64980a40361d79f686f5b6aaf92ee9980bee6301c6eea96d4e4",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "preintegration/vivado/write_lab_only_bitstream.tcl",
+    "lines": 66,
+    "sha256": "3e1c5f7f1d9a2d31e603cd76363de9f4168b711014634ac2e4fa0eb37f7e9451",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/axi_dynclk_v1_0/component.xml",
+    "lines": 840,
+    "sha256": "21813665c84b1b75d9076f7e772730df199bc3ca71215d2a48a383cb37da38cd",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/axi_dynclk_v1_0/src/axi_dynclk.vhd",
+    "lines": 299,
+    "sha256": "2b8d2de5d2731fd0b83c06efb0566f83bd64016e699d067e39dc396de681ecaf",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/axi_dynclk_v1_0/src/axi_dynclk_S00_AXI.vhd",
+    "lines": 453,
+    "sha256": "871c0b0a56ad7caefecc844d23faf5af6ad904019c2cdbbb3ef5edc5048495e0",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/axi_dynclk_v1_0/src/mmcme2_drp.v",
+    "lines": 423,
+    "sha256": "3833e1439bc56a53d682cd4a8c99b6a9d3e6378b9e27667df290f0f8896faeac",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/axi_dynclk_v1_0/xgui/axi_dynclk_v1_0.tcl",
+    "lines": 38,
+    "sha256": "729c79ebdf8c55ede738aa3047c3e26d25926fb14317da1a741e4e10c0c2d7c3",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/if/tmds_v1_0/tmds.xml",
+    "lines": 17,
+    "sha256": "c6a3cbcfa3de47ca91a2fbe49de15f1f61c7196039f14381d1598a26233be489",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/if/tmds_v1_0/tmds_rtl.xml",
+    "lines": 91,
+    "sha256": "f79979c9844723343c83a80cc6bb9d1e49bdeb0796729517f5e339965e70d2c1",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/component.xml",
+    "lines": 681,
+    "sha256": "1af6fd9c43ab6d824a7a2daff30b2cd12224afae7c8fa1a4982e0c1206e2cb22",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/ClockGen.vhd",
+    "lines": 251,
+    "sha256": "a3ac3a940d9455b342d5217b008502ebeef2da35a2b27a4074eb9ab3c58e6b1b",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/DVI_Constants.vhd",
+    "lines": 69,
+    "sha256": "d8dbbbc3c8696d4527ee0d3c4757f1a40d0acebc845899483bc61c2bb8270cde",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/OutputSERDES.vhd",
+    "lines": 190,
+    "sha256": "6205d58405919d4f899a525256e2cafa725408f6644642755cd0de63e69b286e",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/rgb2dvi.vhd",
+    "lines": 191,
+    "sha256": "7268a67d557e36200847d494536733026dc7e2ca0980b6d2138fe9bac735f0cc",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/rgb2dvi.xdc",
+    "lines": 5,
+    "sha256": "51b9ac7f1229a2250cddb1d490e45e536dd836eb5c42851f67359c7a5aef6130",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/rgb2dvi_clocks.xdc",
+    "lines": 2,
+    "sha256": "d39d2f58a6cf74c30eef3c4b7d37c436359ea3fcfaff3ddcc0a1a69388b73ac8",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/rgb2dvi_ooc.xdc",
+    "lines": 2,
+    "sha256": "77f9820235b2c3ce1e99d369db4932a76705633eeb5f950908855183931dc1a2",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/SyncAsync.vhd",
+    "lines": 88,
+    "sha256": "5561ac8099ed13f3114e97387aab5f7f30ad28a8be2fc540004cbee3f19eb3a7",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/SyncAsyncReset.vhd",
+    "lines": 90,
+    "sha256": "3ce7ade3267959da59b4d448cc6641018e4f0ac3de9f8f998d0b9ff84a3794bc",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/src/TMDS_Encoder.vhd",
+    "lines": 190,
+    "sha256": "b047a257c1172412d1b354a98e3cc77d013d0f3c1af6ff646233abf8b669c196",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/xgui/rgb2dvi_v1_1.tcl",
+    "lines": 60,
+    "sha256": "44d93693f4a4eac11a86d7ff2be4dc03e2bab44a407c342bd3dd8f1477c55f92",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/PYNQ/boards/ip/rgb2dvi_v1_2/xgui/rgb2dvi_v1_2.tcl",
+    "lines": 79,
+    "sha256": "b5c7922f8ce09ca0022acd406397ec1d1e602914851ea33e38934612344210b2",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/arbiter.v",
+    "lines": 159,
+    "sha256": "db0ba9a08a7e8eab28b838318139abbcac2dc179032119c04006e0a2dd2a9efe",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_adapter.v",
+    "lines": 324,
+    "sha256": "f9cfc375847037f8a23935fde28dc2b025a5b488fe8004b776a1639a5336789c",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_adapter_rd.v",
+    "lines": 686,
+    "sha256": "aef12feb8b9a0db7e3586b7f1a54cc551f042ca1025de64d3df7d1fb304ed54b",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_adapter_wr.v",
+    "lines": 779,
+    "sha256": "65be0663e09faf988f64aeaea3d63ec06ff92fbe607126f592c380b3b6c72827",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_axil_adapter.v",
+    "lines": 223,
+    "sha256": "d4eb0fc2a166351cf62ee167eecb1f56314304a264b40de57649887aaf348932",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_axil_adapter_rd.v",
+    "lines": 501,
+    "sha256": "a968360795d5f0bf8addcefd5504bcbeda98eb6afeb796db89c242bebf96d2d9",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_axil_adapter_wr.v",
+    "lines": 564,
+    "sha256": "53e86659fd3a6550cd7372bad26d7eb76fa3602aafabe77248a3bc56ee59c5e2",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_cdma.v",
+    "lines": 798,
+    "sha256": "e9de9f2a699686fefe28ebcc919844599f651cb5393da7111951923ecb359d77",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_cdma_desc_mux.v",
+    "lines": 265,
+    "sha256": "e6e803470d7a836735c60fb8c7904a2ab0fb5a43ed5dd051b4fe9d076e269ef5",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_crossbar.v",
+    "lines": 391,
+    "sha256": "b251ddc6e47ce66cd1c5d8e09539bafae307effc6f73f176d349df9757271c89",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_crossbar_addr.v",
+    "lines": 418,
+    "sha256": "0d88919fc78db33d3f505e89740258c95c216054dcae8e57c5f72463938298ff",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_crossbar_rd.v",
+    "lines": 569,
+    "sha256": "715be9547f9ac6b4a35be065382aa209c3c85455c412bfa4e107d7203487be41",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_crossbar_wr.v",
+    "lines": 678,
+    "sha256": "1902a8c52f810614d8c7ce2108583c89bf537ffa25fba92b2b05be56f1640a16",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_crossbar_wrap.py",
+    "lines": 452,
+    "sha256": "22d957015b0f137a7bbdf266b35d66699f5fd05cc9410d347f71e8c8a7327695",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_dma.v",
+    "lines": 361,
+    "sha256": "95fce64412c272d949dca41e7d677fb9ae72f15bd1137a65c39eea2f5f50d57f",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_dma_desc_mux.v",
+    "lines": 319,
+    "sha256": "7e8b6c27e0e126e901cddc66ac88b2f732a5f9f1bf7bfbb8133298f6618c0524",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_dma_rd.v",
+    "lines": 692,
+    "sha256": "9c733ba0cc5e48f15a91ddf4b5bd569954bbed3c9745b1973920921296c7b6f4",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_dma_wr.v",
+    "lines": 942,
+    "sha256": "161ecaf8ee934a55114b676f52b45bcedad9e5c488f9f3874175ef50457a6e4d",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_dp_ram.v",
+    "lines": 426,
+    "sha256": "322f0c4b541c10c4ed15134eadeebbd6aedab651f2d4230ed49ab6b053bc60db",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_fifo.v",
+    "lines": 316,
+    "sha256": "862682840566197baa3d02a329c6d801f3d17f6c7a86fa9df4e833066b9e6351",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_fifo_rd.v",
+    "lines": 413,
+    "sha256": "14e5c48a9e4cafa6e94ff4ba86baacf5d1818a4188ff7f55ae89908a4109a485",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_fifo_wr.v",
+    "lines": 453,
+    "sha256": "b6432fa450a38d517007a4fe8be08e4a7fee7617a761ec44b4f24e91eb2296df",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_interconnect.v",
+    "lines": 988,
+    "sha256": "f2613e44d30f7dc199428d75960d394a23cefdb8f44e80b31dee8a2d6b1b21b5",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_interconnect_wrap.py",
+    "lines": 363,
+    "sha256": "235c9238da6b3c87eeccc153dfec57e3a4b81adf6d878f6843bcae3d850a704b",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_ram.v",
+    "lines": 373,
+    "sha256": "1488318fd46a28f018817dfc61731075721581d9109efa07048a3ff5aff6eb46",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_ram_rd_if.v",
+    "lines": 274,
+    "sha256": "10e0b3c3e558b0c229559c801297d59a9f5e50ead702ed2530348873100cee9d",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_ram_wr_if.v",
+    "lines": 292,
+    "sha256": "f13ac6c41ce85ca353c14371f7e6d32b6dd36226edf6eb7791634155fa40be0b",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_ram_wr_rd_if.v",
+    "lines": 343,
+    "sha256": "38a9aca627d019ab2e4c89c7c06e8bd43c0e87df7593e52a2d181f93acd59361",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_register.v",
+    "lines": 324,
+    "sha256": "4775baca3600e65e0e2f9d2c864f4437fbedb688a3aac3c8405f80488eb25c0a",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_register_rd.v",
+    "lines": 530,
+    "sha256": "f07a5f71a625de6b924c82214e1ff356254d542089792f67057a15deffdda32f",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_register_wr.v",
+    "lines": 691,
+    "sha256": "6bef07487a7d0c03eafde4a755389418a4e71e70dcdb2e60ae697370484fb5d5",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_vfifo.v",
+    "lines": 611,
+    "sha256": "6d79781c8f96a73fcce3f464689672270400c5e22a4205c810b98132e17e761b",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_vfifo_dec.v",
+    "lines": 720,
+    "sha256": "7ec43bfcb49d4432de7d3020f4806206d2df53e67b77041f96d1d574fc258336",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_vfifo_enc.v",
+    "lines": 794,
+    "sha256": "3e4f9577cd1040bd84d8e8f16f6d3da23ff22c8577840bc1539c5487e13d4043",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_vfifo_raw.v",
+    "lines": 381,
+    "sha256": "0f13d9e20fdbdebe8df45bf0e50fd61bb14baf34b577b7ac10197c2ebdb921d9",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_vfifo_raw_rd.v",
+    "lines": 580,
+    "sha256": "05600e55e3a09a52c87ba0435d5f022245d6f1969ef3f7da61e25444da3321a2",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axi_vfifo_raw_wr.v",
+    "lines": 567,
+    "sha256": "62e1f9a19c8b339b10a156feeb2dc788453ecd0002c994aff597bfecc9547d7a",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_adapter.v",
+    "lines": 178,
+    "sha256": "6fa09d8101c427646ce3dcfd935de307f689146238fac5a222a0b80e4cb95629",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_adapter_rd.v",
+    "lines": 277,
+    "sha256": "af5275e47c6f8e4e46d40120d16c7606cf3be1948c5af70ab08bbd9536ee025c",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_adapter_wr.v",
+    "lines": 340,
+    "sha256": "3b54dc6b2f897181df8ef77438ed13c8900b563f479800b51b5d341a2b48f483",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_cdc.v",
+    "lines": 173,
+    "sha256": "ba5d639ff8b9692adfd75e0ce8ff3fa7e768155ed2094f5b3def61b2c53021f4",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_cdc_rd.v",
+    "lines": 208,
+    "sha256": "d1ff277fef15c279bf945a4bbce14f631559d31f2ab2c57a4f750866cd550baa",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_cdc_wr.v",
+    "lines": 232,
+    "sha256": "b8b865f0939d5a9ca0d38ddec0f8e486a280aca2bfd1e2c0d996f9e441fbf417",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_crossbar.v",
+    "lines": 251,
+    "sha256": "2171a5c5d5e92f3c2ee64b05feb321e707644537b823422f34cd99113c78c7ad",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_crossbar_addr.v",
+    "lines": 309,
+    "sha256": "aafcd6a7721341369da6da6d7a1ad2117749ef9cdc0f4c634769569eaf962bfa",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_crossbar_rd.v",
+    "lines": 440,
+    "sha256": "7255ed7f35ad5a7bcc770b89c870610cfeedbd991838984d51c9d5b2bc22b3c7",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_crossbar_wr.v",
+    "lines": 548,
+    "sha256": "44a4eb70cd1ed16a893e1c1f75d0b02fefdf1a128fb40b688222ab56632681f9",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_crossbar_wrap.py",
+    "lines": 316,
+    "sha256": "2c04abc8ecc29dc5d9999c019c751934938312ef7ada50dda2c1c740cfdf0287",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_dp_ram.v",
+    "lines": 315,
+    "sha256": "f0776ed8bafe1b8e020a530420450acbae91fb553304a2ac2cdf86696d0e39af",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_interconnect.v",
+    "lines": 564,
+    "sha256": "5fb2d332653f6da815b72717585f6447d63d9d721e1a31b8338099c81a280e45",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_interconnect_wrap.py",
+    "lines": 243,
+    "sha256": "70b338c831271824748132ecb370bddbb9684a378c8c4ed0ca61014480b87759",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_ram.v",
+    "lines": 183,
+    "sha256": "b4f8009bd69671dad829c4a06b42e8e989b2ddad3862e0eb986b827b3ec86376",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_reg_if.v",
+    "lines": 158,
+    "sha256": "8729c36d6d39a66f36d0b153f538010f7ca085be5481107fe47a50272cbd883d",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_reg_if_rd.v",
+    "lines": 136,
+    "sha256": "4f8c085b03c3ea5e004ece6ec3720a3a2eebe533707c475313666f4c77585f79",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_reg_if_wr.v",
+    "lines": 155,
+    "sha256": "00de2751dc9f0f6c923637cf13c66293810a7ddc7d12c6a6edd1eac0e4258f62",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_register.v",
+    "lines": 190,
+    "sha256": "38a5d5d3af6f594a0b730f601085d78b0d16b51db4393536d55900605db2c871",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_register_rd.v",
+    "lines": 376,
+    "sha256": "7e0929998aeef8c03f89d82ce6056cf634d5239650d9145bc994f81dfbd0e596",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/axil_register_wr.v",
+    "lines": 521,
+    "sha256": "8a1fe636de589554188ee4b5619fc54a87b06826a8739e9821f32687a73de43d",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "third_party/verilog-axi/rtl/priority_encoder.v",
+    "lines": 92,
+    "sha256": "07c610b8dda24daf67dec36c743f79fca30f9d01d5469e1e7f795a16f4c7aa97",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/build_safe.ps1",
+    "lines": 40,
+    "sha256": "6339c5815aef249ed36855324c58c184d443dd6690f5512896fb2cb1e7251be0",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/safe_startup.c",
+    "lines": 26,
+    "sha256": "26bd3bcf190385a8773cc8fefb2bbce983150b49bc9ec561653b041507f0ba41",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/safe_stm32f103c8.ld",
+    "lines": 24,
+    "sha256": "54e44972588b65524d688b61dd622ef798c2063c4e142b3e5fe2e6d711e726b1",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/APP/main.c",
+    "lines": 31,
+    "sha256": "da18f5717849950d74fae329ab25e8053b421eb556bfaabca16239e452db37a6",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/APP/safe_car.c",
+    "lines": 336,
+    "sha256": "0798f7451ba510787cdbbcd35a2cfb462d2863ebb9d10efa89e6535e80a60e28",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/APP/safe_car.h",
+    "lines": 14,
+    "sha256": "e03534a67204bea64796983f0206483263a86c5effc2ef1ee4afaee2347262c2",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/APP/safe_control.c",
+    "lines": 212,
+    "sha256": "ef32fb8a078fca7faf719377bcb728a908d450e8ef43a4bf2d85665e7be365d3",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/APP/safe_control.h",
+    "lines": 79,
+    "sha256": "e41d8c3f15fd84719336e0475d3746ef1abe2b373a9b6714988194f9ee317f75",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/APP/stm32f10x_conf.h",
+    "lines": 77,
+    "sha256": "d5b09b9b28176d258d83b5b6193f72501a63c9e0e18d52b7b4e947977d3a5400",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/BSP/bsp_motor.h",
+    "lines": 20,
+    "sha256": "364100189f04afb24eecb5756ef46abbabd30855b9d65bfb86591d7fbe655538",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/CMSIS/core_cm3.h",
+    "lines": 1818,
+    "sha256": "de4668aa9d314d05769dfb29f028e205b50577c6b2150fc6bccb34bd34179bbb",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/CMSIS/stm32f10x.h",
+    "lines": 8336,
+    "sha256": "4ee722d262c1e7d7505d7dc7eeb8ccaaf67158b51ee4bc177397cd64e74e1b3a",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/CMSIS/system_stm32f10x.c",
+    "lines": 1094,
+    "sha256": "45f52950f5fc6509920fb26d1362e8457907c2d62fa455cbe3c6ce6daa974a76",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/CMSIS/system_stm32f10x.h",
+    "lines": 98,
+    "sha256": "919dc1f5c6bbba74cb712e8ec7cf73f1988eafa9438c706526fb401a2ab4672d",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/misc.h",
+    "lines": 220,
+    "sha256": "40c918f726035dfa67a7bfadefac8e922196d7918f915a7f2db1e652625c7e41",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/stm32f10x_dma.h",
+    "lines": 439,
+    "sha256": "2ba038050d07735a42645f2508e62078c217dc750878097f7f113660e0d58ffb",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/stm32f10x_exti.h",
+    "lines": 184,
+    "sha256": "661b039483459137a58bfdea7522528b9b6e923d61966d4c7c8a5035bd375f5f",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/stm32f10x_gpio.h",
+    "lines": 385,
+    "sha256": "ef945fe7b2e4a8f3bf8fa22d44274085444dec80424f91606a1467ea4e69626f",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/stm32f10x_i2c.h",
+    "lines": 684,
+    "sha256": "08b14d416090815765a02e6fecf78cbdd3de4ad330d3bc04b2133f8f4f3f2daa",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/stm32f10x_rcc.h",
+    "lines": 727,
+    "sha256": "894e140a70b0cdc94e4e96c5011def9dca5a103752783c3bb7cab538fc426f9e",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/stm32f10x_tim.h",
+    "lines": 1164,
+    "sha256": "dddf89f9b7134a2f15ed9cc2521589ee9a2e18c0553a6017c71b5d5b394524e5",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/FWlib/inc/stm32f10x_usart.h",
+    "lines": 412,
+    "sha256": "9d4c2067e54defd64b000076e6561726d758c872d354bed6eea66a6767c08bce",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/FWlib/src/misc.c",
+    "lines": 225,
+    "sha256": "152c632e56151b2564121c56ff359d0f041621f0da6ed101d7fd376a139a5c75",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/FWlib/src/stm32f10x_exti.c",
+    "lines": 269,
+    "sha256": "5783d10d46275d8baee9f2861cf434b5c12a4bc8f42ed4af9e503c1818941ebe",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/FWlib/src/stm32f10x_gpio.c",
+    "lines": 650,
+    "sha256": "8255650b583b2bab2c320e0974309a6ccf26f661e7ad1b54282c0f0e2b9a1acf",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/FWlib/src/stm32f10x_rcc.c",
+    "lines": 1470,
+    "sha256": "f23bbc9b83e44e69f5dc34f072867f0087a3eb0452034ab09c363088d2354cd9",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/FWlib/src/stm32f10x_tim.c",
+    "lines": 2890,
+    "sha256": "bd12bf18b03b8585ac2ba6bd0e80ec39d8fd0c89307eb54f5a7be38a46894d03",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/Source/FWlib/src/stm32f10x_usart.c",
+    "lines": 1058,
+    "sha256": "6d7af47017b01eb260fb7699f5c483e0a8576b4c780069a99975b7c6443030dd",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/tests/fuzz_build.cmd",
+    "lines": 8,
+    "sha256": "91a6c50ddf3a11b4dd56fcf824f4db6933b6075aa663f7b0de6650e01bdcfcb1",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/tests/run_tests.cmd",
+    "lines": 11,
+    "sha256": "a32afa135f72e894587deed22c711c8b5f3a55172a5121ecb02d9decc5489488",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32_pynq对接版/tests/test_safe_control.c",
+    "lines": 155,
+    "sha256": "9dcb52f6b16805aa3227f674b49a276d10af68a6cea75e4e6f677b96215c2c44",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/build_minimal_uart2_test.ps1",
+    "lines": 34,
+    "sha256": "e24a9528b518c268f1f18e2c3fc6b7d94b542bfca01023bb52dd745f0cf2ff1c",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/build_minimal_uart_test.ps1",
+    "lines": 34,
+    "sha256": "c484d97288b5099cf4da8ea11e141dba186cc796070f1df9ddb64ffd1fe2e26d",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/build_safe.ps1",
+    "lines": 40,
+    "sha256": "6339c5815aef249ed36855324c58c184d443dd6690f5512896fb2cb1e7251be0",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/minimal_uart2_test.c",
+    "lines": 116,
+    "sha256": "932aa14cd931aa67cec13597a52b350050de2a960275ad941b0c0a4ae2374e39",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/minimal_uart_test.c",
+    "lines": 133,
+    "sha256": "1be4ab36f65b333a42132237e4f6bc2d9dec5575dce0d2728c05b62e467b68e1",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/pc/car_console.py",
+    "lines": 246,
+    "sha256": "1112fb1d885ade9e935b304aa1dbe39a8e4bb53b537f3848d63e79437781d5f9",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/pc/pynq_link.py",
+    "lines": 410,
+    "sha256": "4cd3a79bdc17c10b81343aff95c58cb9f1e0608e8e56d224f5ff06b33a883923",
+    "group": "owned",
+    "review_status": "semantic_reviewed",
+    "review_note": "Read production source; findings tracked separately. Vendor internals excluded from this status."
+  },
+  {
+    "path": "workspace/stm32预备程序/pc/test_console.py",
+    "lines": 27,
+    "sha256": "94c3fd46d10f9914ebb2f882c663bd1fa13024efc5ee48208ae1645a73b22edb",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/pc/test_pynq_link.py",
+    "lines": 250,
+    "sha256": "695db8be4195d3a4dcdc84ccd87c47cf8394a22ff0dbfc68924b72c652133ff4",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/safe_startup.c",
+    "lines": 28,
+    "sha256": "974cc2e2552dcb83be8c4769aeb4948cfea07358e516e61ec47e72901491a247",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/safe_stm32f103c8.ld",
+    "lines": 24,
+    "sha256": "54e44972588b65524d688b61dd622ef798c2063c4e142b3e5fe2e6d711e726b1",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/APP/main.c",
+    "lines": 31,
+    "sha256": "da18f5717849950d74fae329ab25e8053b421eb556bfaabca16239e452db37a6",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/APP/safe_car.c",
+    "lines": 426,
+    "sha256": "aa164dd448ecad7d1e325aa3efd6faef8cbf454a6f05775fcfbe851b9a9ac89a",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/APP/safe_car.h",
+    "lines": 14,
+    "sha256": "e03534a67204bea64796983f0206483263a86c5effc2ef1ee4afaee2347262c2",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/APP/safe_control.c",
+    "lines": 207,
+    "sha256": "a5d9cc4c3cb1d51053099bedb78fff7fc594b7394335c4dd3fadc70c72133281",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/APP/safe_control.h",
+    "lines": 82,
+    "sha256": "ec16679be4f1a2ea0e61ee191fc912ff38ffa1f3ef54298175970a71dcda302d",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/APP/stm32f10x_conf.h",
+    "lines": 77,
+    "sha256": "d5b09b9b28176d258d83b5b6193f72501a63c9e0e18d52b7b4e947977d3a5400",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/BSP/bsp_iravoid.h",
+    "lines": 42,
+    "sha256": "5355a77ec7545788172c76329e26c71d60cf8783485d2a87b47c29427cd2bb80",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/BSP/bsp_motor.h",
+    "lines": 20,
+    "sha256": "364100189f04afb24eecb5756ef46abbabd30855b9d65bfb86591d7fbe655538",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/BSP/bsp_servo.h",
+    "lines": 65,
+    "sha256": "f59679400107d5fccbd01fb19bf34a71546418f630599efb93cc15ed79abf50a",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/BSP/bsp_ultrasonic.h",
+    "lines": 36,
+    "sha256": "da3423f4cf073db768755d74ad8b02a109ab8ee68b138e1a0d7d3d14c663a7cc",
+    "group": "owned",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/CMSIS/core_cm3.h",
+    "lines": 1818,
+    "sha256": "de4668aa9d314d05769dfb29f028e205b50577c6b2150fc6bccb34bd34179bbb",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/CMSIS/stm32f10x.h",
+    "lines": 8336,
+    "sha256": "4ee722d262c1e7d7505d7dc7eeb8ccaaf67158b51ee4bc177397cd64e74e1b3a",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/CMSIS/system_stm32f10x.c",
+    "lines": 1094,
+    "sha256": "45f52950f5fc6509920fb26d1362e8457907c2d62fa455cbe3c6ce6daa974a76",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/CMSIS/system_stm32f10x.h",
+    "lines": 98,
+    "sha256": "919dc1f5c6bbba74cb712e8ec7cf73f1988eafa9438c706526fb401a2ab4672d",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/FWlib/inc/misc.h",
+    "lines": 220,
+    "sha256": "40c918f726035dfa67a7bfadefac8e922196d7918f915a7f2db1e652625c7e41",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/FWlib/inc/stm32f10x_dma.h",
+    "lines": 439,
+    "sha256": "2ba038050d07735a42645f2508e62078c217dc750878097f7f113660e0d58ffb",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/FWlib/inc/stm32f10x_exti.h",
+    "lines": 184,
+    "sha256": "661b039483459137a58bfdea7522528b9b6e923d61966d4c7c8a5035bd375f5f",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/FWlib/inc/stm32f10x_gpio.h",
+    "lines": 385,
+    "sha256": "ef945fe7b2e4a8f3bf8fa22d44274085444dec80424f91606a1467ea4e69626f",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/FWlib/inc/stm32f10x_i2c.h",
+    "lines": 684,
+    "sha256": "08b14d416090815765a02e6fecf78cbdd3de4ad330d3bc04b2133f8f4f3f2daa",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/FWlib/inc/stm32f10x_rcc.h",
+    "lines": 727,
+    "sha256": "894e140a70b0cdc94e4e96c5011def9dca5a103752783c3bb7cab538fc426f9e",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/FWlib/inc/stm32f10x_tim.h",
+    "lines": 1164,
+    "sha256": "dddf89f9b7134a2f15ed9cc2521589ee9a2e18c0553a6017c71b5d5b394524e5",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/FWlib/inc/stm32f10x_usart.h",
+    "lines": 412,
+    "sha256": "9d4c2067e54defd64b000076e6561726d758c872d354bed6eea66a6767c08bce",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/FWlib/src/misc.c",
+    "lines": 225,
+    "sha256": "152c632e56151b2564121c56ff359d0f041621f0da6ed101d7fd376a139a5c75",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/FWlib/src/stm32f10x_exti.c",
+    "lines": 269,
+    "sha256": "5783d10d46275d8baee9f2861cf434b5c12a4bc8f42ed4af9e503c1818941ebe",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/FWlib/src/stm32f10x_gpio.c",
+    "lines": 650,
+    "sha256": "8255650b583b2bab2c320e0974309a6ccf26f661e7ad1b54282c0f0e2b9a1acf",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/FWlib/src/stm32f10x_rcc.c",
+    "lines": 1470,
+    "sha256": "f23bbc9b83e44e69f5dc34f072867f0087a3eb0452034ab09c363088d2354cd9",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/FWlib/src/stm32f10x_tim.c",
+    "lines": 2890,
+    "sha256": "bd12bf18b03b8585ac2ba6bd0e80ec39d8fd0c89307eb54f5a7be38a46894d03",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/Source/FWlib/src/stm32f10x_usart.c",
+    "lines": 1058,
+    "sha256": "6d7af47017b01eb260fb7699f5c483e0a8576b4c780069a99975b7c6443030dd",
+    "group": "dependency",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/tests/run_tests.cmd",
+    "lines": 11,
+    "sha256": "a32afa135f72e894587deed22c711c8b5f3a55172a5121ecb02d9decc5489488",
+    "group": "tests",
+    "review_status": "pending"
+  },
+  {
+    "path": "workspace/stm32预备程序/tests/test_safe_control.c",
+    "lines": 173,
+    "sha256": "875e712e728546aebcc6ae0333123e76ee726da66d5091b123550f2fa2f608c4",
+    "group": "tests",
+    "review_status": "pending"
+  }
+]
