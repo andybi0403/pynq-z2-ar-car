@@ -1,0 +1,32 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  repository:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Skill helper tests
+        run: python -m unittest discover -s skill/amd-pynq-project-workflow/scripts -p 'test_*.py' -v
+      - name: Immutable candidate identity
+        run: >-
+          python skill/amd-pynq-project-workflow/scripts/inspect_candidate.py
+          --project-root .
+          --candidate pynq_fpga/preintegration/portable_r2/latest_candidate.json
+          --skip-current-sources
+      - name: Current release identity
+        run: python skill/amd-pynq-project-workflow/scripts/inspect_release.py --project-root .
+      - name: Markdown links
+        shell: pwsh
+        run: ./tools/check_markdown_links.ps1 -Root .
