@@ -3,6 +3,13 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .coverage
+*.o
+*.obj
+*.exe
+*.dll
+*.lib
+*.exp
+*.map
 
 # Local and temporary build output
 .Xil/
