@@ -1,12 +1,16 @@
 # PYNQ-Z2 多传感器 AR 小车
 
+**2026-10-26 最新交接：[接手先读](handoff/20261026/00_接手先读.md) · [通信故障与实测](handoff/20261026/02_通信故障时间线与复现.md) · [完整演示与验收](handoff/20261026/04_完整功能演示脚本与验收清单.md)。** 最新完整程序为 [r17b ZIP](pynq_fpga/release/v011_uart_recovery_20261026_r17b.zip)。STM32 已烧录并全片校验，PC COM10 查询 20/20；PYNQ 在 S5 ON/OFF 两次均 0/80，通信仍未恢复。板上 r16 服务已停止，r17b 尚未部署到 PYNQ；整车验收未完成。下文旧版本状态保留为历史，不覆盖本次交接。
+
 [![validate](https://github.com/andybi0403/pynq-z2-ar-car/actions/workflows/validate.yml/badge.svg)](https://github.com/andybi0403/pynq-z2-ar-car/actions/workflows/validate.yml)
 
-基于 PYNQ-Z2 / Zynq-7020、STM32F103C8T6 和 BST-4WD V4.5 底盘的低时延感知与显示系统。PL 负责统一时基、原子传感器快照、QEI 测速/里程、风险判定、视频帧关联、OSD 和无线视频 DMA；PS 负责设备、协议、控制监督、页面与证据链；STM32 负责电机闭环、锁车安全逻辑以及超声波/红外采集。
+基于 PYNQ-Z2 / Zynq-7020、STM32F103C8T6 和 BST-4WD V4.5 底盘的低时延感知与显示系统。PL 负责统一时基、原子传感器快照、QEI 测速/里程、风险判定、视频帧关联、OSD 和无线视频 DMA；PS 负责设备、协议、控制监督、页面与证据链；STM32 负责电机 PWM 执行、锁车安全逻辑以及超声波/红外采集。
 
 当前公开交付物是**电机动力断开的 LAB_ONLY 台架版本**，不是可驾驶的整车 release。已完成的实板范围包括 STM32 烧录与 128 KiB 独立读回、正常启动、锁车双板 UART、超声波/红外进入 PL，以及 PYNQ 重启后的 UART/Overlay 恢复。
 
 ## 当前版本
+
+最新完整控制台软件为 [v0.11 / r16](pynq_fpga/release/v011_complete_console_20261026_r16/README.md)，[下载 ZIP](pynq_fpga/release/v011_complete_console_20261026_r16.zip)。整合视频、操控与实际反馈、传感器和双轮标定、记录回放与演示流程；红外触发、失效与断线只提示，不参与停车或解锁判断。连接助手拒绝旧受限试跑服务。新包包含重新构建且时序通过的 FPGA bit/HWH、配套 STM32 固件，并保存此前方案的左右 SCALE=5362 名义预设。153 项主机、187 项集成、35 项串口测试、29 个浏览器场景、22 个 RTL 测试台及完整构建通过；包与桌面源文件身份校验通过。**本包未联网部署、实板结果 PENDING**，不改变公开 LAB_ONLY 发布分类。详见 [验证记录](pynq_fpga/preintegration/validation/20261026_ir_advisory_console_r16.md) 和 [操作说明](tools/car_receiver/使用说明.md)。下表继续列出已验证的原实板基线。
 
 | 项目 | 值 |
 |---|---|

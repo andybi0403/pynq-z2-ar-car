@@ -21,6 +21,15 @@ def verify_archive(archive):
         for name,digest in expected.items():
             if hashlib.sha256(z.read(name)).hexdigest()!=digest:
                 raise ValueError('archive source/artifact mismatch: '+name)
+        if 'console_manifest.json' in names:
+            console=json.loads(z.read('console_manifest.json').decode('utf8'))
+            if console.get('schema')!='car-integrated-console/v1' or console.get('classification')!='CONTROLLED_CONSOLE_NOT_RELEASE':
+                raise ValueError('invalid integrated console identity')
+            if console.get('base_manifest_sha256')!=hashlib.sha256(z.read('lab_manifest.json')).hexdigest():
+                raise ValueError('console/base identity mismatch')
+            for name,digest in {**console['files'],**console.get('desktop_files',{})}.items():
+                if hashlib.sha256(z.read(name)).hexdigest()!=digest:
+                    raise ValueError('integrated console source mismatch: '+name)
         if z.testzip() is not None:raise ValueError('archive CRC check failed')
         return len(names)
 

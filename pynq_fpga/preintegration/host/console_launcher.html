@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PYNQ 小车接收上位机</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#edf3f7;color:#132235;font:16px/1.65 "Microsoft YaHei",system-ui,sans-serif;min-height:100vh;display:grid;place-items:center;padding:20px}main{width:min(680px,100%);padding:32px;background:white;border:1px solid #d9e2ec;border-radius:12px}h1{font-size:27px;margin:0 0 8px}p{color:#607083}label{display:block;font-size:14px;font-weight:700;margin-top:18px}input{width:100%;font:inherit;border:1px solid #bdcad8;border-radius:6px;padding:11px;margin-top:6px}button{font:inherit;font-weight:700;background:#1559a6;color:white;padding:11px 24px;border:0;border-radius:6px;margin-top:24px;cursor:pointer}#status{font-size:14px;color:#9b252d;min-height:26px;margin-top:14px}.note{font-size:13px;border-top:1px solid #d9e2ec;padding-top:16px}input:focus{outline:3px solid #79b6f2}
+</style>
+<main>
+<h1>PYNQ 小车接收上位机</h1>
+<p>先连接小车，再进入视频和传感器操控台。</p>
+<form id="connectForm">
+<label for="serverAddress">PYNQ 地址</label>
+<input id="serverAddress" value="http://192.168.8.139:8080" placeholder="192.168.8.139:8080" autocomplete="url">
+<label for="sessionToken">本次启动链接或令牌</label>
+<input id="sessionToken" type="password" placeholder="粘贴板端终端打印的完整链接，也可以只粘贴 token" autocomplete="off">
+<button type="submit">连接小车</button>
+<div id="status" role="status" aria-live="polite"></div>
+</form>
+<p class="note">本连接页可离线打开。连接时请接入小车的局域网，并在 PYNQ 运行 <code>./start_sensor_console.sh</code>。若连接后浏览器显示无法访问，请检查板端服务是否启动、地址和端口是否一致。服务重启后使用新令牌。</p>
+</main>
+<script>
+const el=id=>document.getElementById(id);
+try{el('serverAddress').value=localStorage.getItem('pynq.console.address')||el('serverAddress').value;}catch{}
+el('connectForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  try{
+    let address=el('serverAddress').value.trim(),token=el('sessionToken').value.trim();
+    if(/^https?:\/\//i.test(token)){const link=new URL(token);address=link.origin;token=new URLSearchParams(link.hash.slice(1)).get('token')||'';}
+    if(!/^https?:\/\//i.test(address))address='http://'+address;
+    const target=new URL(address);
+    if(!['http:','https:'].includes(target.protocol)||!target.hostname||target.username||target.password)throw Error('请输入有效的 PYNQ 地址');
+    try{localStorage.setItem('pynq.console.address',target.origin);}catch{}
+    el('status').textContent='正在打开小车服务…';
+    location.assign(target.origin+'/'+(token?'#token='+encodeURIComponent(token):''));
+  }catch(error){el('status').textContent='地址或启动链接格式不正确，请检查后重试。';}
+});
+</script>
+</html>

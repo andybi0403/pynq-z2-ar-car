@@ -1,6 +1,6 @@
 # Generated from fpga/registers/register_map.json; do not hand edit.
-CONTRACT_VERSION = 10
-INTEGRATED_ID = 0xC425100A
+CONTRACT_VERSION = 11
+INTEGRATED_ID = 0xC425100B
 ID_VERSION = 0x000
 CTRL = 0x004
 STATUS = 0x008

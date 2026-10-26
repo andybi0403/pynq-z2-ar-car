@@ -1,73 +1,73 @@
 {
     "schema":  "car-complete-build/v1",
-    "name":  "v010_edge_console_20261014_r2",
-    "contract_id":  "0xC425100A",
-    "started_utc":  "2026-10-13T16:37:21.7101825Z",
+    "name":  "v011_ir_advisory_20261026_d",
+    "contract_id":  "0xC425100B",
+    "started_utc":  "2026-10-26T08:57:07.9522148Z",
     "status":  "LAB_ONLY_CANDIDATE",
     "hardware":  "PENDING",
-    "build_dir":  "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\fpga\\build\\task7_8_v010_edge_console_20261014_r2",
-    "package_dir":  "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\lab\\task7_8_lab_only_v010_edge_console_20261014_r2",
-    "evidence_dir":  "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\preintegration\\evidence\\complete_v010_edge_console_20261014_r2",
+    "build_dir":  "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\fpga\\build\\task7_8_v011_ir_advisory_20261026_d",
+    "package_dir":  "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\lab\\task7_8_lab_only_v011_ir_advisory_20261026_d",
+    "evidence_dir":  "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\preintegration\\evidence\\complete_v011_ir_advisory_20261026_d",
     "stages":  [
                    {
                        "name":  "wireless_native",
-                       "started_utc":  "2026-10-13T16:37:21.7172061Z",
+                       "started_utc":  "2026-10-26T08:57:07.9592143Z",
                        "status":  "PASS",
-                       "ended_utc":  "2026-10-13T16:37:22.9320388Z",
-                       "log_sha256":  "9894cb3910c4818aa017d952b26de04e399f78e2275f5c1a89ba3e318efe0ecc"
+                       "ended_utc":  "2026-10-26T08:57:09.2699600Z",
+                       "log_sha256":  "4a621d152ad3173fbaea403912c78a745018e328ae6d1b05b1006151138cf84f"
                    },
                    {
                        "name":  "stm32_firmware",
-                       "started_utc":  "2026-10-13T16:37:22.9817134Z",
+                       "started_utc":  "2026-10-26T08:57:09.3250790Z",
                        "status":  "PASS",
-                       "ended_utc":  "2026-10-13T16:37:25.6943482Z",
-                       "log_sha256":  "c4c6c5901b0ca3579688dda09a9a3042d30e372500ba1094c2f8348b04572c9a"
+                       "ended_utc":  "2026-10-26T08:57:12.0600262Z",
+                       "log_sha256":  "6e5a0ed7d94e2c485b4744aecef146f2a8d3a4fee93cb584a5df5a69baabff70"
                    },
                    {
                        "name":  "source_start",
-                       "started_utc":  "2026-10-13T16:37:25.6968700Z",
+                       "started_utc":  "2026-10-26T08:57:12.0626833Z",
                        "status":  "PASS",
-                       "ended_utc":  "2026-10-13T16:37:26.0202214Z",
+                       "ended_utc":  "2026-10-26T08:57:12.4133517Z",
                        "log_sha256":  "3cf8732dcd35e9619cd42e44fd777907c4bdf64ec71ced1768e5f52d770244ca"
                    },
                    {
                        "name":  "regression",
-                       "started_utc":  "2026-10-13T16:37:26.0222210Z",
+                       "started_utc":  "2026-10-26T08:57:12.4159036Z",
                        "status":  "PASS",
-                       "ended_utc":  "2026-10-13T16:50:40.2762595Z",
-                       "log_sha256":  "a56bcbeaab52096db7f16f885579b67d4dc80a5128acac234662728f711df97f"
+                       "ended_utc":  "2026-10-26T09:11:24.9359131Z",
+                       "log_sha256":  "127327100e48709044fc6918584c2b3352d5c3a183cb7e1f21639c841574ecf9"
                    },
                    {
                        "name":  "source_after_regression",
-                       "started_utc":  "2026-10-13T16:50:40.2792744Z",
+                       "started_utc":  "2026-10-26T09:11:24.9389222Z",
                        "status":  "PASS",
-                       "ended_utc":  "2026-10-13T16:50:40.6271482Z",
+                       "ended_utc":  "2026-10-26T09:11:25.2978964Z",
                        "log_sha256":  "3cf8732dcd35e9619cd42e44fd777907c4bdf64ec71ced1768e5f52d770244ca"
                    },
                    {
                        "name":  "build",
-                       "started_utc":  "2026-10-13T16:50:40.6291431Z",
+                       "started_utc":  "2026-10-26T09:11:25.3002165Z",
                        "status":  "PASS",
-                       "ended_utc":  "2026-10-13T17:08:57.7793031Z",
-                       "log_sha256":  "4660573573664230057f4df156d5b383c6ffab9b453fdb2c8fa57633eaa915cc"
+                       "ended_utc":  "2026-10-26T09:22:52.7581098Z",
+                       "log_sha256":  "4483792a4b0cfc1fad3c0497b49385f5ed43839a3370ddaae9318cafd7a9dce7"
                    },
                    {
                        "name":  "package",
-                       "started_utc":  "2026-10-13T17:08:57.7863112Z",
+                       "started_utc":  "2026-10-26T09:22:52.7615541Z",
                        "status":  "PASS",
-                       "ended_utc":  "2026-10-13T17:12:07.8598926Z",
-                       "log_sha256":  "28be12ab240b3aaef004a47d50da5cee89b8311711896ecc6ac7c6e923c01583"
+                       "ended_utc":  "2026-10-26T09:24:09.5478795Z",
+                       "log_sha256":  "74ce828e18f2df59a250e9567684f510359fc58a14f24c443932eee2e9c6d975"
                    },
                    {
                        "name":  "source_final",
-                       "started_utc":  "2026-10-13T17:12:07.8658906Z",
+                       "started_utc":  "2026-10-26T09:24:09.5498803Z",
                        "status":  "PASS",
-                       "ended_utc":  "2026-10-13T17:12:08.1760503Z",
+                       "ended_utc":  "2026-10-26T09:24:09.8694371Z",
                        "log_sha256":  "3cf8732dcd35e9619cd42e44fd777907c4bdf64ec71ced1768e5f52d770244ca"
                    }
                ],
     "video_profile":  "wireless720",
-    "zip_path":  "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\lab\\task7_8_lab_only_v010_edge_console_20261014_r2.zip",
-    "zip_sha256":  "0b751f7bf3d2c43322dfb50b79469db161f49564018901bd3f5dc8579d8cc561",
-    "ended_utc":  "2026-10-13T17:12:08.1905903Z"
+    "zip_path":  "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\lab\\task7_8_lab_only_v011_ir_advisory_20261026_d.zip",
+    "zip_sha256":  "a70a8dc0e3f676c28627461b381aa16bf64ab16b300d630be9b903314d397dc7",
+    "ended_utc":  "2026-10-26T09:24:09.8749409Z"
 }

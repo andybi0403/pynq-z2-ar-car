@@ -44,7 +44,7 @@ class SourceProvenanceTests(unittest.TestCase):
 
     def test_production_identity_has_actual_risk_parameters(self):
         identity = provenance.current_identity()
-        self.assertEqual(identity['integrated_id'], '0xC425100A')
+        self.assertEqual(identity['integrated_id'], '0xC425100B')
         self.assertEqual(identity['risk_parameters']['REACTION_MS'], 150)
         self.assertEqual(identity['risk_parameters']['COMMAND_LEASE_TICKS'], 25_000_000)
         self.assertIn('fpga/rtl/car_qei_odometry.v', identity['sources'])

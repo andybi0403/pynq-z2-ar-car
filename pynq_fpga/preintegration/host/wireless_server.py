@@ -37,6 +37,14 @@ class WirelessServer:
         response=web.json_response({'authenticated':True,'motion_allowed':False})
         response.set_cookie('car_session',self.cookie,httponly=True,samesite='Strict',path='/')
         return response
+    async def logout(self,request):
+        self.check(request,True)
+        self.gate.revoke('operator_logout')
+        if self.sockets:
+            await asyncio.gather(*(ws.close(code=1000,message=b'logged out') for ws in list(self.sockets)),return_exceptions=True)
+        response=web.json_response({'authenticated':False})
+        response.del_cookie('car_session',path='/')
+        return response
     async def status(self,request):
         self.check(request)
         state=self.runner.status_snapshot();state['video']=self.hub.stats()
@@ -44,6 +52,8 @@ class WirelessServer:
         return web.json_response(state,headers={'Cache-Control':'no-store'})
     async def player_script(self,request):
         return web.FileResponse(Path(__file__).with_name('wireless_player.js'))
+    async def console_script(self,request):
+        return web.FileResponse(Path(__file__).with_name('console_ui.js'))
     async def video_settings(self,request):
         self.check(request,request.method=='POST')
         if request.method=='GET':return web.json_response(self.hub.policy.settings())
@@ -127,12 +137,12 @@ class WirelessServer:
                 messages+=1
                 if messages>60:raise ValueError('control rate exceeds 60 messages/s')
                 payload=json.loads(message.data)
-                if (isinstance(payload,dict) and payload.get('type') in ('claim','intent')
+                if (isinstance(payload,dict) and payload.get('type') in ('claim','intent','release')
                         and not getattr(self.runner,'control_available',True)):
                     self.gate.revoke('video_only_control_disabled')
                     await ws.send_json({'type':'error','error':'当前为视频测试会话，未连接执行器控制'})
                     continue
-                if isinstance(payload,dict) and payload.get('type') in ('claim','intent') and self.hub.error:
+                if isinstance(payload,dict) and payload.get('type') in ('claim','intent','release') and self.hub.error:
                     self.gate.revoke('video_unavailable: '+self.hub.error)
                     await ws.send_json({'type':'error','error':'视频不可用，已撤销控制：'+self.hub.error})
                     continue
@@ -158,7 +168,12 @@ class WirelessServer:
         try:
             result=self.runner.enqueue_action('calibration',await request.json())
             return web.json_response(result,status=202)
-        except (ValueError,RuntimeError) as exc:raise web.HTTPBadRequest(text=str(exc))
+        except (ValueError,RuntimeError,TypeError) as exc:raise web.HTTPBadRequest(text=str(exc))
+    async def sensor_test_reset(self,request):
+        self.check(request,True)
+        try:result=self.runner.reset_interconnect_test()
+        except (AttributeError,RuntimeError) as exc:raise web.HTTPBadRequest(text=str(exc))
+        return web.json_response(result)
     async def log(self,request):
         self.check(request)
         name=request.match_info['name']
@@ -169,11 +184,14 @@ class WirelessServer:
     def application(self):
         app=web.Application(client_max_size=16384)
         app.router.add_get('/',self.page);app.router.add_post('/api/session',self.session)
+        app.router.add_post('/api/session/logout',self.logout)
         app.router.add_get('/assets/wireless_player.js',self.player_script)
+        app.router.add_get('/assets/console_ui.js',self.console_script)
         app.router.add_get('/api/video/settings',self.video_settings);app.router.add_post('/api/video/settings',self.video_settings)
         app.router.add_post('/api/video/feedback',self.video_feedback)
         app.router.add_get('/api/status',self.status);app.router.add_get('/api/video',self.video)
         app.router.add_post('/api/snapshot',self.snapshot);app.router.add_get('/api/control',self.control)
+        app.router.add_post('/api/sensor-test/reset',self.sensor_test_reset)
         app.router.add_post('/api/{kind:stop|calibration}',self.action)
         app.router.add_get('/api/log/{name}',self.log)
         return app

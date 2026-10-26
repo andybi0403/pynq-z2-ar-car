@@ -273,14 +273,8 @@ class CarLink:
                 self._await_new_intent = False
                 self._new_intent = False
                 return 'idle', None
-            if cmd[4]:
-                # 保留真实有效的IR位和距离，让STM32记录FAULT_IR；速度强制为0。
-                # 用V=0会把故障来源错误地降格成FAULT_SENSOR并丢失IR诊断。
-                self.suppressed = True
-                self._rel_flag = False
-                self._await_new_intent = False
-                self._new_intent = False
-                return 'idle_ok', (0, 0, True, cmd[3], cmd[4])
+            # IR is advisory: transmit its real bitmap without suppressing
+            # requests or cancelling a manual release. US/leases still guard.
             if self._rel_flag:
                 self._rel_flag = False
                 if cmd[3] >= 250:
@@ -438,7 +432,8 @@ class HybridCarLink(CarLink):
     IR_MAX_AGE = .100
     RX_MAX = 192
 
-    def __init__(self, port, baud=115200, *, ser=None, clock_fn=None, session=None):
+    def __init__(self, port, baud=115200, *, ser=None, clock_fn=None, session=None,
+                 locked_diagnostic=False):
         if baud != 115200:
             raise ValueError('hybrid v3 requires 115200 8N1')
         super().__init__(port, baud=baud, proto='pynq', ser=ser, clock_fn=clock_fn)
@@ -450,18 +445,90 @@ class HybridCarLink(CarLink):
         self._pending = {}
         self._sensors = None
         self.sensor_errors = 0
+        self.ir_sequence_warnings = 0
+        self.query_tx_count = 0
+        self.report_rx_count = 0
+        self._last_report_received = None
+        self._last_report_latency = None
+        self.locked_diagnostic = bool(locked_diagnostic)
+        self.acquisition_epoch = 0
+        self.locked_resync_count = 0
+        self._rollback_candidate = None
+        self._resync_requested = False
+        self.last_resync_reason = None
 
     def sensor_snapshot(self, now=None):
         now = self._clock() if now is None else now
         with self._lock:
-            if self._sensors is None:
+            if self._sensors is None or self._rollback_candidate is not None or self._resync_requested:
                 return None
             result = dict(self._sensors)
+            result['acquisition_epoch'] = self.acquisition_epoch
         result['us_valid'] = bool(result['us_valid'] and
                                  0 <= now - result['us_sample_s'] < self.SAMPLE_MAX_AGE)
         result['ir_valid'] = bool(result['ir_valid'] and
                                  0 <= now - result['ir_sample_s'] < self.IR_MAX_AGE)
         return result
+
+    def diagnostics(self, now=None):
+        """Thread-safe link and sensor state for the operator console."""
+        now = self._clock() if now is None else now
+        with self._lock:
+            recovering = (self._rollback_candidate is not None or self._resync_requested or
+                          (self._sensors is None and self.locked_resync_count > 0))
+            sensors = dict(self._sensors) if self._sensors is not None and not recovering else None
+            state_sequence = self.state_seq
+            pending_queries = len(self._pending)
+            last_received = None if recovering else self._last_report_received
+            last_latency = self._last_report_latency
+            running = self._running and self._thread is not None and self._thread.is_alive()
+            closed = self._closed
+            transport_error = self.transport_error
+            sensor_errors = self.sensor_errors
+            query_tx_count = self.query_tx_count
+            report_rx_count = self.report_rx_count
+            session_hex = f"{self.session:08X}"
+            recovery = {'locked_diagnostic': self.locked_diagnostic,
+                        'ir_sequence_warnings': self.ir_sequence_warnings,
+                        'acquisition_epoch': self.acquisition_epoch,
+                        'locked_resync_count': self.locked_resync_count,
+                        'resync_pending': recovering,
+                        'last_resync_reason': self.last_resync_reason}
+        last_reply_age_ms = None if last_received is None else max(0.0, (now-last_received)*1000)
+        sensor = None
+        if sensors is not None:
+            us_age = max(0.0, now-sensors['us_sample_s'])
+            ir_age = max(0.0, now-sensors['ir_sample_s'])
+            sensor = {
+                'us_sequence': sensors['us_seq'],
+                'us_valid': bool(sensors['us_valid'] and us_age < self.SAMPLE_MAX_AGE),
+                'distance_mm': sensors['mm'],
+                'us_age_ms': us_age*1000,
+                'ir_sequence': sensors['ir_seq'],
+                'ir_valid': bool(sensors['ir_valid'] and ir_age < self.IR_MAX_AGE),
+                'ir_age_ms': ir_age*1000,
+                'ir_mask': sensors['ir'],
+                'ir_left_active': bool(sensors['ir'] & 1),
+                'ir_right_active': bool(sensors['ir'] & 2),
+            }
+        return {
+            'protocol': 'hybrid-v3-crc16-query-reply',
+            **recovery,
+            'baud': 115200,
+            'session_hex': session_hex,
+            'running': running,
+            'closed': closed,
+            'query_tx_count': query_tx_count,
+            'report_rx_count': report_rx_count,
+            'pending_queries': pending_queries,
+            'sensor_errors': sensor_errors,
+            'transport_error': transport_error,
+            'state_sequence': state_sequence,
+            'last_reply_age_ms': last_reply_age_ms,
+            'last_reply_latency_ms': None if last_latency is None else last_latency*1000,
+            'link_fresh': last_reply_age_ms is not None and last_reply_age_ms < 700,
+            'sensor': sensor,
+        }
 
     def start(self):
         if self._running and self._thread is not None and self._thread.is_alive():
@@ -469,6 +536,15 @@ class HybridCarLink(CarLink):
         return super().start()
 
     def _send_once(self, now):
+        with self._lock:
+            resync = self._resync_requested
+            if resync:
+                new_session = secrets.randbelow(0xffffffff) + 1
+                self.session = new_session if new_session != self.session else self.session % 0xffffffff + 1
+                self._resync_requested = False
+        if resync:
+            written = self.ser.write(b'$PSTOP#')
+            if written is not None and written != 7:raise OSError('short resynchronization STOP write')
         self._query_seq = (self._query_seq + 1) & 0xffffffff
         request = self._query_seq
         with self._lock:
@@ -479,7 +555,10 @@ class HybridCarLink(CarLink):
         written = self.ser.write(packet)
         if written is not None and written != len(packet):
             raise OSError('short sensor query write')
-        kind, payload = self._decide(now)
+        with self._lock:
+            self.query_tx_count += 1
+        # This opt-in mode can only query and STOP, including after recovery.
+        kind, payload = ('stop', None) if self.locked_diagnostic else self._decide(now)
         self._control_seq = (self._control_seq + 1) & 0xffffffff
         if kind == 'rel':
             packet = hybrid_frame('R1', self.session, self._control_seq)
@@ -534,9 +613,19 @@ class HybridCarLink(CarLink):
                     d = (report['request'] - old['request']) & 0xffffffff
                     if not 0 < d < 0x80000000:
                         self.sensor_errors += 1; continue
-                    if any((report[k] - old[k]) & 0xffffffff >= 0x80000000
-                           for k in ('us_seq', 'ir_seq')):
-                        self.sensor_errors += 1; continue
+                    rollback = [((report[k] - old[k]) & 0xffffffff) >= 0x80000000
+                                for k in ('us_seq', 'ir_seq')]
+                    if rollback[0]:
+                        self.sensor_errors += 1
+                        if self.locked_diagnostic and all(rollback):
+                            self._confirm_locked_reset(report, now)
+                        continue
+                    if rollback[1]:
+                        # An IR-only reset invalidates that warning channel,
+                        # not fresh US/actuator data from the same CRC-valid reply.
+                        report['ir_valid'] = 0
+                        self.ir_sequence_warnings += 1
+                self._rollback_candidate = None
                 for channel in ('us', 'ir'):
                     # Request send preceded the MCU snapshot, so this is a
                     # conservative lower bound without mixing clock origins.
@@ -551,6 +640,41 @@ class HybridCarLink(CarLink):
                 self.state = {k: report[k] for k in ('left', 'right', 'lock', 'fault', 'mm', 'ir', 'drop')}
                 self.state_seq += 1
                 self.state_rx_time = sent  # Conservatively includes reply transit.
+                self.report_rx_count += 1
+                self._last_report_received = now
+                self._last_report_latency = max(0.0, now-sent)
+
+    def _confirm_locked_reset(self, report, now):
+        """Called under _lock after CRC/session/fresh-request checks.
+
+        Three distinct, advancing, locked-zero replies with BOTH counters
+        rolled back establish a possible acquisition reset. They remain
+        rejected. A new random session must establish new data afterward.
+        Normal (non-diagnostic) links retain their strict rollback rejection.
+        """
+        prior = self._rollback_candidate
+        advancing = prior is not None and 0 <= now-prior['time'] < 1
+        if advancing:
+            advancing = 0 < ((report['request']-prior['request']) & 0xffffffff) < 0x80000000
+            advancing &= all(((report[k]-prior[k]) & 0xffffffff) < 0x80000000
+                             for k in ('us_seq','ir_seq'))
+        count = prior['count']+1 if advancing else 1
+        if report['lock'] != 1 or report['left'] != 0 or report['right'] != 0:
+            count = 0
+        self._rollback_candidate = {k:report[k] for k in ('request','us_seq','ir_seq')}
+        self._rollback_candidate.update(time=now,count=count)
+        # Revoke cached feedback and every old driving/release intention at
+        # the first suspected reset; sensor_snapshot also returns unavailable.
+        self.state = None;self.state_rx_time = None
+        self._cmd = (0,0,False,0,0);self._cmd_ms = self._sample_ms = None
+        self._stop_flag = True;self._rel_flag = False
+        self._await_new_intent = self._new_intent = False;self.suppressed = True
+        if count >= 3:
+            self._pending.clear();self._sensors = None
+            self._last_report_received = self._last_report_latency = None
+            self._rollback_candidate = None;self._resync_requested = True
+            self.acquisition_epoch += 1;self.locked_resync_count += 1
+            self.last_resync_reason = 'both_sensor_counters_reset; new_session_while_locked'
 
 
 class MockSerial:

@@ -1,5 +1,6 @@
 """Bounded video publication and clock-qualified intents; never touches MMIO."""
 from collections import deque
+from bisect import bisect_left
 from dataclasses import dataclass
 import copy
 import math
@@ -112,7 +113,8 @@ class VideoHub:
                 self.cpu_totals[2]+=sample['system_total_percent']*duration;self.cpu_totals[3]+=duration
     def stats(self):
         with self.condition:
-            seconds=max(.001,(time.monotonic_ns()-self.start_ns)/1e9)
+            now_ns=time.monotonic_ns()
+            seconds=max(.001,(now_ns-self.start_ns)/1e9)
             percentiles={}
             for name,values in self.times.items():
                 ordered=sorted(values)
@@ -128,7 +130,10 @@ class VideoHub:
                                   for name,stamp in self.first_event_ns.items()},
                     'active_fps_scope':'per_stage_first_event_to_now; includes recovery; not browser FPS',
                     'latency':percentiles,'view':self.view,'error':self.error,
-                    'rolling_60s_fps':{name:sum(t>=time.monotonic_ns()-60_000_000_000 for t in stamps)/min(seconds,60)
+                    # Event times are appended in monotonic order. Copy once
+                    # for binary search instead of reading the clock per event
+                    # while holding the publication lock.
+                    'rolling_60s_fps':{name:(len(stamps)-bisect_left(list(stamps),now_ns-60_000_000_000))/min(seconds,60)
                                       for name,stamps in self.rate_events.items()},
                     'process_cpu':self.cpu_sample,
                     'average_process_two_core_percent':self.cpu_totals[0]/self.cpu_totals[1] if self.cpu_totals[1] else None,

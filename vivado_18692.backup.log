@@ -1,0 +1,37 @@
+INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detected. Your current license is active and will expire on 16-sep-2027.
+#-----------------------------------------------------------
+# Vivado v2026.1 (64-bit)
+# SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+# IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+# SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+# Start of session at: Fri Sep 18 18:43:29 2026
+# Process ID         : 18692
+# Current directory  : C:/Users/39909/Desktop/FPGA
+# Command line       : vivado.exe -mode batch -source pynq_fpga/preintegration/vivado/probe_board_files.tcl
+# Log file           : C:/Users/39909/Desktop/FPGA/vivado.log
+# Journal file       : C:/Users/39909/Desktop/FPGA\vivado.jou
+# Running On         : BZY
+# Platform           : Windows 11
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) i7-14650HX
+# CPU Frequency      : 2419 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 33943 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68302 MB
+# Available Virtual  : 42486 MB
+#-----------------------------------------------------------
+source pynq_fpga/preintegration/vivado/probe_board_files.tcl
+# set pre_dir [file normalize [file join [file dirname [info script]] ..]]
+# set workspace [file normalize [file join $pre_dir ../..]]
+# set board_repo [file join $workspace pynq-z2资料 board_files]
+# set_param board.repoPaths $board_repo
+# puts "BOARD_REPO=$board_repo"
+BOARD_REPO=C:/Users/39909/Desktop/FPGA/pynq-z2资料/board_files
+# puts "PYNQ_BOARD_PARTS=[get_board_parts -quiet *pynq*]"
+PYNQ_BOARD_PARTS=
+# puts "TUL_BOARD_PARTS=[get_board_parts -quiet tul.com.tw:*]"
+TUL_BOARD_PARTS=
+# exit
+INFO: [Common 17-206] Exiting Vivado at Fri Sep 18 18:43:39 2026...

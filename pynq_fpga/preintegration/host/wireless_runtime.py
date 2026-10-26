@@ -29,7 +29,9 @@ HERE=Path(__file__).resolve().parent
 WIRELESS_FILES=('wireless_runtime.py','wireless_core.py','wireless_dma.py','wireless_server.py',
                 'wireless_policy.py','wireless_player.js',
                 'native_video.py','wireless_page.html','wireless_benchmark.py','wireless_requirements.txt',
-                'native/CMakeLists.txt','native/car_video.c','WIRELESS_SETUP.md')
+                'native/CMakeLists.txt','native/car_video.c','WIRELESS_SETUP.md',
+                'start_sensor_console.sh','SENSOR_CONSOLE_GUIDE.md','console_launcher.html','prepare_console.py',
+                'console_backend.py','console_ui.js','trial_control.py','start_console.sh')
 
 
 def verify_wireless(manifest,hwh):
@@ -65,6 +67,16 @@ class WirelessRunner(JointRunner):
 
     def step(self):
         super().step()
+        resets = getattr(self.link,'locked_resync_count',0)
+        if resets != getattr(self,'_logged_locked_resyncs',0):
+            self.control.stop()
+            if self.intent_mailbox is not None:self.intent_mailbox.stop()
+            reason='STM32 acquisition counters reset; locked diagnostic resynchronization requested'
+            with self._state_lock:
+                if reason not in self.failures:self.failures.append(reason)
+            self.log({'type':'locked_uart_resynchronization','count':resets,
+                      'host_monotonic_ns':time.monotonic_ns(),'motion_allowed':False})
+            self._logged_locked_resyncs=resets
         self.record_performance()
 
     def record_performance(self):
@@ -367,11 +379,20 @@ def main(argv=None):
     parser.add_argument('--display-model',type=Path,help='measured PWM/speed model for display estimates only')
     parser.add_argument('--display-stationary',action='store_true',help='explicit stationary display assumption; requires disconnected motors')
     parser.add_argument('--motor-disconnected',action='store_true')
+    parser.add_argument('--motor-connected-zero-output',action='store_true',help='explicit locked connection diagnosis with motors connected; no release or motion permission')
+    parser.add_argument('--full-console',action='store_true',help='integrated demonstration console; requires its own console manifest')
+    parser.add_argument('--motor-connected',action='store_true',help='motors physically connected; full-console only, initially observation mode')
     parser.add_argument('--video-only',action='store_true',help='video and PL display only; no UART, control, or calibration')
+    parser.add_argument('--diagnostic-startup',action='store_true',help='keep the locked bench console available after acquisition readiness failure; record failure')
     parser.add_argument('--headless',action='store_true',help='run without browser server or network address discovery')
     parser.add_argument('--evidence-dir',type=Path,default=HERE/'evidence/wireless')
     args=parser.parse_args(argv)
-    if not args.video_only and not args.motor_disconnected:parser.error('first candidate requires --motor-disconnected')
+    if sum((args.motor_disconnected,args.motor_connected_zero_output,args.motor_connected))>1:parser.error('select one physical motor state')
+    if args.motor_connected and not args.full_console:parser.error('--motor-connected requires --full-console')
+    if args.full_console and (args.video_only or args.headless or args.motor_connected_zero_output):parser.error('full console requires connected sensors and browser service')
+    if not args.video_only and not (args.motor_disconnected or args.motor_connected_zero_output or args.motor_connected):parser.error('explicit motor physical state required')
+    if args.motor_connected_zero_output and args.calibration:parser.error('calibration requires disconnected motors')
+    if args.motor_connected and args.calibration:parser.error('apply calibration with physically disconnected motors first; use console workflow')
     if args.video_only and args.calibration:parser.error('video-only sessions cannot apply calibration')
     if args.display_stationary and not args.motor_disconnected:parser.error('stationary display requires --motor-disconnected')
     if not math.isfinite(args.duration) or args.duration<=0:parser.error('positive finite duration required')
@@ -382,6 +403,10 @@ def main(argv=None):
     calibration=CalibrationConfig.load(args.calibration) if args.calibration else None
     display_model=MeasuredDriveModel.load(args.display_model) if args.display_model else None
     verify_package(args.bit,args.hwh,args.manifest);hashes=verify_wireless(args.manifest,args.hwh)
+    if args.full_console:
+        from console_backend import ConsoleRunner,ConsoleServer,verify_console
+        from trial_control import TrialMailbox
+        verify_console(HERE,args.manifest)
     evidence_session=EvidenceSession(args.evidence_dir)
     native=NativeLibrary(args.native)
     with DeviceLease(), ExitStack() as cleanup:
@@ -393,12 +418,21 @@ def main(argv=None):
         link=None
         if not args.video_only:
             from pynq_link import HybridCarLink
-            link=HybridCarLink(args.port)
+            link=HybridCarLink(args.port,locked_diagnostic=args.motor_connected_zero_output)
+            if args.full_console:link.ser.timeout=.005
             cleanup.callback(link.close)
             try:
                 client.attach_sensor_link(link)
                 link.start()
-                startup=wait_for_acquisition(client)
+                try:
+                    startup=wait_for_acquisition(client,require_infrared=not args.full_console)
+                    startup['ready']=True
+                except RuntimeError as exc:
+                    if not args.diagnostic_startup:raise
+                    link.stop_request()
+                    startup={'schema':'car-startup-readiness/v1','ready':False,
+                             'diagnostic_only':True,'error':str(exc)}
+                    print('诊断启动：'+str(exc)+'；保留零输出，仅供排查，不计为验收通过',flush=True)
             except Exception:
                 link.close()
                 raise
@@ -409,16 +443,19 @@ def main(argv=None):
         identity.update(wireless_sources=hashes,native_binary_sha256=hashlib.sha256(args.native.read_bytes()).hexdigest(),
                         native_version=native.lib.wv_version().decode(),video_profile='wireless720')
         identity['sensor_source']='stm32_uart_v3'
-        mailbox=IntentMailbox()
-        runner_class=VideoOnlyRunner if args.video_only else WirelessRunner
+        mailbox=TrialMailbox() if args.full_console else IntentMailbox()
+        runner_class=ConsoleRunner if args.full_console else VideoOnlyRunner if args.video_only else WirelessRunner
         runner=runner_class(client,link,video=WirelessBoardVideo(overlay),source=Camera(native,args.camera_device),
               native=native,hub=hub,jpeg_profile=args.jpeg_profile,decode_dct=args.decode_dct,reuse_decoder=args.reuse_decoder,
               intent_mailbox=mailbox,output_dir=args.evidence_dir,identity=identity,hardware=True,
-              display_model=display_model,display_stationary=args.display_stationary,evidence_session=evidence_session)
+              display_model=display_model,display_stationary=args.display_stationary,evidence_session=evidence_session,
+              motor_disconnected=args.motor_disconnected,diagnostic_timing=args.diagnostic_startup)
+        runner.startup_readiness=startup
         write_new_json(args.evidence_dir/'startup_readiness.json', startup)
         invoked=False
         try:
-            with nullcontext(None) if args.headless else WirelessServer(runner,hub,mailbox,args.bind,args.web_port) as server:
+            server_class=ConsoleServer if args.full_console else WirelessServer
+            with nullcontext(None) if args.headless else server_class(runner,hub,mailbox,args.bind,args.web_port) as server:
                 if server is not None:
                     import socket
                     try:
@@ -431,6 +468,11 @@ def main(argv=None):
                 invoked=True;summary=runner.run(args.duration)
         finally:
             if not invoked and link is not None:link.close()
+        summary['startup_readiness']=startup
+        if startup.get('ready') is False:
+            summary['passed']=False
+            reason='startup acquisition readiness failed: '+startup['error']
+            if reason not in summary.setdefault('failures',[]):summary['failures'].append(reason)
         summary['wireless_video']=hub.stats()
         summary['hardware_performance_validated']=False
         write_new_json(args.evidence_dir/'wireless_summary.json', summary)

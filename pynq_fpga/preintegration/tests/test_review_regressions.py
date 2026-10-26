@@ -142,10 +142,26 @@ class PageFailureTests(unittest.TestCase):
 
     def test_disconnect_and_stalled_response_body_clear_wireless_numbers(self):
         page=(ROOT/'preintegration/host/wireless_page.html').read_text('utf8')
-        lines=[line for line in page.splitlines() if line.startswith((
-            'const displayModes=','function renderMotion(','function renderHealth(','async function api(',
-            'async function readStatus(','async function poll('))]
-        script="const el=id=>document.getElementById(id);const frozen=true;const player={rates:()=>({received_fps:0,drawn_fps:0})};\n"+'\n'.join(lines)
+        def block(start, end):
+            return page[page.index(start):page.index(end,page.index(start))]
+        script=(
+            "const el=id=>document.getElementById(id);const frozen=true;let lastSnapshot=null;"
+            "let connected=true,sessionGeneration=1,allowWebSocket=false,controlRetry=null,socket=null,synced=false,claimed=false,view='processed';"
+            "const keys=new Set(),pending=new Map();function setConnectStatus(){}function clearVideo(){}function openControlSocket(){}function live(){}"
+            "const player={stop:()=>{},rates:()=>({received_fps:0,drawn_fps:0})};\n"
+            + block('const displayModes=','const testNames=')
+            + block('const testNames=','function setPill(')
+            + block('function setPill(','function finite(')
+            + block('function finite(','function renderMotion(')
+            + block('function renderMotion(','function renderHealth(')
+            + block('function renderHealth(','function renderSensors(')
+            + block('function renderSensors(','function renderLink(')
+            + block('function renderLink(','function renderInterconnect(')
+            + block('function renderInterconnect(','const player=')
+            + block('async function request(','function send(')
+            + block('async function readStatus(','async function poll(')
+            + block('async function poll(','function normalizeAddress(')
+        )
         self.check_page(script, 'elements.motionNumbers.textContent', '123.00')
 
     def check_page(self, script, rendered, number):
@@ -153,6 +169,7 @@ class PageFailureTests(unittest.TestCase):
 const assert=require('node:assert/strict');
 const elements={};const element=()=>({textContent:'',children:[],append(...v){this.children.push(...v)},replaceChildren(...v){this.children=v}});
 const document={getElementById(id){return elements[id]??=element()},createElement:element};
+const window={};
 const location={hash:'#token=test'};let mode='ok';let timers=new Map(),nextTimer=0;
 const setTimeout=(fn,ms)=>{timers.set(++nextTimer,{fn,ms});return nextTimer};
 const clearTimeout=id=>timers.delete(id);
@@ -161,7 +178,8 @@ const waitAbort=signal=>new Promise((resolve,reject)=>signal.addEventListener('a
 const fetch=async(path,options)=>{
  if(mode==='offline')throw Error('offline');
  if(mode==='hang_headers')return waitAbort(options.signal);
- return {ok:true,json:()=>mode==='hang_body'?waitAbort(options.signal):Promise.resolve(payload)};
+ return {ok:true,json:()=>mode==='hang_body'?waitAbort(options.signal):Promise.resolve(payload),
+         text:()=>mode==='hang_body'?waitAbort(options.signal):Promise.resolve(JSON.stringify(payload))};
 };
 '''
         assertions=r'''

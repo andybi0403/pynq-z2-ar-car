@@ -1,0 +1,41 @@
+{
+  "schema": "car-sensor-console-candidate/v1",
+  "created_at": "2026-10-24T16:51:23.779Z",
+  "name": "v010_sensor_console_20261025_r4",
+  "status": "SOFTWARE_READY_HARDWARE_PENDING",
+  "package_dir": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\release\\v010_sensor_console_20261025_r4",
+  "zip": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\release\\v010_sensor_console_20261025_r4.zip",
+  "zip_sha256": "8db26013561a0926b9df9532e103a4c015abed5fd1c06405d936706b57f69cf1",
+  "manifest_sha256": "384cce27dd926a4335ef0b2c517a83636dee5d8aa7e68d87b686e05f588a91c1",
+  "bit_sha256": "d3287345221c56d0f0c120508ef1bc54771eeedd7b85050e50906c3ff282d7ad",
+  "hwh_sha256": "b0b2aeaee963cfc4f018c18ce1d68b9dc96a6d74b3cf02b3e6ac43015af4e81d",
+  "firmware_sha256": "8b043a342c839414f021bbd68700ddfac48113509577872ace9074bb806f4f2d",
+  "software_revision": {
+    "kind": "SOFTWARE_PATCH_REUSING_VERIFIED_FPGA",
+    "name": "v010_sensor_console_20261025_r4",
+    "base_manifest_sha256": "a5f9ff7a16e8fadadce204ea6f5d6cb3572807e8659c24df6454134bc5238387",
+    "fpga_rebuilt": false,
+    "preserves_base_classification": true,
+    "sources": {
+      "system_runtime.py": "8ec5560c39979f039b1955f19b3607cb9af10c38dbbdaf1b4fe3852b4f408755",
+      "pynq_link.py": "a7a187ac852274cfbfb6c82f126a954b58c35c81556f0f51177485b2f98e19a2",
+      "wireless_runtime.py": "b682b90ff7c681f97176ab15ecdaee073c21439ea65c7006aa27da1e04dc4fef",
+      "wireless_server.py": "8e2adbb3cf9ca6c28ddc7cc50ca721bf8b3a18798f630f9869731ef2b04112d0",
+      "wireless_page.html": "563b3fe41d7f6c4417a1166c13bf9cc5c241931a8631acd46932ff3f76b6507a",
+      "start_sensor_console.sh": "d05f9a882136a7fb1b13cb9e9ba5dcc47cb90f73618111927109139ce98cb5a2",
+      "SENSOR_CONSOLE_GUIDE.md": "1a91f95aede7521569b76fa12462aa6f23cb7b66033327eda4f1b2899ca3cdce"
+    }
+  },
+  "hardware_result": "PENDING",
+  "tests": {
+    "preintegration": "162 PASS",
+    "stm32_hybrid_link": "PASS",
+    "javascript_syntax": "PASS",
+    "layout_desktop": "1440x1000 no horizontal overflow",
+    "layout_mobile": "390x844 no horizontal overflow"
+  },
+  "screenshots": {
+    "desktop": "C:\\Users\\39909\\Desktop\\FPGA\\work\\sensor_console_20261025\\desktop.png",
+    "mobile": "C:\\Users\\39909\\Desktop\\FPGA\\work\\sensor_console_20261025\\mobile.png"
+  }
+}

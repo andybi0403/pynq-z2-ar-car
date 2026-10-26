@@ -1,0 +1,39 @@
+{
+  "schema": "car-integrated-console/v1",
+  "classification": "CONTROLLED_CONSOLE_NOT_RELEASE",
+  "name": "v011_uart_recovery_20261026_r17b",
+  "generated_at": "2026-10-26T11:56:41.107876+00:00",
+  "base_manifest_sha256": "682b6786648f6250f2430f4a72097fe64e31075ecea49b29310c66dd8d645890",
+  "files": {
+    "console_backend.py": "714866f57760967d2fd5501e284512995be48adccbd6e339563eac897a8a04e0",
+    "console_ui.js": "53ec1b8b1b038c8feb5cec471ea612618c19cf43f704f5dc4fb5f30d498f71b0",
+    "trial_control.py": "7758c5bca88dbd9cc18e0f93babad72cceab08f79e1285973e1c8a4f894e50e7",
+    "start_console.sh": "a1041c5270432d1e91eeebdaa7e5e7235e7a09c2088ac2bd8ce2b9590e05d3b5"
+  },
+  "desktop_files": {
+    "desktop/tools/open_car_console.py": "967d22c15298b60aadbf4f2fdd8f28c805c8ec836b3540894ef8616359370513",
+    "desktop/tools/connect_car_console.py": "0aeb192f15411501f00602733c547aee1e0865d29904747731379f7dd0324a55",
+    "desktop/tools/car_network_probe.py": "9ee104ce459badfd0ad590ecdafd49c6d477f542ffb472670a5fedd0534f0512",
+    "desktop/tools/car_connection_control.py": "196e9bf0a214b6d3e23938f55103098658750845731d020af2cc0d3c3c09d7ca",
+    "desktop/tools/car_deploy_console.py": "1a333b851ca7c172c8459a8b81515b50619ac95725a03fa0fd4c9b76707abe55",
+    "desktop/tools/car_board_known_hosts": "0227c321f75c44385294e1bcf3b3438576f9a3bb581e82e4f388adff217dd82b",
+    "desktop/tools/verify_live_car_console.js": "793aed0dee386d94e3e65d45c6d7b9467fe828ab54ef516f13302490a984a8af",
+    "desktop/使用说明.md": "9965d167e2525b41ea35a76fc79a6ef174b9f280c7e1fa135667b91863ec07f4",
+    "desktop/nominal_scale_plan.json": "7b756eb9a37e8ff0160959c42b001316b990fcb01095f9125bb535480327800e",
+    "desktop/pynq_fpga/preintegration/host/wireless_page.html": "af115440d7e527eaec0d6e9599c4b0eca3f289834df84396a2d801f5c65a20f0",
+    "desktop/pynq_fpga/preintegration/host/wireless_player.js": "af311255fe7348dbd9d92286b66b2d49c4a595e765f6a2c46ff0d5b41515d829",
+    "desktop/pynq_fpga/preintegration/host/console_ui.js": "53ec1b8b1b038c8feb5cec471ea612618c19cf43f704f5dc4fb5f30d498f71b0",
+    "desktop/打开完整控制台.pyw": "8ca9c746fef4a2bcc54245687f3befb34e7b2c3b8b78c43fb1103ab7cdbdc5f6"
+  },
+  "startup_mode": "observe_locked",
+  "automatic_release": false,
+  "infrared_policy": "warning_only",
+  "limits": {
+    "pwm": 400,
+    "continuous_burst_s": 1,
+    "control_lease_ms": 250
+  },
+  "hardware_result": "PENDING",
+  "production_release_approved": false,
+  "validation": "validation/20261026_ir_advisory_console_r16.md"
+}

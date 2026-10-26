@@ -1,0 +1,17 @@
+{
+  "schema": "car-nominal-wheel-plan/v1",
+  "profile": "TT_48_ORIGINAL_WHEEL_FRONT_2",
+  "gear_ratio": 48,
+  "encoder_lines_motor_shaft": 13,
+  "quadrature_multiplier": 4,
+  "wheel_diameter_mm": 65,
+  "counts_per_wheel_rev": 2496,
+  "left_scale": 5362,
+  "right_scale": 5362,
+  "scale_hex": "0x14f2",
+  "mm_per_count": 0.081817626953125,
+  "measured": false,
+  "applied_to_hardware": false,
+  "direction": "preserve current setting; verify separately",
+  "source": "docs/03_硬件与接线/10_霍尔编码器TT马达电气与QEI参数核定_20260919.md sections 5 and 8"
+}

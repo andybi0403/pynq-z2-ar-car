@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PYNQ 小车 · 受限试跑</title>
+<style>
+:root{font-family:system-ui,"Microsoft YaHei",sans-serif;color:#e6edf6;background:#101822;color-scheme:dark}body{max-width:940px;margin:32px auto;padding:0 20px}h1{font-size:28px}section{background:#1a2736;border:1px solid #30445b;border-radius:16px;padding:22px;margin:18px 0}.muted{color:#a4b8cc}button{font:inherit;border:1px solid #54728c;border-radius:10px;padding:14px 20px;background:#253e54;color:white;margin:5px;cursor:pointer;touch-action:none;user-select:none}button:disabled{opacity:.35;cursor:default}.stop{background:#aa283d;border-color:#ff778a;min-width:160px}.good{color:#79e7b1}.warn{color:#ffc879}.metrics{display:flex;gap:24px;flex-wrap:wrap}.metrics strong{font-size:26px;display:block}.pad{display:grid;grid-template-columns:repeat(3,110px);justify-content:center;margin:24px 0}.pad button{height:70px;margin:4px}pre{white-space:pre-wrap;word-break:break-all;font-size:12px}li{margin:8px 0}#message{min-height:26px}input{padding:12px;min-width:60%;font:inherit}button.active{background:#16865e}
+</style>
+<h1>PYNQ 小车 <span class="warn">受限试跑</span></h1>
+<p class="muted">地面试跑 · PWM 上限 400 · 单次最长 1 秒 · 松手停车 · 视频暂停</p>
+<section id="login" hidden><p>请输入本次启动链接或令牌：</p><input id="token" type="password" autocomplete="off"><button id="connect">连接</button></section>
+<section>
+<div class="metrics"><div>实际锁车<strong id="lock">—</strong></div><div>实际 PWM 左 / 右<strong id="pwm">—</strong></div><div>超声波<strong id="distance">—</strong></div><div>红外 IR<strong id="ir">—</strong></div></div>
+<p id="phase" class="warn">正在连接…</p><p id="message" role="status"></p>
+<p id="enc" class="muted"></p><ul id="blockers"></ul>
+</section>
+<section>
+<button id="claim" disabled>1 · 接管试跑</button><button id="release" disabled>2 · 安全检查后解锁</button><button id="stop" class="stop">停车 · 空格</button>
+<div class="pad"><span></span><button data-drive="w" disabled>前进 W</button><span></span><button data-drive="a" disabled>左转 A</button><span></span><button data-drive="d" disabled>右转 D</button><span></span><button data-drive="s" disabled>后退 S</button><span></span></div>
+<p class="muted">接管后等待安全检查，手动点击解锁，再按住方向键或按钮。松开、切走页面、断链都会停车；再次移动需重新解锁。每次 1 秒到时后也需重新解锁。</p>
+</section>
+<details><summary>诊断详情</summary><pre id="raw"></pre></details>
+<script>
+const $=id=>document.getElementById(id);
+let ws=null,claimed=false,synced=false,seq=0,last=null,lastAt=0,held=null,press=null,stopped=true;
+const phases={LOCKED:'已锁车',WAIT_UNLOCK:'等待 STM32 实际解锁反馈',ARMED:'已解锁 · 可以按住方向键'};
+function message(text){$('message').textContent=text;}
+function send(value){if(ws?.readyState===WebSocket.OPEN)ws.send(JSON.stringify(value));}
+function stop(reason='已请求停车'){held=null;press=null;stopped=true;claimed=false;send({type:'stop'});message(reason);buttons();}
+function buttons(){const fresh=last&&performance.now()-lastAt<500&&last.running&&last.telemetry_fresh;
+ $('claim').disabled=!synced||!fresh||claimed;
+ $('release').disabled=!synced||!claimed||!fresh||!last.release_ready||last.latest?.control?.phase!=='LOCKED';
+ document.querySelectorAll('[data-drive]').forEach(b=>{b.disabled=!claimed||!fresh||!last.motion_ready;b.classList.toggle('active',held===b.dataset.drive);});
+}
+function begin(direction,identity){if(held||!claimed||!last?.motion_ready||performance.now()-lastAt>=500)return;held=direction;press=identity;stopped=false;buttons();}
+async function api(path,body){const response=await fetch(path,{method:body===undefined?'GET':'POST',cache:'no-store',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(1500)});if(!response.ok)throw Error('连接失败：HTTP '+response.status);return response;}
+function socket(){
+ if(ws)ws.close();claimed=false;synced=false;held=null;
+ const current=new WebSocket(location.origin.replace(/^http/,'ws')+'/api/control');ws=current;
+ current.onmessage=e=>{if(ws!==current)return;const m=JSON.parse(e.data);
+  if(m.type==='sync'){const received_ms=performance.now();send({type:'sync',nonce:m.nonce,received_ms,sent_ms:performance.now()});}
+  if(m.type==='synced'){synced=true;buttons();}
+  if(m.type==='claimed'){claimed=true;stopped=false;message('已接管，等待零速安全检查后手动解锁');buttons();}
+  if(m.type==='error'){held=null;claimed=false;message(m.error);buttons();}
+ };
+ current.onclose=()=>{if(ws!==current)return;ws=null;claimed=false;synced=false;held=null;message('控制连接已断开；请刷新页面重新接管');buttons();};
+}
+async function poll(){
+ try{const s=await(await api('/api/status')).json();last=s;lastAt=performance.now();const a=s.latest||{},c=a.control||{},car=s.telemetry_fresh?c.car:null;
+  $('lock').textContent=car?(car.lock?'已锁车':'未锁车'):'等待回传';$('pwm').textContent=car?`${car.left} / ${car.right}`:'—';$('distance').textContent=car?`${car.mm} mm`:'—';$('ir').textContent=car?String(car.ir):'—';
+  $('phase').textContent=s.running?(phases[c.phase]||'等待采样'):'试跑服务已停止';
+  $('enc').textContent=`编码器计数 ${a.encoder_counts?.join(' / ')||'—'} · SCALE ${a.scales?.join(' / ')||'—'}`;
+  $('blockers').replaceChildren(...(a.blockers||[]).map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));
+  $('raw').textContent=JSON.stringify(s,null,2);
+  if(a.operator_error)message(a.operator_error);
+  if(held&&(!s.motion_ready||!s.telemetry_fresh))stop(a.operator_error||'安全条件变化，已停车');buttons();
+ }catch(e){if(!stopped)stop('状态连接中断，已请求停车');message(e.message);last=null;buttons();}
+ setTimeout(poll,150);
+}
+$('claim').onclick=()=>{if(synced)send({type:'claim',client_ms:performance.now()});};
+$('release').onclick=()=>{if(claimed&&!held){send({type:'release',seq:++seq,client_ms:performance.now()});message('已提交解锁请求，等待实际反馈');}};
+$('stop').onclick=()=>stop();
+setInterval(()=>{
+ if(!claimed)return;
+ if(document.hidden||!last?.telemetry_fresh||performance.now()-lastAt>=500){stop('页面或状态更新中断，已停车');return;}
+ const drive={w:[400,400],s:[-400,-400],a:[0,400],d:[400,0]};
+ const [left,right]=held?(drive[held]||[0,0]):[0,0];
+ send({type:'intent',seq:++seq,client_ms:performance.now(),left,right});
+},50);
+document.querySelectorAll('[data-drive]').forEach(b=>{
+ b.addEventListener('pointerdown',e=>{e.preventDefault();if(b.disabled)return;b.setPointerCapture(e.pointerId);begin(b.dataset.drive,e.pointerId);});
+ for(const name of ['pointerup','pointercancel','lostpointercapture'])b.addEventListener(name,e=>{if(press===e.pointerId)stop();});
+});
+window.addEventListener('keydown',e=>{if(e.target.closest('input,textarea'))return;const k=e.key.toLowerCase();if(e.code==='Space'){e.preventDefault();stop();}else if('wasd'.includes(k)&&k.length===1){e.preventDefault();if(!e.repeat)begin(k,e.code);}});
+window.addEventListener('keyup',e=>{if(press===e.code)stop();});
+window.addEventListener('blur',()=>{if(claimed)stop('窗口失去焦点，已停车');});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&claimed)stop('页面已隐藏，已停车');});
+window.addEventListener('pagehide',()=>{stop();ws?.close();});
+async function connect(token){try{if(token){const response=await fetch('/api/session',{method:'POST',headers:{Authorization:'Bearer '+token}});if(!response.ok)throw Error('令牌无效或已过期');history.replaceState(null,'',location.pathname);}$('token').value='';await api('/api/status');$('login').hidden=true;socket();poll();}catch(e){$('login').hidden=false;message(e.message);}}
+$('connect').onclick=()=>{const value=$('token').value.trim();let token=value;try{token=new URLSearchParams(new URL(value).hash.slice(1)).get('token')||value;}catch{}connect(token);};
+connect(new URLSearchParams(location.hash.slice(1)).get('token'));
+</script></html>

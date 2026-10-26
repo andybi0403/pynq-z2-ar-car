@@ -38,7 +38,7 @@ PRODUCTION_C_IDENTITY=production_c_identity()
 class PLRegisters:
     def __init__(self, clock):
         self.clock=clock;self.command=0;self.command_ts=0;self.epoch=0
-        self.sample_ts=self.ticks();self.sampling=True;self.mm=1000;self.ir=0
+        self.sample_ts=self.ticks();self.sampling=True;self.mm=1000;self.ir=0;self.ir_valid=True
         self.level=0;self.reasons=0;self.valid=True;self.error=False
         self.tick_offset=0xFFFFFF00
         self.sample_ts=self.ticks()
@@ -60,7 +60,7 @@ class PLRegisters:
                 risk=(self.reasons<<16)|(self.level<<1)|int(self.level>=2)
                 self.mem.update({reg.SNAP_EPOCH:self.epoch,
                     reg.US_DATA:self.mm,reg.US_TS:self.sample_ts,reg.US_META:0x80000001 if self.valid else 1,
-                    reg.IR_STATUS:4|self.ir,reg.IR_TS:now,reg.IR_META:0x80000001,
+                    reg.IR_STATUS:(4 if self.ir_valid else 0)|self.ir,reg.IR_TS:now,reg.IR_META:0x80000001 if self.ir_valid else 1,
                     reg.QEI0_TS:now,reg.QEI0_META:0x80000001,
                     reg.QEI1_TS:now,reg.QEI1_META:0x80000001,
                     reg.RISK_STATE:risk,reg.RISK_TS:now,reg.RISK_META:0x80000001,

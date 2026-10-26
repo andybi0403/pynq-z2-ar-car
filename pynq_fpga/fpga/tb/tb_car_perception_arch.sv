@@ -27,7 +27,7 @@ module tb_car_perception_arch;
  end endtask
  initial begin
   repeat(4)@(posedge clk);@(negedge clk);rst=0;repeat(8)@(posedge clk);
-  rdreg('h000,rd);check("integrated id",rd,32'hc425100a);
+  rdreg('h000,rd);check("integrated id",rd,32'hc425100b);
   rdreg('h104,rd);check("US period default",rd,6000000);
   rdreg('h108,rd);check("US timeout default",rd,3000000);
   rdreg('h128,rd);check("QEI scale fail-safe",rd,0);

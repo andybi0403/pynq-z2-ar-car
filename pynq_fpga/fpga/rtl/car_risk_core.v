@@ -98,7 +98,9 @@ module car_risk_core #(
   reasons_next=s4_faults;
   if(s4_forward&&!s4_faults[R_US_INVALID]&&!s4_faults[R_US_STALE]&&s4_distance<=s4_required)
    reasons_next[R_DISTANCE]=1;
-  if(reasons_next[11:0]!=0||reasons_next[R_DIRECTION]) level_next=RISK_FAULT;
+  // v0.11: IR invalid/obstacle bits remain observable warnings. They never
+  // grant/revoke driving permission, alter the distance policy or request STOP.
+  if((reasons_next[11:0]&12'hf5f)!=0||reasons_next[R_DIRECTION]) level_next=RISK_FAULT;
   else if(reasons_next[R_DISTANCE]) level_next=RISK_RED;
   else if(s4_forward&&s4_distance<=s4_required+YELLOW_BAND_MM) level_next=RISK_YELLOW;
   else level_next=RISK_GREEN;

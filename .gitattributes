@@ -1,3 +1,10 @@
 # Source identity is checked by SHA-256. Disable all EOL conversion so a
 # checkout returns the exact bytes recorded by the build manifests.
 * -text
+
+# Handoff archive pieces are opaque binary payloads.
+handoff/20261026/archives/* binary
+*.zip binary
+*.bit binary
+*.bin binary
+*.elf binary

@@ -1,0 +1,47 @@
+cmake_minimum_required(VERSION 3.16)
+project(car_wireless_native C)
+if(POLICY CMP0135)
+  cmake_policy(SET CMP0135 NEW)
+endif()
+include(ExternalProject)
+# Official release archive; do not substitute GitHub's generated source zip.
+if(MSVC)
+  # Host codec correctness checks need no NASM; not an ARM performance claim.
+  set(WITH_SIMD OFF CACHE BOOL "" FORCE)
+else()
+  set(WITH_SIMD ON CACHE BOOL "" FORCE)
+endif()
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+set(WV_TURBO_ARCHIVE "https://github.com/libjpeg-turbo/libjpeg-turbo/releases/download/3.1.2/libjpeg-turbo-3.1.2.tar.gz" CACHE STRING "Pinned official archive or offline archive path")
+set(turbo_prefix "${CMAKE_BINARY_DIR}/turbo-install")
+file(MAKE_DIRECTORY "${turbo_prefix}/include")
+if(WIN32)
+ set(turbo_library "${turbo_prefix}/lib/turbojpeg-static.lib")
+else()
+ set(turbo_library "${turbo_prefix}/lib/libturbojpeg.a")
+endif()
+ExternalProject_Add(turbo_build
+  URL ${WV_TURBO_ARCHIVE}
+  URL_HASH SHA256=8f0012234b464ce50890c490f18194f913a7b1f4e6a03d6644179fa0f867d0cf
+  CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${turbo_prefix} -DCMAKE_INSTALL_LIBDIR=lib
+    -DCMAKE_BUILD_TYPE=Release -DENABLE_SHARED=OFF -DENABLE_STATIC=ON
+    -DWITH_TURBOJPEG=ON -DWITH_SIMD=${WITH_SIMD} -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+  BUILD_BYPRODUCTS ${turbo_library})
+add_library(turbojpeg_pinned STATIC IMPORTED)
+set_target_properties(turbojpeg_pinned PROPERTIES IMPORTED_LOCATION ${turbo_library})
+add_dependencies(turbojpeg_pinned turbo_build)
+add_library(car_video SHARED car_video.c)
+add_dependencies(car_video turbo_build)
+target_include_directories(car_video PRIVATE ${turbo_prefix}/include)
+target_link_libraries(car_video PRIVATE turbojpeg_pinned)
+if(UNIX)
+  target_link_libraries(car_video PRIVATE m)
+endif()
+target_compile_definitions(car_video PRIVATE WV_TURBO_VERSION="3.1.2")
+if(MSVC)
+  target_compile_options(car_video PRIVATE /W4 /utf-8)
+  set_property(TARGET car_video PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+else()
+  target_compile_options(car_video PRIVATE -Wall -Wextra -Werror -O3)
+endif()
+install(TARGETS car_video LIBRARY DESTINATION lib RUNTIME DESTINATION lib)

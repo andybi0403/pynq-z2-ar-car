@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PYNQ AR 小车控制台</title>
+<style>
+*{box-sizing:border-box}
+:root{--ink:#132235;--muted:#607083;--line:#d9e2ec;--panel:#fff;--bg:#edf3f7;--blue:#1559a6;--cyan:#087e8b;--green:#16734b;--amber:#9b6500;--red:#ad2831;--soft:#f5f8fb}
+body{font-family:"Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);max-width:1480px;margin:0 auto;padding:20px;line-height:1.55}
+h1,h2,h3,p{margin-top:0}h1{font-size:28px;margin-bottom:4px}h2{font-size:19px;margin-bottom:14px}h3{font-size:15px;margin-bottom:8px}
+header{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:14px}
+.header-actions{display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap}
+.connect-shell{min-height:calc(100vh - 40px);display:grid;place-items:center}
+.connect-panel{width:min(760px,100%);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:30px;box-shadow:0 14px 38px #20334c14}
+.connect-brand{display:flex;align-items:center;gap:16px;margin-bottom:24px}.connect-mark{display:grid;place-items:center;flex:0 0 88px;width:88px;height:68px;border-radius:8px;background:#0f6e79;color:#fff;font-size:16px;font-weight:800;letter-spacing:0;white-space:nowrap;box-shadow:inset 0 0 0 7px #d7eef0}
+.connect-panel h1{font-size:30px}.connect-panel .lead{color:var(--muted);max-width:620px}
+.connect-form{display:grid;gap:14px;margin-top:22px}.field{display:grid;gap:6px}.field label{font-size:13px;font-weight:700;color:#33485f}
+.field input{width:100%;padding:11px 12px;border:1px solid #bdcad8;border-radius:6px;background:#fff;color:var(--ink);font:inherit}
+.field input:focus{outline:3px solid #79b6f2;outline-offset:1px;border-color:var(--blue)}
+.connect-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.connect-actions button{min-width:126px;padding:11px 18px}
+.connect-status{min-height:44px;padding:10px 12px;border-left:3px solid #b9c9d9;background:var(--soft);font-size:13px}.connect-status.error{border-color:var(--red);background:#fde5e7;color:#7d2027}
+.connect-status.ok{border-color:var(--green);background:#dff3e8;color:#145d3e}
+.connect-help{border-top:1px solid var(--line);margin-top:22px;padding-top:16px;color:var(--muted);font-size:13px}
+.eyebrow{font-size:12px;letter-spacing:1.5px;color:var(--cyan);margin-bottom:2px}
+.badge,.pill{display:inline-flex;align-items:center;min-height:28px;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;background:#e9eff5;color:#435469}
+.badge{margin-left:8px}.badge.warn,.pill.warn{background:#fff1cd;color:#795000}.badge.ok,.pill.ok{background:#dff3e8;color:var(--green)}.badge.bad,.pill.bad{background:#fde5e7;color:var(--red)}
+section{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:14px}
+button{padding:9px 14px;margin:3px 4px 3px 0;border:1px solid #b9c9d9;border-radius:6px;background:#f7fafc;color:var(--ink);cursor:pointer;font:inherit;font-weight:600}
+button:hover{border-color:var(--blue);color:var(--blue)}button:disabled{background:#edf1f5;color:#8a97a5;cursor:default;border-color:#dce3ea}
+button.primary{background:var(--blue);border-color:var(--blue);color:#fff}button.primary:hover{background:#104b8e;color:#fff}
+button.stop{background:var(--red);border-color:var(--red);color:#fff;padding:13px 22px}button.stop:hover{background:#8f1f27;color:#fff}
+button:focus-visible,select:focus-visible{outline:3px solid #79b6f2;outline-offset:2px}
+.connection-line{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-bottom:14px}
+#connection{margin:0;font-weight:600}
+.layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(300px,.8fr);gap:14px;align-items:start}
+.layout>section{margin-bottom:14px}.stack{display:grid;gap:14px}.stack>section{margin:0}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.metric{border:1px solid var(--line);border-radius:6px;padding:11px 12px;background:var(--soft);min-height:86px}
+.metric .label{display:block;color:var(--muted);font-size:12px}.metric .value{display:block;font-size:20px;font-weight:700;margin-top:4px;overflow-wrap:anywhere}
+.metric .sub{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.health{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.health p{margin:0;padding:8px 10px;border-left:3px solid var(--line);background:var(--soft);font-size:13px}
+canvas{display:block;width:100%;height:auto;background:#172332;border-radius:6px;border:1px solid #26384b}
+.pair{display:flex;gap:8px;margin-top:10px}.pair img{width:50%;border-radius:6px;background:#172332}
+.toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.toolbar label{font-size:12px;color:var(--muted)}
+select{padding:7px 9px;border:1px solid #bdcad8;border-radius:6px;background:#fff;color:var(--ink)}
+.muted{color:var(--muted);font-size:13px}.mono{font-variant-numeric:tabular-nums}
+.checklist{display:grid;gap:7px;margin:10px 0}
+.check{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;align-items:start;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--soft)}
+.check b{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#d7e0e8;color:#59697a;font-size:12px}
+.check.ok b{background:#dff3e8;color:var(--green)}.check.warn b{background:#fff1cd;color:var(--amber)}.check.bad b{background:#fde5e7;color:var(--red)}
+.check span{font-size:13px}.check small{display:block;color:var(--muted)}
+.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.drive-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;max-width:210px;margin:14px 0}
+.drive-pad button{margin:0;padding:12px}
+details summary{cursor:pointer;color:var(--blue);font-weight:600}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;max-height:420px;overflow:auto;background:#101b28;color:#d7e3ef;padding:14px;border-radius:6px}
+a{color:var(--blue)}[hidden]{display:none!important}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){body{padding:10px}.connect-shell{min-height:calc(100vh - 20px)}.connect-panel{padding:22px}.connect-brand{align-items:flex-start}.connect-mark{flex-basis:66px;width:66px;height:54px;font-size:13px;box-shadow:inset 0 0 0 5px #d7eef0}header{align-items:flex-start;flex-direction:column}.metrics,.health{grid-template-columns:1fr}.pair{flex-direction:column}.pair img{width:100%}h1{font-size:23px}}
+</style>
+<style>
+html{scroll-behavior:smooth}body{max-width:1560px;padding:24px;background:#eef3f7}header{position:sticky;top:0;z-index:5;background:#eef3f7f5;padding:12px 0;backdrop-filter:blur(12px)}header h1{font-size:25px}.console-nav{display:flex;gap:6px;margin:12px 0 20px;border-bottom:1px solid #ccdbe5;padding-bottom:10px;overflow:auto}.console-nav button{white-space:nowrap;border:0;background:transparent;color:#4f6476}.console-nav button.active{background:#103e5a;color:#fff}.summary-strip{display:flex;gap:20px;flex-wrap:wrap;align-items:center}.summary-strip strong{font-size:30px;display:block}.summary-strip>div{flex:1;min-width:140px}.risk-good{color:#16734b}.risk-warn{color:#9b6500}.risk-bad{color:#ad2831}.range-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}input[type=range]{accent-color:#087e8b;flex:1;min-width:120px}input[type=number],input[type=text]{border:1px solid #c1cfda;border-radius:6px;padding:8px;font:inherit;max-width:100%}.record-dot{display:inline-block;width:9px;height:9px;background:#a7b7c4;border-radius:50%;margin-right:8px}.record-dot.on{background:#c7293d;box-shadow:0 0 0 4px #fce3e6}.notice{padding:12px 16px;background:#e3edf5;border-left:4px solid #226390;border-radius:4px;margin:10px 0}.notice.warn{background:#fff3d6;border-color:#a57613}.notice.bad{background:#fde5e7;border-color:#ad2831}.drive-pad{max-width:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.drive-pad button{min-height:58px;touch-action:none;user-select:none}.drive-pad button.active{background:#087e8b;color:white}.control-mode{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.chart-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px}.chart-wrap canvas{background:#f7fafc;border:1px solid #d9e2ec;min-height:150px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px;border-bottom:1px solid #e0e7ee;text-align:left}th{color:#607083;font-weight:600}.table-scroll{overflow:auto}.event-list{max-height:330px;overflow:auto}.demo-steps{display:flex;gap:8px;flex-wrap:wrap}.demo-steps button.active{background:#103e5a;color:white}.demo-card{font-size:18px;min-height:100px}.demo-card h3{font-size:24px}.guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.guide-grid label{display:block;margin-bottom:10px}.presenting header h1{font-size:30px}.presenting .console-nav,.presenting .advanced{display:none}.presenting #video{max-height:65vh;object-fit:contain}.presenting .metric .value{font-size:27px}.connect-shell{min-height:0;display:block;margin-bottom:20px}.connect-panel{width:100%;padding:22px}.connect-brand{margin-bottom:12px}.connect-panel h1{font-size:23px}.connect-mark{width:70px;height:55px;flex-basis:70px}.connect-form{grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.connect-actions,.connect-status{grid-column:1/-1}.connect-help{margin-top:12px;padding-top:12px}.hidden-panel{display:none!important}#offlineBar{display:flex;justify-content:space-between;align-items:center;gap:12px}.console-footer{font-size:12px;color:#607083;padding:12px 0 24px}body[data-tab=sensors] .layout,body[data-tab=records] .layout{display:block}@media(max-width:700px){body{padding:10px}header{align-items:flex-start;gap:8px}header h1{font-size:21px}.header-actions{justify-content:flex-start}.chart-wrap,.guide-grid,.connect-form{grid-template-columns:1fr}.summary-strip strong{font-size:24px}.console-nav{gap:0}.console-nav button{font-size:13px;padding:9px}.layout .stack{gap:10px}}
+</style>
+<div id="connectView" class="connect-shell">
+  <main class="connect-panel">
+    <div class="connect-brand">
+      <div class="connect-mark" aria-hidden="true">PYNQ</div>
+      <div><p class="eyebrow">AR CAR CONTROL CONSOLE</p><h1>PYNQ 小车控制台连接设置</h1><p class="lead">连接本次会话，获取视频、传感器和实际执行反馈。</p></div>
+    </div>
+    <form id="connectForm" class="connect-form">
+      <div class="field"><label for="serverAddress">PYNQ 地址</label><input id="serverAddress" name="serverAddress" autocomplete="url" placeholder="192.168.8.139:8080"></div>
+      <div class="field"><label for="sessionToken">本次连接令牌</label><input id="sessionToken" name="sessionToken" type="password" autocomplete="off" placeholder="粘贴终端启动链接中的 token"></div>
+      <div class="connect-actions"><button id="connectButton" class="primary" type="submit">连接小车</button><button id="useCurrent" type="button">使用当前地址</button></div>
+      <div id="connectStatus" class="connect-status" role="status" aria-live="polite">等待连接</div>
+    </form>
+    <div class="connect-help"><strong>从哪里取得令牌？</strong><br>点击“打开连接助手”可获取正在运行的会话；手动启动板端服务时，终端会打印形如 <span class="mono">http://192.168.8.139:8080/#token=...</span> 的链接。可以粘贴完整链接，也可以只粘贴 token。连接成功后浏览器会记住本次会话。</div>
+  </main>
+</div>
+<div id="consoleView" hidden>
+<header>
+  <div><p class="eyebrow">PYNQ-Z2 · 多传感器融合与 AR 辅助驾驶</p><h1>PYNQ AR 小车控制台</h1></div>
+<div class="header-actions"><span id="scopeBadge" class="badge">未连接</span><span id="motionBadge" class="badge warn">等待状态</span><button id="connectionSettings">连接设置</button><button id="present">演示视图</button><button id="globalStop" class="stop">停车 · 空格</button><button id="disconnect" type="button">断开连接</button></div>
+</header>
+<nav class="console-nav" aria-label="控制台导航"><button data-tab="overview" class="active">驾驶总览</button><button data-tab="sensors">传感器与标定</button><button data-tab="records">记录与诊断</button><button data-tab="demo">演示流程</button></nav>
+<div id="offlineBar" class="notice"><span id="sourceLabel">未连接小车 · 当前没有实测数据</span><button id="desktopConnect" hidden>打开连接助手</button></div>
+<div class="connection-line"><span id="connection" aria-live="polite">正在连接当前会话…</span><span id="replyPill" class="pill">STM32 回包等待</span><span id="videoPill" class="pill">视频等待</span></div>
+<div id="infraredNotice" class="notice" role="status">红外仅告警，不参与停车和解锁判断；等待实际回传。</div>
+<section id="driveSummary"><div class="summary-strip"><div><span class="label">速度</span><strong id="speedMain">— mm/s</strong></div><div><span class="label">累计路程</span><strong id="travelMain">— mm</strong></div><div><span class="label">位移</span><strong id="displacementMain">— mm</strong></div><div><span class="label">动态风险</span><strong id="riskMain">未知</strong></div></div><p id="riskExplain" class="muted">等待本次会话的有效测量</p></section>
+
+<section>
+  <h2>实时状态</h2>
+  <div class="metrics">
+    <div class="metric"><span class="label">超声波距离</span><strong id="distanceCard" class="value">—</strong><span id="distanceSub" class="sub">等待有效测量</span></div>
+    <div class="metric"><span class="label">STM32 实际锁车</span><strong id="lockCard" class="value">未收到</strong><span id="lockSub" class="sub">等待新鲜回传</span></div>
+    <div class="metric"><span class="label">实际左侧 PWM</span><strong id="leftPwmCard" class="value">—</strong><span class="sub">来自 STM32 实际反馈</span></div>
+    <div class="metric"><span class="label">实际右侧 PWM</span><strong id="rightPwmCard" class="value">—</strong><span class="sub">来自 STM32 实际反馈</span></div>
+  </div>
+  <div class="health"><p id="cameraHealth">视频：等待采集状态</p><p id="uartHealth">串口：等待实际回传</p><p id="sensorHealth">测量：等待有效数据</p></div>
+  <p id="uartWiringHint" class="note" hidden>本车串口排查：S5 拨到 OFF；PMOD B 第9针接扩展板 TX，第10针接 RX，GND 共地，VCC 不接。核心板 microUSB 供电不等于 USB 串口已连接。</p>
+  <p id="uartRecoveryHint" class="note" hidden></p>
+</section>
+
+<div class="layout">
+  <div class="stack">
+    <section>
+      <h2>摄像头与 PL 处理画面</h2>
+      <div class="toolbar">
+        <button id="raw">摄像头原图</button><button id="processed">PL 处理图</button><button id="freeze">同帧冻结对比</button>
+        <label>模式 <select id="mode"><option value="auto">自动</option><option value="manual">手动</option><option value="fixed">固定 30fps / Q75</option></select></label>
+        <label>帧率 <select id="fps"></select></label><label>画质 <select id="quality"></select></label><button id="apply">应用</button>
+      </div>
+      <p id="videoStatus" aria-live="polite">等待视频</p>
+      <p id="rates" class="muted mono">接收 / 实际绘制帧率等待统计</p>
+      <canvas id="video" width="1280" height="720" aria-label="小车实时画面"></canvas>
+      <div class="pair" id="pair" hidden><img id="rawFrozen" alt="冻结原图"><img id="processedFrozen" alt="同帧PL画面"></div>
+      <p id="policyStatus" class="muted"></p>
+    </section>
+
+    <section>
+      <h2>传感器通道</h2>
+      <div class="metrics">
+        <div class="metric"><span class="label">左红外</span><strong id="irLeftCard" class="value">—</strong><span id="irLeftSub" class="sub">bit0 · 等待回传</span></div>
+        <div class="metric"><span class="label">右红外</span><strong id="irRightCard" class="value">—</strong><span id="irRightSub" class="sub">bit1 · 等待回传</span></div>
+        <div class="metric"><span class="label">左前编码器</span><strong id="qeiLeftCard" class="value">—</strong><span id="qeiLeftSub" class="sub">QEI0 · 等待有效样本</span></div>
+        <div class="metric"><span class="label">右前编码器</span><strong id="qeiRightCard" class="value">—</strong><span id="qeiRightSub" class="sub">QEI1 · 等待有效样本</span></div>
+        <div class="metric"><span class="label">STM32 故障位图</span><strong id="faultCard" class="value">—</strong><span class="sub">协议故障字</span></div>
+        <div class="metric"><span class="label">回传丢弃</span><strong id="dropCard" class="value">—</strong><span class="sub">STM32 drop 计数</span></div>
+        <div class="metric"><span class="label">IR 位图</span><strong id="irMaskCard" class="value">—</strong><span class="sub">0=无障碍 1=左 2=右 3=双侧</span></div>
+        <div class="metric"><span class="label">链路往返</span><strong id="rttCard" class="value">—</strong><span id="rttSub" class="sub">最近一帧 Q1→S1</span></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="stack">
+    <section>
+      <h2>完整传感器联调</h2>
+      <p id="testSummary" class="muted">开始后将统计视频、STM32 回包、超声波、左右红外、锁车反馈和双轮编码器。</p>
+      <div class="actions"><button id="resetTest" class="primary">重新开始联调统计</button><button id="exportReport">导出当前联调报告</button><span id="testState" class="pill">等待开始</span></div>
+      <div id="testChecklist" class="checklist"></div>
+      <p id="testActions" class="muted"></p>
+    </section>
+
+    <section>
+      <h2>STM32 串口链路</h2>
+      <div class="metrics" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+        <div class="metric"><span class="label">查询 / 回包</span><strong id="queryReplyCard" class="value">—</strong><span class="sub">Q1 / S1</span></div>
+        <div class="metric"><span class="label">协议错误</span><strong id="protocolErrorCard" class="value">—</strong><span class="sub">CRC、会话或时序错误</span></div>
+        <div class="metric"><span class="label">回包年龄</span><strong id="replyAgeCard" class="value">—</strong><span class="sub">超过 700ms 视为失效</span></div>
+        <div class="metric"><span class="label">会话</span><strong id="sessionCard" class="value">—</strong><span class="sub">本次随机协议会话</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>手动操控</h2>
+      <div class="control-mode"><label for="driveMode">运行方式</label><select id="driveMode"><option value="observe">仅观察</option><option value="manual">手动驾驶</option></select><button id="setDriveMode">切换</button></div>
+      <p id="driveReadiness" class="muted">连接后显示当前运动条件</p>
+      <button id="claim">接管控制</button><button id="release" disabled>安全解锁</button><button class="stop" id="stop">停车 · 空格</button>
+      <div class="drive-pad"><span></span><button data-drive="w" disabled>前进 W</button><span></span><button data-drive="a" disabled>左转 A</button><button id="padStop">停车</button><button data-drive="d" disabled>右转 D</button><span></span><button data-drive="s" disabled>后退 S</button></div>
+      <div class="range-row"><label for="drivePwm">请求 PWM</label><input id="drivePwm" type="range" min="100" max="400" step="25" value="200"><output id="drivePwmValue">200</output></div>
+      <p id="controlStatus" aria-live="polite">未接管 · 等待实际反馈</p>
+      <p id="keys" class="muted">连接后可查看视频与传感器；具备实测标定和驾驶条件后手动接管。</p>
+    </section>
+  </div>
+</div>
+
+<section>
+  <h2>运动显示</h2>
+  <p id="motionNumbers" style="font-size:22px;font-weight:700">等待显示数据</p>
+  <p id="motionMode" class="muted">原始测量与控制状态独立保留</p>
+</section>
+<section id="trends"><h2>最近一分钟</h2><div class="chart-wrap"><div><p class="muted">障碍物距离 · mm</p><canvas id="distanceTrend" width="640" height="180"></canvas></div><div><p class="muted">有效编码器速度 · mm/s</p><canvas id="speedTrend" width="640" height="180"></canvas></div></div></section>
+<section id="calibrationPanel"><h2>双轮标定</h2><p class="muted">先断开电机动力、保留编码器，记录手动推动的实测距离。导入或计算后由板端核验和读回；未标定的速度不参与控制。</p><div class="guide-grid"><div><h3>实测计数与距离</h3><button id="calStart">记录起点</button><button id="calEnd">记录终点</button><p id="calCounts" class="muted">等待实际编码器计数</p><label>实测推动距离（mm） <input id="calDistance" type="number" min="1" max="100000" placeholder="输入尺量距离"></label><label><input id="calMeasured" type="checkbox"> 距离和轮子变化来自本次实物测量</label><button id="calCompute">生成标定文件</button><button id="calDownload" disabled>下载标定 JSON</button></div><div><h3>连接状态与应用</h3><label>电机动力当前物理状态 <select id="motorPhysical"><option value="connected">已连接</option><option value="disconnected">已断开</option></select></label><label><input id="motorConfirmed" type="checkbox"> 我已核对上述物理连接状态</label><button id="motorApply">更新连接状态</button><p id="calState" class="muted">未连接</p><label>导入已有标定 <input id="calFile" type="file" accept=".json,application/json"></label><button id="calApply" disabled>应用标定并验证读回</button><p id="calResult" role="status"></p></div></div></section>
+<section id="recordPanel"><h2>会话记录</h2><div class="actions"><span id="recordState"><i class="record-dot"></i>未记录</span><button id="recordStart">开始记录</button><button id="recordStop" disabled>结束记录</button><button id="recordJson" disabled>导出 JSON</button><button id="recordCsv" disabled>导出 CSV</button></div><p id="recordInfo" class="muted">保存有效性、实际 PWM／LOCK、风险与采样时间；不会保存连接令牌。</p><h3>历史回放</h3><label>打开控制台记录 <input id="replayFile" type="file" accept=".json,application/json"></label><div id="replayTools" hidden class="range-row"><button id="replayPlay">播放</button><input id="replayPosition" type="range" min="0" max="0" value="0"><span id="replayTime"></span><button id="replayExit">退出回放</button></div><p class="muted">回放时会撤销控制接管；历史数据不开放解锁或运动。</p></section>
+<section id="eventPanel"><h2>状态事件</h2><div class="table-scroll event-list"><table><thead><tr><th>时间</th><th>事件</th><th>说明</th></tr></thead><tbody id="eventRows"><tr><td colspan="3">等待本次会话事件</td></tr></tbody></table></div></section>
+<section id="demoPanel"><h2>现场演示</h2><div class="demo-steps" id="demoSteps"></div><div class="demo-card" id="demoCard"></div><div class="actions"><button id="demoPrev">上一步</button><button id="demoNext">下一步</button><button id="demoRecord">记录本次演示</button><button id="demoExport">导出演示摘要</button><button id="demoFullscreen">全屏展示</button></div><p class="muted">流程提示不会自动发出任何解锁或驾驶指令；每项结果依据本次回传和实际观察记录。</p></section>
+
+<section>
+  <details><summary>详细诊断与原始状态</summary><pre id="status"></pre></details>
+  <p><a id="log" href="/api/log/joint.jsonl">下载运行记录</a> · <a id="summary" href="/api/log/joint_summary.json">下载验收摘要</a></p>
+  <p class="muted">断链或过期数据会清空；联调通过只覆盖本次会话中实际观察到的通道，不替代标定、制动或整车 release 验收。</p>
+</section>
+</div>
+
+<script src="/assets/wireless_player.js"></script>
+<script src="/assets/console_ui.js"></script>
+<script>
+const el=id=>document.getElementById(id);
+let socket,claimed=false,synced=false,seq=0,view='processed',keys=new Set(),frozen=false,pending=new Map(),lastSnapshot=null;
+let connected=false,sessionGeneration=0,allowWebSocket=false,connecting=false,controlRetry=null;
+const displayModes={smoothed:'平滑显示',hold:'短时保持',stationary_assumption:'静止展示',locked_zero_estimate:'锁车零速',measured_model_estimate:'模型显示',unavailable:'显示不可用',telemetry_expired:'更新中断'};
+const testNames={sampling_fresh:'控制采样持续更新',duration:'持续采样 10 秒',samples:'控制采样数量',video:'板端视频帧完成处理',stm32_replies:'STM32 持续回包',protocol_errors_zero:'STM32 协议无错误',transport_error_absent:'串口传输无错误',ultrasonic_valid:'超声波有效样本',infrared_valid:'红外有效样本',infrared_left_exercised:'左红外遮挡/移开',infrared_right_exercised:'右红外遮挡/移开',car_feedback:'STM32 实际反馈',locked_zero:'全程锁车且 PWM=0',encoder_left_moved:'左前编码器位置变化',encoder_right_moved:'右前编码器位置变化'};
+function setPill(node,text,kind=''){node.textContent=text;node.className='pill '+kind;}
+function finite(v){return Number.isFinite(v)?v:null;}
+function setConnectStatus(message,kind=''){el('connectStatus').textContent=message;el('connectStatus').className='connect-status '+kind;}
+function closeSocket(){clearTimeout(controlRetry);controlRetry=null;if(socket){socket.onclose=null;socket.onmessage=null;socket.close();socket=null;}synced=false;claimed=false;keys.clear();pending.clear();}
+function clearTelemetry(message='状态更新中断'){renderHealth({});renderSensors({});renderLink({});renderMotion({},false);renderInterconnect(null);lastSnapshot=null;el('status').textContent=message;el('claim').disabled=true;el('resetTest').disabled=true;el('exportReport').disabled=true;window.ConsoleApp?.disconnected(message);}
+function showConnection(message='请输入 PYNQ 地址和本次连接令牌。',kind=''){connected=false;allowWebSocket=false;sessionGeneration++;closeSocket();clearVideo('等待连接');clearTelemetry();el('consoleView').hidden=false;el('connectView').hidden=false;setConnectStatus(message,kind);window.ConsoleApp?.disconnected(message);}
+function showConsole(){connected=true;allowWebSocket=true;el('connectView').hidden=true;el('consoleView').hidden=false;}
+function renderMotion(a,fresh){const d=a.motion_display;const available=fresh&&d?.available;const n=v=>Number.isFinite(v)?v.toFixed(2):'—';el('motionNumbers').textContent=available?`轮速 ${n(d.speed_mm_s)} mm/s · 路程 ${n(d.travelled_mm)} mm · 位移 ${n(d.displacement_mm)} mm`:'显示暂不可用';el('motionMode').textContent=(displayModes[d?.mode]||'显示不可用')+' · 原始测量与控制状态独立保留';}
+function renderHealth(s){
+  const a=s.latest?.status||{},fresh=s.running===true&&s.telemetry_fresh===true,car=fresh&&a.car_valid===true?a.car:null,video=s.video||{},link=a.stm32_link||{};
+  const distance=fresh&&a.distance_valid===true?finite(a.distance_mm):null;
+  el('distanceCard').textContent=distance===null?'—':`${distance} mm`;
+  el('distanceSub').textContent=distance===null?'等待有效测量':`样本年龄 ${Number.isFinite(link.sensor?.us_age_ms)?link.sensor.us_age_ms.toFixed(0)+' ms':'未知'}`;
+  el('lockCard').textContent=car?(car.lock?'已锁车':'未锁车'):'未收到';
+  el('lockSub').textContent=car?`fault=0x${Number(car.fault||0).toString(16).padStart(4,'0')}`:'等待新鲜回传';
+  el('leftPwmCard').textContent=car&&Number.isFinite(car.left)?String(car.left):'—';
+  el('rightPwmCard').textContent=car&&Number.isFinite(car.right)?String(car.right):'—';
+  el('uartHealth').textContent=s.control_available===false?'串口：纯视频会话未采集 STM32':fresh&&link.link_fresh?'串口：STM32 回包新鲜':s.running?'串口：等待新鲜回传':'串口：会话未运行';
+  el('uartWiringHint').hidden=!(s.running===true&&s.control_available!==false&&!link.link_fresh&&!link.resync_pending&&(link.query_tx_count||0)>=20);
+  const recovering=link.resync_pending===true,resets=link.locked_resync_count||0;
+  el('uartRecoveryHint').hidden=!(s.running===true&&(recovering||resets>0));
+  el('uartRecoveryHint').textContent=recovering?'检测到采集计数回退，已撤销数据有效性；正在保持锁车并重新同步。':`采集计数重置后已锁车重新同步 ${resets} 次；本轮不通过稳定验收，需检查供电与复位原因。`;
+  el('sensorHealth').textContent=!fresh?'测量：更新中断':distance!==null?'超声波：有效测量':'测量：等待有效样本';
+  el('cameraHealth').textContent=!s.running?'视频：会话未运行':video.error?'视频采集错误：'+video.error:(video.fps_since_start?.captured||0)>0?'视频：已经实际采集到帧':'视频：等待首帧';
+  setPill(el('replyPill'),fresh&&link.link_fresh?'STM32 在线':'STM32 回包等待',fresh&&link.link_fresh?'ok':s.control_available===false?'':'warn');
+  const captured=s.running===true&&!video.error&&(video.fps_since_start?.captured||0)>0;
+  setPill(el('videoPill'),captured?'视频已采集':'视频等待',captured?'ok':'warn');
+}
+function renderSensors(s){
+  const a=s.latest?.status||{},fresh=s.running===true&&s.telemetry_fresh===true,car=fresh&&a.car_valid===true?a.car:null,ir=a.infrared||{},enc=a.encoder||{},link=a.stm32_link||{};
+  const irValid=fresh&&ir.valid===true;
+  el('irLeftCard').textContent=irValid?((ir.mask&1)?'遮挡':'通畅'):'—';
+  el('irLeftSub').textContent=irValid?`bit0 · seq ${ir.sequence}`:'等待有效回传';
+  el('irRightCard').textContent=irValid?((ir.mask&2)?'遮挡':'通畅'):'—';
+  el('irRightSub').textContent=irValid?`bit1 · seq ${ir.sequence}`:'等待有效回传';
+  const left=enc.left||{},right=enc.right||{};
+  el('qeiLeftCard').textContent=fresh&&Number.isFinite(left.position)?`${left.position} count`:fresh&&left.valid?`seq ${left.sequence}`:'—';
+  el('qeiLeftSub').textContent=fresh?`QEI0 · seq ${left.sequence??'—'} · ${left.valid?'有效':'无效'}${left.faults?.length?' · '+left.faults.join(', '):''}`:'等待有效样本';
+  el('qeiRightCard').textContent=fresh&&Number.isFinite(right.position)?`${right.position} count`:fresh&&right.valid?`seq ${right.sequence}`:'—';
+  el('qeiRightSub').textContent=fresh?`QEI1 · seq ${right.sequence??'—'} · ${right.valid?'有效':'无效'}${right.faults?.length?' · '+right.faults.join(', '):''}`:'等待有效样本';
+  el('faultCard').textContent=car?`0x${Number(car.fault||0).toString(16).padStart(4,'0')}`:'—';
+  el('dropCard').textContent=car?String(car.drop??'—'):'—';
+  el('irMaskCard').textContent=irValid?String(ir.mask):'—';
+  el('rttCard').textContent=fresh&&link.link_fresh&&Number.isFinite(link.last_reply_latency_ms)?`${link.last_reply_latency_ms.toFixed(1)} ms`:'—';
+  el('rttSub').textContent=link.link_fresh?'最近一帧 Q1→S1':'回包缺失或过期';
+}
+function renderLink(s){
+  const a=s.latest?.status||{},link=a.stm32_link||{};
+  el('queryReplyCard').textContent=`${link.query_tx_count??'—'} / ${link.report_rx_count??'—'}`;
+  el('protocolErrorCard').textContent=String(link.sensor_errors??'—');
+  el('replyAgeCard').textContent=Number.isFinite(link.last_reply_age_ms)?`${link.last_reply_age_ms.toFixed(0)} ms`:'—';
+  el('sessionCard').textContent=link.session_hex||'—';
+}
+function renderInterconnect(t){
+  if(!t){el('testState').textContent='不可用';el('testState').className='pill warn';el('testChecklist').replaceChildren();el('testSummary').textContent='等待本次会话的有效统计';el('testActions').textContent='';return;}
+  const kind=t.state==='passed'?'ok':t.state==='failed'?'bad':'warn';
+  const labels={collecting:'采集中',action_required:'需要操作',passed:'联调通过',failed:'联调失败'};
+  el('testState').textContent=labels[t.state]||t.state;el('testState').className='pill '+kind;
+  el('testSummary').textContent=`${t.elapsed_s.toFixed(1)} s · ${t.samples} 次采样 · 视频 ${t.video_frames} 帧 · STM32 ${t.stm32_replies} 条回包`;
+  const order=['sampling_fresh','duration','samples','video','stm32_replies','protocol_errors_zero','transport_error_absent','ultrasonic_valid','infrared_valid','infrared_left_exercised','infrared_right_exercised','car_feedback','locked_zero','encoder_left_moved','encoder_right_moved'];
+  el('testChecklist').replaceChildren(...order.map(key=>{const ok=t.conditions?.[key]===true,node=document.createElement('div'),mark=document.createElement('b'),text=document.createElement('span');node.className='check '+(ok?'ok':'warn');mark.textContent=ok?'✓':'…';text.textContent=testNames[key]||key;node.append(mark,text);return node;}));
+  const actionText=t.action_required?.length?'需要操作：'+t.action_required.map(k=>testNames[k]||k).join('、'):t.hard_failures?.length?'错误：'+t.hard_failures.map(k=>testNames[k]||k).join('、'):t.passed?'本次会话的全部通道已观察通过。':'继续采集，等待自动条件完成。';
+  el('testActions').textContent=actionText;
+}
+const player=window.CarVideo?new CarVideo.WirelessPlayer(el('video'),message=>{if(!frozen)el('videoStatus').textContent=message;}):null;
+for(const fps of [30,25,24,20,15,10,5])el('fps').add(new Option(fps+' fps',fps));
+for(const q of [95,85,75,65,55,45,35])el('quality').add(new Option('Q'+q,q));el('quality').value='75';
+el('apply').onclick=async()=>{try{await api('/api/video/settings',{mode:el('mode').value,fps:Number(el('fps').value),quality:Number(el('quality').value)});}catch(e){el('policyStatus').textContent=e.message;}};
+async function request(path,options={}){
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),options.timeoutMs||4000);
+  try{
+    const r=await fetch(path,{...options,signal:controller.signal,cache:'no-store'});
+    // Read the body within the same deadline; receiving headers alone is not completion.
+    const text=await r.text();
+    if(!r.ok){const error=Error(r.status===401?'令牌无效或会话已过期':text||`HTTP ${r.status}`);error.status=r.status;throw error;}
+    return {json:async()=>JSON.parse(text)};
+  }catch(e){if(e.name==='AbortError')throw Error('连接超时，请检查小车网络和板端服务');throw e;}
+  finally{clearTimeout(timer);}
+}
+async function api(path,body){return request(path,{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});}
+function send(body){if(socket?.readyState===1)socket.send(JSON.stringify(body));}
+function stop(){keys.clear();claimed=false;window.ConsoleApp?.clearDrive();if(!connected)return;send({type:'stop'});api('/api/stop',{}).catch(()=>{});el('controlStatus').textContent='已请求停车，等待实际反馈';}
+function openControlSocket(generation=sessionGeneration){
+  if(!connected||!allowWebSocket||generation!==sessionGeneration||socket)return;
+  const current=new WebSocket(`${location.protocol==='https:'?'wss':'ws'}://${location.host}/api/control`);socket=current;
+  current.onmessage=e=>{
+    if(generation!==sessionGeneration||socket!==current)return;
+    let m;try{m=JSON.parse(e.data);}catch{return;}
+    if(m.type==='sync'){const t=performance.now();send({type:'sync',nonce:m.nonce,received_ms:t,sent_ms:performance.now()});}
+    if(m.type==='synced'){synced=true;el('claim').disabled=lastSnapshot?.control_available===false||lastSnapshot?.running!==true;}
+    if(m.type==='ack'&&pending.has(m.seq)){send({type:'ack_timing',rtt_ms:performance.now()-pending.get(m.seq)});pending.delete(m.seq);}
+    if(m.type==='claimed'){claimed=true;el('controlStatus').textContent='已接管 · 保持零输出，等待手动解锁';}
+    if(m.type==='error'){claimed=false;keys.clear();window.ConsoleApp?.clearDrive();el('controlStatus').textContent=m.error;}
+  };
+  current.onclose=()=>{
+    if(socket!==current)return;socket=null;claimed=false;synced=false;keys.clear();pending.clear();window.ConsoleApp?.clearDrive();el('claim').disabled=true;
+    el('controlStatus').textContent='控制连接断开；重连后需重新接管';
+    if(connected&&allowWebSocket&&generation===sessionGeneration)controlRetry=setTimeout(()=>openControlSocket(generation),1000);
+  };
+}
+el('claim').onclick=()=>{if(synced)send({type:'claim',client_ms:performance.now()});};el('stop').onclick=stop;
+setInterval(()=>{if(claimed&&!window.ConsoleApp?.isPlayback){const now=performance.now(),pwm=window.ConsoleApp?.intent()||[0,0];pending.set(++seq,now);if(pending.size>30)pending.delete(pending.keys().next().value);send({type:'intent',seq,client_ms:now,left:pwm[0],right:pwm[1]});}},50);
+window.addEventListener('keydown',e=>{if(!connected||e.target?.closest('input,textarea,select,[contenteditable]'))return;if(e.code==='Space'){e.preventDefault();stop();}});
+window.addEventListener('keyup',e=>{if(keys.delete(e.code))stop();});window.addEventListener('blur',stop);document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});window.addEventListener('pagehide',stop);
+function live(next){view=next;frozen=false;el('pair').hidden=true;el('video').hidden=false;player.start(view);el('videoStatus').textContent=next==='raw'?'原图实时画面':'真实PL处理画面';}
+el('raw').onclick=()=>live('raw');el('processed').onclick=()=>live('processed');
+el('freeze').onclick=async()=>{const generation=sessionGeneration;try{const f=await(await api('/api/snapshot',{})).json();if(!connected||generation!==sessionGeneration)return;frozen=true;player.stop();el('video').hidden=true;el('pair').hidden=false;el('rawFrozen').src='data:image/jpeg;base64,'+f.raw_jpeg_base64;el('processedFrozen').src='data:image/jpeg;base64,'+f.processed_jpeg_base64;el('videoStatus').textContent=`同一采集帧 #${f.frame_id} · 历史画面不参与当前控制`;}catch(e){if(generation===sessionGeneration)el('videoStatus').textContent=e.message;}};
+el('resetTest').onclick=async()=>{try{const t=await(await api('/api/sensor-test/reset',{})).json();renderInterconnect(t);}catch(e){el('testSummary').textContent=e.message;}};
+el('exportReport').onclick=()=>{if(!lastSnapshot)return;const report={schema:'car-console-observation/v1',exported_at:new Date().toISOString(),scope:'当前会话观察，不等于1800秒整车验收',state:lastSnapshot,browser_video:{...player.info}};const url=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:'application/json'}));const link=document.createElement('a');link.href=url;link.download='pynq-console-'+Date.now()+'.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+async function readStatus(){return (await request('/api/status',{timeoutMs:2000})).json();}
+let networkInterrupted=false;
+async function poll(generation=sessionGeneration){
+  if(!connected||generation!==sessionGeneration)return;
+  try{
+    const s=await readStatus();if(generation!==sessionGeneration)return;lastSnapshot=s;
+    if(networkInterrupted){networkInterrupted=false;openControlSocket(generation);if(s.running)live(view);}
+    const a=s.latest?.status||{},r=player.rates(),p=s.video?.output_policy;
+    renderHealth(s);renderSensors(s);renderLink(s);renderInterconnect(s.interconnect_test);
+    el('exportReport').disabled=false;
+    el('scopeBadge').textContent=s.control_available===false?'纯视频模式':'完整联调模式';
+    el('scopeBadge').className='badge '+(s.control_available===false?'warn':'ok');
+    const linkReady=s.telemetry_fresh===true&&a.stm32_link?.link_fresh===true;
+    const startup=s.startup_readiness;
+    el('connection').textContent=s.running?(startup?.ready===false?'诊断会话 · 启动检查未通过：'+startup.error:s.control_available===false?'视频测试运行中 · STM32 未接入':linkReady?'完整联调运行中 · STM32 在线':'完整联调运行中 · 等待 STM32 新鲜回包'):'会话已停止';
+    el('claim').disabled=!s.running||s.control_available===false||!synced;
+    el('stop').disabled=s.control_available===false;
+    el('resetTest').disabled=!s.running||s.control_available===false;
+    if(s.running&&s.control_timing?.overruns)el('connection').textContent+=` · 采样延迟 ${s.control_timing.overruns} 次，已停车并继续诊断，本轮不通过稳定验收`;
+    if(!s.running){closeSocket();clearVideo('本次会话已结束');}
+    if(s.control_available===false){el('claim').disabled=true;el('stop').disabled=true;el('resetTest').disabled=true;el('log').href='/api/log/video.jsonl';el('summary').href='/api/log/video_summary.json';}
+    else{el('log').href='/api/log/joint.jsonl';el('summary').href='/api/log/joint_summary.json';}
+    el('rates').textContent=`接收 ${r.received_fps.toFixed(1)} fps · 实际绘制 ${r.drawn_fps.toFixed(1)} fps · 客户端舍弃 ${r.client_dropped} 帧 · 单帧 ${((r.frame_bytes||0)/1024).toFixed(1)} KiB`;
+    if(p)el('policyStatus').textContent=`${p.mode} · 当前目标 ${p.output_fps} fps / Q${p.jpeg_quality} · ${p.reason}`;
+    if(r.video_session&&!frozen)api('/api/video/feedback',r).catch(()=>{});
+    renderMotion(a,s.running===true&&s.telemetry_fresh===true);
+    el('status').textContent=JSON.stringify({'联调':s.interconnect_test,'STM32链路':a.stm32_link,'超声波':a.infrared&&a.distance_valid?{mm:a.distance_mm}:null,'红外':a.infrared,'编码器':a.encoder,'实际执行器':a.car_valid?a.car:null,'控制':s.latest?.control,'采样时序':s.control_timing,'远程接管':s.remote_control,'视频':s.video,'故障':s.failures},null,2);
+    window.ConsoleApp?.render(s);
+  }catch(e){
+    if(generation!==sessionGeneration)return;
+    clearTelemetry();closeSocket();clearVideo('连接中断，等待恢复');networkInterrupted=true;
+    if(e.status===401){showConnection('本次会话已失效，请重新粘贴启动链接中的令牌。','error');return;}
+    el('connection').textContent=e.message;
+  }
+  if(connected&&generation===sessionGeneration)setTimeout(()=>poll(generation),500);
+}
+function normalizeAddress(value){
+  let text=value.trim();if(!text)throw Error('请输入 PYNQ 地址');
+  if(!/^https?:\/\//i.test(text))text='http://'+text;
+  const parsed=new URL(text);if(!['http:','https:'].includes(parsed.protocol)||!parsed.hostname||parsed.username||parsed.password)throw Error('PYNQ 地址无效');return parsed.origin;
+}
+function parseConnectionInput(value){
+  const text=value.trim();if(/^https?:\/\//i.test(text)){
+    const parsed=new URL(text);
+    return {address:parsed.origin,token:new URLSearchParams(parsed.hash.slice(1)).get('token')||''};
+  }
+  return {address:null,token:text};
+}
+async function enterConsole(){
+  const generation=sessionGeneration;
+  if(!player)throw Error('视频脚本加载失败，请刷新页面；本地入口请使用包内的 PYNQ小车接收上位机.html');
+  const settings=await(await api('/api/video/settings')).json();
+  if(generation!==sessionGeneration)return;
+  el('mode').value=settings.mode;el('fps').value=settings.max_fps;el('quality').value=settings.max_quality;
+  clearTelemetry();networkInterrupted=false;showConsole();openControlSocket(generation);live(view);poll(generation);
+}
+async function connectFromForm(event){
+  event?.preventDefault();
+  if(connecting)return;connecting=true;el('connectButton').disabled=true;
+  const generation=++sessionGeneration;
+  try{
+    const parsed=parseConnectionInput(el('sessionToken').value);
+    const address=normalizeAddress(parsed.address||el('serverAddress').value);
+    el('serverAddress').value=address;
+    const target=new URL(address);
+    if(target.origin!==location.origin){
+      if(!parsed.token)throw Error('切换 PYNQ 地址时需要同时提供本次连接令牌');
+      location.href=target.origin+'/#token='+encodeURIComponent(parsed.token);return;
+    }
+    setConnectStatus('正在验证连接…');
+    if(parsed.token){
+      await request('/api/session',{method:'POST',headers:{Authorization:'Bearer '+parsed.token}});
+      history.replaceState(null,'',location.pathname);el('sessionToken').value='';
+    }else{
+      await readStatus();
+    }
+    if(generation!==sessionGeneration)return;
+    setConnectStatus('连接成功，正在进入操控界面…','ok');
+    await enterConsole();
+  }catch(e){
+    if(generation===sessionGeneration)showConnection(e.status===401?'令牌无效或已过期，请使用最近一次启动链接。':'连接失败：'+e.message,'error');
+  }
+  finally{connecting=false;el('connectButton').disabled=false;}
+}
+function clearVideo(message){player?.stop();frozen=false;el('pair').hidden=true;el('rawFrozen').removeAttribute('src');el('processedFrozen').removeAttribute('src');el('video').hidden=false;const ctx=el('video').getContext('2d');ctx.fillStyle='#172332';ctx.fillRect(0,0,1280,720);el('videoStatus').textContent=message;el('rates').textContent='等待本次连接的视频帧';}
+async function disconnectConsole(){
+  stop();showConnection('正在断开连接…');clearVideo('已断开连接');
+  try{await request('/api/session/logout',{method:'POST'});setConnectStatus('已断开连接。','ok');}
+  catch(e){setConnectStatus('本机已断开；服务器退出未确认：'+e.message,'error');}
+}
+el('serverAddress').value=location.origin;
+el('connectForm').addEventListener('submit',connectFromForm);
+el('useCurrent').onclick=()=>{el('serverAddress').value=location.origin;el('sessionToken').focus();};
+el('disconnect').onclick=disconnectConsole;
+(async()=>{
+  try{
+    const token=new URLSearchParams(location.hash.slice(1)).get('token');
+    if(token){el('sessionToken').value=token;await connectFromForm();return;}
+    const generation=sessionGeneration;
+    try{await readStatus();if(generation===sessionGeneration)await enterConsole();}catch(e){if(generation===sessionGeneration)showConnection('请输入本次启动链接中的令牌。');}
+  }catch(e){showConnection('页面初始化失败：'+e.message,'error');}
+})();
+window.addEventListener('hashchange',()=>{
+  const token=new URLSearchParams(location.hash.slice(1)).get('token');
+  if(token&&!connecting){showConnection('正在切换到启动链接中的会话…');el('sessionToken').value=token;connectFromForm();}
+});
+window.addEventListener('pagehide',()=>{allowWebSocket=false;closeSocket();player?.stop();});
+</script>
+</html>

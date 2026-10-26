@@ -18,11 +18,10 @@ static uint8_t rx[2][128];
 static char frame[2][80];
 static unsigned frame_len[2];
 static uint32_t frame_start[2];
-/* First CRC-valid Q1 binds one data UART until reset. Noise cannot bind. */
+/* A CRC-valid Q1 selects the data UART. Only a locked owner silent for two
+ * seconds can yield to another valid query; driving never permits takeover. */
 static volatile uint8_t hybrid_uart;
-static char tx[120];
-static unsigned tx_pos, tx_len;
-static uint32_t report_ms;
+static uint32_t owner_query_ms;
 static char tx2[180];
 static HybridSession hybrid;
 static uint8_t reply_pending;
@@ -35,7 +34,7 @@ static uint8_t ir_mask, ir_candidate, ir_count, ir_valid;
 /* Retain original BSP mapping: PA6=left, PA4=right; verify by separate occlusion. */
 static unsigned tx2_pos, tx2_len;
 
-/* Diagnostics never own the data UART; explicit STOP remains unconditional.
+/* Only the selected TX drives a pin; explicit STOP remains unconditional.
  * rx_diag: bindings, UART errors, overflow, frame timeout, nested start,
  * length error, bad data format, ARM rejection, IDLE, last SR. */
 volatile uint32_t rx_diag[10];
@@ -101,7 +100,24 @@ static void serial_init(USART_TypeDef *u, uint32_t baud) {
     USART_InitTypeDef s;
     USART_StructInit(&s);
     s.USART_BaudRate=baud;
+    s.USART_Mode=USART_Mode_Rx;
     USART_Init(u,&s); USART_Cmd(u,ENABLE);
+}
+static void select_data_uart(unsigned port) {
+    /* The expansion board may join serial routes. Never leave two TX outputs
+     * driving their idle levels against one another or stream SAFE on a peer. */
+    USART1->CR1 &= ~USART_CR1_TE;
+    USART2->CR1 &= ~USART_CR1_TE;
+    gpio(GPIOA,GPIO_Pin_2|GPIO_Pin_9,GPIO_Mode_IN_FLOATING);
+    if(port==0u) {
+        USART1->CR1 |= USART_CR1_TE;
+        gpio(GPIOA,GPIO_Pin_9,GPIO_Mode_AF_PP);
+    } else {
+        USART2->CR1 |= USART_CR1_TE;
+        gpio(GPIOA,GPIO_Pin_2,GPIO_Mode_AF_PP);
+    }
+    hybrid_uart=(uint8_t)(port+1u);
+    rx_diag[0]++;
 }
 static void serial_irq(USART_TypeDef *u, unsigned port) {
     /*
@@ -230,14 +246,31 @@ static void receive_port(uint32_t now, unsigned port) {
                     int result=hybrid_receive(&control,&hybrid,packet,length,now);
                     if(result==2) {
                         if(!hybrid_uart) {
-                            hybrid_uart=(uint8_t)(port+1u); rx_diag[0]++;
-                            /* Prevent SAFE diagnostics sharing the S1 data TX. */
-                            tx_pos=tx_len=0;
+                            select_data_uart(port);
                         }
+                        owner_query_ms=now;
                         reply_seq=hybrid.query_seq; reply_pending=1;
                     } else if(!result) rx_diag[6]++;
+                } else if(control.latched &&
+                          (uint32_t)(now-owner_query_ms)>=2000u &&
+                          length>=4u && !memcmp(packet,"$Q1,",4u) &&
+                          TIM4->CCR1==0u && TIM4->CCR2==0u) {
+                    /* Validate on copies: bad CRC cannot modify the owner,
+                     * fault state or session. A handover starts locked, clears
+                     * requests, and requires a new explicit release. */
+                    SafeControl candidate_control=control;
+                    HybridSession candidate_session;
+                    memset(&candidate_session,0,sizeof(candidate_session));
+                    if(hybrid_receive(&candidate_control,&candidate_session,
+                                      packet,length,now)==2) {
+                        control=candidate_control; hybrid=candidate_session;
+                        reply_pending=0; tx2_pos=tx2_len=0;
+                        select_data_uart(port);
+                        owner_query_ms=now;
+                        reply_seq=hybrid.query_seq; reply_pending=1;
+                    }
                 }
-                /* The non-data UART cannot change session, leases or PWM. */
+                /* Non-data drive/release frames never change control. */
                 frame_len[port]=0;
             }
         }
@@ -245,24 +278,6 @@ static void receive_port(uint32_t now, unsigned port) {
 }
 static void receive(uint32_t now) {
     receive_port(now,0); receive_port(now,1);
-}
-static void report(uint32_t now) {
-    USART_TypeDef *diagnostic=hybrid_uart==1u?USART2:USART1;
-    if(tx_pos==tx_len && (uint32_t)(now-report_ms)>=250u) {
-        int n;
-        report_ms=now;
-        n=snprintf(tx,sizeof(tx),
-          "$SAFE,MS%lu,IR%u,MM%u,VALID%u,LOCK%u,FAULT%u,CMD%u,PWM%d,USB%u#\r\n",
-          (unsigned long)now,control.ir,control.distance_mm,control.valid,
-          control.latched,control.reason,control.command,control.speed,0u);
-        tx_pos=0; tx_len=(n>0 && (unsigned)n<sizeof(tx))?(unsigned)n:0;
-    }
-    /*
-     * 诊断串口采用非阻塞发送：发送器忙时本轮跳过，下一轮继续。
-     * 这样调试信息不会因为电脑未打开串口而拖住电机安全控制。
-     */
-    if(tx_pos<tx_len && (diagnostic->SR & USART_SR_TXE))
-        diagnostic->DR=(uint8_t)tx[tx_pos++];
 }
 /* Reply only to a fresh Q1. Local sample sequences/timestamps are independent
  * of query or command traffic. Actual motor output is included in this batch. */
@@ -335,7 +350,7 @@ void safe_car_init(void) {
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
     ni.NVIC_IRQChannel=EXTI15_10_IRQn; ni.NVIC_IRQChannelPreemptionPriority=0;
     ni.NVIC_IRQChannelSubPriority=0; ni.NVIC_IRQChannelCmd=ENABLE; NVIC_Init(&ni);
-    gpio(GPIOA,GPIO_Pin_2|GPIO_Pin_9,GPIO_Mode_AF_PP);
+    gpio(GPIOA,GPIO_Pin_2|GPIO_Pin_9,GPIO_Mode_IN_FLOATING);
     gpio(GPIOA,GPIO_Pin_3|GPIO_Pin_10,GPIO_Mode_IPU);
     serial_init(USART2,115200); serial_init(USART1,115200);
     ni.NVIC_IRQChannel=USART2_IRQn;
@@ -360,7 +375,6 @@ void safe_car_poll(void) {
     safe_tick(&control,millis);
     safe_outputs(&control,&left,&right);
     if(control.latched) brake(); else motors(left,right);
-    report(millis);
     car_report(millis,left,right);
     IWDG->KR=0xAAAA;
 }

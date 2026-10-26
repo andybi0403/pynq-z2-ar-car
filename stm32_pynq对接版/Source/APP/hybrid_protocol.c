@@ -53,7 +53,8 @@ static int number(const char *p, size_t end, size_t *i, uint32_t *v, int *negati
 void safe_local_sample(SafeControl *s, uint16_t mm, uint8_t valid,
                        uint32_t sample_ms, uint8_t ir, uint8_t ir_valid, uint32_t now) {
     s->distance_mm=mm; s->sample_ms=sample_ms;
-    s->valid=(uint8_t)(valid && ir_valid);
+    (void)ir_valid; /* IR availability is telemetry, never a motor prerequisite. */
+    s->valid=(uint8_t)(valid != 0);
     s->ir=ir&3u;
     safe_tick(s,now);
 }

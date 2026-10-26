@@ -32,7 +32,7 @@ module tb_car_external_sensors;
  end endtask
  initial begin
   repeat(4)@(posedge clk);@(negedge clk);rst=0;repeat(8)@(posedge clk);
-  rdreg('h000,rd);check("new contract",rd,32'hc425100a);
+  rdreg('h000,rd);check("new contract",rd,32'hc425100b);
   wr('h300,1);check("external starts invalid",dut.us_valid,0);
   stage(900,100,7,8);
   check("staging cannot leak",dut.us_valid,0);
@@ -63,7 +63,7 @@ module tb_car_external_sensors;
   force dut.q0_vel=0;force dut.q1_vel=0;
   force dut.q0_ts=32'h100;force dut.q1_ts=32'h100;
   wr('h140,3);repeat(24)@(posedge clk);
-  check("PL sees UART IR obstacle",risk_stop,1);
+  check("UART IR obstacle remains advisory",risk_stop,0);
   check("PL records IR reason",risk_reasons[7],1);
   stage(1000,0,14,15,4);wr('h31c,9);repeat(24)@(posedge clk);
   check("PL risk gets complete new UART batch",risk_stop,0);

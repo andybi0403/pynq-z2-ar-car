@@ -37,7 +37,7 @@ from perception_client import PerceptionClient, PynqMMIO
 from perception_replay import snapshot_registers
 from control_supervisor import ControlSupervisor
 from calibration_config import CalibrationConfig
-from qei_quality import BENCH_FILTER_TICKS, QeiDisplayFilter
+from qei_quality import BENCH_FILTER_TICKS, QeiDisplayFilter, raw_fault_reasons
 from motion_display import MotionDisplayEstimator, MeasuredDriveModel
 import car_regs as reg
 
@@ -75,7 +75,7 @@ def sample_fresh(sample, ticks):
     return sample.valid and ((ticks-sample.timestamp)&0xFFFFFFFF) < 20_000_000
 
 
-def wait_for_acquisition(client, *, timeout_s=5, stable_s=.3):
+def wait_for_acquisition(client, *, timeout_s=5, stable_s=.3, require_infrared=True):
     """Bounded pre-session readiness; never hide bad samples inside the test."""
     if not math.isfinite(timeout_s) or not math.isfinite(stable_s) or not 0 < stable_s < timeout_s:
         raise ValueError('invalid acquisition readiness interval')
@@ -88,7 +88,7 @@ def wait_for_acquisition(client, *, timeout_s=5, stable_s=.3):
             client.set_command(forward=False,valid=True)
             ticks,shot,_=client.sample_and_decide()
             checks+=1
-            failures=acquisition_failures(snapshot_registers(shot),require_odometry=require_odometry)
+            failures=acquisition_failures(snapshot_registers(shot),require_odometry=require_odometry,require_infrared=require_infrared)
             if shot.epoch==previous_epoch:failures.append('snapshot epoch froze')
             previous_epoch=shot.epoch
             for name,sample in [('US',shot.ultrasonic),('QEI0',shot.qei0),('QEI1',shot.qei1),('RISK',shot.risk)]:
@@ -107,11 +107,197 @@ def wait_for_acquisition(client, *, timeout_s=5, stable_s=.3):
         client.set_command(forward=False,valid=False)
 
 
+class SensorInterconnectMonitor:
+    """Live, resettable evidence for the full video/sensor/UART path.
+
+    This monitor observes the same immutable status snapshots that the page
+    consumes. It never writes MMIO or manufactures sensor values. IR coverage
+    and encoder movement remain explicit operator actions, so incomplete
+    interaction is reported as action required rather than a false failure.
+    """
+
+    MIN_SECONDS = 10.0
+    MIN_SAMPLES = 40
+    MIN_STM32_REPLIES = 10
+    MIN_VALID_RATIO = .8
+
+    def __init__(self, *, clock=time.monotonic):
+        self.clock = clock
+        self._lock = threading.RLock()
+        self.reset()
+
+    def reset(self):
+        with self._lock:
+            self.started_ns = time.monotonic_ns()
+            self.samples = 0
+            self.video_baseline = None
+            self.stm32_baseline = None
+            self.error_baseline = None
+            self.us_valid = 0
+            self.ir_valid = 0
+            self.car_valid = 0
+            self.lock_zero = 0
+            self.us_values = []
+            self.ir_masks = set()
+            self.ir_side_seen = [set(), set()]
+            self.qei_last = [None, None]
+            self.qei_advances = [0, 0]
+            self.qei_valid = [0, 0]
+            self.transport_error = None
+            self.last_snapshot = None
+            self.last_observe_ns = None
+            return self.snapshot()
+
+    @staticmethod
+    def _delta(new, old):
+        value = (int(new) - int(old)) & 0xFFFFFFFF
+        return value if value < 0x80000000 else 0
+
+    def observe(self, status, *, video_frames):
+        now_ns = time.monotonic_ns()
+        link = status.get("stm32_link") or {}
+        with self._lock:
+            self.samples += 1
+            if self.video_baseline is None:
+                self.video_baseline = int(video_frames)
+            if self.stm32_baseline is None:
+                self.stm32_baseline = int(link.get("state_sequence", 0))
+            if self.error_baseline is None:
+                self.error_baseline = int(link.get("sensor_errors", 0))
+            self.transport_error = self.transport_error or link.get("transport_error")
+
+            if status.get("distance_valid"):
+                self.us_valid += 1
+                value = status.get("distance_mm")
+                if type(value) is int and 0 <= value <= 4095:
+                    self.us_values.append(value)
+                    if len(self.us_values) > 4096:
+                        self.us_values.pop(0)
+
+            infrared = status.get("infrared") or {}
+            if infrared.get("valid"):
+                self.ir_valid += 1
+            mask = infrared.get("mask")
+            if infrared.get('valid') and type(mask) is int and 0 <= mask <= 3:
+                self.ir_masks.add(mask)
+                for bit in (0, 1):
+                    self.ir_side_seen[bit].add((mask >> bit) & 1)
+
+            car = status.get("car")
+            if status.get("car_valid") and isinstance(car, dict):
+                self.car_valid += 1
+                if car.get("lock") == 1 and car.get("left") == 0 and car.get("right") == 0:
+                    self.lock_zero += 1
+
+            encoder = status.get("encoder") or {}
+            for index, name in enumerate(("left", "right")):
+                channel = encoder.get(name) or {}
+                position = channel.get("position")
+                if type(position) is int and channel.get('valid') and not channel.get('faults'):
+                    previous = self.qei_last[index]
+                    if previous is not None:
+                        delta=(position-previous+(1<<31)) % (1<<32)-(1<<31)
+                        self.qei_advances[index] += abs(delta)
+                    self.qei_last[index] = position
+                else:
+                    self.qei_last[index] = None
+                if channel.get("valid"):
+                    self.qei_valid[index] += 1
+
+            self.last_snapshot = copy.deepcopy(status)
+            self.last_observe_ns = now_ns
+
+    def snapshot(self, *, video_frames=0, link_diagnostics=None):
+        link = link_diagnostics or {}
+        with self._lock:
+            elapsed = max(0.0, (time.monotonic_ns() - self.started_ns) / 1e9)
+            samples = self.samples
+            us_ratio = self.us_valid / samples if samples else 0.0
+            ir_ratio = self.ir_valid / samples if samples else 0.0
+            car_ratio = self.car_valid / samples if samples else 0.0
+            video_delta = max(0, int(video_frames) - (self.video_baseline or 0))
+            state_sequence = int(link.get("state_sequence", 0))
+            replies = max(0, state_sequence - (self.stm32_baseline or 0))
+            errors = max(0, int(link.get("sensor_errors", 0)) - (self.error_baseline or 0))
+            transport_error = self.transport_error or link.get("transport_error")
+            conditions = {
+                "sampling_fresh": self.last_observe_ns is not None and 0 <= (time.monotonic_ns()-self.last_observe_ns) < 200_000_000,
+                "duration": elapsed >= self.MIN_SECONDS,
+                "samples": samples >= self.MIN_SAMPLES,
+                "video": video_delta > 0,
+                "stm32_replies": replies >= self.MIN_STM32_REPLIES,
+                "protocol_errors_zero": errors == 0,
+                "transport_error_absent": transport_error is None,
+                "ultrasonic_valid": us_ratio >= self.MIN_VALID_RATIO,
+                "infrared_valid": ir_ratio >= self.MIN_VALID_RATIO,
+                "infrared_left_exercised": self.ir_side_seen[0] == {0, 1},
+                "infrared_right_exercised": self.ir_side_seen[1] == {0, 1},
+                "car_feedback": car_ratio >= self.MIN_VALID_RATIO,
+                "locked_zero": self.car_valid > 0 and self.lock_zero == self.car_valid,
+                "encoder_left_moved": self.qei_advances[0] > 0,
+                "encoder_right_moved": self.qei_advances[1] > 0,
+            }
+            action_required = [
+                name for name in ("infrared_left_exercised", "infrared_right_exercised",
+                                  "encoder_left_moved", "encoder_right_moved")
+                if not conditions[name]
+            ]
+            hard_failures = [
+                name for name in ("protocol_errors_zero", "transport_error_absent", "locked_zero")
+                if not conditions[name] and (name!='locked_zero' or self.car_valid>0)
+            ]
+            passed = all(conditions.values())
+            if hard_failures:
+                state = "failed"
+            elif passed:
+                state = "passed"
+            elif elapsed < self.MIN_SECONDS:
+                state = "collecting"
+            else:
+                state = "action_required"
+            return {
+                "schema": "car-sensor-interconnect-test/v1",
+                "state": state,
+                "passed": passed,
+                "elapsed_s": elapsed,
+                "minimum_s": self.MIN_SECONDS,
+                "samples": samples,
+                "video_frames": video_delta,
+                "stm32_replies": replies,
+                "protocol_errors": errors,
+                "transport_error": transport_error,
+                "valid_ratios": {
+                    "ultrasonic": us_ratio,
+                    "infrared": ir_ratio,
+                    "stm32_feedback": car_ratio,
+                },
+                "ultrasonic_mm": {
+                    "minimum": min(self.us_values) if self.us_values else None,
+                    "maximum": max(self.us_values) if self.us_values else None,
+                },
+                "infrared_masks_seen": sorted(self.ir_masks),
+                "infrared_side_states": [
+                    sorted(self.ir_side_seen[0]),
+                    sorted(self.ir_side_seen[1]),
+                ],
+                "encoder": {
+                    "left_advances": self.qei_advances[0],
+                    "right_advances": self.qei_advances[1],
+                    "left_valid_samples": self.qei_valid[0],
+                    "right_valid_samples": self.qei_valid[1],
+                },
+                "conditions": conditions,
+                "action_required": action_required,
+                "hard_failures": hard_failures,
+            }
+
+
 class JointRunner:
     """Control owns MMIO; the video worker consumes published snapshots only."""
     def __init__(self, client, link, *, video=None, source=None,
                  output_dir, identity, hardware=False, interval_s=0.05, intent_mailbox=None,
-                 display_model=None, display_stationary=False, evidence_session=None):
+                 display_model=None, display_stationary=False, evidence_session=None,
+                 motor_disconnected=True, diagnostic_timing=False):
         if not math.isfinite(interval_s) or not 0.005 <= interval_s <= 0.1:
             raise ValueError("control interval must be between 5 and 100ms")
         if (video is None) != (source is None):
@@ -123,8 +309,12 @@ class JointRunner:
         self.evidence_session = evidence_session
         self.identity = dict(identity)
         self.hardware = bool(hardware)
+        self.motor_disconnected = bool(motor_disconnected)
+        self.diagnostic_timing = bool(diagnostic_timing)
+        self.schedule_overruns = 0
+        self.schedule_max_lag_ms = 0.0
         self.interval_s = interval_s
-        self.control = ControlSupervisor(client, link, motion_allowed=False)
+        self.control = self.create_control(client, link)
         self.speed_display = QeiDisplayFilter()
         self.motion_display = MotionDisplayEstimator(model=display_model,stationary_assumed=display_stationary)
         self.intent_mailbox = intent_mailbox
@@ -146,6 +336,31 @@ class JointRunner:
         self._last_display_car_seq = None
         self.actions = queue.Queue(maxsize=4)
         self.action_status = None
+        self.interconnect_monitor = SensorInterconnectMonitor()
+
+    def create_control(self, client, link):
+        """The LAB CLI remains zero-output; other entry points own their policy."""
+        return ControlSupervisor(client, link, motion_allowed=False)
+
+    def session_motion_capable(self):
+        return False
+
+    def release_was_sent(self):
+        return False
+
+    def control_tick(self):
+        if self.intent_mailbox is None:
+            self._intent_seq += 1
+            self.control.submit_intent(self._intent_seq, 0, 0)
+        else:
+            kind, intent = self.intent_mailbox.consume()
+            if kind == 'stop': self.control.stop()
+            elif kind == 'intent': self.control.submit_intent(*intent)
+        return self.control.tick()
+
+    def validate_actual_output(self, car):
+        if car is not None and (car['left'] != 0 or car['right'] != 0):
+            raise RuntimeError('STM32 reported nonzero PWM in LAB_ONLY session')
 
     def log(self, item):
         with self._journal_lock:
@@ -156,6 +371,25 @@ class JointRunner:
         with self._state_lock:
             self.failures.append(str(reason))
         self.stop_event.set()
+
+    def handle_schedule_overrun(self, lag_s):
+        if not self.diagnostic_timing or self.control.motion_allowed:
+            raise RuntimeError('control schedule missed more than one interval')
+        self.control.stop()
+        if self.intent_mailbox is not None:self.intent_mailbox.stop()
+        reason='control schedule overrun; stopped and continued zero-output diagnosis'
+        with self._state_lock:
+            self.schedule_overruns += 1
+            self.schedule_max_lag_ms = max(self.schedule_max_lag_ms,lag_s*1000)
+            if reason not in self.failures:self.failures.append(reason)
+        self.log({'type':'control_schedule_overrun','host_monotonic_ns':time.monotonic_ns(),
+                  'lag_ms':lag_s*1000,'action':'stop_and_continue_zero_output_diagnosis',
+                  'motion_allowed':False})
+
+    def timing_status(self):
+        return {'diagnostic_recovery':self.diagnostic_timing,
+                'overruns':self.schedule_overruns,'maximum_lag_ms':self.schedule_max_lag_ms,
+                'strict_acceptance_failed':self.schedule_overruns>0}
 
     def cleanup_bounded(self, name, cleanup, timeout_s=1):
         """A stuck display driver must not prevent UART shutdown/evidence."""
@@ -178,7 +412,7 @@ class JointRunner:
             if action["kind"] == "calibration":
                 try:
                     config = action["config"]
-                    config.apply(self.client, motor_disconnected=True)
+                    config.apply(self.client, motor_disconnected=self.motor_disconnected)
                     with self._state_lock:
                         self.identity["calibration"] = config.payload()
                     self.action_status = {"kind": "calibration", "applied": True}
@@ -191,14 +425,7 @@ class JointRunner:
                 return
         # Explicit bench policy: synthesize NEW ZERO intentions only. The
         # production supervisor never renews an old upstream driving request.
-        if self.intent_mailbox is None:
-            self._intent_seq += 1
-            self.control.submit_intent(self._intent_seq, 0, 0)
-        else:
-            kind, intent = self.intent_mailbox.consume()
-            if kind == 'stop': self.control.stop()
-            elif kind == 'intent': self.control.submit_intent(*intent)
-        ticks, shot, decision = self.control.tick()
+        ticks, shot, decision = self.control_tick()
         if self.previous_epoch == shot.epoch:
             raise RuntimeError("snapshot epoch froze in joint session")
         self.previous_epoch = shot.epoch
@@ -214,9 +441,6 @@ class JointRunner:
                  "host_monotonic_ns": after, "pl_ticks64": ticks64,
                  "registers": registers, "control": decision,
                  "clock_anchor": {k: v for k, v in anchor.items() if k != "registers"}}
-        self.samples += 1
-        with self._state_lock:
-            self.latest = event
         self.log(event)
         if hasattr(self.link, "status_snapshot"):
             car, car_sequence, car_received = self.link.status_snapshot()
@@ -252,13 +476,39 @@ class JointRunner:
                   "car": car, "car_age_s": car_age,
                   "car_sequence": car_sequence,
                   "car_valid": car is not None and car_age is not None and 0 <= car_age < .7,
+                  "infrared": {
+                      "mask": int(shot.infrared.data) & 3,
+                      "valid": sample_fresh(shot.infrared, ticks),
+                      "sequence": shot.infrared.sequence,
+                      "fault": int(shot.infrared.data) >> 4,
+                  },
+                  "encoder": {
+                      "left": {
+                          "position": shot.qei0_position,
+                          "faults": raw_fault_reasons(registers, 0),
+                          "sequence": shot.qei0.sequence,
+                          "valid": sample_fresh(shot.qei0, ticks),
+                          "velocity_q16": shot.qei0_velocity_q16,
+                      },
+                      "right": {
+                          "position": shot.qei1_position,
+                          "faults": raw_fault_reasons(registers, 1),
+                          "sequence": shot.qei1.sequence,
+                          "valid": sample_fresh(shot.qei1, ticks),
+                          "velocity_q16": shot.qei1_velocity_q16,
+                      },
+                  },
                   "display": diagnostics}
+        if hasattr(self.link, "diagnostics"):
+            status["stm32_link"] = self.link.diagnostics()
+        event["status"] = status
         with self._state_lock:
-            self.latest["status"] = status
+            self.latest = event
+            self.samples += 1
+        self.interconnect_monitor.observe(status, video_frames=self.frames)
         self.log({"type": "status", "host_monotonic_ns": time.monotonic_ns(), **status})
         if car_sequence > self._baseline_car_seq:
-            if car is not None and (car["left"] != 0 or car["right"] != 0):
-                raise RuntimeError("STM32 reported nonzero PWM in LAB_ONLY session")
+            self.validate_actual_output(car)
             if car and car["lock"] and self.first_stop_response_ms is None:
                 self.first_stop_response_ms = (time.monotonic() - self._started) * 1000
                 if self.first_stop_response_ms > 300:
@@ -308,9 +558,13 @@ class JointRunner:
         with self._state_lock:
             result = copy.deepcopy({"running": self._journal is not None and not self.stop_event.is_set(),
                     "hardware": self.hardware, "motion_allowed": False,
+                    "motor_disconnected": self.motor_disconnected,
+                    "control_timing": self.timing_status(),
+                    "control_available": True,
                     "samples": self.samples, "frames": self.frames,
                     "failures": list(self.failures), "identity": dict(self.identity),
                     "action": self.action_status,
+                    "startup_readiness": getattr(self, 'startup_readiness', None),
                     "motion_display_config": self.motion_display.configuration(),
                     "latest": self.latest})
         status = (result["latest"] or {}).get("status", {})
@@ -334,7 +588,16 @@ class JointRunner:
                 time.monotonic_ns() >= presentation.get('expires_monotonic_ns',0)):
             presentation.update(available=False,speed_mm_s=None,displacement_mm=None,travelled_mm=None,
                                 mode='telemetry_expired')
+        result["interconnect_test"] = self.interconnect_monitor.snapshot(
+            video_frames=self.frames,
+            link_diagnostics=status.get("stm32_link"),
+        )
         return result
+
+    def reset_interconnect_test(self):
+        if self.stop_event.is_set() or self._journal is None:
+            raise RuntimeError("session is not running")
+        return self.interconnect_monitor.reset()
 
     def enqueue_action(self, kind, payload=None):
         if self.stop_event.is_set() or self._journal is None:
@@ -343,6 +606,8 @@ class JointRunner:
             raise ValueError("unsupported operator action")
         item = {"kind": kind}
         if kind == "calibration":
+            if not self.motor_disconnected:
+                raise ValueError('calibration application requires disconnected motors')
             item["config"] = CalibrationConfig.from_payload(payload)
         self.actions.put_nowait(item)
         return {"queued": True, "kind": kind}
@@ -359,7 +624,7 @@ class JointRunner:
         self._baseline_car_seq = self.link.state_seq
         self.log({"type": "header", "schema": "car-joint-session/v1",
                   "hardware": self.hardware, "identity": self.identity,
-                  "motor_disconnected": True, "motion_allowed": False,
+                  "motor_disconnected": self.motor_disconnected, "motion_allowed": self.session_motion_capable(),
                   "session_id": self.session_id, "started_host_ns": self._started_ns,
                   "contract_version": reg.CONTRACT_VERSION, "contract_id": reg.INTEGRATED_ID,
                   "tick_hz": 100_000_000, "video_enabled": self.video is not None,
@@ -385,8 +650,10 @@ class JointRunner:
                     break
                 self.step()
                 next_tick += self.interval_s
-                if time.monotonic() - next_tick >= self.interval_s:
-                    raise RuntimeError("control schedule missed more than one interval")
+                now=time.monotonic()
+                if now - next_tick >= self.interval_s:
+                    self.handle_schedule_overrun(now-next_tick)
+                    next_tick=time.monotonic()+self.interval_s
             if self.first_stop_response_ms is None:
                 self.fail("no fresh locked-zero $CAR after STOP request")
             if self.video is not None and self.frames < 1:
@@ -399,6 +666,9 @@ class JointRunner:
             self._ended = time.monotonic()
             self._ended_ns = time.monotonic_ns()
             self.stop_event.set()
+            startup=getattr(self,'startup_readiness',{})
+            if startup.get('ready') is False:
+                self.fail('startup acquisition readiness failed: '+startup['error'])
             for name, cleanup in (("control", self.control.stop),
                                   ("source", self.source.close if self.source else None)):
                 if cleanup is not None:
@@ -431,8 +701,9 @@ class JointRunner:
                   "first_stop_response_ms": self.first_stop_response_ms,
                   "video_enabled": self.video is not None,
                   "video_metrics": self.metrics.summary(), "failures": self.failures,
-                  "passed": not self.failures, "motion_allowed": False,
-                  "release_sent": False}
+                  "passed": not self.failures, "motion_allowed": self.session_motion_capable(),
+                  "release_sent": self.release_was_sent()}
+        result['control_timing']=self.timing_status()
         result["session_id"] = self.session_id
         result["association_metrics"] = self.association_metrics.summary()
         result["journal_sha256"] = sha256(self.output_dir/"joint.jsonl")

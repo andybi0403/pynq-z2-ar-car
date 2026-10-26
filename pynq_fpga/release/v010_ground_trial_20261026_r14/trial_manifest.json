@@ -1,0 +1,24 @@
+{
+  "schema": "car-ground-trial/v1",
+  "classification": "CONTROLLED_TRIAL_CANDIDATE_NOT_RELEASE",
+  "name": "v010_ground_trial_20261026_r14",
+  "base": "v010_locked_resync_20261026_r12",
+  "base_manifest_sha256": "975a36ba9ae0378107bf7e1d190e79626bdcb78e8a2473694ad8073fb5bba4f6",
+  "files": {
+    "trial_control.py": "7758c5bca88dbd9cc18e0f93babad72cceab08f79e1285973e1c8a4f894e50e7",
+    "trial_runtime.py": "5e6d4518ba07169ba4345d72eaeda0ab6956d4d073147427407d037e292e871e",
+    "trial_page.html": "0065fdfd3b000c08bd74d83d2fca27f35d3ffd1d2d80fc5bb10faabee5b02d68",
+    "start_trial_console.sh": "b48b5786ec52f3083f6d286a8935826a5e524f6f400c94ac16556c71d5e85fbe"
+  },
+  "limits": {
+    "pwm": 400,
+    "burst_s": 1.0,
+    "intent_lease_ms": 250,
+    "scheduling_fault_ms": 100
+  },
+  "video_enabled": false,
+  "automatic_release": false,
+  "calibration": "No nominal defaults. Physical measured calibration remains required.",
+  "hardware_result": "PENDING",
+  "production_release_approved": false
+}

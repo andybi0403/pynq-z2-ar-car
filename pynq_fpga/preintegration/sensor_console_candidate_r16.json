@@ -1,0 +1,70 @@
+{
+  "schema": "car-integrated-console-candidate/v1",
+  "name": "v011_complete_console_20261026_r16",
+  "created_at": "2026-10-26T09:24:25.346313+00:00",
+  "status": "SOFTWARE_READY_HARDWARE_PENDING",
+  "hardware_result": "PENDING",
+  "package_dir": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\release\\v011_complete_console_20261026_r16",
+  "zip": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\release\\v011_complete_console_20261026_r16.zip",
+  "zip_sha256": "6b8d1c63e8abdbd66d798304acd755a998d2041b65ecc7c007f198ba9bd30bd5",
+  "manifest_sha256": "b9941329837fc883f9032525f93c133cd1681b4c9b76842cef2f3efea08b9ff5",
+  "software_revision": {
+    "kind": "SOFTWARE_PATCH_REUSING_VERIFIED_FPGA",
+    "name": "v011_complete_console_20261026_r16",
+    "base_manifest_sha256": "57903f8996f01248b77b130d17db20a4b1b5d01ffa1189d82914c8f99ba81ae2",
+    "base_package": "v011_ir_advisory_20261026_base",
+    "fpga_rebuilt": false,
+    "preserves_base_classification": true,
+    "sources": {
+      "system_runtime.py": "6531f7a0fbd870fb8d8f721150a3a46f988c1094febdba519755e84681a1f2d4",
+      "control_supervisor.py": "173fe36743f19bf56b2efff630e560a6ed71f0f9d9bda7b599c1ca5b386e8d4d",
+      "joint_evidence.py": "e6f3f4f3fe3d30c3a65b830ab5673ebad1885ede896e51feae65c7c9015dd185",
+      "perception_client.py": "bf58b749cbe9b3b675d97f3891fa8de25f51b04ab8b99bca4e95c7a5519495f9",
+      "car_regs.py": "292448f8ba508ab16b60aa8057bfb52667e793f78252b75c55956d94e1366b55",
+      "pynq_link.py": "1519b1f4efc46fdd805d180673b366b8fc5b53d3fa336a62bef3f99041ea09eb",
+      "wireless_runtime.py": "1f63d0e46a18af00d14d4007008722b348fd9bf15f913f5a7f8c65bb479f98fc",
+      "wireless_core.py": "ac00333da571290a09de487b769c7c60fed16a821270cdc49c20c89ccc156c81",
+      "wireless_server.py": "b2737b868a398f3f141a9418830f7c36a2601f24bfc3007e6d734144dc7cd179",
+      "wireless_page.html": "af115440d7e527eaec0d6e9599c4b0eca3f289834df84396a2d801f5c65a20f0",
+      "start_sensor_console.sh": "f79218a8b0e722fad2766a746785227f650603b3bf382b24d5ec3a0e3901e6e8",
+      "SENSOR_CONSOLE_GUIDE.md": "d15718902b4e418f886626572476ab1e37cc60b8635093199068eeed12ae1ff4",
+      "console_launcher.html": "f25a81735ff35685fc6ec0625483e19d9312882cf447286f0e3586b9af2b5201",
+      "prepare_console.py": "85eaa0cb70d1315a232e41c6e2e669b4d83ef2769e7fe20684e92fe20662f407",
+      "console_backend.py": "714866f57760967d2fd5501e284512995be48adccbd6e339563eac897a8a04e0",
+      "console_ui.js": "53ec1b8b1b038c8feb5cec471ea612618c19cf43f704f5dc4fb5f30d498f71b0",
+      "trial_control.py": "7758c5bca88dbd9cc18e0f93babad72cceab08f79e1285973e1c8a4f894e50e7",
+      "start_console.sh": "a1041c5270432d1e91eeebdaa7e5e7235e7a09c2088ac2bd8ce2b9590e05d3b5"
+    },
+    "validation": "validation/20261026_ir_advisory_console_r16.md"
+  },
+  "artifacts": {
+    "bit": {
+      "file": "task7_8_LAB_ONLY.bit",
+      "bytes": 2468650,
+      "sha256": "1d80069c8254fa9942cde851ee0dfcfbe4d38c22150ec99ed007d5a14df03f6b"
+    },
+    "hwh": {
+      "file": "task7_8_LAB_ONLY.hwh",
+      "bytes": 439758,
+      "sha256": "4f81458a8d144452d1cac98f7faa7324149b2b50db74e74c510e33edc504a766"
+    },
+    "stm32_hex": {
+      "file": "stm32_hybrid_v3.hex",
+      "bytes": 26013,
+      "sha256": "cb0485295d48e291663f3984d8725df0b2196a5c4045161adf8b4c00b618a3dd"
+    },
+    "stm32_bin": {
+      "file": "stm32_hybrid_v3.bin",
+      "bytes": 9224,
+      "sha256": "7002c8a75addc0aead0fc4c7979e1a74681db8c41b39a47030111cff7487c230"
+    },
+    "stm32_elf": {
+      "file": "stm32_hybrid_v3.elf",
+      "bytes": 468880,
+      "sha256": "7ef76b15fdf4930b8ab0c2e67887dd7cb207183ea828258d61fd3f758c8cbc4d"
+    }
+  },
+  "portable_archive_files": 76,
+  "classification": "CONTROLLED_CONSOLE_NOT_RELEASE",
+  "console_manifest_sha256": "0d741fe1d1f0f050b94c95867db62efa04f164f63ce77c6573230430edbcf8bf"
+}

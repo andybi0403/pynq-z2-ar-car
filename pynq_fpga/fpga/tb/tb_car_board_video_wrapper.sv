@@ -124,7 +124,7 @@ module tb_car_board_video_wrapper;
     dut.recent_frame(age_now,age_stamp)===(age_now>=age_stamp&&(age_now-age_stamp)<64'd20000000));
   end
 
-  rdreg('h000,rd);check("production ID through wrapper",rd===32'hc425100a);
+  rdreg('h000,rd);check("production ID through wrapper",rd===32'hc425100b);
 
   // One SOF/EOL sample proves that the production OSD, not a placeholder,
   // is connected in the AXIS path.  The fail-safe default may recolour it.

@@ -14,7 +14,7 @@ sys.path.insert(0, str(PROJECT / "host"))
 sys.path.insert(0, str(PROJECT / "preintegration" / "host"))
 from perception_client import PerceptionSnapshot, Sample
 from frame_pipeline import RawFrameSource,FRAME_BYTES
-from system_runtime import JointRunner,wait_for_acquisition
+from system_runtime import JointRunner,SensorInterconnectMonitor,wait_for_acquisition
 
 
 class Link:
@@ -80,6 +80,82 @@ class Video:
 
 
 class JointTests(unittest.TestCase):
+    def test_diagnostic_overrun_stops_intent_but_keeps_observation_and_failure(self):
+        from wireless_core import IntentMailbox
+        with tempfile.TemporaryDirectory() as tmp:
+            runner=self.runner(tmp,video=False)
+            runner.diagnostic_timing=True
+            runner.intent_mailbox=IntentMailbox();runner.intent_mailbox.submit(0,0)
+            original=runner.step;calls=[]
+            def delayed_step():
+                original();calls.append(1)
+                if len(calls)==2:time.sleep(.12)
+            runner.step=delayed_step
+            result=runner.run(.4)
+            self.assertGreaterEqual(len(calls),4)
+            self.assertEqual(result['control_timing']['overruns'],1)
+            self.assertFalse(result['passed']);self.assertFalse(result['release_sent'])
+            self.assertTrue(all(c==(0,0) for c in runner.link.commands))
+            events=[json.loads(l) for l in (Path(tmp)/'joint.jsonl').read_text().splitlines()]
+            late=[e for e in events if e['type']=='control_schedule_overrun']
+            self.assertEqual(len(late),1)
+            self.assertGreater(late[0]['lag_ms'],50)
+            self.assertEqual(late[0]['action'],'stop_and_continue_zero_output_diagnosis')
+
+    def test_schedule_recovery_is_rejected_for_strict_or_motion_capable_control(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            runner=self.runner(tmp,video=False);runner._journal=io.StringIO()
+            with self.assertRaisesRegex(RuntimeError,'schedule missed'):runner.handle_schedule_overrun(.1)
+            runner.diagnostic_timing=True;runner.control.motion_allowed=True
+            with self.assertRaisesRegex(RuntimeError,'schedule missed'):runner.handle_schedule_overrun(.1)
+            self.assertEqual(runner.schedule_overruns,0)
+
+    def test_browser_never_observes_half_built_sample_during_diagnostics(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            runner=self.runner(tmp,video=False)
+            runner._journal=io.StringIO();runner._baseline_car_seq=0;runner._started=time.monotonic()
+            runner.step()
+            previous=runner.status_snapshot()
+            entered=threading.Event();release=threading.Event();errors=[]
+            original=runner.client.display_diagnostics
+            def delayed():
+                entered.set()
+                if not release.wait(2):raise TimeoutError('test diagnostic barrier')
+                return original()
+            def step():
+                try:runner.step()
+                except Exception as exc:errors.append(exc)
+            runner.client.display_diagnostics=delayed
+            worker=threading.Thread(target=step)
+            worker.start()
+            try:
+                self.assertTrue(entered.wait(1))
+                during=runner.status_snapshot()
+                self.assertEqual(during['samples'],previous['samples'])
+                self.assertEqual(during['latest']['index'],previous['latest']['index'])
+                self.assertIn('status',during['latest'])
+            finally:
+                release.set();worker.join(2)
+            self.assertFalse(worker.is_alive());self.assertEqual(errors,[])
+            after=runner.status_snapshot()
+            self.assertEqual(after['samples'],previous['samples']+1)
+            self.assertEqual(after['latest']['index'],previous['latest']['index']+1)
+            self.assertIn('status',after['latest'])
+
+    def test_operator_calibration_uses_actual_motor_connection_state(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            runner=self.runner(tmp,video=False)
+            runner.motor_disconnected=False
+            runner._journal=io.StringIO();runner._baseline_car_seq=0;runner._started=time.monotonic()
+            class Config:
+                def apply(self,client,*,motor_disconnected):
+                    if not motor_disconnected:raise ValueError('motors are connected')
+                    raise AssertionError('physical state was misrepresented')
+            runner.actions.put_nowait({'kind':'calibration','config':Config()})
+            with self.assertRaisesRegex(ValueError,'motors are connected'):runner.step()
+            self.assertFalse(runner.action_status['applied'])
+            self.assertEqual(runner.samples,0)
+
     def test_display_estimate_does_not_promote_bad_measurements_or_control(self):
         from dataclasses import replace
         from perception_client import evaluate_snapshot
@@ -234,6 +310,75 @@ class JointTests(unittest.TestCase):
                 apply.assert_called_once_with(runner.client,motor_disconnected=True)
                 self.assertTrue(runner.action_status['applied'])
                 self.assertEqual(runner.identity['calibration'],config.payload())
+
+    def test_interconnect_monitor_requires_real_ir_and_both_encoder_evidence(self):
+        monitor=SensorInterconnectMonitor()
+        def status(mask,left_seq,right_seq):
+            return {
+                'distance_valid':True,'distance_mm':500,
+                'ir_valid':True,'ir_mask':mask,
+                'infrared':{'valid':True,'mask':mask},
+                'car_valid':True,'car':{'lock':1,'left':0,'right':0},
+                'encoder':{
+                    'left':{'sequence':left_seq,'position':left_seq,'valid':True},
+                    'right':{'sequence':right_seq,'position':right_seq,'valid':True},
+                },
+                'stm32_link':{'state_sequence':left_seq,'sensor_errors':0,'transport_error':None},
+            }
+        for index in range(40):
+            monitor.observe(status(index % 4,10+index,20+index),video_frames=5+index)
+        with monitor._lock:monitor.started_ns-=11_000_000_000
+        report=monitor.snapshot(video_frames=45,link_diagnostics={'state_sequence':50,'sensor_errors':0,'transport_error':None})
+        self.assertTrue(report['passed'],report)
+        self.assertEqual(report['infrared_side_states'],[[0,1],[0,1]])
+        self.assertEqual(report['encoder']['left_advances'],39)
+        self.assertEqual(report['encoder']['right_advances'],39)
+
+        untouched=SensorInterconnectMonitor()
+        untouched.observe(status(0,10,20),video_frames=5)
+        with untouched._lock:untouched.started_ns-=11_000_000_000
+        report=untouched.snapshot(video_frames=6,link_diagnostics={'state_sequence':20,'sensor_errors':0,'transport_error':None})
+        self.assertEqual(report['state'],'action_required')
+        self.assertIn('infrared_left_exercised',report['action_required'])
+        self.assertIn('encoder_left_moved',report['action_required'])
+
+    def test_interconnect_rejects_zero_speed_batches_invalid_ir_and_stale_sampling(self):
+        monitor=SensorInterconnectMonitor()
+        for index in range(40):
+            monitor.observe({'distance_valid':True,'distance_mm':500,
+                'infrared':{'valid':False,'mask':index%4},
+                'car_valid':True,'car':{'lock':1,'left':0,'right':0},
+                'encoder':{'left':{'valid':True,'position':0,'sequence':index},
+                           'right':{'valid':True,'position':0,'sequence':index}},
+                'stm32_link':{'state_sequence':index,'sensor_errors':0,
+                              'transport_error':'temporary fault' if index==2 else None}},video_frames=index)
+        monitor.started_ns-=11_000_000_000
+        report=monitor.snapshot(video_frames=50,link_diagnostics={'state_sequence':50})
+        self.assertFalse(report['conditions']['encoder_left_moved'])
+        self.assertFalse(report['conditions']['encoder_right_moved'])
+        self.assertEqual(report['infrared_side_states'],[[],[]])
+        self.assertEqual(report['transport_error'],'temporary fault')
+        monitor.last_observe_ns-=300_000_000
+        self.assertFalse(monitor.snapshot()['conditions']['sampling_fresh'])
+
+    def test_interconnect_position_wrap_and_reverse_use_real_counts(self):
+        monitor=SensorInterconnectMonitor()
+        for count in (2147483647,-2147483648,2147483647):
+            monitor.observe({'encoder':{'left':{'valid':True,'position':count}}},video_frames=0)
+        self.assertEqual(monitor.snapshot()['encoder']['left_advances'],2)
+
+    def test_connected_zero_output_diagnosis_records_physical_state_without_release(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            runner=self.runner(tmp,video=False)
+            runner.motor_disconnected=False
+            result=runner.run(.1)
+            header=json.loads((Path(tmp)/'joint.jsonl').read_text().splitlines()[0])
+            self.assertFalse(header['motor_disconnected'])
+            self.assertFalse(header['motion_allowed'])
+            self.assertFalse(result['motion_allowed'])
+            self.assertFalse(result['release_sent'])
+            self.assertTrue(all(left==right==0 for left,right in runner.link.commands))
+
     def runner(self, folder, *, freeze=False, block=False, video=True):
         link = Link()
         client = Client(link, freeze)

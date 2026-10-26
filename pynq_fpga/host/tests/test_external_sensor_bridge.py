@@ -76,5 +76,36 @@ class ExternalBridgeTests(unittest.TestCase):
         self.io.mem[reg.ID_VERSION]=0xC4251009
         with self.assertRaises(ContractError):self.client.attach_sensor_link(self.link)
 
+    def test_new_acquisition_epoch_clears_seen_flags_before_lower_counters(self):
+        self.client.commit_external_sensors(self.report(us_seq=30000,ir_seq=30001),1.0)
+        self.io.mem[reg.EXT_SENSOR_STATUS]=7;self.io.writes.clear()
+        # The MMIO owner intentionally misses the intermediate None snapshot.
+        self.client.commit_external_sensors(self.report(us_seq=2,ir_seq=3,acquisition_epoch=1),1.0)
+        writes=self.io.writes
+        reset=next(i for i,(offset,value) in enumerate(writes) if offset==reg.EXT_SENSOR_MODE and value==1)
+        commit=next(i for i,(offset,_) in enumerate(writes) if offset==reg.EXT_SENSOR_COMMIT)
+        self.assertLess(reset,commit)
+        self.assertIn((reg.RISK_CMD,0),writes[:commit])
+        self.assertEqual(self.io.mem[reg.EXT_US_META],0x80000002)
+        self.assertEqual(self.io.mem[reg.EXT_IR_META],0x80000003)
+        self.io.writes.clear()
+        self.client.commit_external_sensors(self.report(us_seq=3,ir_seq=4,acquisition_epoch=1),1.0)
+        self.assertNotIn(reg.EXT_SENSOR_MODE,[o for o,_ in self.io.writes])
+        self.io.writes.clear()
+        with self.assertRaises(ContractError):self.client.commit_external_sensors(self.report(acquisition_epoch=0),1.0)
+        self.assertNotIn(reg.EXT_SENSOR_COMMIT,[o for o,_ in self.io.writes])
+
+    def test_invalid_or_failed_epoch_reset_does_not_commit(self):
+        self.io.writes.clear()
+        with self.assertRaises(ContractError):self.client.commit_external_sensors(self.report(acquisition_epoch=True),1.0)
+        self.assertNotIn(reg.EXT_SENSOR_COMMIT,[o for o,_ in self.io.writes])
+        original=self.io.write32
+        def ignored_mode(offset,value):
+            if offset==reg.EXT_SENSOR_MODE:return
+            original(offset,value)
+        self.io.mem[reg.EXT_SENSOR_STATUS]=7;self.io.write32=ignored_mode
+        with self.assertRaises(ContractError):self.client.commit_external_sensors(self.report(acquisition_epoch=1),1.0)
+        self.assertNotIn(reg.EXT_SENSOR_COMMIT,[o for o,_ in self.io.writes])
+
 
 if __name__=='__main__':unittest.main()

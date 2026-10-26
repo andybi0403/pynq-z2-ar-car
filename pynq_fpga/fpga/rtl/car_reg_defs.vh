@@ -1,7 +1,7 @@
 // Generated from registers/register_map.json; do not hand edit.
 `ifndef CAR_REG_DEFS_VH
 `define CAR_REG_DEFS_VH
-`define CAR_INTEGRATED_ID 32'hC425100A
+`define CAR_INTEGRATED_ID 32'hC425100B
 `define CAR_REG_ID_VERSION 12'h000
 `define CAR_REG_CTRL 12'h004
 `define CAR_REG_STATUS 12'h008

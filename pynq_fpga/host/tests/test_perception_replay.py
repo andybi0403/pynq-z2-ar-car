@@ -84,7 +84,7 @@ class ReplayTests(unittest.TestCase):
         qei = self._decision_for({"QEI0_META": 1})
         self.assertIn("qei0_invalid", qei.reasons)
         ir = self._decision_for({"IR_STATUS": 5})
-        self.assertIn("ir_obstacle", ir.reasons)
+        self.assertTrue(ir.permit)
         command = self._decision_for({"CMD_TS": 0}, pl_ticks=25_000_000)
         self.assertIn("command_stale", command.reasons)
         near_wrap = {
@@ -151,13 +151,12 @@ class ReplayTests(unittest.TestCase):
         header, records = load_jsonl(FIXTURE)
         record = json.loads(json.dumps(records[0]))
         record["registers"]["IR_STATUS"] = 5
-        record["registers"]["RISK_STATE"] = (1 << 23) | 1
-        record["expected"] = {"permit": False,
-                              "reasons": ["ir_obstacle", "risk_stop"]}
+        record["registers"]["RISK_STATE"] = (1 << 23)
+        record["expected"] = {"permit": True, "reasons": []}
         io = ReplayRegisterIO(header, [record])
         client = PerceptionClient(io, snapshot_attempts=1)
         now_ticks, shot, decision = client.sample_and_decide()
-        self.assertFalse(decision.permit)
+        self.assertTrue(decision.permit)
         sensor = snapshot_to_link_sample(shot, now_ticks & 0xFFFFFFFF)
         self.assertEqual((sensor.valid, sensor.infrared_mask), (True, 1))
 
@@ -165,7 +164,8 @@ class ReplayTests(unittest.TestCase):
         frame = night_a.build_p(0, 0, sensor.valid, sensor.distance_mm,
                                 0, sensor.infrared_mask, "pynq")
         c.feed_frame(frame, 0)
-        self.assertTrue(c.s.reason & night_a.FAULT_IR)
+        self.assertFalse(c.s.reason & night_a.FAULT_IR)
+        self.assertEqual(c.s.ir,1)
         self.assertFalse(c.s.reason & 8)  # FAULT_SENSOR
 
 

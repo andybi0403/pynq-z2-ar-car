@@ -449,6 +449,7 @@ class PerceptionClient:
         if self.io.read32(reg.EXT_SENSOR_MODE) != 1:
             raise ContractError('external sensor mode readback failed')
         self._sensor_link = link
+        self._sensor_acquisition_epoch = getattr(link, 'acquisition_epoch', 0)
         self._sensor_commit = self.io.read32(reg.EXT_SENSOR_SEQUENCE)
 
     def commit_external_sensors(self, report, now_s) -> None:
@@ -467,6 +468,21 @@ class PerceptionClient:
                 raise ContractError('sensor bridge host clock moved backwards')
             now_s = observed
         values = {}
+        if report is not None:
+            epoch = report.get('acquisition_epoch', 0)
+            if type(epoch) is not int or epoch < 0:
+                raise ContractError('invalid sensor acquisition epoch')
+            if epoch < getattr(self, '_sensor_acquisition_epoch', 0):
+                raise ContractError('sensor acquisition epoch rolled back')
+            if epoch != getattr(self, '_sensor_acquisition_epoch', 0):
+                # A new verified UART session may begin at lower MCU sample
+                # counters. Revoke validity and reset PL seen flags first,
+                # including when the MMIO owner missed the no-report interval.
+                self.set_command(forward=False, valid=False)
+                self.io.write32(reg.EXT_SENSOR_MODE, 1)
+                if self.io.read32(reg.EXT_SENSOR_MODE) != 1 or self.io.read32(reg.EXT_SENSOR_STATUS) & 0x6:
+                    raise ContractError('external acquisition epoch reset failed')
+                self._sensor_acquisition_epoch = epoch
         for channel, maximum in (('us', .200), ('ir', .100)):
             sequence = 0 if report is None else report[channel + '_seq']
             age = maximum if report is None else now_s - report[channel + '_sample_s']
@@ -530,9 +546,9 @@ def snapshot_to_link_sample(
 ) -> LinkSample:
     """Preserve P-frame sensor semantics without folding in drive permission.
 
-    A valid IR obstacle remains ``V=1, IR!=0`` so the STM32 records
-    ``FAULT_IR``. QEI/risk/command failures stop driving via ``SafetyDecision``
-    but do not relabel a valid distance/IR observation as a sensor failure.
+    IR retains its real bitmap for warning display, independently of the
+    ultrasonic validity used by the actuator policy. IR loss/obstacles never
+    invalidate an otherwise fresh ultrasonic observation (v0.11).
     """
     us_fault = (shot.ultrasonic.data >> 12) & 0xF
     us_fresh = (
@@ -540,9 +556,8 @@ def snapshot_to_link_sample(
         and elapsed32(now_ticks, shot.ultrasonic.timestamp) < data_max_age_ticks
         and us_fault == 0
     )
-    ir_usable = shot.infrared.valid and bool(shot.infrared.data & 0x4)
     return LinkSample(
-        valid=bool(us_fresh and ir_usable),
+        valid=bool(us_fresh),
         distance_mm=shot.ultrasonic.data & 0xFFF,
         infrared_mask=shot.infrared.data & 0x3,
     )
@@ -555,10 +570,11 @@ def evaluate_snapshot(
     data_max_age_ticks: int = DATA_MAX_AGE_TICKS,
     command_lease_ticks: int = COMMAND_LEASE_TICKS,
 ) -> SafetyDecision:
-    """Fail-safe host interpretation of one v0.6 global snapshot.
+    """Host interpretation of one v0.11 global snapshot.
 
     IR_TS is a state-change timestamp, so it is deliberately not subjected to
-    periodic sample aging. IR validity/stability and obstacle bits are checked.
+    periodic sample aging. All IR observations are advisory, including invalid
+    or disconnected inputs; ultrasonic, QEI, command and risk gates remain.
     """
     reasons: list[str] = []
 
@@ -574,10 +590,6 @@ def evaluate_snapshot(
     for channel in (0, 1):
         reasons.extend(f'qei{channel}_{reason}' for reason in snapshot_fault_reasons(shot, channel))
     require_fresh("risk", shot.risk)
-    if not shot.infrared.valid or not (shot.infrared.data & 0x4):
-        reasons.append("ir_invalid")
-    if shot.infrared.data & 0x3:
-        reasons.append("ir_obstacle")
     if not (shot.command_state & 0x2):
         reasons.append("command_invalid")
     elif elapsed32(now_ticks, shot.command_timestamp) >= command_lease_ticks:

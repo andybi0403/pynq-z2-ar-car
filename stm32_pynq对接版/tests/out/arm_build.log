@@ -1,9 +1,9 @@
    text	   data	    bss	    dec	    hex	filename
-   9156	     84	   3548	  12788	   31f4	build_safe/safe_car.elf
+   9140	     84	   3548	  12772	   31e4	build_safe/safe_car.elf
 
-Algorithm       Hash                                                           
----------       ----                                                           
-SHA256          7DE065D9AF6133AE9C37638E36EFBC5678800931B2A9B8271EF298BFA1B1...
-SHA256          8B043A342C839414F021BBD68700DDFAC48113509577872ACE9074BB806F...
+Algorithm       Hash                                                                   Path                            
+---------       ----                                                                   ----                            
+SHA256          CB0485295D48E291663F3984D8725DF0B2196A5C4045161ADF8B4C00B618A3DD       C:\Users\39909\Desktop\FPGA\s...
+SHA256          7002C8A75ADDC0AEAD0FC4C7979E1A74681DB8C41B39A47030111CFF7487C230       C:\Users\39909\Desktop\FPGA\s...
 
 

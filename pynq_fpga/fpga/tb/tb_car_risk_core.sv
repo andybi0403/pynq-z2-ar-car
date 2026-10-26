@@ -24,7 +24,7 @@ module tb_car_risk_core;
   check("static IR does not false-expire",reasons[6],0);check("static IR remains safe",level,0);
   us_data=1300;settle;check("yellow band",level,1);check("yellow permits candidate",stop,0);
   us_data=1202;settle;check("red boundary",level,2);check("red stops",stop,1);check("distance reason",reasons[12],1);
-  us_data=1500;ir_status=3'b101;settle;check("IR fault level",level,3);check("IR reason",reasons[7],1);
+  us_data=1500;ir_status=3'b101;settle;check("IR advisory keeps distance risk green",level,0);check("IR warning reason",reasons[7],1);check("IR obstacle does not stop",stop,0);
   ir_status=3'b100;now=140;settle;check("US age exact invalid",reasons[4],1);
   now=5;cmd_ts=32'hfffffff8;us_ts=32'hfffffff8;ir_ts=32'hfffffff8;q0_ts=32'hfffffff8;q1_ts=32'hfffffff8;settle;
   check("wrap age remains fresh",level,0);
@@ -39,7 +39,10 @@ module tb_car_risk_core;
   q1_ts=50;q1_seq=q1_seq+1'b1;settle;check("QEI1 freshness clears",reasons[11],0);
   // ir_status[2]是硬件稳定/可用位；valid=1不能掩盖stable=0。
   ir_status=3'b000;ir_seq=ir_seq+1'b1;settle;
-  check("IR unstable invalid",reasons[5],1);check("IR unstable stops",stop,1);
+  check("IR unstable warning",reasons[5],1);check("IR unstable does not stop",stop,0);
+  ir_valid=0;settle;check("IR disconnected warning",reasons[5],1);check("IR disconnected does not stop",stop,0);
+  us_data=100;settle;check("US still stops with disconnected IR",stop,1);check("US remains red",level,2);
+  us_data=1500;ir_valid=1;
   ir_status=3'b100;ir_seq=ir_seq+1'b1;settle;check("IR stable clears invalid",reasons[5],0);
   q0_vel=32'hfc18_0000;settle;check("reverse wheel direction fault",reasons[13],1);check("direction fault stops",stop,1);
   // Back-to-back source tuples must keep their timestamp with the matching

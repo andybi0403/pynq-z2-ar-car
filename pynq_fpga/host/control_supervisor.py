@@ -155,7 +155,7 @@ class ControlSupervisor:
                                  and shot.qei0_velocity_q16 == 0
                                  and shot.qei1_velocity_q16 == 0
                                  and car_fresh and car["left"] == 0 and car["right"] == 0
-                                 and car.get("mm", 0) >= 250 and car.get("ir", 3) == 0)
+                                 and car.get("mm", 0) >= 250)
                 if allowed and car_fresh:
                     self._fault_stop_sent = False
                 if not allowed or not car_fresh:

@@ -29,7 +29,8 @@ void safe_tick(SafeControl *s, uint32_t now) {
     uint8_t fault=0;
 
     /* 每个控制周期都重新检查故障，而不是只在收到 $P 帧时检查。 */
-    if (s->ir) fault |= FAULT_IR;
+    /* IR is advisory only, including during manual unlock. Its real bitmap
+     * remains available in telemetry; it must never latch or gate motors. */
     if (!s->valid || (uint32_t)(now-s->sample_ms)>=SAFE_SENSOR_AGE_MS)
         fault |= FAULT_SENSOR;
     else if (s->distance_mm<=SAFE_STOP_MM) {
@@ -47,8 +48,8 @@ void safe_tick(SafeControl *s, uint32_t now) {
         fault |= FAULT_LINK;
     if (fault) safe_fault(s,fault);
 
-    /* 只有红外清除、距离足够大且数据未过期，才开始人工解锁计时。 */
-    if (!s->ir && s->valid && s->distance_mm>=SAFE_RELEASE_MM &&
+    /* 距离足够大且数据未过期，才开始人工解锁计时；红外只告警。 */
+    if (s->valid && s->distance_mm>=SAFE_RELEASE_MM &&
         (uint32_t)(now-s->sample_ms)<SAFE_SENSOR_AGE_MS) {
         if (!s->clear_tracking) { s->clear_tracking=1; s->clear_ms=now; }
     } else s->clear_tracking=0;
@@ -108,7 +109,7 @@ bad:
  *   N    序号 0..9 循环，本机只校验格式，丢帧核对由 PYNQ 侧完成；
  *   C    校验和：'$' 到 N 字段所有字符 ASCII 和的低 8 位，两位大写十六进制。
  * 示例（校验和与实现一致）：$P,1200,1200,1,0888,0,0,xx#
- * 红外触发、V=0、数据过期、租约超时、校验失败都会锁存停车；帧解析逐
+ * 红外只上报；V=0、数据过期、租约超时、校验失败都会锁存停车；帧解析逐
  * 字段检查格式，任何越界、缺字段或校验失败都算 FAULT_FRAME。
  */
 static int pnum(const char *p, size_t n, size_t *i, int *out) {

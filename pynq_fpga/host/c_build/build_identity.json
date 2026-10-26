@@ -1,9 +1,9 @@
 {
     "schema":  "car-production-c-build/v1",
     "source":  "C:\\Users\\39909\\Desktop\\FPGA\\stm32_pynq对接版\\Source\\APP\\safe_control.c",
-    "source_sha256":  "ef32fb8a078fca7faf719377bcb728a908d450e8ef43a4bf2d85665e7be365d3",
+    "source_sha256":  "fcabcccf3d4fb4900654b3b3a672977b5dd5e5c06a3f150f9044b2ae13de4364",
     "header":  "C:\\Users\\39909\\Desktop\\FPGA\\stm32_pynq对接版\\Source\\APP\\safe_control.h",
     "header_sha256":  "da8d27cfb4c0c78b75282e8f7ec58758847d29355569580851bebe513e0ed3fe",
-    "dll_sha256":  "a5c1821bb35a98f38c155b7ac072a28643e541c0c539d4cd7acc312e0bced486",
+    "dll_sha256":  "0a0d72521e0d14e6166c11d47d5aebf1a6d45a33fa79f4c0a187f23278125cfe",
     "compiler_command":  "cl /nologo /W4 /wd4819 /WX /TC /LD /O2 \"C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\c_build\\safe_control_prod.c\" \"C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\c_build\\hybrid_protocol_prod.c\" /Fe\"C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\c_build\\safe_control.dll\" /FoC:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\host\\c_build\\obj\\ /link /EXPORT:safe_init /EXPORT:safe_tick /EXPORT:safe_fault /EXPORT:safe_source_handover /EXPORT:safe_frame /EXPORT:safe_pframe /EXPORT:safe_outputs /EXPORT:hybrid_receive /EXPORT:hybrid_report /EXPORT:hybrid_crc16 /EXPORT:safe_local_sample"
 }

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "contract_version": 10,
-  "integrated_id": "0xC425100A",
+  "contract_version": 11,
+  "integrated_id": "0xC425100B",
   "address_width": 12,
   "data_width": 32,
   "regions": [
@@ -248,7 +248,7 @@
       "offset": "0x0C0",
       "access": "RO",
       "reset": "0",
-      "description": "bit0 stop; bits2:1 level; bits31:16 reasons"
+        "description": "bit0 stop; bits2:1 distance/control risk level; bits31:16 reasons. v0.11: reason bits5/7 are IR advisory-only; IR invalid/obstacle never affect stop, level or manual release"
     },
     {
       "name": "RISK_REQUIRED_MM",

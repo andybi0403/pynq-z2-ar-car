@@ -1,0 +1,61 @@
+{
+  "schema": "car-sensor-console-candidate/v1",
+  "name": "v010_locked_resync_20261026_r12",
+  "created_at": "2026-10-25T19:03:54.171338+00:00",
+  "status": "SOFTWARE_READY_HARDWARE_PENDING",
+  "hardware_result": "PENDING",
+  "package_dir": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\release\\v010_locked_resync_20261026_r12",
+  "zip": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\release\\v010_locked_resync_20261026_r12.zip",
+  "zip_sha256": "19b914700c74c10b8835496d2f01c0c6afe040f55e445d27dd9761a8e67474ee",
+  "manifest_sha256": "975a36ba9ae0378107bf7e1d190e79626bdcb78e8a2473694ad8073fb5bba4f6",
+  "software_revision": {
+    "kind": "SOFTWARE_PATCH_REUSING_VERIFIED_FPGA",
+    "name": "v010_locked_resync_20261026_r12",
+    "base_manifest_sha256": "1639afd3798014d54c771cfd816eba5e2e3769590500f08c29e792a46aee5545",
+    "base_package": "v010_statistics_latency_20261026_r11",
+    "fpga_rebuilt": false,
+    "preserves_base_classification": true,
+    "sources": {
+      "system_runtime.py": "934f501677c55a0f7c7ef234f543dc17aca1b23914d68b2419e02f9f3b2177ce",
+      "perception_client.py": "f58700368517e82e20b671065475af6845bb2ec936e8ea60a6eb5121b97e5a0b",
+      "pynq_link.py": "bd371035edf24cd307859bed318e99aa8901d6bbebe2ba606622ac959dcb64cc",
+      "wireless_runtime.py": "9fdc9f79b6beab258172b6a3c30bdfbfbc0f2200611807fb2e4c75b33a68b429",
+      "wireless_core.py": "ac00333da571290a09de487b769c7c60fed16a821270cdc49c20c89ccc156c81",
+      "wireless_server.py": "7459866ffb82904074397395eb41573694b2c3f033195bdc466d520a7e079be1",
+      "wireless_page.html": "a009ec0b86f60df92c3bec841dd209485df15f4d1b5b46cfb86bd05e994699b8",
+      "start_sensor_console.sh": "f79218a8b0e722fad2766a746785227f650603b3bf382b24d5ec3a0e3901e6e8",
+      "SENSOR_CONSOLE_GUIDE.md": "a2ad383e95a89358880a00b876ff385b81d33e69a6f30cc01f9f181584d48bd6",
+      "console_launcher.html": "f25a81735ff35685fc6ec0625483e19d9312882cf447286f0e3586b9af2b5201",
+      "prepare_console.py": "5cffdbf8cb291b420155c50c9774678fad2362cd1e8fc0de68ce321cce78907c"
+    },
+    "validation": "validation/20261026_locked_resync_r12.md"
+  },
+  "artifacts": {
+    "bit": {
+      "file": "task7_8_LAB_ONLY.bit",
+      "bytes": 2458794,
+      "sha256": "d3287345221c56d0f0c120508ef1bc54771eeedd7b85050e50906c3ff282d7ad"
+    },
+    "hwh": {
+      "file": "task7_8_LAB_ONLY.hwh",
+      "bytes": 439758,
+      "sha256": "b0b2aeaee963cfc4f018c18ce1d68b9dc96a6d74b3cf02b3e6ac43015af4e81d"
+    },
+    "stm32_hex": {
+      "file": "stm32_hybrid_v3.hex",
+      "bytes": 26058,
+      "sha256": "7de065d9af6133ae9c37638e36efbc5678800931b2a9b8271ef298bfa1b17342"
+    },
+    "stm32_bin": {
+      "file": "stm32_hybrid_v3.bin",
+      "bytes": 9240,
+      "sha256": "8b043a342c839414f021bbd68700ddfac48113509577872ace9074bb806f4f2d"
+    },
+    "stm32_elf": {
+      "file": "stm32_hybrid_v3.elf",
+      "bytes": 468892,
+      "sha256": "569ef3dbbb1f16e69adc34fe52a5c0da98fd5da516ea32c7a2f668d66b0a8859"
+    }
+  },
+  "portable_archive_files": 66
+}

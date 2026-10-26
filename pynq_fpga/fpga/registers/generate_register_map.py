@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parent
 SPEC = ROOT / "register_map.json"
 RTL = ROOT.parent / "rtl" / "car_reg_defs.vh"
 PY = ROOT.parent.parent / "host" / "car_regs.py"
-MD = ROOT.parent.parent / "nightly" / "register_map_v0.10.md"
+MD = ROOT.parent.parent / "nightly" / "register_map_v0.11.md"
 
 
 def number(value: object) -> int:

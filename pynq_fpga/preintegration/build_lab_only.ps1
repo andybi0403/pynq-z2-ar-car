@@ -164,7 +164,8 @@ foreach ($Item in $Support | Where-Object { $_.Name.EndsWith('.py') }) {
 if ($Manifest.video_profile -eq 'wireless720') {
     $Manifest.wireless_files = [ordered]@{}
     $WirelessNames = @('wireless_runtime.py','wireless_core.py','wireless_dma.py','wireless_server.py',
-        'native_video.py','wireless_page.html','wireless_player.js','wireless_policy.py','wireless_benchmark.py','wireless_requirements.txt','WIRELESS_SETUP.md')
+        'native_video.py','wireless_page.html','wireless_player.js','wireless_policy.py','wireless_benchmark.py','wireless_requirements.txt','WIRELESS_SETUP.md','start_sensor_console.sh','SENSOR_CONSOLE_GUIDE.md','console_launcher.html','prepare_console.py',
+        'console_backend.py','console_ui.js','trial_control.py','start_console.sh')
     foreach ($Name in $WirelessNames) {
         Copy-Item -LiteralPath (Join-Path $PreDir ('host\'+$Name)) -Destination (Join-Path $OutDir $Name)
         $Manifest.wireless_files[$Name] = (Get-FileHash -Algorithm SHA256 (Join-Path $OutDir $Name)).Hash.ToLowerInvariant()

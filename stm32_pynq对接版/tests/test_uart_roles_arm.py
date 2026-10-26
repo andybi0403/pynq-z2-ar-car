@@ -26,6 +26,67 @@ def pair(data_uart,noise=None,flags=0x20):
     return m,host
 
 class UartRoleTests(unittest.TestCase):
+    def test_unused_transmitters_are_high_impedance(self):
+        m=Machine()
+        def pin(n):
+            return (m.read32(0x40010800+(4 if n>=8 else 0))>>((n%8)*4))&15
+        for n in (2,9):self.assertEqual(pin(n),4)
+        for port in (m.U1,m.U2):self.assertEqual(m.read32(port+12)&8,0)
+        m.inject(m.U2,hybrid_frame('Q1',123,1));m.step(1,100)
+        self.assertEqual(pin(2),11)
+        self.assertEqual(pin(9),4)
+        self.assertEqual(m.read32(m.U1+12)&8,0)
+        m.step(500,100)
+        self.assertEqual(bytes(m.output[m.U1]),b'')
+
+    def test_locked_idle_owner_can_be_replaced_by_fresh_valid_query(self):
+        for first,second in ((Machine.U1,Machine.U2),(Machine.U2,Machine.U1)):
+            m=Machine();m.inject(first,hybrid_frame('Q1',123,1));m.step(1,100)
+            m.inject(second,hybrid_frame('Q1',456,1));m.step(1000,100)
+            self.assertEqual(m.read32(SYMS['hybrid']),123)
+            m.inject(second,hybrid_frame('Q1',456,1));m.step(2100,100)
+            self.assertEqual(m.read32(SYMS['hybrid']),456)
+            self.assertEqual(m.facts()['bound_uart'],1 if second==m.U1 else 2)
+            self.assertTrue(m.facts()['all_replies_locked_zero'])
+            self.assertEqual(m.read32(first+12)&8,0)
+
+    def test_bad_crc_or_drive_cannot_take_over_idle_owner(self):
+        m=Machine();m.inject(m.U1,hybrid_frame('Q1',123,1));m.step(1,100)
+        for packet in (b'$Q1,456,1,0000#',hybrid_frame('D1',456,1,100,100),hybrid_frame('R1',456,1)):
+            m.inject(m.U2,packet);m.step(2100,100)
+            self.assertEqual(m.facts()['bound_uart'],1)
+            self.assertEqual(m.read32(SYMS['hybrid']),123)
+
+    def test_duplicate_query_on_both_receivers_uses_one_transmitter(self):
+        m=Machine()
+        for sequence in range(1,13):
+            packet=hybrid_frame('Q1',123,sequence)
+            m.inject(m.U1,packet);m.inject(m.U2,packet);m.step(sequence*250,100)
+        self.assertEqual(m.facts()['bound_uart'],1)
+        self.assertEqual(len(m.reports()),12)
+        self.assertEqual(bytes(m.output[m.U2]),b'')
+
+    def test_other_query_cannot_take_over_while_driving_after_timeout(self):
+        m=Machine();m.inject(m.U1,hybrid_frame('Q1',123,1));m.step(1,100)
+        m.u.mem_write(SYMS['echo_valid'],b'\x01')
+        m.u.mem_write(SYMS['echo_mm'],struct.pack('<H',1000))
+        m.write32(SYMS['echo_sample_ms'],2100)
+        m.u.mem_write(SYMS['ir_valid'],b'\x01')
+        m.u.mem_write(SYMS['ir_count'],b'\x03')
+        m.write32(SYMS['ir_sample_ms'],2100)
+        control=bytearray(40)
+        struct.pack_into('<II',control,0,2100,2100)
+        struct.pack_into('<H',control,12,1000)
+        control[15]=1;control[19]=7
+        struct.pack_into('<iii',control,24,600,600,600)
+        m.u.mem_write(SYMS['control'],bytes(control))
+        m.step(2100)
+        self.assertEqual((m.read32(0x40000834),m.read32(0x40000838)),(600,600))
+        m.inject(m.U2,hybrid_frame('Q1',456,1));m.step(2101,100)
+        self.assertEqual(m.facts()['bound_uart'],1)
+        self.assertEqual(m.read32(SYMS['hybrid']),123)
+        self.assertEqual((m.read32(0x40000834),m.read32(0x40000838)),(600,600))
+
     def test_real_host_on_each_uart(self):
         for port in (1,2):
             m,h=pair(port)

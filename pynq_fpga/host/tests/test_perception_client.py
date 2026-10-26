@@ -149,7 +149,15 @@ class ClientTests(unittest.TestCase):
         q1_stale = replace(base, qei1=Sample(0, now - 20_000_000, True, 3))
         self.assertIn("qei1_stale", evaluate_snapshot(q1_stale, now).reasons)
         ir_invalid = replace(base, infrared=Sample(0, now, True, 3))
-        self.assertIn("ir_invalid", evaluate_snapshot(ir_invalid, now).reasons)
+        self.assertTrue(evaluate_snapshot(ir_invalid, now).permit)
+        self.assertTrue(snapshot_to_link_sample(ir_invalid, now).valid)
+        for mask in (1,2,3):
+            warning=replace(base,infrared=Sample(mask|4,now,True,3))
+            self.assertTrue(evaluate_snapshot(warning,now).permit)
+            self.assertEqual(snapshot_to_link_sample(warning,now).infrared_mask,mask)
+        missing=replace(base,infrared=Sample(0,0,False,3))
+        self.assertTrue(evaluate_snapshot(missing,now).permit)
+        self.assertTrue(snapshot_to_link_sample(missing,now).valid)
 
 
 class QeiScaleConfigTests(unittest.TestCase):

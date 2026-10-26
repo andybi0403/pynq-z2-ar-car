@@ -19,14 +19,12 @@ jobs:
           python-version: "3.11"
       - name: Skill helper tests
         run: python -m unittest discover -s skill/amd-pynq-project-workflow/scripts -p 'test_*.py' -v
-      - name: Immutable candidate identity
-        run: >-
-          python skill/amd-pynq-project-workflow/scripts/inspect_candidate.py
-          --project-root .
-          --candidate pynq_fpga/preintegration/portable_r2/latest_candidate.json
-          --skip-current-sources
-      - name: Current release identity
-        run: python skill/amd-pynq-project-workflow/scripts/inspect_release.py --project-root .
+      # r2/r3 manifests remain historical evidence; current sources are v0.11/r17b.
+      # Passing these checks means artifact integrity, never vehicle acceptance.
+      - name: Current r17b package and source identities
+        run: python handoff/20261026/verify_current_bundle.py
+      - name: Handoff archive part identities
+        run: python handoff/20261026/verify_handoff.py
       - name: Markdown links
         shell: pwsh
         run: ./tools/check_markdown_links.ps1 -Root .

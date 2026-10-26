@@ -10,6 +10,17 @@ import test_joint_runtime as fixtures
 
 
 class JointEvidenceTests(unittest.TestCase):
+    def test_advisory_ir_does_not_block_acquisition_but_health_check_reports_it(self):
+        from joint_evidence import acquisition_failures
+        raw={'US_META':0x80000001,'US_DATA':1000,'IR_META':0,'IR_STATUS':0,
+             'QEI0_META':0x80000001,'QEI1_META':0x80000001,'RISK_META':0x80000001,
+             'QEI0_INFO':0,'QEI1_INFO':0,'QEI0_VEL':0,'QEI1_VEL':0,
+             'ODOM0_META':0,'ODOM1_META':0}
+        self.assertEqual(acquisition_failures(raw,require_infrared=False),[])
+        self.assertIn('ir acquisition invalid',acquisition_failures(raw))
+        raw['US_META']=0
+        self.assertIn('us acquisition invalid',acquisition_failures(raw,require_infrared=False))
+
     def test_shutdown_submission_is_validated_but_not_counted_as_active_frame(self):
         with tempfile.TemporaryDirectory() as tmp:
             journal,summary=self.record(tmp)

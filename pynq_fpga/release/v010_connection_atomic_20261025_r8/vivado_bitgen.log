@@ -1,0 +1,175 @@
+INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detected. Your current license is active and will expire on 16-sep-2027.
+#-----------------------------------------------------------
+# Vivado v2026.1 (64-bit)
+# SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+# IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+# SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+# Start of session at: Wed Oct 14 01:09:00 2026
+# Process ID         : 14352
+# Current directory  : C:/Users/39909/Desktop/FPGA
+# Command line       : vivado.exe -mode batch -source C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\vivado\write_lab_only_bitstream.tcl -log C:\Users\39909\Desktop\FPGA\pynq_fpga\fpga\build\task7_8_v010_edge_console_20261014_r2\lab_bitstream.log -journal C:\Users\39909\Desktop\FPGA\pynq_fpga\fpga\build\task7_8_v010_edge_console_20261014_r2\lab_bitstream.jou
+# Log file           : C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_v010_edge_console_20261014_r2/lab_bitstream.log
+# Journal file       : C:\Users\39909\Desktop\FPGA\pynq_fpga\fpga\build\task7_8_v010_edge_console_20261014_r2\lab_bitstream.jou
+# Running On         : BZY
+# Platform           : Windows 11
+# Operating System   : 26300
+# Processor Detail   : Intel(R) Core(TM) i7-14650HX
+# CPU Frequency      : 2419 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 33943 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68302 MB
+# Available Virtual  : 43676 MB
+#-----------------------------------------------------------
+source {C:\Users\39909\Desktop\FPGA\pynq_fpga\preintegration\vivado\write_lab_only_bitstream.tcl}
+# set pre_dir [file normalize [file join [file dirname [info script]] ..]]
+# set root [file normalize [file join $pre_dir ..]]
+# set_param board.repoPaths [file join $pre_dir board_repo]
+# set build_dir [file join $root fpga build task7_8_integrated]
+# if {[info exists ::env(PYNQ_INTEGRATED_BUILD_DIR)]} {
+#  set build_dir [file normalize $::env(PYNQ_INTEGRATED_BUILD_DIR)]
+# }
+# set xpr [file join $build_dir task7_8_integrated.xpr]
+# exec python [file join $pre_dir source_provenance.py] --check [file join $build_dir source_contract.json]
+# if {![info exists ::env(PYNQ_LAB_OUT_DIR)]} {error "Set explicit PYNQ_LAB_OUT_DIR or use build_complete.ps1"}
+# set out_dir [file normalize $::env(PYNQ_LAB_OUT_DIR)]
+# set bit_path [file join $out_dir task7_8_LAB_ONLY.bit]
+# set hwh_path [file join $out_dir task7_8_LAB_ONLY.hwh]
+# set hwh_source [file join $build_dir task7_8_integrated.gen sources_1 bd preintegration_bd hw_handoff preintegration_bd.hwh]
+# file mkdir $out_dir
+# open_project $xpr
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_v010_edge_console_20261014_r2'
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/39909/Desktop/FPGA/pynq_fpga/third_party/PYNQ/boards/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/AMDDesignTools/2026.1/Vivado/data/ip'.
+INFO: [Project 1-5698] Found the below utility IPs instantiated in block design C:/Users/39909/Desktop/FPGA/pynq_fpga/fpga/build/task7_8_v010_edge_console_20261014_r2/task7_8_integrated.srcs/sources_1/bd/preintegration_bd/preintegration_bd.bd which have equivalent inline hdl with improved performance and reduced diskspace.
+It is recommended to migrate these utility IPs to inline hdl  using the command upgrade_project -migrate_to_inline_hdl.  The utility IPs may be deprecated in future releases.
+More information on inline hdl is available in UG994.
+Utility IP Component Instances:
+ preintegration_bd_hdmi_blank_data_0
+preintegration_bd_hdmi_blank_valid_0
+open_project: Time (s): cpu = 00:00:26 ; elapsed = 00:00:35 . Memory (MB): peak = 665.500 ; gain = 346.055
+# if {[get_property STATUS [get_runs impl_1]] ne "route_design Complete!"} {
+#   error "LAB_ONLY requires the verified routed implementation; got [get_property STATUS [get_runs impl_1]]"
+# }
+# open_run impl_1
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.470 . Memory (MB): peak = 968.066 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 3204 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2026.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Read ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.376 . Memory (MB): peak = 1111.281 ; gain = 12.254
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.100 . Memory (MB): peak = 1743.574 ; gain = 0.000
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.023 . Memory (MB): peak = 1743.574 ; gain = 0.000
+Read PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1743.574 ; gain = 0.000
+Read placeStorage: Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 1779.641 ; gain = 36.066
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1779.641 ; gain = 0.000
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.664 . Memory (MB): peak = 1779.641 ; gain = 0.000
+Read Physdb Files: Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1779.641 ; gain = 36.066
+Restored from archive | CPU: 3.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1779.641 ; gain = 36.605
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.054 . Memory (MB): peak = 1794.473 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 112 instances were transformed.
+  RAM16X1D => RAM32X1D (RAMD32(x2)): 1 instance 
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 97 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 14 instances
+
+open_run: Time (s): cpu = 00:00:34 ; elapsed = 00:00:43 . Memory (MB): peak = 1794.473 ; gain = 1128.973
+# report_drc -file [file join $out_dir drc_LAB_ONLY.rpt]
+Command: report_drc -file C:/Users/39909/Desktop/FPGA/pynq_fpga/lab/task7_8_lab_only_v010_edge_console_20261014_r2/drc_LAB_ONLY.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file C:/Users/39909/Desktop/FPGA/pynq_fpga/lab/task7_8_lab_only_v010_edge_console_20261014_r2/drc_LAB_ONLY.rpt.
+report_drc completed successfully
+report_drc: Time (s): cpu = 00:00:17 ; elapsed = 00:00:12 . Memory (MB): peak = 1921.359 ; gain = 126.887
+# report_bus_skew -warn_on_violation -file [file join $out_dir bus_skew_LAB_ONLY.rpt]
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+report_bus_skew: Time (s): cpu = 00:00:27 ; elapsed = 00:00:15 . Memory (MB): peak = 1946.957 ; gain = 25.598
+# set video_drc [get_drc_violations -quiet -filter {NAME =~ "REQP-1839*" || NAME =~ "PDCN-1569*"}]
+# if {[llength $video_drc] != 0} {
+#   error "Video reliability DRC remains: $video_drc"
+# }
+# set setup_path [get_timing_paths -setup -max_paths 1]
+# set hold_path [get_timing_paths -hold -max_paths 1]
+# if {[llength $setup_path] == 0 || [llength $hold_path] == 0} {
+#   error "LAB_ONLY design has no constrained setup/hold timing path"
+# }
+# set wns [get_property SLACK $setup_path]
+# set whs [get_property SLACK $hold_path]
+# if {$wns < 0 || $whs < 0} {
+#   error "LAB_ONLY timing failed: WNS=$wns ns WHS=$whs ns"
+# }
+# set bad_drc [get_drc_violations -quiet -filter {SEVERITY == "Error" || SEVERITY == "Critical Warning" || SEVERITY == "Warning"}]
+# if {[llength $bad_drc] != 0} {
+#   error "LAB_ONLY DRC warnings/errors remain: $bad_drc"
+# }
+# if {![file isfile $hwh_source]} {
+#   error "Integrated HWH is missing: $hwh_source"
+# }
+# set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
+# write_bitstream -force $bit_path
+Command: write_bitstream -force C:/Users/39909/Desktop/FPGA/pynq_fpga/lab/task7_8_lab_only_v010_edge_console_20261014_r2/task7_8_LAB_ONLY.bit
+Attempting to get a license for feature 'Vivado_Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Vivado_Implementation' and/or device 'xc7z020'
+Running DRC as a precondition to command write_bitstream
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado 12-3199] DRC finished with 0 Errors
+INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
+Integrating Hard IP ELF/MEM with the PDI.
+INFO: [Designutils 20-2272] Running write_bitstream with 2 threads.
+Initializing bitstream generation complete. Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2200.086 ; gain = 76.035
+Loading data files...
+Loading site data...
+Loading route data...
+Processing options...
+Creating bitmap...
+Creating bitstream...
+Bitstream compression saved 12695968 bits.
+Writing bitstream C:/Users/39909/Desktop/FPGA/pynq_fpga/lab/task7_8_lab_only_v010_edge_console_20261014_r2/task7_8_LAB_ONLY.bit...
+Generate Bitstream complete. Time (s): cpu = 00:00:50 ; elapsed = 00:00:37 . Memory (MB): peak = 2469.734 ; gain = 345.684
+INFO: [Vivado 12-1842] Bitgen Completed Successfully.
+INFO: [Common 17-83] Releasing license: Vivado_Implementation
+8 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+write_bitstream completed successfully
+write_bitstream: Time (s): cpu = 00:01:04 ; elapsed = 00:00:56 . Memory (MB): peak = 2469.734 ; gain = 522.777
+# file copy -force $hwh_source $hwh_path
+# exec python [file join $pre_dir source_provenance.py] --bind [file join $build_dir source_contract.json] --bit $bit_path --hwh $hwh_path --output [file join $out_dir artifact_source_binding.json]
+# report_timing_summary -file [file join $out_dir timing_LAB_ONLY.rpt]
+WARNING: [Timing 38-436] There are set_bus_skew constraint(s) in this design. Please run report_bus_skew to ensure that bus skew requirements are met.
+# report_drc -file [file join $out_dir drc_LAB_ONLY.rpt]
+Command: report_drc -file C:/Users/39909/Desktop/FPGA/pynq_fpga/lab/task7_8_lab_only_v010_edge_console_20261014_r2/drc_LAB_ONLY.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file C:/Users/39909/Desktop/FPGA/pynq_fpga/lab/task7_8_lab_only_v010_edge_console_20261014_r2/drc_LAB_ONLY.rpt.
+report_drc completed successfully
+report_drc: Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 2469.734 ; gain = 0.000
+# report_io -file [file join $out_dir io_LAB_ONLY.rpt]
+report_io: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.260 . Memory (MB): peak = 2469.734 ; gain = 0.000
+# puts "TASK7_8_LAB_ONLY_BIT=$bit_path"
+TASK7_8_LAB_ONLY_BIT=C:/Users/39909/Desktop/FPGA/pynq_fpga/lab/task7_8_lab_only_v010_edge_console_20261014_r2/task7_8_LAB_ONLY.bit
+# puts "TASK7_8_LAB_ONLY_HWH=$hwh_path"
+TASK7_8_LAB_ONLY_HWH=C:/Users/39909/Desktop/FPGA/pynq_fpga/lab/task7_8_lab_only_v010_edge_console_20261014_r2/task7_8_LAB_ONLY.hwh
+# puts "TASK7_8_LAB_ONLY_WNS_NS=$wns"
+TASK7_8_LAB_ONLY_WNS_NS=0.372
+# puts "TASK7_8_LAB_ONLY_WHS_NS=$whs"
+TASK7_8_LAB_ONLY_WHS_NS=0.015
+# puts "TASK7_8_LAB_ONLY_PASS"
+TASK7_8_LAB_ONLY_PASS
+# close_project
+INFO: [Common 17-206] Exiting Vivado at Wed Oct 14 01:12:04 2026...

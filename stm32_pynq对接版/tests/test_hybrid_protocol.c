@@ -46,7 +46,14 @@ int main(void) {
     safe_tick(&s,0x10u); assert(!(s.reason&FAULT_SENSOR));
     safe_tick(&s,0xb8u); assert(s.reason&FAULT_SENSOR); /* 200 ms wrap */
     safe_init(&s); safe_local_sample(&s,1000,1,0,0,0,0);
-    assert(s.reason&FAULT_SENSOR); /* IR invalid is independent */
+    assert(!(s.reason&FAULT_SENSOR)); /* IR loss does not invalidate fresh US. */
+    memset(&h,0,sizeof(h)); assert(send("$Q1,222,1",0)==2);
+    for(t=1;t<=400;t++)safe_local_sample(&s,1000,1,t,3,0,t);
+    assert(send("$R1,222,1",400)==1); assert(!s.latched);
+    assert(send("$D1,222,2,500,500",400)==1);
+    safe_outputs(&s,&left,&right);assert(left==500&&right==500);
+    safe_local_sample(&s,1000,0,401,3,0,401);
+    assert(s.latched&&(s.reason&FAULT_SENSOR)); /* US loss still stops. */
     safe_init(&s); memset(&h,0,sizeof(h)); sample(0);
     assert(send("$Q1,123,1",0)==2);
     assert(hybrid_report(packet,sizeof(packet),&s,&h,1,7,20,1,1000,8,1,1,0,0,0)>0);

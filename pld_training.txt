@@ -1,0 +1,483 @@
+2026PLD
+     
+
+                                  2026.9.18
+
+                                      1
+    01                      03
+                        
+              Contents
+
+            02
+
+        
+
+        2
+
+
+            3
+1ACZ7015
+       
+
+                                     2026.9.18
+                                        
+
+                                         1
+ACZ7015
+
+         Xilinx Zynq-7000  FPGA
+
+         
+         https://www.corecourse.cn/forum.php
+
+         b
+         https://space.bilibili.com/476579378?s
+         pm_id_from=333.337.0.0
+
+         2
+    ACZ7015
+
+xc7z015clg485-2
+
+ ARM A9                   
+DDR31GB 32bit                      WIFI
+EMMC8GB
+FLASH128Mbit              RGB TFT
+PCIE 2.0 X1                        HDMI X2
+
+               6.25G  X2  WM8960
+                          DVP 
+
+                                           3
+ACZ7015
+
+                                                            4
+  ACZ7015
+
+ACZ7015 
+
+                                                                5
+  ACZ7015USB Type-C 
+
+ACZ7015  USB Type-C 
+
+
+                                                                6
+ACZ7015
+
+                                                            7
+ACZ7015
+
+                                                            8
+ACZ7015
+
+                                                            9
+ ACZ7015
+
+
+
+                                                              10
+ACZ7015b
+
+                                                            11
+ACZ7015b
+
+                                                            12
+  ACZ7015
+
+
+
+                                                                13
+  ACZ7015                     MIO4  MIO5 
+                             
+JTAGJoint Test Action Group
+
+
+                             14
+  ACZ7015
+
+· PL  PS 
+· PL  50MHz
+· PS  33.333MHz
+· PS  PS 
+
+    PS_CLK
+· PL  FPGA 
+
+     L5PL_GCLK
+
+                                                                15
+  ACZ7015
+
+· 3PL  PS 
+    
+
+· 
+    
+
+· S3  PS 
+    PS_PRO_B
+
+· S1  S2 S1 
+    PS  MIO47S2  PL  R4
+
+                                                                16
+  ACZ7015LED
+
+· 3 LEDD0~D2
+· D0  D1  PL  LED
+· D2  PS  LED
+· LED 
+
+    LED 
+
+                                                                17
+ACZ7015
+
+                  
+          
+
+                                                            18
+2ACX750
+       
+
+                                     2026.9.18
+                                        
+
+                                         1
+ACX750
+
+           ACX-750
+
+           https://fpga.cn/forum.php?mod=view
+           thread&tid=29902
+
+        2
+ACX750
+
+                                                            3
+ACX750                                                            AMD Artix-7
+                                                                  XC7A200TFBG484-2
+                                                            4
+                                                               · 
+                                                               · /
+                                                               · 
+    ACX750
+
+AMD Artix-7 XC7A200TFBG484-2
+
+              · DDR3
+· 64k EEPROM  · USBCH9102
+· 16M FLASH   · RTC
+·             · 8LED
+· 85          · 
+· 
+
+              5
+ACX750
+
+                                                            6
+-1
+
+                                                            7
+-2
+
+                                                            8
+-3
+
+                                                            9
+-4
+
+                                                            10
+ACX750-1
+
+              
+              U1: 
+              J1: 
+
+          11
+ACX750-2
+
+              HDMI
+              U2: HDMI
+              U3/U4: ESD
+              U5: 
+              U6: 
+              U7: 
+              U8: 
+
+          12
+ACX750-3
+
+              
+              U11/U12: 
+              U13: 12MHz
+
+              SIGNAL NAME  FPGA    SIGNAL NAME  FPGA
+              HDMI_CLK_N      H19   HDMI_D2_N      H22
+              HDMI_CLK_P      J19   HDMI_D2_P      J22
+               HDMI_D0_N      K22    HDMI_HPD      N22
+               HDMI_D0_P      K21     HDMI_OE      M22
+               HDMI_D1_N      J21    HDMI_SCL      L20
+               HDMI_D1_P      J20    HDMI_SDA      L19
+
+          13
+ACX750-4
+
+              LED
+              LED
+              
+
+          14
+ACX750-5
+
+              USB to UART
+              I2C
+              J3: Type-C
+              U19: USB
+              U20: RTC
+              U21: EEPROM
+
+          15
+ACX750-6
+
+                   CMOS     
+              
+              J4
+
+          16
+ACX750-7
+
+              PL
+
+          17
+ACX750-8
+
+              
+
+              SIGNAL NAME  FPGA
+                SEG7_DIO      U20
+               SEG7_RCLK      V20
+               SEG7_SCLK      T21
+
+          18
+ACX750-8
+
+              
+              
+
+          19
+3PYNQ-Z2
+
+                                      2026.9.18
+                                         
+
+                                          1
+ACX750-8
+
+                                                            2
+     
+
+     Zynq  PS ARM PL FPGA  ARM 
+      FPGA  ACZ7015PYNQ-Z2  ACX750 
+
+
+
+                                                                    3
+ 
+
+
+
+                                                               4
+
+
+            1
+   -VerilogHDL
+
+      HDLHardware Description Language,
+C/C++/Python
+
+      VerilogHDLVHDL
+
+
+      VerilogHDLCadenceCif-else
+case
+
+
+
+                                                                  2
+Verilog--
+
+1assign                                            2initialalways
+assign led = key0 & key1;                          always@(posedge clk)
+
+                                                            led <= key0 & (key1 | key2);
+                                                   
+ key0
+                                              led            key0  D  Q                   led
+
+ key1                                              key1            CLK ~Q
+                                                   key2
+
+                                                          clk
+
+                                                   3
+ Verilog--                                         
+                                                   · 
+1assign                                            · 
+assign led = key0 & key1;
+                                                      assign led = 1'b0;
+                                                   · initial
+
+ key0                                                 always
+                                              led  · assign #<><
+
+ key1                                                 > = ;
+                                                   · 
+
+                                                       wire          wire led =
+                                                      key0 & key1;
+
+                                                    4
+Verilog--
+
+2initialalways                                
+always@(posedge clk)                          · 
+
+         led <= key0 & (key1 | key2);            posedge
+                                                 /negedge
+                                              · "="
+          key0  D  Q                             ,"<="
+                                                 )
+key1            CLK ~Q
+key2                                   led
+
+       clk                                    · always1always@(
+                                                 )
+
+                                              · always2always@(
+                                                 )
+
+                                       5
+Verilog--
+
+1                                         
+    always@(posedge clk)begin             1led0 = key0 & (key1 |
+         led0 = key0 &key1 | key2;        key2)led0
+         led1 = led0;                     
+    end                                   2led1 = led0
+                                          1
+                                          always
+                                          led1 = key0 & (key1 |
+          key0  led0       Q        led1  key2)
+                        D                 3(FF)
+key1
+key2            CLK ~Q
+
+       clk
+
+                                    6
+Verilog--
+
+2                                                  
+    always@(posedge clk)begin                      · 
+         led0 <= key0 &key1 | key2;
+         led1 <= led0;                                
+    end                                                     led0  
+                                                      led1
+                                                   · 
+
+          key0  D  Q led0 D             Q    led1  FF
+
+key1            CLK ~Q               CLK ~Q
+key2
+
+       clk
+
+                                     7
+   Verilog--
+
+1reg0,1,X,Z
+· alwaysinitial
+· 
+· if-else,case
+· 
+2wire: 0,1,X,Z
+· assignwire  assign 
+·  always@  =  <= 
+· if-else,case
+· 
+
+                                                                 8
+    Verilog--    
+                 //reg
+1reg             output reg led2 = 0;
+0,1,X,Z          //1bitled0
+· alwaysinitial  reg led0 = 0;
+·                //6bitled1
+· if-else,case   reg [5:0]led1 = 0;
+·                //,o_led,wire
+                 assign o_led = led0;
+                 //
+                 always@(posedge clk)
+
+                     if(led0 == 1'b0)led1<=~led1;
+
+                    9
+Verilog--
+
+2wire:          
+0,1,X,Z         //wire
+                output led2;output wire led2;
+· assign        input led3;input wire led3;
+· if-else,case  //1bitled0
+·               wire led0;
+                //6bitled1
+                wire [5:0]led1;
+                //
+                assign led2 = led3;
+
+                10
+  Verilog--
+
+
+module top(
+
+    input i_clk,
+    input i_key,
+    output wire o_led
+);
+    reg led_o = 0;
+    assign o_led = led_o;
+    always@(posedge i_clk)begin
+
+         if(i_key == 1'b0)led_o <= ~led_o;
+    end
+endmodule
+
+                                                               11
+
+
+            1
+   Vivado
+
+1
+2FPGA
+
+                                                                  2
+   Vivado
+
+3resource files,verilog.v
+4constraint files,xdc
+5run simulation
+
+                                                                  3
+   Vivado
+
+6run synthesis
+7run implementation
+8bitgenerate bitstream
+9FPGAbit
+
+                                                                  4
+

@@ -41,7 +41,7 @@ def number(value,name,lo=0):
     return value
 
 
-def acquisition_failures(raw, *, require_odometry=False):
+def acquisition_failures(raw, *, require_odometry=False, require_infrared=True):
     """Check acquisition health independently of temporal frame association.
 
     IR_TS describes state changes, so a stationary clear IR state is not aged.
@@ -49,11 +49,12 @@ def acquisition_failures(raw, *, require_odometry=False):
     """
     failures=[]
     for name in ('US','IR','QEI0','QEI1','RISK'):
+        if name=='IR' and not require_infrared:continue
         if not raw[name+'_META'] & 0x80000000:
             failures.append(name.lower()+' acquisition invalid')
     if (raw['US_DATA'] >> 12) & 15:
         failures.append('ultrasonic acquisition fault')
-    if not raw['IR_STATUS'] & 4 or raw['IR_STATUS'] & 3:
+    if require_infrared and (not raw['IR_STATUS'] & 4 or raw['IR_STATUS'] & 3):
         failures.append('infrared unstable or obstacle present')
     for channel in (0, 1):
         if f'QEI{channel}_INFO' not in raw:

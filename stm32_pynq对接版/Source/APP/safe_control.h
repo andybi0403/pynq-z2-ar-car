@@ -25,9 +25,10 @@
 #define SAFE_SENSOR_AGE_MS 200u
 #define SAFE_COMMAND_MS 250u
 #define SAFE_MAX_PWM 2400
-/* Hardware adapter binds its data UART only after CRC-valid Q1, until reset.
- * Independent diagnostic RX never owns data/control; HALT/PSTOP still lock.
- * This replaces the former any-byte USB takeover and idle-release policy. */
+/* Hardware adapter selects a single TX after CRC-valid Q1. Only a locked,
+ * zero-output owner silent for >=2000 ms can yield to another valid query.
+ * Handover clears pending drive/release state and keeps the car locked.
+ * Other-port drive/release and noise never own control; HALT/PSTOP lock. */
 
 /* 蓝牙协议中的运动命令。数值顺序与原车协议保持一致。 */
 enum { STOP=0, FORWARD, BACKWARD, LEFT, RIGHT, SPIN_LEFT, SPIN_RIGHT };

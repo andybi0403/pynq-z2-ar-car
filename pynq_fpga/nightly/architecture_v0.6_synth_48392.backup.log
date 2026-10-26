@@ -1,0 +1,44 @@
+INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detected. Your current license is active and will expire on 16-sep-2027.
+#-----------------------------------------------------------
+# Vivado v2026.1 (64-bit)
+# SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+# IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+# SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+# Start of session at: Fri Sep 18 13:50:22 2026
+# Process ID         : 48392
+# Current directory  : C:/Users/39909/Desktop/FPGA
+# Command line       : vivado.exe -mode batch -log pynq_fpga/nightly/architecture_v0.6_synth.log -journal pynq_fpga/nightly/architecture_v0.6_synth.jou -source pynq_fpga/fpga/scripts/synth_modules.tcl -tclargs car_perception_top car_axis_osd
+# Log file           : C:/Users/39909/Desktop/FPGA/pynq_fpga/nightly/architecture_v0.6_synth.log
+# Journal file       : C:/Users/39909/Desktop/FPGA\pynq_fpga/nightly/architecture_v0.6_synth.jou
+# Running On         : BZY
+# Platform           : Windows 11
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) i7-14650HX
+# CPU Frequency      : 2419 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 33943 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 68302 MB
+# Available Virtual  : 45635 MB
+#-----------------------------------------------------------
+source pynq_fpga/fpga/scripts/synth_modules.tcl
+# set root [file normalize [file join [file dirname [info script]] ../..]]
+# set out [file join $root fpga build acceptance_synth]
+# file mkdir $out
+# set tops {car_qei_top car_sensors_top car_axil_regs car_perception_top car_axis_osd}
+# if {$argc > 0} {set tops $argv}
+# foreach top $tops {
+#  create_project -in_memory -part xc7z020clg400-1
+#  read_verilog [glob [file join $root third_party verilog-axi rtl axil_reg_if*.v]]
+#  read_verilog -include_dirs [file join $root fpga rtl] -sv [glob [file join $root fpga rtl *.v]]
+#  synth_design -top $top -part xc7z020clg400-1 -mode out_of_context
+#  create_clock -name sys_clk -period 10.000 [get_ports clk]
+#  report_utilization -file [file join $out ${top}_utilization.rpt]
+#  report_timing_summary -file [file join $out ${top}_timing.rpt]
+#  write_checkpoint -force [file join $out ${top}.dcp]
+#  close_project
+# }
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 589.141 ; gain = 269.645
+ERROR: [Common 17-170] Unknown option '-include_dirs', please type 'read_verilog -help' for usage info.
+INFO: [Common 17-206] Exiting Vivado at Fri Sep 18 13:50:43 2026...

@@ -1,0 +1,17 @@
+test_bad_crc_and_drive_cannot_bind (__main__.UartRoleTests.test_bad_crc_and_drive_cannot_bind) ... ok
+test_bad_crc_or_drive_cannot_take_over_idle_owner (__main__.UartRoleTests.test_bad_crc_or_drive_cannot_take_over_idle_owner) ... ok
+test_duplicate_query_on_both_receivers_uses_one_transmitter (__main__.UartRoleTests.test_duplicate_query_on_both_receivers_uses_one_transmitter) ... ok
+test_independent_partial_frames_and_overflow (__main__.UartRoleTests.test_independent_partial_frames_and_overflow) ... ok
+test_locked_idle_owner_can_be_replaced_by_fresh_valid_query (__main__.UartRoleTests.test_locked_idle_owner_can_be_replaced_by_fresh_valid_query) ... ok
+test_other_query_cannot_take_over_while_driving_after_timeout (__main__.UartRoleTests.test_other_query_cannot_take_over_while_driving_after_timeout) ... ok
+test_other_uart_cannot_change_session_or_accept_commands (__main__.UartRoleTests.test_other_uart_cannot_change_session_or_accept_commands) ... ok
+test_real_host_on_each_uart (__main__.UartRoleTests.test_real_host_on_each_uart) ... ok
+test_secondary_halt_stops_nonzero_modeled_outputs (__main__.UartRoleTests.test_secondary_halt_stops_nonzero_modeled_outputs) ... ok
+test_stop_does_not_release_or_unbind (__main__.UartRoleTests.test_stop_does_not_release_or_unbind) ... ok
+test_stray_bytes_and_framing_errors_cannot_take_over (__main__.UartRoleTests.test_stray_bytes_and_framing_errors_cannot_take_over) ... ok
+test_unused_transmitters_are_high_impedance (__main__.UartRoleTests.test_unused_transmitters_are_high_impedance) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 14.491s
+
+OK

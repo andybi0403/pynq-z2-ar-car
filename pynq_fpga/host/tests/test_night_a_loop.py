@@ -351,16 +351,18 @@ class TestNightACrossLayerStop(unittest.TestCase):
         self.assertLessEqual(elapsed, CMD_LEASE_MS + 10,
                              f"C backstop took {elapsed:.1f}ms > {CMD_LEASE_MS}ms")
 
-    def test_05_ir_obstacle_immediate(self):
-        """IR 触发：采集态 IR=3 -> P 帧 IR 位=3 -> C 立即锁存停车。"""
+    def test_05_ir_obstacle_advisory(self):
+        """IR=3 保留真实告警位，不能抑制 PWM 或锁车。"""
         h = self.h
         h.sample_ir = 3                     # 采集核状态：左右均见障碍
         h.update_command(800, 800)          # 遥控持续发包（租约内）
         h.step(PERIOD_MS + 40)
-        t_stop = h.last_stop_c_ms()
-        self.assertIsNotNone(t_stop, "IR did not stop the car")
-        self.assertTrue(h.c.s.latched and bool(h.c.s.reason & FAULT_IR),
-                        f"IR fault reason missing: {h.c.s.reason}")
+        self.assertFalse(h.c.s.latched)
+        self.assertFalse(h.c.s.reason & FAULT_IR)
+        self.assertEqual(h.c.s.ir,3)
+        l=ctypes.c_int();r=ctypes.c_int()
+        lib.safe_outputs(ctypes.byref(h.c.s),ctypes.byref(l),ctypes.byref(r))
+        self.assertEqual((l.value,r.value),(800,800))
 
     def test_06_distance_hysteresis_180_240_260(self):
         """距离 180→只禁正转；240→保持；260→恢复（回差）。"""
@@ -418,12 +420,12 @@ class TestNightACrossLayerStop(unittest.TestCase):
         """安全条件恢复但无显式解锁：保持锁车。"""
         h = self.h
         # 制造故障锁存
-        h.sample_ir = 3
+        h.sample_valid = False
         h.update_command(800, 800)
         h.step(PERIOD_MS + 40)
         self.assertTrue(h.c.s.latched)
-        # 故障解除（IR 清除、距离正常）+ 零速心跳，但不发 release
-        h.sample_ir = 0
+        # 故障解除（超声波重新有效、距离正常）+ 零速心跳，但不发 release
+        h.sample_valid = True
         h.update_command(0, 0)              # 上游停止运动请求（零速续租）
         h.step(PERIOD_MS * 4)
         self.assertTrue(h.c.s.latched,
@@ -436,11 +438,11 @@ class TestNightACrossLayerStop(unittest.TestCase):
     def test_11_unlock_requires_new_command(self):
         """显式解锁后没有新驾驶请求：不得恢复运动。"""
         h = self.h
-        h.sample_ir = 3
+        h.sample_valid = False
         h.update_command(800, 800)
         h.step(PERIOD_MS + 40)
         self.assertTrue(h.c.s.latched)
-        h.sample_ir = 0
+        h.sample_valid = True
         h.update_command(0, 0)
         h.step(PERIOD_MS * 4)       # 先用有效停止帧满足C端连续安全300ms
         h.release()
@@ -455,11 +457,11 @@ class TestNightACrossLayerStop(unittest.TestCase):
     def test_12_unlock_cancelled_by_stop(self):
         """STOP 取消待决 release（R11 语义）：STOP 后 release 不生效。"""
         h = self.h
-        h.sample_ir = 3
+        h.sample_valid = False
         h.update_command(800, 800)
         h.step(PERIOD_MS + 40)
         self.assertTrue(h.c.s.latched)
-        h.sample_ir = 0
+        h.sample_valid = True
         h.update_command(0, 0)
         h.release()
         h.stop()                                  # STOP 在 release 后立即到来

@@ -1,0 +1,43 @@
+{
+  "snapshot_local": "2026-10-26T20:27:28+08:00",
+  "repository": "https://github.com/andybi0403/pynq-z2-ar-car",
+  "latest_bundle": "v011_uart_recovery_20261026_r17b",
+  "contract": "v0.11 / 0xC425100B",
+  "stm32": {
+    "flashed": true,
+    "full_128k_readback_verified": true,
+    "firmware_bytes": 9332,
+    "firmware_sha256": "4546b867943465edbc03082c4a842a63ee203248761d1d0ece785a828b35b754",
+    "readback_sha256": "b35b35b3ee033c19d3c90068c45c8a8c31430c1d714f6544b1aa0a506fe675ec",
+    "boot0": 0,
+    "reset_confirmed": true,
+    "computer_port": "COM10",
+    "computer_queries": 20,
+    "computer_valid_reports": 20,
+    "actual_lock": 1,
+    "actual_pwm": [0, 0]
+  },
+  "pynq": {
+    "installed_directory": "/home/xilinx/v011_complete_console_20261026_r16",
+    "r17b_deployed": false,
+    "service": "stopped; UART released at last check",
+    "management_port": "COM14",
+    "s5_on_queries": 80,
+    "s5_on_received_bytes": 0,
+    "s5_on_valid_reports": 0,
+    "s5_off_queries": 80,
+    "s5_off_received_bytes": 0,
+    "s5_off_valid_reports": 0,
+    "last_s5": "OFF (user confirmed)",
+    "uart_recovered": false
+  },
+  "motor_power": "connected by user confirmation",
+  "release_or_drive_sent_in_this_diagnostic_round": false,
+  "current_scale": [0, 0],
+  "nominal_scale_plan": [5362, 5362],
+  "nominal_scale_is_measured": false,
+  "full_vehicle_acceptance": "NOT_PASSED",
+  "strict_1800_second_stability": "NOT_PASSED",
+  "ir_policy": "warning only for detection, stale data, invalid data, and disconnection",
+  "hardware_fault_root_cause": "UNCONFIRMED"
+}

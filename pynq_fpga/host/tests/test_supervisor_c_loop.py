@@ -67,10 +67,21 @@ class SupervisorProductionCTests(unittest.TestCase):
         self.assertTrue(h.c.s.latched)
         self.assertLessEqual(h.first_stop_after(start)-start,330)
 
-    def test_ir_obstacle_keeps_actual_c_fault_source(self):
+    def test_ir_obstacle_is_visible_without_stopping_actual_c(self):
         h=self.moving();h.pl.ir=1;h.advance(250)
+        self.assertFalse(h.c.s.latched)
+        self.assertFalse(h.c.s.reason&2)
+        self.assertEqual(h.c.s.ir,1)
+        self.assertEqual(h.c.log[-1][3:5],(900,900))
+
+    def test_ir_loss_does_not_stop_or_block_explicit_unlock(self):
+        h=SupervisorCFixture();self.fixture=h;h.pl.ir=3;h.pl.ir_valid=False
+        h.arm();h.drive(900,900);h.advance(250)
+        self.assertFalse(h.c.s.latched)
+        self.assertEqual(h.c.log[-1][3:5],(900,900))
+        self.assertTrue(h.control.last['permit'])
+        h.pl.valid=False;h.advance(250)
         self.assertTrue(h.c.s.latched)
-        self.assertTrue(h.c.s.reason&2)
 
     def test_mmio_failure_still_sends_stop_to_c(self):
         h=self.moving();start=h.ms();h.pl.error=True;h.advance(150)

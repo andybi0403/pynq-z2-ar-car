@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "hwh": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\lab\\task7_8_lab_only_v011_ir_advisory_20261026_d\\task7_8_LAB_ONLY.hwh",
+  "drc": "C:\\Users\\39909\\Desktop\\FPGA\\pynq_fpga\\lab\\task7_8_lab_only_v011_ir_advisory_20261026_d\\drc_LAB_ONLY.rpt",
+  "video_interconnect": "smartconnect",
+  "clock_hz": 100000000,
+  "shared_peripheral_reset": true,
+  "remaining_drc": {
+    "REQP-181 Advisory": 2
+  },
+  "bus_skew_slack_ns": [
+    8.853,
+    9.035
+  ],
+  "hardware_validated": false
+}

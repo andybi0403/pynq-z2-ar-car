@@ -72,6 +72,24 @@ class GateTests(unittest.TestCase):
 
 
 class HubTests(unittest.TestCase):
+    def test_rolling_rates_use_one_coherent_cutoff_for_all_channels(self):
+        from collections import deque
+        hub=VideoHub();hub.start_ns=0
+        for channel in ('captured','processed','encoded','published','sent'):
+            hub.rate_events[channel]=deque((39_999_999_999,40_000_000_000,90_000_000_000))
+        with patch('wireless_core.time.monotonic_ns',side_effect=range(100_000_000_000,200_000_000_000,1_000_000_000)):
+            stats=hub.stats()
+        self.assertEqual(set(stats['rolling_60s_fps'].values()),{2/60})
+
+    def test_full_event_history_preserves_exact_rolling_counts(self):
+        from collections import deque
+        hub=VideoHub();hub.start_ns=0;now=100_000_000_000
+        stamps=[now-(7199-i)*10_000_000 for i in range(7200)]
+        hub.rate_events['captured']=deque(stamps,maxlen=7200)
+        with patch('wireless_core.time.monotonic_ns',return_value=now):stats=hub.stats()
+        self.assertEqual(stats['rolling_60s_fps']['captured'],6001/60)
+        self.assertEqual(len(hub.rate_events['captured']),7200)
+
     def test_per_minute_zero_gaps_and_weighted_cpu_are_recorded(self):
         hub=VideoHub();hub.start_ns=time.monotonic_ns()-61_000_000_000;hub.observe('captured')
         hub.record_cpu({'two_core_percent':50,'system_total_percent':70,'interval_s':1})
@@ -304,7 +322,8 @@ class HTTPTests(unittest.IsolatedAsyncioTestCase):
         asyncio.get_running_loop().set_debug(False)
         from types import SimpleNamespace
         self.tmp=tempfile.TemporaryDirectory();self.hub=VideoHub();self.mail=IntentMailbox()
-        self.runner=SimpleNamespace(output_dir=Path(self.tmp.name),status_snapshot=lambda:{'running':True,'motion_allowed':False})
+        self.runner=SimpleNamespace(output_dir=Path(self.tmp.name),status_snapshot=lambda:{'running':True,'motion_allowed':False},
+                                    reset_interconnect_test=lambda:{'state':'collecting','samples':0})
         self.server=WirelessServer(self.runner,self.hub,self.mail,'127.0.0.1',0)
         await self.server.start_async();self.base=f'http://127.0.0.1:{self.server.port}'
         from aiohttp import ClientSession,CookieJar
@@ -313,6 +332,10 @@ class HTTPTests(unittest.IsolatedAsyncioTestCase):
     async def asyncTearDown(self):
         self.hub.close();await self.client.close();await self.server.stop_async();self.tmp.cleanup()
     async def test_auth_cookie_origin_and_restart_token(self):
+        async with self.client.get(self.base+'/api/status') as r:self.assertEqual(r.status,401)
+        async with self.client.post(self.base+'/api/session',headers=self.auth) as r:self.assertEqual(r.status,200)
+        async with self.client.get(self.base+'/api/status') as r:self.assertEqual(r.status,200)
+        async with self.client.post(self.base+'/api/session/logout',headers={'Origin':self.base}) as r:self.assertEqual(r.status,200)
         async with self.client.get(self.base+'/api/status') as r:self.assertEqual(r.status,401)
     async def test_video_policy_auth_settings_and_active_feedback(self):
         async with self.client.post(self.base+'/api/video/settings',json={'mode':'manual'}) as r:self.assertEqual(r.status,401)
@@ -344,6 +367,8 @@ class HTTPTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(self.mail.consume(),(None,None))
         async with self.client.post(self.base+'/api/session',headers=self.auth) as r:self.assertEqual(r.status,200)
         async with self.client.get(self.base+'/api/status') as r:self.assertEqual(r.status,200)
+        async with self.client.post(self.base+'/api/sensor-test/reset',headers=self.auth) as r:
+            self.assertEqual(r.status,200);self.assertEqual((await r.json())['state'],'collecting')
         async with self.client.post(self.base+'/api/stop') as r:self.assertEqual(r.status,403)
         async with self.client.post(self.base+'/api/stop',headers={'Origin':'http://evil'}) as r:self.assertEqual(r.status,403)
         self.server.cookie='different-run'

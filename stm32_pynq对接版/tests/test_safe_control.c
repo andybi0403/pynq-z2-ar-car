@@ -40,9 +40,9 @@ int main(void) {
  assert(s.command==DRIVE_RAW);
  safe_outputs(&s,&l,&r); assert(l==1200&&r==1200);
 
- /* 红外来自 $P 帧字段：任一位置 1 立即锁存停车，输出全 0。 */
+ /* 红外来自 $P 帧字段，只告警；本帧请求零输出但不锁车。 */
  assert(safe_pframe(&s,"$P,0,0,1,1000,3,5,36#",sizeof("$P,0,0,1,1000,3,5,36#")-1,1600));
- assert(s.latched && (s.reason&FAULT_IR) && s.ir==3);
+ assert(!s.latched && !(s.reason&FAULT_IR) && s.ir==3);
  safe_outputs(&s,&l,&r); assert(l==0&&r==0);
 
  /* 红外清除且距离正常后，停止帧可解锁。 */
@@ -99,7 +99,7 @@ int main(void) {
  arm(7200);
  assert(safe_pframe(&s,"$P,-2400,2400,1,9999,3,9,B6#",sizeof("$P,-2400,2400,1,9999,3,9,B6#")-1,7300));
  assert(s.left_req==-2400 && s.right_req==2400 && s.distance_mm==9999);
- assert(s.latched && (s.reason&FAULT_IR));
+ assert(!(s.reason&FAULT_IR));
  /* 时间回绕：帧与租约检查在 uint32 回绕边界附近必须正常。 */
  { uint32_t base=0xfffffe00u;
    arm(base);
@@ -145,7 +145,7 @@ int main(void) {
    assert(safe_pframe(&s,"$P,0,0,1,0,0,0,9D#",sizeof("$P,0,0,1,0,0,0,9D#")-1,15300));            /* 最短 18 */
    assert(safe_pframe(&s,"$P,-2400,-2400,1,9999,3,9,E3#",sizeof("$P,-2400,-2400,1,9999,3,9,E3#")-1,15400)); /* 最长 29 */
    assert(s.left_req==-2400 && s.right_req==-2400 && s.distance_mm==9999);
-   assert(s.latched && (s.reason&FAULT_IR)); /* IR=3 锁存属预期语义 */
+   assert(!(s.reason&FAULT_IR)); /* IR=3 只保留真实告警状态 */
  }
  puts("PASS: boot lock, IR from $P frame, RAW drive, distance hysteresis,");
  puts("V=0 sensor fault, 200/250ms dual guard, checksum rejection,");

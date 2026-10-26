@@ -42,3 +42,6 @@ Desktop.ini
 .env.*
 *.pem
 *.key
+
+# Reference-only upstream has no redistribution license; keep provenance notice.
+pynq_fpga/third_party/PYNQ-Z2_sobel_filter_HDMI/
