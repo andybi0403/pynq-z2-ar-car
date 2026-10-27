@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-27T11:59:16.254287+08:00",
+  "port": "COM10",
+  "source": "board_encoder_prepare.py",
+  "source_sha256": "7bedc08badb45205bb29ffca9198bde60dbc61bac1f57e9b2d7044245f895aa7",
+  "root": true,
+  "motion_commands_sent": false,
+  "sudo_authentication": "documented default accepted",
+  "returncode": 0,
+  "output": "\r{\"service_stopped\": true, \"motor_commands_sent\": false, \"scales_changed\": false, \"id\": \"0xc425100b\", \"epoch\": 52951, \"qei\": [{\"channel\": 0, \"position_batch\": 0, \"info\": 3, \"seen_edge\": true, \"period_valid\": false, \"illegal_transitions\": 0, \"divider_overruns\": 0, \"filter_rejections\": 0, \"scale\": 0, \"filter\": 0}, {\"channel\": 1, \"position_batch\": 0, \"info\": 0, \"seen_edge\": false, \"period_valid\": false, \"illegal_transitions\": 0, \"divider_overruns\": 0, \"filter_rejections\": 0, \"scale\": 0, \"filter\": 0}]}",
+  "elapsed_seconds": 4.828
+}

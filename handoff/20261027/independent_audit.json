@@ -1,0 +1,332 @@
+{
+  "schema": "returned-handoff-audit/v1",
+  "hardware_accessed": false,
+  "upstream_manifest": {
+    "checked": 151,
+    "matched": 150,
+    "mismatches": [
+      {
+        "path": "诊断脚本_非自动执行/使用前提.md",
+        "expected_sha256": "96445b6ff2f36238a2b3d29a7e15184c2c1f1336a0ff5be195b7e4e59794e675",
+        "actual_sha256": "344ce97543bd028d3cf6a9b37a5b4169b8e22e67c503eb0d1ddde4a2cda1c968",
+        "expected_bytes": 1273,
+        "actual_bytes": 1138,
+        "matched": false
+      }
+    ]
+  },
+  "upstream_sha256sums": {
+    "checked": 154,
+    "mismatches": []
+  },
+  "production_source_checks": [
+    {
+      "returned": "相关源码/board_manifest.json",
+      "local": "pynq_fpga/fpga/board/board_manifest.json",
+      "sha256": "38f9f04f99ea6219c0ca7e06b2bc37d77f57bf5144f7ea7500dfb5671a4c5974",
+      "matched": true
+    },
+    {
+      "returned": "相关源码/register_map_v0.11.md",
+      "local": "pynq_fpga/nightly/register_map_v0.11.md",
+      "sha256": "7cd1aeec51603ba74b50ef593e1d2bfc2bf5e1f1ad9e4fa1db2d20a50e24fccb",
+      "matched": true
+    },
+    {
+      "returned": "相关源码/rtl/car_board_video_wrapper.v",
+      "local": "pynq_fpga/fpga/rtl/car_board_video_wrapper.v",
+      "sha256": "86fa1614ac29d09bd7906a7a7a22bb59d3b9a54d6e04393e06c4759a064338dc",
+      "matched": true
+    },
+    {
+      "returned": "相关源码/rtl/car_perception_top.v",
+      "local": "pynq_fpga/fpga/rtl/car_perception_top.v",
+      "sha256": "1eeec4c434ffba8c0c86641972d9bf2683cb4b89e047d5a9fc5daea212d0cfed",
+      "matched": true
+    },
+    {
+      "returned": "相关源码/rtl/car_qei.v",
+      "local": "pynq_fpga/fpga/rtl/car_qei.v",
+      "sha256": "341a89efef86529ba75e6337755587fdf025d05f29847f22d1864ab7e2dcaff1",
+      "matched": true
+    },
+    {
+      "returned": "相关源码/rtl/car_qei_core.v",
+      "local": "pynq_fpga/fpga/rtl/car_qei_core.v",
+      "sha256": "52826a246776ded65527d4c12d606f27be82ee0f001972dbe7f2e0b5e681d350",
+      "matched": true
+    },
+    {
+      "returned": "相关源码/rtl/car_qei_velocity.v",
+      "local": "pynq_fpga/fpga/rtl/car_qei_velocity.v",
+      "sha256": "f015ad1085eae40f11451d422ad33df7aacb59289aa525a6f5109d07536eaded",
+      "matched": true
+    },
+    {
+      "returned": "相关源码/rtl/car_reg_defs.vh",
+      "local": "pynq_fpga/fpga/rtl/car_reg_defs.vh",
+      "sha256": "2e8178ad61683695012a4b51fd5a3a113a65657b5aa2271a6304ec7e3f92068c",
+      "matched": true
+    },
+    {
+      "returned": "相关源码/task7_8_integrated.xdc",
+      "local": "pynq_fpga/preintegration/constraints/task7_8_integrated.xdc",
+      "sha256": "d79693aee15c6b3d6a619f47c72776d3fc0fb2fd886d8e297be81bd410334def",
+      "matched": true
+    }
+  ],
+  "original_r17b_zip_identical": true,
+  "gpio": {
+    "independent_wire": {
+      "samples": 32,
+      "all_jb1_low": true,
+      "b_states": [
+        62
+      ],
+      "restored": true,
+      "restored_id": "0xc425100b",
+      "scales_after_restore": [
+        0,
+        0
+      ]
+    },
+    "original_la3_wire": {
+      "samples": 32,
+      "all_jb1_low": true,
+      "b_states": [
+        62
+      ],
+      "restored": true,
+      "restored_id": "0xc425100b",
+      "scales_after_restore": [
+        0,
+        0
+      ]
+    },
+    "converter": {
+      "disabled": {
+        "all_input_states": [
+          63
+        ],
+        "encoder_nibble_states": [
+          15
+        ],
+        "samples": 25
+      },
+      "enabled": {
+        "all_input_states": [
+          63
+        ],
+        "encoder_nibble_states": [
+          15
+        ],
+        "samples": 25
+      },
+      "all_enabled_jb1_low": false,
+      "restored": true
+    }
+  },
+  "uart": {
+    "frames": 80,
+    "independent_crc_errors": 0,
+    "requests_exactly_1_to_80": true,
+    "all_locked_zero": true
+  },
+  "qei_snapshots": [
+    {
+      "file": "board_encoder_prepare-153805.json",
+      "epoch": 490,
+      "qei": [
+        {
+          "channel": 0,
+          "position_batch": 0,
+          "info": 0,
+          "seen_edge": false,
+          "period_valid": false,
+          "illegal_transitions": 0,
+          "divider_overruns": 0,
+          "filter_rejections": 0,
+          "scale": 0,
+          "filter": 0
+        },
+        {
+          "channel": 1,
+          "position_batch": 0,
+          "info": 0,
+          "seen_edge": false,
+          "period_valid": false,
+          "illegal_transitions": 0,
+          "divider_overruns": 0,
+          "filter_rejections": 0,
+          "scale": 0,
+          "filter": 0
+        }
+      ]
+    },
+    {
+      "file": "board_encoder_prepare-154010.json",
+      "epoch": 491,
+      "qei": [
+        {
+          "channel": 0,
+          "position_batch": 0,
+          "info": 0,
+          "seen_edge": false,
+          "period_valid": false,
+          "illegal_transitions": 0,
+          "divider_overruns": 0,
+          "filter_rejections": 0,
+          "scale": 0,
+          "filter": 0
+        },
+        {
+          "channel": 1,
+          "position_batch": 0,
+          "info": 0,
+          "seen_edge": false,
+          "period_valid": false,
+          "illegal_transitions": 0,
+          "divider_overruns": 0,
+          "filter_rejections": 0,
+          "scale": 0,
+          "filter": 0
+        }
+      ]
+    },
+    {
+      "file": "board_encoder_prepare-154201.json",
+      "epoch": 492,
+      "qei": [
+        {
+          "channel": 0,
+          "position_batch": 0,
+          "info": 0,
+          "seen_edge": false,
+          "period_valid": false,
+          "illegal_transitions": 0,
+          "divider_overruns": 0,
+          "filter_rejections": 0,
+          "scale": 0,
+          "filter": 0
+        },
+        {
+          "channel": 1,
+          "position_batch": 0,
+          "info": 0,
+          "seen_edge": false,
+          "period_valid": false,
+          "illegal_transitions": 0,
+          "divider_overruns": 0,
+          "filter_rejections": 0,
+          "scale": 0,
+          "filter": 0
+        }
+      ]
+    }
+  ],
+  "failed_session": {
+    "duration_observed_s": 496.65681320399926,
+    "passed": false,
+    "motion_allowed": true,
+    "release_sent": false,
+    "failures": [
+      "control schedule overrun; stopped and continued zero-output diagnosis",
+      "control: RuntimeError: UART transport failed: Write timeout",
+      "startup acquisition readiness failed: acquisition readiness timed out: qei0 acquisition invalid, qei1 acquisition invalid, QEI0 stale, QEI1 stale",
+      "cleanup source: timed out; resource termination unconfirmed"
+    ],
+    "control_timing": {
+      "diagnostic_recovery": true,
+      "maximum_lag_ms": 354.43345397561643,
+      "overruns": 13,
+      "strict_acceptance_failed": true
+    }
+  },
+  "test3": {
+    "browser_video": {
+      "received_fps": 6.374501992031873,
+      "drawn_fps": 6.374501992031873,
+      "quality": "55",
+      "frame_bytes": 81722,
+      "client_receive_to_draw_ms": 8,
+      "frame_id": 74186,
+      "view": "processed",
+      "client_dropped": 1394,
+      "video_session": "5e7aa6e806706eb84d81fc25",
+      "visible": true
+    },
+    "control_timing": {
+      "diagnostic_recovery": true,
+      "overruns": 1241,
+      "maximum_lag_ms": 358.2792049683121,
+      "strict_acceptance_failed": true
+    },
+    "motion_allowed": false,
+    "interconnect_test": {
+      "schema": "car-sensor-interconnect-test/v1",
+      "state": "action_required",
+      "passed": false,
+      "elapsed_s": 27.730199528,
+      "minimum_s": 10,
+      "samples": 488,
+      "video_frames": 180,
+      "stm32_replies": 497,
+      "protocol_errors": 0,
+      "transport_error": null,
+      "valid_ratios": {
+        "ultrasonic": 1,
+        "infrared": 0.9754098360655737,
+        "stm32_feedback": 1
+      },
+      "ultrasonic_mm": {
+        "minimum": 50,
+        "maximum": 1999
+      },
+      "infrared_masks_seen": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "infrared_side_states": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "encoder": {
+        "left_advances": 0,
+        "right_advances": 0,
+        "left_valid_samples": 0,
+        "right_valid_samples": 0
+      },
+      "conditions": {
+        "sampling_fresh": true,
+        "duration": true,
+        "samples": true,
+        "video": true,
+        "stm32_replies": true,
+        "protocol_errors_zero": true,
+        "transport_error_absent": true,
+        "ultrasonic_valid": true,
+        "infrared_valid": true,
+        "infrared_left_exercised": true,
+        "infrared_right_exercised": true,
+        "car_feedback": true,
+        "locked_zero": true,
+        "encoder_left_moved": false,
+        "encoder_right_moved": false
+      },
+      "action_required": [
+        "encoder_left_moved",
+        "encoder_right_moved"
+      ],
+      "hard_failures": []
+    }
+  },
+  "integrity_passed": false
+}

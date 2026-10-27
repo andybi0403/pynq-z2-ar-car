@@ -1,0 +1,11 @@
+{
+  "time": "2026-10-27T10:12:41.006557+08:00",
+  "port": "COM10",
+  "source": "board_start_r17b.py",
+  "source_sha256": "5b60fafd1c168750667f442706614d6affba3f78483fb126fd0fbb241c76a7ed",
+  "root": true,
+  "motion_commands_sent": false,
+  "returncode": 0,
+  "output": "{\"service\": \"MainPID=9113\\nExecStart={ path=/bin/sh ; argv[]=/bin/sh /home/xilinx/v011_uart_recovery_20261026_r17b/start_console.sh ; ignore_errors=no ; start_time=[Wed 2026-10-14 20:45:20 UTC] ; stop_time=[n/a] ; pid=9113 ; code=(null) ; status=0/0 }\\nActiveState=active\\nSubState=running\\nInvocationID=bc96eef1033147cdb324a21436486a24\\n\", \"backup\": \"/home/xilinx/deployment_backups/before-r17b-20261014T203411Z\", \"installed_directory\": \"/home/xilinx/v011_uart_recovery_20261026_r17b\", \"startup_mode\": \"observe_locked\", \"automatic_release\": false, \"physical_motor_state\": \"connected\", \"motion_commands_sent\": false, \"stm32_reflashed\": false, \"pc_network_mutated\": false}",
+  "elapsed_seconds": 5.859
+}

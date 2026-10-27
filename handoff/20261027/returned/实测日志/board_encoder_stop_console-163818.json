@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-27T16:38:09.744031+08:00",
+  "port": "COM10",
+  "source": "board_encoder_stop_console.py",
+  "source_sha256": "8e37fcb8aea6bb4fb01a38bfe89730fab1395a393629513ffdaa6c8aeef04c77",
+  "root": true,
+  "motion_commands_sent": false,
+  "sudo_authentication": "documented default accepted",
+  "returncode": 0,
+  "output": "\r{\"service\": {\"MainPID\": \"0\", \"Result\": \"success\", \"ActiveState\": \"inactive\", \"SubState\": \"dead\"}, \"motor_commands_sent\": false, \"scales_changed\": false}",
+  "elapsed_seconds": 8.735
+}

@@ -1,0 +1,96 @@
+{
+  "scope": "local history and latest evidence only; no hardware operation",
+  "rounds": {
+    "round1": {
+      "sha256": "89db86b3167f9c62eb3825e19185c7b2cd30a8d08d845eb410f1ae04d3aad8a1",
+      "matches_received_review_hash": true,
+      "sample_count": 5588,
+      "channels": {
+        "left": {
+          "position_first": 0,
+          "position_last": -222,
+          "net_count_mod32": -222,
+          "absolute_steps_between_samples": 250,
+          "illegal_first": 1,
+          "illegal_last": 255,
+          "illegal_max": 255,
+          "overrun_max": 0
+        },
+        "right": {
+          "position_first": 0,
+          "position_last": 92,
+          "net_count_mod32": 92,
+          "absolute_steps_between_samples": 96,
+          "illegal_first": 1,
+          "illegal_last": 255,
+          "illegal_max": 255,
+          "overrun_max": 0
+        }
+      }
+    },
+    "round2": {
+      "sha256": "bc3ba59ceb042f20f20da74bc47a5c1182d990c495658b48c2a7730f6ab60959",
+      "matches_received_review_hash": true,
+      "sample_count": 8948,
+      "channels": {
+        "left": {
+          "position_first": 0,
+          "position_last": 3852,
+          "net_count_mod32": 3852,
+          "absolute_steps_between_samples": 4240,
+          "illegal_first": 0,
+          "illegal_last": 255,
+          "illegal_max": 255,
+          "overrun_max": 0
+        },
+        "right": {
+          "position_first": 0,
+          "position_last": 9934,
+          "net_count_mod32": 9934,
+          "absolute_steps_between_samples": 13982,
+          "illegal_first": 0,
+          "illegal_last": 255,
+          "illegal_max": 255,
+          "overrun_max": 0
+        }
+      }
+    }
+  },
+  "source_hashes": {
+    "car_qei.v": "341a89efef86529ba75e6337755587fdf025d05f29847f22d1864ab7e2dcaff1",
+    "car_board_video_wrapper.v": "86fa1614ac29d09bd7906a7a7a22bb59d3b9a54d6e04393e06c4759a064338dc"
+  },
+  "latest_controls": {
+    "board_gpio_path_readback-161237.json": {
+      "host_time": "2026-10-27T16:11:54.772753+08:00",
+      "returncode": 0,
+      "restored": true,
+      "restored_id": "0xc425100b",
+      "scales": [
+        0,
+        0
+      ],
+      "expected_JB1_tracks": false,
+      "B_states": [
+        63
+      ]
+    },
+    "board_gpio_jb1_ground_check-163921.json": {
+      "host_time": "2026-10-27T16:38:38.266869+08:00",
+      "returncode": 0,
+      "restored": true,
+      "restored_id": "0xc425100b",
+      "scales": [
+        0,
+        0
+      ],
+      "expected_JB1_low": true,
+      "B_states": [
+        62
+      ],
+      "JB1_values": [
+        0
+      ]
+    }
+  }
+}

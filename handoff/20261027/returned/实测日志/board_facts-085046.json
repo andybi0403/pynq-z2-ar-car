@@ -1,0 +1,11 @@
+{
+  "time": "2026-10-27T08:50:38.126284+08:00",
+  "port": "COM10",
+  "source": "board_facts.py",
+  "source_sha256": "a631f58ab4ed841afa591a67b7936497a1d5c71afd34fa38ff391766039985ca",
+  "root": false,
+  "motion_commands_sent": false,
+  "returncode": 1,
+  "output": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"<diagnostic>\", line 23, in <module>\n  File \"/usr/lib/python3.10/pathlib.py\", line 1132, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n  File \"/usr/lib/python3.10/pathlib.py\", line 1117, in open\n    return self._accessor.open(self, mode, buffering, encoding, errors,\nPermissionError: [Errno 13] Permission denied: '/proc/tty/driver/xuartps'",
+  "elapsed_seconds": 8.344
+}

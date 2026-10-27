@@ -1,0 +1,11 @@
+{
+  "time": "2026-10-27T14:24:03.238829+08:00",
+  "port": "COM10",
+  "source": "board_gpio_path_readback.py",
+  "source_sha256": "3ea76b8d22e6996919e1f6b0c23ebf0f308e4f3d8a66aa25cfea8910e6b1ac79",
+  "root": true,
+  "motion_commands_sent": false,
+  "returncode": 0,
+  "output": "\r{\"requires_cold_wiring_verified\": true, \"jumper\": \"physical JA1 -> J3.LA5; encoder disconnected from J3\", \"only_output_pmoda_pins\": [1, 9], \"pmodb_all_inputs\": true, \"motor_commands_sent\": false, \"calibration_changed\": false, \"restored\": true, \"trials\": [{\"driven\": 0, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 190}, {\"driven\": 1, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 191}, {\"driven\": 0, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 190}, {\"driven\": 1, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 191}, {\"driven\": 0, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 190}, {\"driven\": 1, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 191}, {\"driven\": 0, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 190}, {\"driven\": 1, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 191}, {\"driven\": 0, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 190}, {\"driven\": 1, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 191}, {\"driven\": 0, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 190}, {\"driven\": 1, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 191}, {\"driven\": 0, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 190}, {\"driven\": 1, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 191}, {\"driven\": 0, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 190}, {\"driven\": 1, \"input_states\": [177, 177, 177, 177], \"A_data_readback\": 191}], \"direction_readback\": {\"A\": 190, \"B\": 255}, \"matching_b_gpio_indexes\": [], \"expected_JB1_tracks\": false, \"restored_id\": \"0xc425100b\", \"scales_after_restore\": [0, 0]}",
+  "elapsed_seconds": 40.657
+}

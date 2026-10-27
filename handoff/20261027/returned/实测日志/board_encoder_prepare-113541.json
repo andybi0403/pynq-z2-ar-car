@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-27T11:35:05.257590+08:00",
+  "port": "COM10",
+  "source": "board_encoder_prepare.py",
+  "source_sha256": "a767423b2e888a2e871ead19bbd2fa3a72a2498b2c686113fbacbc4840040502",
+  "root": true,
+  "motion_commands_sent": false,
+  "sudo_authentication": "documented default accepted",
+  "returncode": 124,
+  "output": "\rTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"<diagnostic>\", line 9, in <module>\n  File \"/usr/lib/python3.10/subprocess.py\", line 503, in run\n    stdout, stderr = process.communicate(input, timeout=timeout)\n  File \"/usr/lib/python3.10/subprocess.py\", line 1149, in communicate\n    stdout, stderr = self._communicate(input, endtime, timeout)\n  File \"/usr/lib/python3.10/subprocess.py\", line 2026, in _communicate\n    self.wait(timeout=self._remaining_time(endtime))\n  File \"/usr/lib/python3.10/subprocess.py\", line 1204, in wait\n    return self._wait(timeout=timeout)\n  File \"/usr/lib/python3.10/subprocess.py\", line 1932, in _wait\n    time.sleep(delay)\nKeyboardInterrupt",
+  "elapsed_seconds": 36.344
+}

@@ -1,0 +1,162 @@
+{
+  "r16_r17b_same_bit": true,
+  "r16_r17b_same_hwh": true,
+  "helper_syntax": {
+    "硬件检查_20261027\\audit_original_and_release.py": "PASS",
+    "硬件检查_20261027\\board_deploy_preflight.py": "PASS",
+    "硬件检查_20261027\\board_encoder_boot_status.py": "PASS",
+    "硬件检查_20261027\\board_encoder_prepare.py": "PASS",
+    "硬件检查_20261027\\board_encoder_stop_console.py": "PASS",
+    "硬件检查_20261027\\board_facts.py": "PASS",
+    "硬件检查_20261027\\board_final_status.py": "PASS",
+    "硬件检查_20261027\\board_get_private_session.py": "PASS",
+    "硬件检查_20261027\\board_http_video_check.py": "PASS",
+    "硬件检查_20261027\\board_install_r17b.py": "PASS",
+    "硬件检查_20261027\\board_locked_query.py": "PASS",
+    "硬件检查_20261027\\board_network_status.py": "PASS",
+    "硬件检查_20261027\\board_poweroff_for_encoder_wiring.py": "PASS",
+    "硬件检查_20261027\\board_r17b_status.py": "PASS",
+    "硬件检查_20261027\\board_read_end_summary.py": "PASS",
+    "硬件检查_20261027\\board_recovery_status.py": "PASS",
+    "硬件检查_20261027\\board_session_timing.py": "PASS",
+    "硬件检查_20261027\\board_start_r17b.py": "PASS",
+    "硬件检查_20261027\\board_uart_mode.py": "PASS",
+    "硬件检查_20261027\\pynq_board_job.py": "PASS",
+    "硬件检查_20261027\\pynq_check.py": "PASS",
+    "硬件检查_20261027\\upload_r17b_com10.py": "PASS",
+    "离线测试_20261027\\启动小车控制台.py": "PASS"
+  },
+  "export_identity_checks": {
+    "pynq-console-1793070405711.json": {
+      "count": 43,
+      "mismatches": [],
+      "bit": true,
+      "hwh": true,
+      "mode": "observe",
+      "release_requests": 0,
+      "car": {
+        "left": 0,
+        "right": 0,
+        "lock": 1,
+        "fault": 41,
+        "mm": 1817,
+        "ir": 0,
+        "drop": 0
+      }
+    },
+    "test2.json": {
+      "count": 43,
+      "mismatches": [],
+      "bit": true,
+      "hwh": true,
+      "mode": "observe",
+      "release_requests": 0,
+      "car": {
+        "left": 0,
+        "right": 0,
+        "lock": 1,
+        "fault": 41,
+        "mm": 1814,
+        "ir": 0,
+        "drop": 0
+      }
+    },
+    "test3.json": {
+      "count": 43,
+      "mismatches": [],
+      "bit": true,
+      "hwh": true,
+      "mode": "observe",
+      "release_requests": 0,
+      "car": {
+        "left": 0,
+        "right": 0,
+        "lock": 1,
+        "fault": 41,
+        "mm": 1419,
+        "ir": 1,
+        "drop": 0
+      }
+    }
+  },
+  "encoder_diagnostic_records": [
+    {
+      "evidence": "board_encoder_prepare-113715.json",
+      "time": "2026-10-27T11:37:12.084378+08:00",
+      "scales": [
+        0,
+        0
+      ],
+      "info": [
+        0,
+        0
+      ],
+      "epoch": 52948
+    },
+    {
+      "evidence": "board_encoder_prepare-113947.json",
+      "time": "2026-10-27T11:39:43.604339+08:00",
+      "scales": [
+        0,
+        0
+      ],
+      "info": [
+        0,
+        0
+      ],
+      "epoch": 52949
+    },
+    {
+      "evidence": "board_encoder_prepare-114254.json",
+      "time": "2026-10-27T11:42:50.324888+08:00",
+      "scales": [
+        0,
+        0
+      ],
+      "info": [
+        0,
+        0
+      ],
+      "epoch": 52950
+    },
+    {
+      "evidence": "board_encoder_prepare-115921.json",
+      "time": "2026-10-27T11:59:16.254287+08:00",
+      "scales": [
+        0,
+        0
+      ],
+      "info": [
+        3,
+        0
+      ],
+      "epoch": 52951
+    },
+    {
+      "evidence": "board_encoder_prepare-120803.json",
+      "time": "2026-10-27T12:07:59.604484+08:00",
+      "scales": [
+        0,
+        0
+      ],
+      "info": [
+        0,
+        0
+      ],
+      "epoch": 2900
+    },
+    {
+      "evidence": "board_encoder_prepare-121205.json",
+      "time": "2026-10-27T12:12:02.137826+08:00",
+      "scales": [
+        0,
+        0
+      ],
+      "info": [
+        0,
+        0
+      ],
+      "epoch": 2901
+    }
+  ]
+}

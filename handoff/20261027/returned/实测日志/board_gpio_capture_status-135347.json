@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-27T13:53:44.296245+08:00",
+  "port": "COM10",
+  "source": "board_gpio_capture_status.py",
+  "source_sha256": "8a23eb36b59466b8da73fd468b80913c5a66e5e19c745376320242804c20678d",
+  "root": true,
+  "motion_commands_sent": false,
+  "sudo_authentication": "documented default accepted",
+  "returncode": 0,
+  "output": "\r{\"run_directory\": \"/home/xilinx/v011_uart_recovery_20261026_r17b/evidence/gpio_inputs_20261027_521fb3c8\", \"stop_requested\": false, \"state\": {\"phase\": \"ready\", \"pid\": 1117, \"motor_commands_sent\": false, \"calibration_changed\": false, \"sample_count\": 46044, \"encoder_states\": {\"1\": 46044}, \"pin_transitions\": [0, 0, 0, 0], \"restored\": false, \"capture_seconds\": 180, \"started_monotonic\": 1540.920525693, \"scope\": \"level transitions only; not calibrated counts or voltage measurement\", \"last_value\": 1, \"elapsed_s\": 162.358}, \"first_changes\": []}",
+  "elapsed_seconds": 3.594
+}

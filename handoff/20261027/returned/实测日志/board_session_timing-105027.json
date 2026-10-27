@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-27T10:50:22.383179+08:00",
+  "port": "COM10",
+  "source": "board_session_timing.py",
+  "source_sha256": "17db06b98c40406144a56df9ed13b54683db6df226c319b3dd07fecbf87fdc6b",
+  "root": true,
+  "motion_commands_sent": false,
+  "sudo_authentication": "documented default accepted",
+  "returncode": 0,
+  "output": "\r{\"events\": [{\"monotonic_seconds\": 7426.327728, \"event\": \"hardware_ready\"}, {\"monotonic_seconds\": 7446.984918, \"event\": \"readiness_failed\"}, {\"monotonic_seconds\": 7447.181213, \"event\": \"url_ready\"}], \"service\": \"ExecMainStartTimestampMonotonic=7410900560\\nActiveState=active\\n\"}",
+  "elapsed_seconds": 4.641
+}

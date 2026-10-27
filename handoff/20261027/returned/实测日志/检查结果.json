@@ -1,0 +1,42 @@
+{
+  "time": "2026-10-27T09:55:31.924979+08:00",
+  "evidence": "board_locked_query-095546.json",
+  "pynq_port": "COM10",
+  "user_reported_changes": [
+    "JB9/JB10 loose connectors reinserted",
+    "STM32 GND moved from JB8 to JB11"
+  ],
+  "protocol_communication": "PASS",
+  "independent_audit": {
+    "frame_count": 80,
+    "independent_crc_errors": 0,
+    "one_session": true,
+    "requests_exactly_1_to_80": true,
+    "all_locked_zero": true,
+    "all_ultrasonic_valid": true,
+    "ultrasonic_mm_range": [
+      631,
+      640
+    ],
+    "all_ir_valid": true,
+    "ir_masks": [
+      0
+    ],
+    "fault_values": [
+      41
+    ],
+    "drop_values": [
+      0
+    ]
+  },
+  "service_left_stopped": true,
+  "firmware_flashed": false,
+  "motion_commands_sent": false,
+  "overlay_loaded": false,
+  "current_pynq_package": "r16",
+  "r17b_deployed": false,
+  "whole_vehicle_acceptance": "NOT_TESTED_THIS_CHECK",
+  "root_cause_scope": "Communication recovered after user wiring corrections; individual contributions not isolated.",
+  "previous_failed_check": "首次检查结果.json",
+  "scope": "Locked serial communication only; latched fault remains 41; no drive release or full vehicle acceptance."
+}

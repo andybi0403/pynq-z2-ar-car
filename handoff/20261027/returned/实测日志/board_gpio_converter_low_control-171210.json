@@ -1,0 +1,11 @@
+{
+  "time": "2026-10-27T17:11:27.564857+08:00",
+  "port": "COM10",
+  "source": "board_gpio_converter_low_control.py",
+  "source_sha256": "382a31eef0c0fa155585e246a4117f60f7f4dc12c835bf4a1c4f8ad1b68dacb0",
+  "root": true,
+  "motion_commands_sent": false,
+  "returncode": 0,
+  "output": "\r{\"motor_commands_sent\": false, \"calibration_changed\": false, \"pmodb_direction\": \"all inputs\", \"pmoda_only_output_physical_pin\": 9, \"restored\": true, \"required_wiring\": \"original J1.LA3 -> official JB1 restored; spare official PMODA JA5 GND -> J3.LA5; J3/J4 encoder inputs isolated; J1/J2/J5 otherwise unchanged\", \"voltage_measured\": false, \"oe_disabled\": {\"all_input_states\": [63], \"encoder_nibble_states\": [15], \"samples\": 25}, \"oe_enabled\": {\"all_input_states\": [63], \"encoder_nibble_states\": [15], \"samples\": 25}, \"JB1_low_all_enabled_samples\": false, \"restored_id\": \"0xc425100b\", \"scales_after_restore\": [0, 0]}",
+  "elapsed_seconds": 42.907
+}

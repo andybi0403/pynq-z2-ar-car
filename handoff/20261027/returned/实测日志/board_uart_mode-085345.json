@@ -1,0 +1,11 @@
+{
+  "time": "2026-10-27T08:53:41.730433+08:00",
+  "port": "COM10",
+  "source": "board_uart_mode.py",
+  "source_sha256": "448689ec5a77e7967a0dcc9d2653267987f7ff2db3a51382a431a3df13bbb202",
+  "root": true,
+  "motion_commands_sent": false,
+  "returncode": 0,
+  "output": "{\"registers\": {\"control\": \"0x0\", \"mode\": \"0x0\", \"modem_control\": \"0x0\", \"channel_status\": \"0x0\", \"baud_divider\": \"0x0\"}, \"channel_mode_bits_9_8\": 0, \"systemctl show pynq-car-console.service -p ActiveState -p MainPID -p Result\": {\"code\": 0, \"stdout\": \"MainPID=0\\nResult=exit-code\\nActiveState=failed\\n\", \"stderr\": \"\"}, \"stty -F /dev/ttyPS1 -a\": {\"code\": 0, \"stdout\": \"speed 115200 baud; rows 0; columns 0; line = 0;\\nintr = ^C; quit = ^\\\\; erase = ^?; kill = ^U; eof = ^D; eol = <undef>;\\neol2 = <undef>; swtch = <undef>; start = ^Q; stop = ^S; susp = ^Z; rprnt = ^R;\\nwerase = ^W; lnext = ^V; discard = ^O; min = 0; time = 0;\\n-parenb -parodd -cmspar cs8 hupcl -cstopb cread clocal -crtscts\\n-ignbrk -brkint -ignpar -parmrk -inpck -istrip -inlcr -igncr -icrnl -ixon -ixoff\\n-iuclc -ixany -imaxbel -iutf8\\n-opost -olcuc -ocrnl -onlcr -onocr -onlret -ofill -ofdel nl0 cr0 tab0 bs0 vt0 ff0\\n-isig -icanon -iexten -echo -echoe -echok -echonl -noflsh -xcase -tostop -echoprt\\n-echoctl -echoke -flusho -extproc\\n\", \"stderr\": \"\"}, \"uart_stats\": \"serinfo:1.0 driver revision:\\n0: uart:xuartps mmio:0xE0000000 irq:34 tx:20924 rx:9440 RTS|CTS|DTR|DSR|CD\\n1: uart:xuartps mmio:0xE0001000 irq:57 tx:240985 rx:187123 CTS|DSR|CD|RI\\n\"}",
+  "elapsed_seconds": 3.406
+}

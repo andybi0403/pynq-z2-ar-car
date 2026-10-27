@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-27T12:01:01.587974+08:00",
+  "port": "COM10",
+  "source": "board_poweroff_for_encoder_wiring.py",
+  "source_sha256": "79a584cacc9c01b2e2e5a2b241c853fbfa3d8430a2b2d7d4e34727d8077c9197",
+  "root": true,
+  "motion_commands_sent": false,
+  "sudo_authentication": "documented default accepted",
+  "returncode": 0,
+  "output": "\r{\"orderly_poweroff_scheduled\": true, \"delay_seconds\": 10, \"physical_power_removal_still_required\": true, \"motor_commands_sent\": false, \"scheduler\": \"Running timer as unit: encoder-wiring-poweroff-20261027.timer\\nWill run service as unit: encoder-wiring-poweroff-20261027.service\"}",
+  "elapsed_seconds": 3.766
+}

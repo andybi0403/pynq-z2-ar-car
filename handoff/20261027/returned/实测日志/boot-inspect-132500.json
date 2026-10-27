@@ -1,0 +1,20 @@
+{
+  "time": "2026-10-27T13:24:55.800034+08:00",
+  "port": "COM10",
+  "configuration_saved": false,
+  "motion_commands_sent": false,
+  "steps": [
+    {
+      "command": "version",
+      "output": "version\r\nU-Boot 2022.01 (Apr 04 2022 - 07:53:54 +0000)\r\n\r\narm-xilinx-linux-gnueabi-gcc (GCC) 11.2.0\r\nGNU ld (GNU Binutils) 2.37.20210721\r\nZynq> "
+    },
+    {
+      "command": "printenv bootcmd boot_targets modeboot",
+      "output": "printenv bootcmd boot_targets modeboot\r\nbootcmd=run distro_bootcmd\r\nboot_targets=mmc0 jtag mmc0 mmc1 qspi nand nor usb0 usb1 pxe dhcp \r\nmodeboot=sdboot\r\nZynq> "
+    },
+    {
+      "command": "mmc list",
+      "output": "mmc list\r\nmmc@e0100000: 0 (SD)\r\nZynq> "
+    }
+  ]
+}

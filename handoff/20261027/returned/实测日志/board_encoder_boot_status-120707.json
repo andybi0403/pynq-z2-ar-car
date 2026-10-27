@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-27T12:06:59.765567+08:00",
+  "port": "COM10",
+  "source": "board_encoder_boot_status.py",
+  "source_sha256": "2cfb9ac2d044ef0edb976864bc60322a4c640478465399234c77ad0cdaefe0b5",
+  "root": true,
+  "motion_commands_sent": false,
+  "sudo_authentication": "documented default accepted",
+  "returncode": 0,
+  "output": "\r{\"uptime\": \"211.08 11.83\", \"boot_id\": \"d41a1a09-74e5-406b-84e4-86197d8db535\", \"service\": {\"returncode\": 0, \"stdout\": \"MainPID=618\\nResult=success\\nExecMainStartTimestampMonotonic=23757437\\nActiveState=active\\nSubState=running\", \"stderr\": \"\"}, \"uart_owners\": {\"returncode\": 0, \"stdout\": \"618\", \"stderr\": \"/dev/ttyPS1:\"}, \"shutdown_timer\": {\"returncode\": 3, \"stdout\": \"inactive\", \"stderr\": \"\"}, \"fpga_state\": \"operating\"}",
+  "elapsed_seconds": 7.875
+}

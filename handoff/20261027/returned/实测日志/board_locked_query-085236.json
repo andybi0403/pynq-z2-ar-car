@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-27T08:52:27.073142+08:00",
+  "port": "COM10",
+  "source": "board_locked_query.py",
+  "source_sha256": "6552888cd1bfcda29d40a111f0088635411f7f2e04f79323c566831294e36c72",
+  "root": true,
+  "motion_commands_sent": false,
+  "sudo_authentication": "documented default accepted",
+  "returncode": 1,
+  "output": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"<diagnostic>\", line 10, in <module>\nModuleNotFoundError: No module named 'serial'",
+  "elapsed_seconds": 9.672
+}

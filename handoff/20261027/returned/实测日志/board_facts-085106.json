@@ -1,0 +1,11 @@
+{
+  "time": "2026-10-27T08:51:00.645810+08:00",
+  "port": "COM10",
+  "source": "board_facts.py",
+  "source_sha256": "007c60df4fff93f55576d288ef778bf944d921e046e17722a4fc8dafab7bd2d8",
+  "root": false,
+  "motion_commands_sent": false,
+  "returncode": 0,
+  "output": "{\"hostname\": \"pynq\", \"kernel\": \"5.15.19-xilinx-v2022.1\", \"python\": \"3.10.4\", \"uid\": 1000, \"system\": \"NAME=\\\"PynqLinux\\\"\\nVERSION=\\\"3.0 (Belfast)\\\"\\nID=pynqlinux\\nID_LIKE=ubuntu\\nPRETTY_NAME=\\\"PynqLinux, based on Ubuntu 22.04\\\"\\nVERSION_ID=\\\"3.0\\\"\\nHOME_URL=\\\"https://www.pynq.io/\\\"\\nSUPPORT_URL=\\\"https://discuss.pynq.io/\\\"\\nBUG_REPORT_URL=\\\"https://www.pynq.io\\\"\\nPRIVACY_POLICY_URL=\\\"https://www.pynq.io\\\"\\nVERSION_CODENAME=Belfast\\nUBUNTU_CODENAME=jammy\\n\", \"service\": {\"code\": 0, \"stdout\": \"MainPID=563\\nNRestarts=0\\nExecStart={ path=/bin/sh ; argv[]=/bin/sh /home/xilinx/v011_complete_console_20261026_r16/start_console.sh ; ignore_errors=no ; start_time=[Wed 2026-10-14 19:17:21 UTC] ; stop_time=[n/a] ; pid=563 ; code=(null) ; status=0/0 }\\nLoadState=loaded\\nActiveState=active\\nSubState=running\", \"stderr\": \"\"}, \"uart_owners\": {\"code\": 1, \"stdout\": \"\", \"stderr\": \"\"}, \"sudo_noninteractive\": {\"code\": 1, \"stdout\": \"\", \"stderr\": \"sudo: a password is required\"}, \"interfaces\": {\"code\": 0, \"stdout\": \"lo               UNKNOWN        127.0.0.1/8 ::1/128 \\ndummy0           DOWN           \\neth0             DOWN           192.168.2.99/24 \\nsit0@NONE        DOWN\", \"stderr\": \"\"}, \"packages\": [\"v010_ground_trial_20261026_r14\", \"v010_locked_resync_20261026_r12\", \"v010_diagnostic_timing_20261025_r9\", \"v011_complete_console_20261026_r16\", \"v010_ground_trial_20261026_r13\", \"v010_statistics_latency_20261026_r11\", \"v010_uart_recovery_20261026_r10\", \"v010_network_boot_20261025_r7\", \"v010_connection_atomic_20261025_r8\"], \"uart_stats\": {\"error\": \"[Errno 13] Permission denied: '/proc/tty/driver/xuartps'\"}, \"uart_device\": {\"/dev/ttyPS0\": {\"exists\": true, \"readable\": true, \"writable\": true}, \"/dev/ttyPS1\": {\"exists\": true, \"readable\": false, \"writable\": false}}, \"serial_module_available\": true, \"pynq_version\": \"3.0.1\", \"pyserial_version\": \"3.5\"}",
+  "elapsed_seconds": 5.718
+}

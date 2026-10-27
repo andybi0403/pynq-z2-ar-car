@@ -1,6 +1,8 @@
 # PYNQ-Z2 多传感器 AR 小车
 
-**2026-10-26 最新交接：[接手先读](handoff/20261026/00_接手先读.md) · [通信故障与实测](handoff/20261026/02_通信故障时间线与复现.md) · [完整演示与验收](handoff/20261026/04_完整功能演示脚本与验收清单.md)。** 最新完整程序为 [r17b ZIP](pynq_fpga/release/v011_uart_recovery_20261026_r17b.zip)。STM32 已烧录并全片校验，PC COM10 查询 20/20；PYNQ 在 S5 ON/OFF 两次均 0/80，通信仍未恢复。板上 r16 服务已停止，r17b 尚未部署到 PYNQ；整车验收未完成。下文旧版本状态保留为历史，不覆盖本次交接。
+**2026-10-27 回交更新：[最新状态与资料](handoff/20261027/README.md) · [完成日志与证据](handoff/20261027/01_回交完成日志与证据.md) · [今晚收尾](handoff/20261027/02_今晚收尾顺序.md) · [最新接线](docs/03_硬件与接线/19_最新接线及编码器定位_20261027.md)。** r17b 已部署，双板锁车查询 80/80、独立 CRC 错误 0；JB1 与原 LA3 线的直接低电平对照通过，经转换板的低电平失败，编码器仍待定位。视频/控制长稳未通过，现场最后处于临时测试接线，需核实物理断电与恢复正常接法。生产源码、bit/HWH 和固件无新版本；本次新增诊断工具、原始证据与方案。整车验收未完成。
+
+10 月 26 日的[历史交接](handoff/20261026/00_接手先读.md)与下文旧基线用于追溯；其中通信未恢复、r17b 尚未部署的描述已由本次实测更新，不作为当前状态。
 
 [![validate](https://github.com/andybi0403/pynq-z2-ar-car/actions/workflows/validate.yml/badge.svg)](https://github.com/andybi0403/pynq-z2-ar-car/actions/workflows/validate.yml)
 
@@ -10,14 +12,18 @@
 
 ## 当前版本
 
-最新完整控制台软件为 [v0.11 / r16](pynq_fpga/release/v011_complete_console_20261026_r16/README.md)，[下载 ZIP](pynq_fpga/release/v011_complete_console_20261026_r16.zip)。整合视频、操控与实际反馈、传感器和双轮标定、记录回放与演示流程；红外触发、失效与断线只提示，不参与停车或解锁判断。连接助手拒绝旧受限试跑服务。新包包含重新构建且时序通过的 FPGA bit/HWH、配套 STM32 固件，并保存此前方案的左右 SCALE=5362 名义预设。153 项主机、187 项集成、35 项串口测试、29 个浏览器场景、22 个 RTL 测试台及完整构建通过；包与桌面源文件身份校验通过。**本包未联网部署、实板结果 PENDING**，不改变公开 LAB_ONLY 发布分类。详见 [验证记录](pynq_fpga/preintegration/validation/20261026_ir_advisory_console_r16.md) 和 [操作说明](tools/car_receiver/使用说明.md)。下表继续列出已验证的原实板基线。
+最新板端运行程序为 [v0.11 / r17b ZIP](pynq_fpga/release/v011_uart_recovery_20261026_r17b.zip)，已部署至 `/home/xilinx/v011_uart_recovery_20261026_r17b`。本次接收的原 r17b ZIP 与本地逐字节相同；部署与分项结果见[本次完成日志](handoff/20261027/01_回交完成日志与证据.md)，编码器与长稳验收未通过。
+
+以下为历史 r16 构建和 v0.10 已验基线，不覆盖上方最新状态。
+
+历史 r16 完整控制台软件为 [v0.11 / r16](pynq_fpga/release/v011_complete_console_20261026_r16/README.md)，[下载 ZIP](pynq_fpga/release/v011_complete_console_20261026_r16.zip)。整合视频、操控与实际反馈、传感器和双轮标定、记录回放与演示流程；红外触发、失效与断线只提示，不参与停车或解锁判断。连接助手拒绝旧受限试跑服务。新包包含重新构建且时序通过的 FPGA bit/HWH、配套 STM32 固件，并保存此前方案的左右 SCALE=5362 名义预设。153 项主机、187 项集成、35 项串口测试、29 个浏览器场景、22 个 RTL 测试台及完整构建通过；包与桌面源文件身份校验通过。**本包未联网部署、实板结果 PENDING**，不改变公开 LAB_ONLY 发布分类。详见 [验证记录](pynq_fpga/preintegration/validation/20261026_ir_advisory_console_r16.md) 和 [操作说明](tools/car_receiver/使用说明.md)。下表继续列出已验证的原实板基线。
 
 | 项目 | 值 |
 |---|---|
 | 接口契约 | v0.10 / `0xC425100A` |
 | 板卡 | PYNQ-Z2，`xc7z020clg400-1` |
 | 完整 PL 构建候选 | `v010_edge_console_20261014_r2` |
-| 当前实板锁车基线 | `v010_uart_role_fix_20261014_r3` |
+| 历史实板锁车基线 | `v010_uart_role_fix_20261014_r3` |
 | 工作包 | [`v010_uart_role_fix_20261014_r3.zip`](pynq_fpga/release/v010_uart_role_fix_20261014_r3.zip) |
 | 工作包 SHA-256 | `12d0c5796bb00af5c37f477752c60a010eb84698b05428d2f4c0e361b79f9acf` |
 | bit SHA-256 | `d3287345221c56d0f0c120508ef1bc54771eeedd7b85050e50906c3ff282d7ad` |

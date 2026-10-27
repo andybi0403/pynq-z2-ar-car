@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-27T13:50:28.418006+08:00",
+  "port": "COM10",
+  "source": "board_gpio_capture_start.py",
+  "source_sha256": "bbd5c1c5ba5b543ae3465a2e3727df50117a8128ce6413cf744221142a9e21a3",
+  "root": true,
+  "motion_commands_sent": false,
+  "sudo_authentication": "documented default accepted",
+  "returncode": 0,
+  "output": "\r{\"pid\": 1117, \"run_directory\": \"/home/xilinx/v011_uart_recovery_20261026_r17b/evidence/gpio_inputs_20261027_521fb3c8\", \"worker_sha256\": \"bc2dd6017b037d6440bb6e01a2b0eacf02299ef47db1be12dac9c4b25fdc208c\", \"bounded_capture_seconds\": 180, \"motor_commands_sent\": false}",
+  "elapsed_seconds": 3.891
+}

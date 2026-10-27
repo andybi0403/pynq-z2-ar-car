@@ -1,0 +1,45 @@
+{
+  "time": "2026-10-27T17:19:00.249352+08:00",
+  "port": "COM10",
+  "baudrate": 115200,
+  "inventory": [
+    {
+      "device": "COM7",
+      "description": "蓝牙链接上的标准串行 (COM7)",
+      "vid": null,
+      "pid": null,
+      "serial": null
+    },
+    {
+      "device": "COM6",
+      "description": "蓝牙链接上的标准串行 (COM6)",
+      "vid": null,
+      "pid": null,
+      "serial": null
+    },
+    {
+      "device": "COM10",
+      "description": "USB Serial Port (COM10)",
+      "vid": 1027,
+      "pid": 24592,
+      "serial": "1234"
+    },
+    {
+      "device": "COM5",
+      "description": "蓝牙链接上的标准串行 (COM5)",
+      "vid": null,
+      "pid": null,
+      "serial": null
+    },
+    {
+      "device": "COM8",
+      "description": "蓝牙链接上的标准串行 (COM8)",
+      "vid": null,
+      "pid": null,
+      "serial": null
+    }
+  ],
+  "sent": "one carriage return",
+  "console": "\n\rxilinx@pynq:~$ ",
+  "motion_commands_sent": false
+}

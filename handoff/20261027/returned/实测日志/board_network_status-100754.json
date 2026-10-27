@@ -1,0 +1,11 @@
+{
+  "time": "2026-10-27T10:07:51.019609+08:00",
+  "port": "COM10",
+  "source": "board_network_status.py",
+  "source_sha256": "478ddc41e3056390a244c49f5ce1dfd4c113dc4e0760bbcb32271c627fc5cba6",
+  "root": true,
+  "motion_commands_sent": false,
+  "returncode": 0,
+  "output": "{\"ip_link\": {\"code\": 0, \"stdout\": \"3: eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT group default qlen 1000\\n    link/ether 00:00:05:6b:03:d0 brd ff:ff:ff:ff:ff:ff promiscuity 0 minmtu 68 maxmtu 1500 addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 parentbus platform parentdev e000b000.ethernet\", \"stderr\": \"\"}, \"addresses\": {\"code\": 0, \"stdout\": \"lo               UNKNOWN        127.0.0.1/8 ::1/128 \\ndummy0           DOWN           \\neth0             DOWN           192.168.2.99/24 \\nsit0@NONE        DOWN\", \"stderr\": \"\"}, \"routes\": {\"code\": 0, \"stdout\": \"192.168.2.0/24 dev eth0 proto kernel scope link src 192.168.2.99 linkdown\", \"stderr\": \"\"}, \"ethtool\": {\"code\": 0, \"stdout\": \"Settings for eth0:\\n\\tSupported ports: [ TP\\t MII ]\\n\\tSupported link modes:   10baseT/Half 10baseT/Full\\n\\t                        100baseT/Half 100baseT/Full\\n\\t                        1000baseT/Full\\n\\tSupported pause frame use: Transmit-only\\n\\tSupports auto-negotiation: Yes\\n\\tSupported FEC modes: Not reported\\n\\tAdvertised link modes:  10baseT/Half 10baseT/Full\\n\\t                        100baseT/Half 100baseT/Full\\n\\t                        1000baseT/Full\\n\\tAdvertised pause frame use: Transmit-only\\n\\tAdvertised auto-negotiation: Yes\\n\\tAdvertised FEC modes: Not reported\\n\\tSpeed: Unknown!\\n\\tDuplex: Unknown! (255)\\n\\tAuto-negotiation: on\\n\\tmaster-slave cfg: preferred slave\\n\\tmaster-slave status: unknown\\n\\tPort: Twisted Pair\\n\\tPHYAD: 0\\n\\tTransceiver: external\\n\\tMDI-X: Unknown\\n\\tSupports Wake-on: d\\n\\tWake-on: d\\n\\tLink detected: no\", \"stderr\": \"\"}, \"/sys/class/net/eth0/carrier\": \"0\\n\", \"/sys/class/net/eth0/operstate\": \"down\\n\", \"/etc/network/interfaces\": \"# interfaces(5) file used by ifup(8) and ifdown(8)\\n# Include files from /etc/network/interfaces.d:\\nsource /etc/network/interfaces.d/*\\n\"}",
+  "elapsed_seconds": 3.453
+}

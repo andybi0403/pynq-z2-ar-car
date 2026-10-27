@@ -1,0 +1,24 @@
+{
+  "source_url": "https://github.com/andybi0403/pynq-z2-ar-car/archive/f9fdb1ce3f7c8c57ac554a2e23a42994ee2469a9.zip",
+  "commit": "f9fdb1ce3f7c8c57ac554a2e23a42994ee2469a9",
+  "archive_bytes": 741174008,
+  "archive_sha256": "1b980d49e956a375e0b5da328d42f89627ded4d91d0b2fd907bcc9d9bccfeac6",
+  "zip_crc_and_extraction": "PASS",
+  "extracted_file_count": 4051,
+  "uncompressed_bytes": 938398322,
+  "project_directory": "C:\\Users\\27559\\Desktop\\PLD竞赛\\pynq-z2-ar-car-f9fdb1ce3f7c8c57ac554a2e23a42994ee2469a9",
+  "handoff_archives": {
+    "sha256_and_crc": "PASS",
+    "part_count": 29,
+    "archive_entries": 24511,
+    "restored_directory": "C:\\Users\\27559\\Desktop\\PLD竞赛\\完整归档恢复_f9fdb1c",
+    "restored_file_count_excluding_joined_archives": 24511
+  },
+  "r17b_offline_identity_check": {
+    "result": "PASS",
+    "runtime_file_identities": 56,
+    "recovery_sources": 4,
+    "contract": "0xC425100B",
+    "hardware_accessed": false
+  }
+}

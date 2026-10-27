@@ -18,3 +18,7 @@ retain their upstream terms. The detailed file-level adoption record is
 
 The original board, STM32 BSP and vendor PDFs remain subject to their publishers'
 terms. They are included as hardware documentation, not relicensed under MIT.
+
+## Returned diagnostic handoff (2026-10-27)
+
+`handoff/20261027/returned/` preserves materials from [asdsadfghsdhs/1111](https://github.com/asdsadfghsdhs/1111/tree/2e567bc72ea6d8c947a50aef588e9fd0c4501975), commit `2e567bc72ea6d8c947a50aef588e9fd0c4501975`. Its original LICENSE and author notices remain in place. Vendor manuals/photos retain their original terms. This import adds diagnostic sources and evidence; the nine supplied production sources and original r17b package match the existing project. The receipt records one upstream prerequisites-document manifest discrepancy.

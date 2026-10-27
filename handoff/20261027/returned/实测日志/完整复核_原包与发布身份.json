@@ -1,0 +1,72 @@
+{
+  "archive_sha256": "1b980d49e956a375e0b5da328d42f89627ded4d91d0b2fd907bcc9d9bccfeac6",
+  "files_checked": 4051,
+  "missing": [],
+  "modified": [],
+  "extra_files": [
+    "pynq_fpga/release/v011_uart_recovery_20261026_r17b/__pycache__/board_runtime.cpython-312.pyc",
+    "pynq_fpga/release/v011_uart_recovery_20261026_r17b/__pycache__/car_regs.cpython-312.pyc",
+    "pynq_fpga/release/v011_uart_recovery_20261026_r17b/__pycache__/frame_metadata.cpython-312.pyc",
+    "pynq_fpga/release/v011_uart_recovery_20261026_r17b/__pycache__/frame_pipeline.cpython-312.pyc",
+    "pynq_fpga/release/v011_uart_recovery_20261026_r17b/__pycache__/hwh_contract.cpython-312.pyc",
+    "pynq_fpga/release/v011_uart_recovery_20261026_r17b/__pycache__/lab_acceptance.cpython-312.pyc",
+    "pynq_fpga/release/v011_uart_recovery_20261026_r17b/__pycache__/overlay_session.cpython-312.pyc",
+    "pynq_fpga/release/v011_uart_recovery_20261026_r17b/__pycache__/perception_client.cpython-312.pyc",
+    "pynq_fpga/release/v011_uart_recovery_20261026_r17b/__pycache__/perception_replay.cpython-312.pyc",
+    "pynq_fpga/release/v011_uart_recovery_20261026_r17b/__pycache__/qei_calibration.cpython-312.pyc",
+    "pynq_fpga/release/v011_uart_recovery_20261026_r17b/__pycache__/qei_quality.cpython-312.pyc",
+    "pynq_fpga/release/v011_uart_recovery_20261026_r17b/__pycache__/runtime_identity.cpython-312.pyc"
+  ],
+  "release": {
+    "bound_count": 56,
+    "mismatches": [],
+    "artifacts": {
+      "bit": {
+        "path": "task7_8_LAB_ONLY.bit",
+        "match": true,
+        "sha256": "1d80069c8254fa9942cde851ee0dfcfbe4d38c22150ec99ed007d5a14df03f6b"
+      },
+      "hwh": {
+        "path": "task7_8_LAB_ONLY.hwh",
+        "match": true,
+        "sha256": "4f81458a8d144452d1cac98f7faa7324149b2b50db74e74c510e33edc504a766"
+      },
+      "stm32_hex": {
+        "path": "stm32_hybrid_v3.hex",
+        "match": true,
+        "sha256": "56c53139ac96c8c8fd0cf1e07fc41d6f260762ce961f873d6ce308dac01e6114"
+      },
+      "stm32_bin": {
+        "path": "stm32_hybrid_v3.bin",
+        "match": true,
+        "sha256": "4546b867943465edbc03082c4a842a63ee203248761d1d0ece785a828b35b754"
+      },
+      "stm32_elf": {
+        "path": "stm32_hybrid_v3.elf",
+        "match": true,
+        "sha256": "dd8aab70104719faf71678b84eb214ca0c4b0821a3610f1ad7c88849a2ff9567"
+      }
+    },
+    "startup_mode": "observe_locked",
+    "automatic_release": false
+  },
+  "pin_and_qei_source_identities": {
+    "fpga/board/board_manifest.json": {
+      "match": true,
+      "sha256": "38f9f04f99ea6219c0ca7e06b2bc37d77f57bf5144f7ea7500dfb5671a4c5974"
+    },
+    "fpga/rtl/car_board_video_wrapper.v": {
+      "match": true,
+      "sha256": "86fa1614ac29d09bd7906a7a7a22bb59d3b9a54d6e04393e06c4759a064338dc"
+    },
+    "fpga/rtl/car_qei_core.v": {
+      "match": true,
+      "sha256": "52826a246776ded65527d4c12d606f27be82ee0f001972dbe7f2e0b5e681d350"
+    },
+    "fpga/rtl/car_qei_velocity.v": {
+      "match": true,
+      "sha256": "f015ad1085eae40f11451d422ad33df7aacb59289aa525a6f5109d07536eaded"
+    }
+  },
+  "archive_hash_expected": true
+}

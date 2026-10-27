@@ -1,0 +1,11 @@
+{
+  "time": "2026-10-27T10:17:21.776478+08:00",
+  "port": "COM10",
+  "source": "board_http_video_check.py",
+  "source_sha256": "db8d543aa58243dd2ed3bb1ee95831eee69fe297f8fd3f690b18f3b729855e7d",
+  "root": true,
+  "motion_commands_sent": false,
+  "returncode": 0,
+  "output": "{\"api_runtime_identity\": \"PASS\", \"observe_locked\": true, \"actual_car\": {\"left\": 0, \"right\": 0, \"lock\": 1, \"fault\": 41, \"mm\": 1820, \"ir\": 0, \"drop\": 0}, \"http_video_frames\": [{\"frame_id\": 7089, \"jpeg_bytes\": 60716, \"sha256\": \"feba4d4847cf35627576d1fbd9981f273f27eda9cee3bb4bbffbc22d76d04ede\"}, {\"frame_id\": 7092, \"jpeg_bytes\": 60685, \"sha256\": \"aebc246d4331afaba669412c1fd65ea91bf9cb08ee8d0e40ca2bc7bc936cdf26\"}], \"browser_rendering_tested\": false, \"native_version\": \"car-video/2;libjpeg-turbo/3.1.2\", \"startup_readiness\": {\"schema\": \"car-startup-readiness/v1\", \"ready\": false, \"diagnostic_only\": true, \"error\": \"acquisition readiness timed out: qei0 acquisition invalid, qei1 acquisition invalid, QEI0 stale, QEI1 stale\"}, \"video_corrupt_jpeg_count\": 88, \"video_active_fps\": {\"captured\": 29.790910401539787, \"processed\": 9.584621587694688, \"encoded\": 9.449329434379342, \"published\": 9.033284366241105}, \"qei_scales\": [0, 0], \"motion_commands_sent\": false}",
+  "elapsed_seconds": 4.718
+}

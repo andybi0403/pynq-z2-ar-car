@@ -27,5 +27,23 @@
     "software_round": "pynq_fpga/audit/wireless_five_rounds_20261004/round5_evidence/software.log",
     "rtl_acceptance": "pynq_fpga/nightly/acceptance_20260918/run_20261021_234039/regression.log",
     "summary": "validation/20261021_software_rtl_validation.md"
+  },
+  "latest_handoff": {
+    "date": "2026-10-27",
+    "index": "handoff/20261027/README.md",
+    "source_repository": "https://github.com/asdsadfghsdhs/1111",
+    "source_commit": "2e567bc72ea6d8c947a50aef588e9fd0c4501975",
+    "receipt": "handoff/20261027/receipt.json",
+    "independent_audit": "handoff/20261027/independent_audit.json",
+    "board_runtime_package": "pynq_fpga/release/v011_uart_recovery_20261026_r17b",
+    "board_runtime_reported_deployed": true,
+    "production_sources_changed": false,
+    "uart_short_locked_query": "80/80 independent CRC errors=0",
+    "encoder_status": "JB1 direct low and original output-wire low passed; converter low failed; calibration pending",
+    "stability_status": "FAILED_UART_SCHEDULING_CLEANUP_VIDEO_PENDING",
+    "full_vehicle_acceptance": "NOT_PASSED",
+    "hardware_accessed_during_receipt": false,
+    "upstream_manifest_status": "150/151 matched; one prerequisites document mismatch preserved",
+    "note": "Historical release identity above is retained; this handoff does not promote r17b to a validated vehicle release."
   }
 }

@@ -1,0 +1,815 @@
+{
+  "schema": "car-console-observation/v1",
+  "exported_at": "2026-10-27T03:18:28.080Z",
+  "scope": "当前会话观察，不等于1800秒整车验收",
+  "state": {
+    "running": true,
+    "hardware": true,
+    "motion_allowed": false,
+    "motor_disconnected": false,
+    "control_timing": {
+      "diagnostic_recovery": true,
+      "overruns": 777,
+      "maximum_lag_ms": 358.2792049683121,
+      "strict_acceptance_failed": true
+    },
+    "control_available": true,
+    "samples": 34068,
+    "frames": 14488,
+    "failures": [
+      "control schedule overrun; stopped and continued zero-output diagnosis"
+    ],
+    "identity": {
+      "bit_sha256": "1d80069c8254fa9942cde851ee0dfcfbe4d38c22150ec99ed007d5a14df03f6b",
+      "hwh_sha256": "4f81458a8d144452d1cac98f7faa7324149b2b50db74e74c510e33edc504a766",
+      "manifest_sha256": "682b6786648f6250f2430f4a72097fe64e31075ecea49b29310c66dd8d645890",
+      "runtime_sources": {
+        "lab_acceptance.py": "e7ca984dd14ff401d69f669c5b056cab7fa4c39c0bbeb3ff0f0023184e4c618e",
+        "board_runtime.py": "9717225a350670d3c38f77989346ae4107298d4b070f82e8d9976d2cd337f7dc",
+        "frame_pipeline.py": "0b1fde0ddde34456e47b55d53339d6df864ff0d70ea2f36e7377ba7edf2c5f1b",
+        "overlay_session.py": "f549686b440e913458ade0ea309556057b172ace3c8e250bbce0855da9104d27",
+        "frame_association.py": "302b90dcd1229c2b95df642c583f77dddb1c35004e52e9ccf971130707ad7ae1",
+        "system_runtime.py": "6531f7a0fbd870fb8d8f721150a3a46f988c1094febdba519755e84681a1f2d4",
+        "control_supervisor.py": "173fe36743f19bf56b2efff630e560a6ed71f0f9d9bda7b599c1ca5b386e8d4d",
+        "calibration_config.py": "14dccb7b7b73c115a5d597bfe6e8b2fd3a8d0bcd64de19ae9bd6bb5de785e533",
+        "status_server.py": "aced8c3e4b00e8e5aa072cc4908ea0758821f025fdbc6b1461a355ca18b85d89",
+        "association_metrics.py": "921c3b54ed0f8bff28329c473295ab92fab3c75cd6c5ff0f3c3cd2968e01f622",
+        "joint_evidence.py": "e6f3f4f3fe3d30c3a65b830ab5673ebad1885ede896e51feae65c7c9015dd185",
+        "hwh_contract.py": "3ad6daf3a2b0de6495a05b60a0567dcb4a3254f42bf2a9ae09a734533a13eed5",
+        "perception_client.py": "bf58b749cbe9b3b675d97f3891fa8de25f51b04ab8b99bca4e95c7a5519495f9",
+        "qei_calibration.py": "732c88ee00028c0a601c7c27adecc0be39d8f530717791dc09ee3416d6e52dd2",
+        "perception_replay.py": "99a0b6a3697b33ed768db2caaaddf58de0ede0fa2188afce84c8a8244a892059",
+        "car_regs.py": "292448f8ba508ab16b60aa8057bfb52667e793f78252b75c55956d94e1366b55",
+        "pynq_link.py": "1519b1f4efc46fdd805d180673b366b8fc5b53d3fa336a62bef3f99041ea09eb",
+        "runtime_identity.py": "5f09d89e113e5872aa1874048ba219b0fd57343ef66aa3c24bf7a2fed26cd4cc",
+        "frame_metadata.py": "98f80d37e939b14aabe624e6a566c53e75d04ac90b300c36709417d9600d6250",
+        "deployment_check.py": "6d87edcb357d21341eee676a8fa0f8f71885cff23a7b7030fe0767dff4a26b08",
+        "qei_quality.py": "1e0dfa1305dc6c4a346b009f4a2fd0c6d506e6907a9256bba681460a8d2a192f",
+        "motion_display.py": "e775d20a2115a05b56c9f51c357aa0e50e4186a97912cf0a85c71f0594557254"
+      },
+      "calibration": {
+        "source": "live registers; physical calibration pending"
+      },
+      "build_parameters": {
+        "DATA_MAX_AGE_TICKS": 20000000,
+        "COMMAND_LEASE_TICKS": 25000000,
+        "REACTION_MS": 150,
+        "BRAKE_DECEL_MMPS2": 500,
+        "BASE_MARGIN_MM": 100,
+        "YELLOW_BAND_MM": 100,
+        "MAX_SPEED_MMPS": 5000
+      },
+      "sensor_source": "stm32_uart_v3",
+      "wireless_sources": {
+        "wireless_runtime.py": "1f63d0e46a18af00d14d4007008722b348fd9bf15f913f5a7f8c65bb479f98fc",
+        "wireless_core.py": "ac00333da571290a09de487b769c7c60fed16a821270cdc49c20c89ccc156c81",
+        "wireless_dma.py": "b4acb53f4fa6651e2891155b2a7f57811b495a662759faf1c470fe2a64f12ac6",
+        "wireless_server.py": "b2737b868a398f3f141a9418830f7c36a2601f24bfc3007e6d734144dc7cd179",
+        "wireless_policy.py": "d77452b64e522800194c71dd4835acebc9e085dcaf8ba137c853e2f1d9d304e3",
+        "wireless_player.js": "af311255fe7348dbd9d92286b66b2d49c4a595e765f6a2c46ff0d5b41515d829",
+        "native_video.py": "8884e54e6ea74a622cc0c5e566a6714cc27712831c5447cfe820d9b1968de84e",
+        "wireless_page.html": "af115440d7e527eaec0d6e9599c4b0eca3f289834df84396a2d801f5c65a20f0",
+        "wireless_benchmark.py": "e62dde269d5cf98cd6e7b894e5da32d41e35f7d0f78ce021694e0b3bdbd456e5",
+        "wireless_requirements.txt": "7662de391d446d504ead09341c1bfef4d2429959f6eda6330bc20c9f3905c6a5",
+        "native/CMakeLists.txt": "1a5d355cdc5ae6d8ce3055c8fad63d721b63052ec9475c55374df151926273b1",
+        "native/car_video.c": "fb8e13b9101ecbd77bf6b42d8d94fdb6c943977127a7afd3f5ebcd7e92ebd179",
+        "WIRELESS_SETUP.md": "f42553e80bc51077a843b862f3b4010246558393e976c18ebb3774af57b3417c",
+        "start_sensor_console.sh": "f79218a8b0e722fad2766a746785227f650603b3bf382b24d5ec3a0e3901e6e8",
+        "SENSOR_CONSOLE_GUIDE.md": "d15718902b4e418f886626572476ab1e37cc60b8635093199068eeed12ae1ff4",
+        "console_launcher.html": "f25a81735ff35685fc6ec0625483e19d9312882cf447286f0e3586b9af2b5201",
+        "prepare_console.py": "85eaa0cb70d1315a232e41c6e2e669b4d83ef2769e7fe20684e92fe20662f407",
+        "console_backend.py": "714866f57760967d2fd5501e284512995be48adccbd6e339563eac897a8a04e0",
+        "console_ui.js": "53ec1b8b1b038c8feb5cec471ea612618c19cf43f704f5dc4fb5f30d498f71b0",
+        "trial_control.py": "7758c5bca88dbd9cc18e0f93babad72cceab08f79e1285973e1c8a4f894e50e7",
+        "start_console.sh": "a1041c5270432d1e91eeebdaa7e5e7235e7a09c2088ac2bd8ce2b9590e05d3b5"
+      },
+      "native_binary_sha256": "f4c2a0e2edf64c09f9bc25b3ad5bfc8a5e5f4825d141b0717f91ada5b6bd5bcf",
+      "native_version": "car-video/2;libjpeg-turbo/3.1.2",
+      "video_profile": "wireless720"
+    },
+    "action": null,
+    "startup_readiness": {
+      "schema": "car-startup-readiness/v1",
+      "ready": false,
+      "diagnostic_only": true,
+      "error": "acquisition readiness timed out: qei0 acquisition invalid, qei1 acquisition invalid, QEI0 stale, QEI1 stale"
+    },
+    "motion_display_config": {
+      "stationary_assumed": false,
+      "hold_s": 1,
+      "tau_s": 0.25,
+      "slew_mm_s2": 600,
+      "max_speed_mm_s": 2000,
+      "drive_model": null,
+      "scope": "display_only_estimates"
+    },
+    "latest": {
+      "type": "sample",
+      "index": 34067,
+      "host_monotonic_ns": 9247864176929,
+      "pl_ticks64": 182175616719,
+      "registers": {
+        "US_DATA": 1814,
+        "US_TS": 1782672058,
+        "US_META": 2147507850,
+        "IR_STATUS": 4,
+        "IR_TS": 1783472058,
+        "IR_META": 2147493994,
+        "QEI0_POS": 0,
+        "QEI0_PERIOD": 0,
+        "QEI0_VEL": 0,
+        "QEI0_TS": 0,
+        "QEI0_META": 0,
+        "QEI0_INFO": 0,
+        "QEI1_POS": 0,
+        "QEI1_PERIOD": 0,
+        "QEI1_VEL": 0,
+        "QEI1_TS": 0,
+        "QEI1_META": 0,
+        "QEI1_INFO": 0,
+        "RISK_STATE": 50462727,
+        "RISK_REQUIRED_MM": 100,
+        "RISK_TS": 1786629377,
+        "RISK_META": 2147500917,
+        "CMD_STATE": 0,
+        "CMD_TS": 1786461697,
+        "ODOM0_DISP_LO": 0,
+        "ODOM0_DISP_HI": 0,
+        "ODOM0_PATH_LO": 0,
+        "ODOM0_PATH_HI": 0,
+        "ODOM0_TS": 0,
+        "ODOM0_META": 0,
+        "ODOM0_EPOCH": 0,
+        "ODOM1_DISP_LO": 0,
+        "ODOM1_DISP_HI": 0,
+        "ODOM1_PATH_LO": 0,
+        "ODOM1_PATH_HI": 0,
+        "ODOM1_TS": 0,
+        "ODOM1_META": 0,
+        "ODOM1_EPOCH": 0
+      },
+      "control": {
+        "host_monotonic_s": 9247.858537642,
+        "pl_ticks": 1786827390,
+        "epoch": 34161,
+        "phase": "LOCKED",
+        "intent_fresh": false,
+        "permit": false,
+        "safe_hold": false,
+        "risk_level": 3,
+        "risk_reasons": 770,
+        "decision_reasons": [
+          "qei0_invalid",
+          "qei1_invalid",
+          "command_invalid",
+          "risk_stop"
+        ],
+        "requested_pwm": [
+          0,
+          0
+        ],
+        "output_pwm": [
+          0,
+          0
+        ],
+        "car_fresh": true,
+        "car": {
+          "left": 0,
+          "right": 0,
+          "lock": 1,
+          "fault": 41,
+          "mm": 1814,
+          "ir": 0,
+          "drop": 0
+        },
+        "stop_reason": "intent_expired_or_missing",
+        "command_matches": true,
+        "risk_caught_up": true
+      },
+      "clock_anchor": {
+        "host_before_ns": 9247864006707,
+        "host_after_ns": 9247864176929,
+        "host_anchor_ns": 9247864091818,
+        "anchor_uncertainty_ns": 85111,
+        "pl_ticks64": 182175616719,
+        "epoch": 34161
+      },
+      "status": {
+        "epoch": 34161,
+        "distance_mm": 1814,
+        "published_monotonic_ns": 9247874048541,
+        "distance_valid": true,
+        "speed_mm_s": null,
+        "speed_valid": false,
+        "raw_speed_mm_s": 0,
+        "speed_filter": "median3_clean_batches_direction_reset_display_only",
+        "speed_quality_reasons": [
+          "qei0_invalid",
+          "qei1_invalid"
+        ],
+        "speed_source_timestamps": [
+          null,
+          null
+        ],
+        "speed_source_ages_ticks": [
+          null,
+          null
+        ],
+        "displacement_mm": 0,
+        "travelled_mm": 0,
+        "odometry_valid": false,
+        "motion_display": {
+          "available": true,
+          "estimated": true,
+          "mode": "locked_zero_estimate",
+          "speed_mm_s": 0,
+          "displacement_mm": 0,
+          "travelled_mm": 0,
+          "measurement_age_s": null,
+          "valid_for_s": 0.6581235079986072,
+          "reasons": [
+            "qei0_invalid",
+            "qei1_invalid"
+          ],
+          "scope": "display_only_estimates",
+          "expires_monotonic_ns": 9248532150583
+        },
+        "risk_level": 3,
+        "risk_reasons": 770,
+        "pl_stop": true,
+        "car": {
+          "left": 0,
+          "right": 0,
+          "lock": 1,
+          "fault": 41,
+          "mm": 1814,
+          "ir": 0,
+          "drop": 0
+        },
+        "car_age_s": 0.07171060900139276,
+        "car_sequence": 33100,
+        "car_valid": true,
+        "infrared": {
+          "mask": 0,
+          "valid": true,
+          "sequence": 10346,
+          "fault": 0
+        },
+        "encoder": {
+          "left": {
+            "position": 0,
+            "faults": [],
+            "sequence": 0,
+            "valid": false,
+            "velocity_q16": 0
+          },
+          "right": {
+            "position": 0,
+            "faults": [],
+            "sequence": 0,
+            "valid": false,
+            "velocity_q16": 0
+          }
+        },
+        "display": {
+          "OSD_ERRORS": 0,
+          "DISPLAY_FRAMES": 32430,
+          "DISPLAY_CAR_STATE": 2686979,
+          "DISPLAY_CAR_TS": 1787889157,
+          "DISPLAY_FRAME_ID": 53484,
+          "DISPLAY_FRAME_STATE": 2238644225,
+          "DISPLAY_FRAME_TS_LO": 1765055130,
+          "DISPLAY_FRAME_TS_HI": 42,
+          "DISPLAY_HEADER_ERRORS": 0,
+          "DISPLAY_REPEATS": 16215,
+          "DISPLAY_FRAME_AGE": 22875326,
+          "DISPLAY_FRAME_SOF_LO": 1780514459,
+          "DISPLAY_FRAME_SOF_HI": 42,
+          "DISPLAY_TAG_COUNT": 32430
+        },
+        "stm32_link": {
+          "protocol": "hybrid-v3-crc16-query-reply",
+          "locked_diagnostic": false,
+          "ir_sequence_warnings": 0,
+          "acquisition_epoch": 0,
+          "locked_resync_count": 0,
+          "resync_pending": false,
+          "last_resync_reason": null,
+          "baud": 115200,
+          "session_hex": "6B36EA1D",
+          "running": true,
+          "closed": false,
+          "query_tx_count": 33100,
+          "report_rx_count": 33100,
+          "pending_queries": 0,
+          "sensor_errors": 0,
+          "transport_error": null,
+          "state_sequence": 33100,
+          "last_reply_age_ms": 30.996776000392856,
+          "last_reply_latency_ms": 12.43657200029702,
+          "link_fresh": true,
+          "sensor": {
+            "us_sequence": 155274,
+            "us_valid": true,
+            "distance_mm": 1814,
+            "us_age_ms": 53.433348000908154,
+            "ir_sequence": 9316458,
+            "ir_valid": true,
+            "ir_age_ms": 45.43334800109733,
+            "ir_mask": 0,
+            "ir_left_active": false,
+            "ir_right_active": false
+          }
+        }
+      }
+    },
+    "telemetry_fresh": true,
+    "interconnect_test": {
+      "schema": "car-sensor-interconnect-test/v1",
+      "state": "action_required",
+      "passed": false,
+      "elapsed_s": 18.419131031,
+      "minimum_s": 10,
+      "samples": 334,
+      "video_frames": 128,
+      "stm32_replies": 331,
+      "protocol_errors": 0,
+      "transport_error": null,
+      "valid_ratios": {
+        "ultrasonic": 1,
+        "infrared": 0.9940119760479041,
+        "stm32_feedback": 1
+      },
+      "ultrasonic_mm": {
+        "minimum": 33,
+        "maximum": 1818
+      },
+      "infrared_masks_seen": [
+        0
+      ],
+      "infrared_side_states": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "encoder": {
+        "left_advances": 0,
+        "right_advances": 0,
+        "left_valid_samples": 0,
+        "right_valid_samples": 0
+      },
+      "conditions": {
+        "sampling_fresh": true,
+        "duration": true,
+        "samples": true,
+        "video": true,
+        "stm32_replies": true,
+        "protocol_errors_zero": true,
+        "transport_error_absent": true,
+        "ultrasonic_valid": true,
+        "infrared_valid": true,
+        "infrared_left_exercised": false,
+        "infrared_right_exercised": false,
+        "car_feedback": true,
+        "locked_zero": true,
+        "encoder_left_moved": false,
+        "encoder_right_moved": false
+      },
+      "action_required": [
+        "infrared_left_exercised",
+        "infrared_right_exercised",
+        "encoder_left_moved",
+        "encoder_right_moved"
+      ],
+      "hard_failures": []
+    },
+    "video_faults": [],
+    "console": {
+      "mode": "observe",
+      "motion_supported": true,
+      "infrared_policy": "warning_only",
+      "motion_ready": false,
+      "release_ready": false,
+      "pwm_limit": 400,
+      "max_burst_s": 1,
+      "scales": [
+        0,
+        0
+      ],
+      "calibration_measured": false,
+      "qei_configuration": [
+        {
+          "dir": 0,
+          "filter": 0,
+          "zero": 10000000
+        },
+        {
+          "dir": 0,
+          "filter": 0,
+          "zero": 10000000
+        }
+      ],
+      "blockers": [
+        "双轮尚未完成实测标定",
+        "当前为仅观察模式"
+      ],
+      "action": {
+        "kind": "mode",
+        "payload": {
+          "mode": "observe"
+        },
+        "applied": true
+      },
+      "operator_error": null,
+      "fault": null,
+      "release_requests": 0
+    },
+    "classification": "CONTROLLED_CONSOLE_NOT_RELEASE",
+    "video": {
+      "width": 1280,
+      "height": 720,
+      "nominal_fps": 30,
+      "jpeg_quality": 55,
+      "output_policy": {
+        "mode": "auto",
+        "width": 1280,
+        "height": 720,
+        "capture_fps": 30,
+        "max_fps": 30,
+        "max_quality": 85,
+        "output_fps": 10,
+        "jpeg_quality": 55,
+        "level": 4,
+        "reason": "measured_congestion_reduce_output",
+        "transitions": 12,
+        "fps_options": [
+          30,
+          25,
+          24,
+          20,
+          15,
+          10,
+          5
+        ],
+        "quality_options": [
+          95,
+          85,
+          75,
+          65,
+          55,
+          45,
+          35
+        ],
+        "raw_quality_scope": "camera_native_JPEG; only output_fps is adjustable",
+        "fixed_acceptance": false
+      },
+      "subsampling": "4:2:0",
+      "jpeg_profile": "balanced",
+      "counts": {
+        "captured": 53487,
+        "processed": 16215,
+        "encoded": 15343,
+        "sent": 4564,
+        "camera_dropped": 56,
+        "decode_dropped": 31204,
+        "encode_dropped": 6,
+        "published": 14488,
+        "camera_startup_waits": 5,
+        "decoded": 16215,
+        "jpeg_restart_padding_warnings": 868187,
+        "capture_queue_replaced": 30158,
+        "encode_wait": 0,
+        "corrupt_jpeg": 537,
+        "stale_publication_dropped": 912,
+        "fault_boundary_publication_rejected": 912,
+        "stale_completed_frame": 912,
+        "encode_queue_replaced": 872,
+        "rate_limited": 5465,
+        "association_rejected": 13,
+        "camera_frame_rejected": 3,
+        "capture_age_rejected": 1033,
+        "network_write": 0,
+        "browser_control_rtt": 7
+      },
+      "fps_since_start": {
+        "captured": 29.43758255565982,
+        "processed": 8.924232077701571,
+        "encoded": 8.444310377315771,
+        "published": 7.973744948611802,
+        "sent": 2.511883762111007
+      },
+      "first_event_ns": {
+        "captured": 7450496431392,
+        "processed": 7450570263287,
+        "encoded": 7450679161662,
+        "published": 7450682110007,
+        "sent": 7750181798028
+      },
+      "active_fps": {
+        "captured": 29.75672204009351,
+        "processed": 9.02135214182958,
+        "encoded": 8.536724734853767,
+        "published": 8.061022624199836,
+        "sent": 3.0471543139303368
+      },
+      "active_fps_scope": "per_stage_first_event_to_now; includes recovery; not browser FPS",
+      "latency": {
+        "decoded": {
+          "p50_ms": 63.049151,
+          "p95_ms": 87.660141,
+          "p99_ms": 103.603994
+        },
+        "processed": {
+          "p50_ms": 23.147569,
+          "p95_ms": 35.448769,
+          "p99_ms": 40.539163
+        },
+        "encode_wait": {
+          "p50_ms": 39.461551,
+          "p95_ms": 91.497587,
+          "p99_ms": 139.178424
+        },
+        "encoded": {
+          "p50_ms": 97.150196,
+          "p95_ms": 119.50307,
+          "p99_ms": 142.171329
+        },
+        "network_write": {
+          "p50_ms": 11.31885,
+          "p95_ms": 47.308634,
+          "p99_ms": 160.480468
+        },
+        "browser_control_rtt": {
+          "p50_ms": 7.699999999953434,
+          "p95_ms": 45.800000000046566,
+          "p99_ms": 45.800000000046566
+        }
+      },
+      "view": "processed",
+      "error": null,
+      "rolling_60s_fps": {
+        "captured": 29.533333333333335,
+        "processed": 7.7,
+        "encoded": 7.416666666666667,
+        "published": 7,
+        "sent": 5.75
+      },
+      "process_cpu": {
+        "two_core_percent": 82.7621705409203,
+        "system_total_percent": 87.8048780487805,
+        "memory": {
+          "VmHWM_KiB": 86092,
+          "VmRSS_KiB": 76896,
+          "MemTotal_KiB": 505428,
+          "MemAvailable_KiB": 289836
+        },
+        "dma_reserved_bytes": 25804800,
+        "interval_s": 1.0282563179989666,
+        "scope": "process + Linux aggregate /proc/stat"
+      },
+      "average_process_two_core_percent": 85.40147541209086,
+      "average_system_total_percent": 90.98575769374781,
+      "full_minute_fps": {
+        "0": {
+          "captured": 20.083333333333332,
+          "processed": 6.55,
+          "encoded": 6.366666666666666,
+          "published": 6.033333333333333,
+          "sent": 0
+        },
+        "1": {
+          "captured": 29.783333333333335,
+          "processed": 9.483333333333333,
+          "encoded": 9.233333333333333,
+          "published": 8.75,
+          "sent": 0
+        },
+        "2": {
+          "captured": 29.783333333333335,
+          "processed": 9.666666666666666,
+          "encoded": 9.55,
+          "published": 9.183333333333334,
+          "sent": 0
+        },
+        "3": {
+          "captured": 29.783333333333335,
+          "processed": 9.5,
+          "encoded": 9.316666666666666,
+          "published": 8.883333333333333,
+          "sent": 0
+        },
+        "4": {
+          "captured": 29.783333333333335,
+          "processed": 9.683333333333334,
+          "encoded": 9.45,
+          "published": 9.166666666666666,
+          "sent": 0
+        },
+        "5": {
+          "captured": 29.783333333333335,
+          "processed": 8.983333333333333,
+          "encoded": 8.483333333333333,
+          "published": 7.8,
+          "sent": 5.35
+        },
+        "6": {
+          "captured": 29.783333333333335,
+          "processed": 8.733333333333333,
+          "encoded": 8.166666666666666,
+          "published": 7.466666666666667,
+          "sent": 7.466666666666667
+        },
+        "7": {
+          "captured": 29.766666666666666,
+          "processed": 8.766666666666667,
+          "encoded": 8.1,
+          "published": 7.883333333333334,
+          "sent": 6.85
+        },
+        "8": {
+          "captured": 29.65,
+          "processed": 9.616666666666667,
+          "encoded": 9.133333333333333,
+          "published": 8.683333333333334,
+          "sent": 0
+        },
+        "9": {
+          "captured": 29.783333333333335,
+          "processed": 9.683333333333334,
+          "encoded": 8.983333333333333,
+          "published": 8.633333333333333,
+          "sent": 0
+        },
+        "10": {
+          "captured": 29.8,
+          "processed": 9.716666666666667,
+          "encoded": 9.083333333333334,
+          "published": 8.566666666666666,
+          "sent": 0
+        },
+        "11": {
+          "captured": 29.766666666666666,
+          "processed": 7.983333333333333,
+          "encoded": 7.55,
+          "published": 8.016666666666667,
+          "sent": 3.5166666666666666
+        },
+        "12": {
+          "captured": 29.733333333333334,
+          "processed": 7.916666666666667,
+          "encoded": 7.45,
+          "published": 6.833333333333333,
+          "sent": 6.783333333333333
+        },
+        "13": {
+          "captured": 29.75,
+          "processed": 8.083333333333334,
+          "encoded": 7.5,
+          "published": 6.933333333333334,
+          "sent": 6.933333333333334
+        },
+        "14": {
+          "captured": 29.766666666666666,
+          "processed": 7.9,
+          "encoded": 7.383333333333334,
+          "published": 6.866666666666666,
+          "sent": 6.783333333333333
+        },
+        "15": {
+          "captured": 29.7,
+          "processed": 7.983333333333333,
+          "encoded": 7.583333333333333,
+          "published": 7.05,
+          "sent": 6.983333333333333
+        },
+        "16": {
+          "captured": 29.733333333333334,
+          "processed": 8.233333333333333,
+          "encoded": 7.716666666666667,
+          "published": 7.3,
+          "sent": 7.25
+        },
+        "17": {
+          "captured": 29.683333333333334,
+          "processed": 8.05,
+          "encoded": 7.5,
+          "published": 7.116666666666666,
+          "sent": 7.066666666666666
+        },
+        "18": {
+          "captured": 29.7,
+          "processed": 8.1,
+          "encoded": 7.666666666666667,
+          "published": 7.216666666666667,
+          "sent": 5.333333333333333
+        },
+        "19": {
+          "captured": 29.783333333333335,
+          "processed": 9.5,
+          "encoded": 8.95,
+          "published": 8.366666666666667,
+          "sent": 0
+        },
+        "20": {
+          "captured": 29.8,
+          "processed": 9.516666666666667,
+          "encoded": 8.916666666666666,
+          "published": 8.35,
+          "sent": 0
+        },
+        "21": {
+          "captured": 29.783333333333335,
+          "processed": 9.55,
+          "encoded": 8.966666666666667,
+          "published": 8.416666666666666,
+          "sent": 0
+        },
+        "22": {
+          "captured": 29.783333333333335,
+          "processed": 9.5,
+          "encoded": 8.9,
+          "published": 8.316666666666666,
+          "sent": 0
+        },
+        "23": {
+          "captured": 29.783333333333335,
+          "processed": 9.55,
+          "encoded": 8.933333333333334,
+          "published": 8.383333333333333,
+          "sent": 0
+        },
+        "24": {
+          "captured": 29.783333333333335,
+          "processed": 9.383333333333333,
+          "encoded": 8.9,
+          "published": 8.233333333333333,
+          "sent": 0
+        },
+        "25": {
+          "captured": 29.783333333333335,
+          "processed": 9.633333333333333,
+          "encoded": 8.95,
+          "published": 8.4,
+          "sent": 0
+        },
+        "26": {
+          "captured": 29.8,
+          "processed": 9.45,
+          "encoded": 9.016666666666667,
+          "published": 8.416666666666666,
+          "sent": 0
+        },
+        "27": {
+          "captured": 29.783333333333335,
+          "processed": 9.533333333333333,
+          "encoded": 8.983333333333333,
+          "published": 8.383333333333333,
+          "sent": 0
+        },
+        "28": {
+          "captured": 29.783333333333335,
+          "processed": 9.566666666666666,
+          "encoded": 9.066666666666666,
+          "published": 8.45,
+          "sent": 0
+        },
+        "29": {
+          "captured": 29.633333333333333,
+          "processed": 8.266666666666667,
+          "encoded": 7.85,
+          "published": 7.316666666666666,
+          "sent": 3.7333333333333334
+        }
+      },
+      "minute_history_scope": "last_120_full_minutes_since_service_start; no warmup exclusion",
+      "browser_rtt_scope": "client_reported_ack_roundtrip_not_wheel_stop",
+      "sent_payload_mbps": 1.425915124462047,
+      "hardware_performance_validated": false
+    },
+    "remote_control": {
+      "connected": 2,
+      "owned": false,
+      "rejected": 18,
+      "motion_allowed": true,
+      "last_event": {
+        "reason": "operator_stop",
+        "server_ms": 8553783.211784001
+      }
+    }
+  },
+  "browser_video": {
+    "received_fps": 8.033419023137448,
+    "drawn_fps": 8.033419023137448,
+    "quality": "55",
+    "frame_bytes": 77200,
+    "client_receive_to_draw_ms": 4.899999999906868,
+    "frame_id": 53495,
+    "view": "processed",
+    "client_dropped": 1367,
+    "video_session": "0c240759fd6d96561325b50c",
+    "visible": true
+  }
+}

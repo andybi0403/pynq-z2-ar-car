@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-27T10:07:21.650008+08:00",
+  "port": "COM10",
+  "source": "board_install_r17b.py",
+  "source_sha256": "7a4d8ba5b4350967a8f2a868ebd123153f9bdc4d5a9dcdc2bc10484c0ace6c2e",
+  "root": true,
+  "motion_commands_sent": false,
+  "sudo_authentication": "documented default accepted",
+  "returncode": 0,
+  "output": "{\"target\": \"/home/xilinx/v011_uart_recovery_20261026_r17b\", \"archive_sha256\": \"e03d5e463cf318f0e58737927e1c459565f7e18cc11033e706753d0d9a7d8199\", \"zip_crc\": \"PASS\", \"all_zip_members_verified\": true, \"bound_file_identities\": 56, \"native_sources_verified\": {\"native/CMakeLists.txt\": \"1a5d355cdc5ae6d8ce3055c8fad63d721b63052ec9475c55374df151926273b1\", \"native/car_video.c\": \"fb8e13b9101ecbd77bf6b42d8d94fdb6c943977127a7afd3f5ebcd7e92ebd179\"}, \"native_abi\": \"car-video/2;libjpeg-turbo/3.1.2\", \"native_binary_sha256\": \"f4c2a0e2edf64c09f9bc25b3ad5bfc8a5e5f4825d141b0717f91ada5b6bd5bcf\", \"native_reuse_basis\": \"identical sources; same ARM board, OS and ABI\", \"deployment_check\": \"DEPLOYMENT_CHECK_PASS {\\\"schema\\\": \\\"car-deployment-check/v1\\\", \\\"passed\\\": true, \\\"failures\\\": [], \\\"contract_id\\\": \\\"0xC425100B\\\", \\\"board_prerequisites_checked\\\": true, \\\"hardware_acceptance\\\": \\\"PENDING\\\", \\\"overlay_loaded\\\": false, \\\"serial_opened\\\": false, \\\"python\\\": \\\"3.10.4\\\", \\\"machine\\\": \\\"armv7l\\\", \\\"dependencies\\\": {\\\"pynq\\\": {\\\"available\\\": true, \\\"version\\\": \\\"3.0.1\\\"}, \\\"numpy\\\": {\\\"available\\\": true, \\\"version\\\": \\\"1.21.5\\\"}, \\\"serial\\\": {\\\"available\\\": true, \\\"version\\\": \\\"3.5\\\"}, \\\"aiohttp\\\": {\\\"available\\\": true, \\\"version\\\": \\\"3.14.4\\\"}, \\\"ffmpeg\\\": {\\\"path\\\": null}, \\\"native_video\\\": {\\\"path\\\": \\\"/home/xilinx/v011_uart_recovery_20261026_r17b/native-build/libcar_video.so\\\", \\\"available\\\": true}, \\\"camera\\\": {\\\"path\\\": \\\"/dev/video0\\\", \\\"accessible\\\": true}, \\\"uart\\\": {\\\"path\\\": \\\"/dev/ttyPS1\\\", \\\"accessible\\\": true}}}\", \"r16_preserved\": true, \"service_started\": false}",
+  "elapsed_seconds": 7.593
+}

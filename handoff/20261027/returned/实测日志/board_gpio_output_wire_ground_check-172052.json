@@ -1,0 +1,11 @@
+{
+  "time": "2026-10-27T17:20:10.732269+08:00",
+  "port": "COM10",
+  "source": "board_gpio_output_wire_ground_check.py",
+  "source_sha256": "e85d24ab4bb088a98d3a054d73e9e19d08eccb867e0613db28e2ba1742ae9e0b",
+  "root": true,
+  "motion_commands_sent": false,
+  "returncode": 0,
+  "output": "\r{\"wiring_required\": \"normal LA3 output wire stays on verified official JB1, green-board end unplugged from J1.LA3 and plugged into J3.GND; independent JA5 -> J3.LA5 test jumper removed at both ends; J3/J4 encoders isolated; J1 remaining four/J2/J5 unchanged\", \"pmodb_all_inputs\": true, \"no_pmod_outputs_configured\": true, \"motor_commands_sent\": false, \"calibration_changed\": false, \"restored\": true, \"B_direction_readback\": 255, \"B_input_states\": [62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62], \"JB1_values\": [0], \"expected_JB1_low\": true, \"restored_id\": \"0xc425100b\", \"scales_after_restore\": [0, 0]}",
+  "elapsed_seconds": 42.078
+}
