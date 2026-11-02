@@ -17,7 +17,7 @@ h1{font-size:26px}section{background:white;border-radius:14px;padding:20px;margi
 button.stop{background:#ad2637}textarea{box-sizing:border-box;width:100%;height:150px}pre{white-space:pre-wrap;overflow-wrap:anywhere}.muted{color:#596b7b}
 </style><h1>小车联合运行</h1><p class="muted">无电机台架模式 · 页面与HDMI共用当前运行会话</p>
 <section><p id="connection">正在连接…</p><div class="grid" id="cards"></div><p id="risks"></p><p id="faults"></p></section>
-<section><h2>标定配置</h2><p>电机保持断开。选择已保存的左右轮标定文件，应用后会清零里程并读回核验。页面不会自动使用名义轮径。</p>
+<section hidden><h2>标定配置</h2><p>电机保持断开。选择已保存的左右轮标定文件，应用后会清零里程并读回核验。页面不会自动使用名义轮径。</p>
 <input id="file" type="file" accept=".json"><textarea id="config" placeholder="选择标定JSON文件后在此预览"></textarea>
 <button id="apply">应用标定</button><button id="save">保存当前配置</button><p id="action"></p></section>
 <section><h2>运行记录</h2><p id="counts"></p><p id="displaystate"></p><button id="log">下载完整运行日志</button><button id="summary">下载验收摘要</button><button class="stop" id="stop">停止本次运行</button>
@@ -29,7 +29,7 @@ const names=['禁用','命令无效','命令过期','超声无效','超声过期
 async function request(path,method='GET',body,signal){let r=await fetch(path,{method,signal,headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});if(!r.ok)throw Error((await r.text())||r.status);return r;}
 function number(value,valid,unit){return valid&&Number.isFinite(value)?value.toFixed(2)+' '+unit:'未取得有效数据';}
 const displayModes={smoothed:'平滑显示',hold:'短时保持',stationary_assumption:'静止展示',locked_zero_estimate:'锁车零速',measured_model_estimate:'模型显示',unavailable:'显示不可用',telemetry_expired:'更新中断'};
-function motionCards(s){const d=s.motion_display;if(!d)return [['轮速',number(s.speed_mm_s,s.speed_valid,'mm/s')],['累计路程',number(s.travelled_mm,s.odometry_valid,'mm')],['有符号位移',number(s.displacement_mm,s.odometry_valid,'mm')]];return [['轮速',number(d.speed_mm_s,d.available,'mm/s')],['累计路程',number(d.travelled_mm,d.available,'mm')],['位移',number(d.displacement_mm,d.available,'mm')],['显示状态',displayModes[d.mode]||'显示不可用']];}
+function motionCards(s){const e=s.mileage_estimate;return [['估算里程',e&&Number.isFinite(e.travelled_mm)?e.travelled_mm.toFixed(1)+' mm':'等待估算']];}
 function card(label,value){const d=document.createElement('div');const l=document.createElement('div');l.className='label';l.textContent=label;const v=document.createElement('div');v.className='value';v.textContent=value;d.append(l,v);return d;}
 async function readStatus(){const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),2000);try{return await(await request('/api/status','GET',undefined,controller.signal)).json();}finally{clearTimeout(timer);}}
 function connectionLost(){snapshot=null;el('cards').replaceChildren(...[['障碍距离','未取得有效数据'],...motionCards({}),['PL停车请求','无有效记录'],['STM32实际锁存','回传缺失或过期']].map(([a,b])=>card(a,b)));el('risks').textContent='风险状态不可用';el('faults').textContent='STM32故障状态不可用';el('displaystate').textContent='显示状态更新中断';}

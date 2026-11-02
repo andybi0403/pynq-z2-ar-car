@@ -32,7 +32,7 @@ module tb_car_external_sensors;
  end endtask
  initial begin
   repeat(4)@(posedge clk);@(negedge clk);rst=0;repeat(8)@(posedge clk);
-  rdreg('h000,rd);check("new contract",rd,32'hc425100b);
+  rdreg('h000,rd);check("new contract",rd,32'hc425100c);
   wr('h300,1);check("external starts invalid",dut.us_valid,0);
   stage(900,100,7,8);
   check("staging cannot leak",dut.us_valid,0);

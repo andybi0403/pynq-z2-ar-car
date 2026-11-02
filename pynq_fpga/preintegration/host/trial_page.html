@@ -5,7 +5,7 @@
 :root{font-family:system-ui,"Microsoft YaHei",sans-serif;color:#e6edf6;background:#101822;color-scheme:dark}body{max-width:940px;margin:32px auto;padding:0 20px}h1{font-size:28px}section{background:#1a2736;border:1px solid #30445b;border-radius:16px;padding:22px;margin:18px 0}.muted{color:#a4b8cc}button{font:inherit;border:1px solid #54728c;border-radius:10px;padding:14px 20px;background:#253e54;color:white;margin:5px;cursor:pointer;touch-action:none;user-select:none}button:disabled{opacity:.35;cursor:default}.stop{background:#aa283d;border-color:#ff778a;min-width:160px}.good{color:#79e7b1}.warn{color:#ffc879}.metrics{display:flex;gap:24px;flex-wrap:wrap}.metrics strong{font-size:26px;display:block}.pad{display:grid;grid-template-columns:repeat(3,110px);justify-content:center;margin:24px 0}.pad button{height:70px;margin:4px}pre{white-space:pre-wrap;word-break:break-all;font-size:12px}li{margin:8px 0}#message{min-height:26px}input{padding:12px;min-width:60%;font:inherit}button.active{background:#16865e}
 </style>
 <h1>PYNQ 小车 <span class="warn">受限试跑</span></h1>
-<p class="muted">地面试跑 · PWM 上限 400 · 单次最长 1 秒 · 松手停车 · 视频暂停</p>
+<p class="muted">地面试跑 · PWM 上限 400 · 单次最长 30 秒 · 松手停车 · 视频暂停</p>
 <section id="login" hidden><p>请输入本次启动链接或令牌：</p><input id="token" type="password" autocomplete="off"><button id="connect">连接</button></section>
 <section>
 <div class="metrics"><div>实际锁车<strong id="lock">—</strong></div><div>实际 PWM 左 / 右<strong id="pwm">—</strong></div><div>超声波<strong id="distance">—</strong></div><div>红外 IR<strong id="ir">—</strong></div></div>
@@ -15,7 +15,7 @@
 <section>
 <button id="claim" disabled>1 · 接管试跑</button><button id="release" disabled>2 · 安全检查后解锁</button><button id="stop" class="stop">停车 · 空格</button>
 <div class="pad"><span></span><button data-drive="w" disabled>前进 W</button><span></span><button data-drive="a" disabled>左转 A</button><span></span><button data-drive="d" disabled>右转 D</button><span></span><button data-drive="s" disabled>后退 S</button><span></span></div>
-<p class="muted">接管后等待安全检查，手动点击解锁，再按住方向键或按钮。松开、切走页面、断链都会停车；再次移动需重新解锁。每次 1 秒到时后也需重新解锁。</p>
+<p class="muted">接管后等待安全检查，手动点击解锁，再按住方向键或按钮。松开、切走页面、断链都会停车；再次移动需重新解锁。每次 30 秒到时后也需重新解锁。</p>
 </section>
 <details><summary>诊断详情</summary><pre id="raw"></pre></details>
 <script>

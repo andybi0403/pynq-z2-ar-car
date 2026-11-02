@@ -51,10 +51,10 @@ class WirelessPlayer {
     this.canvas=canvas;this.context=canvas.getContext('2d',{alpha:false});this.onStatus=onStatus;
     this.slot=new LatestSlot();this.generation=0;this.abort=null;this.decoding=false;
     this.received=0;this.drawn=0;this.decodeDropped=0;this.last=-1;this.view='processed';this.videoSession=null;
-    this.ready=null;this.paintScheduled=false;
+    this.ready=null;this.paintScheduled=false;this.width=1280;this.height=720;this.intervals=[];this.frameEvents=[];this.lastDrawAt=null;this.clockSamples=[];this.clock=null;
     this.rateAt=performance.now();this.rateReceived=0;this.rateDrawn=0;this.info={received_fps:0,drawn_fps:0};
   }
-  stop(){this.generation++;if(this.abort)this.abort.abort();this.slot.clear();this.discardReady();this.videoSession=null;}
+  stop(){this.generation++;if(this.abort)this.abort.abort();this.slot.clear();this.discardReady();this.videoSession=null;this.lastDrawAt=null;this.intervals=[];this.frameEvents=[];}
   start(view){this.stop();this.view=view;this.last=-1;this.rateAt=performance.now();this.rateReceived=this.received;this.rateDrawn=this.drawn;
     this.readLoop(this.generation,view);}
   async readLoop(generation,view){
@@ -64,6 +64,8 @@ class WirelessPlayer {
       const response=await fetch('/api/video?view='+view,{signal:abort.signal});
       if(!response.ok)throw Error(await response.text());
       if(generation!==this.generation)return;
+      this.width=Number(response.headers.get('X-Video-Width')||1280);this.height=Number(response.headers.get('X-Video-Height')||720);
+      if(![[1280,720],[640,360]].some(([w,h])=>w===this.width&&h===this.height))throw Error('不支持的视频尺寸');
       const session=response.headers.get('X-Video-Session');
       if(!session)throw Error('视频流缺少会话身份');
       // Frame IDs are ordered inside a connection. A restarted board may
@@ -95,12 +97,17 @@ class WirelessPlayer {
       try{
         if(frame.generation!==this.generation||frame.videoSession!==this.videoSession||
             document.hidden||performance.now()-frame.received>500){this.decodeDropped++;return;}
-        if(this.canvas.width!==1280)this.canvas.width=1280;
-        if(this.canvas.height!==720)this.canvas.height=720;
+        if(this.canvas.width!==this.width)this.canvas.width=this.width;
+        if(this.canvas.height!==this.height)this.canvas.height=this.height;
         this.context.drawImage(bitmap,0,0);this.drawn++;
+        const drawAt=performance.now();
+        if(this.lastDrawAt!==null){this.intervals.push(drawAt-this.lastDrawAt);if(this.intervals.length>4096)this.intervals.shift();}
+        this.lastDrawAt=drawAt;
+        this.frameEvents.push({frame_id:frame.id,captured_ns:frame.captured,received_ms:frame.received,drawn_ms:drawAt});
+        if(this.frameEvents.length>128)this.frameEvents.shift();
         this.info.client_receive_to_draw_ms=performance.now()-frame.received;
         this.info.frame_id=frame.id;this.info.view=this.view;
-        this.onStatus(`帧 #${frame.id} · 1280×720 · ${frame.quality==='camera-native'?'摄像头原生画质':'JPEG质量 '+frame.quality}`);
+        this.onStatus(`帧 #${frame.id} · ${this.width}×${this.height} · ${frame.quality==='camera-native'?'摄像头原生画质':'JPEG质量 '+frame.quality}`);
       }catch(error){this.decodeDropped++;this.onStatus(error.message);}
       finally{bitmap.close();}
     });
@@ -115,7 +122,7 @@ class WirelessPlayer {
           bitmap=await createImageBitmap(new Blob([frame.jpeg],{type:'image/jpeg'}));
           if(frame.generation!==this.generation||frame.videoSession!==this.videoSession||
               document.hidden||performance.now()-frame.received>500){this.decodeDropped++;continue;}
-          if(bitmap.width!==1280||bitmap.height!==720)throw Error('实际JPEG不是1280×720');
+          if(bitmap.width!==this.width||bitmap.height!==this.height)throw Error('实际JPEG尺寸与视频配置不一致');
           // Keep decoding independently of the browser's paint scheduling.
           // One ready bitmap is replaced by the latest, and one RAF is pending.
           this.discardReady();this.ready={frame,bitmap};bitmap=null;this.schedulePaint();
@@ -124,12 +131,20 @@ class WirelessPlayer {
       }
     }finally{this.decoding=false;}
   }
+  observeClock(started,finished,serverNs){
+    const rtt=finished-started;if(!(rtt>=0&&rtt<=200))return;
+    const sample={at:finished,rtt_ms:rtt,offset_ms:(started+finished)/2-Number(serverNs)/1e6,uncertainty_ms:rtt/2};
+    this.clockSamples=this.clockSamples.filter(x=>finished-x.at<30000);this.clockSamples.push(sample);
+    this.clock=this.clockSamples.reduce((a,b)=>a.rtt_ms<b.rtt_ms?a:b);
+  }
   rates(){
     const now=performance.now(),seconds=Math.max(.001,(now-this.rateAt)/1000);
     if(seconds<.5)return {...this.info,received_fps:0,drawn_fps:0,warming_up:true,video_session:null,visible:!document.hidden,client_dropped:this.slot.replaced+this.decodeDropped};
-    const result={...this.info,received_fps:(this.received-this.rateReceived)/seconds,drawn_fps:(this.drawn-this.rateDrawn)/seconds,
+    const ordered=[...this.intervals].sort((a,b)=>a-b),quant=p=>ordered.length?ordered[Math.min(ordered.length-1,Math.ceil(ordered.length*p)-1)]:null;
+    const result={...this.info,width:this.width,height:this.height,clock:this.clock,
+      frame_events:this.frameEvents.splice(0),draw_interval_ms:{p50:quant(.5),p95:quant(.95),p99:quant(.99),max:ordered.length?ordered[ordered.length-1]:null},received_fps:(this.received-this.rateReceived)/seconds,drawn_fps:(this.drawn-this.rateDrawn)/seconds,
       client_dropped:this.slot.replaced+this.decodeDropped,video_session:this.videoSession,visible:!document.hidden};
-    this.rateAt=now;this.rateReceived=this.received;this.rateDrawn=this.drawn;this.info=result;return result;
+    this.rateAt=now;this.rateReceived=this.received;this.rateDrawn=this.drawn;this.info={...result,frame_events:[]};return result;
   }
 }
 const exported={ByteReader,LatestSlot,WirelessPlayer};

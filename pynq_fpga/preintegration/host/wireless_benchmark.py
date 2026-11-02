@@ -90,14 +90,14 @@ async def receive_benchmark(url,token,seconds):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('mode',choices=['codec','capture','receive'])
-    parser.add_argument('--native',type=Path,default=Path('native-build/libcar_video.so'))
+    parser.add_argument('--native',type=Path,default=Path('native/libcar_video.so'))
     parser.add_argument('--jpeg',type=Path);parser.add_argument('--device',default='/dev/video0')
     parser.add_argument('--seconds',type=float,default=60)
     parser.add_argument('--url',default='http://192.168.8.10:8080/api/video?view=processed')
     parser.add_argument('--token');parser.add_argument('--output',type=Path,required=True)
     args=parser.parse_args()
     if not math.isfinite(args.seconds) or args.seconds<=0:parser.error('positive finite seconds required')
-    if args.mode=='codec' and args.jpeg is None:parser.error('codec benchmark requires a real 720p --jpeg')
+    if args.mode=='codec' and args.jpeg is None:parser.error('codec benchmark requires a real profile-matching --jpeg')
     if args.mode=='receive' and not args.token:parser.error('receive requires current --token')
     if args.mode=='receive':result=asyncio.run(receive_benchmark(args.url,args.token,args.seconds))
     else:

@@ -42,7 +42,7 @@ REGISTER_OFFSETS = {
     }
 }
 
-SNAPSHOT_REGISTER_NAMES = frozenset({
+SNAPSHOT_REGISTER_NAMES = frozenset({'US_FILTER_REJECTED', 'US_FILTER_ACCEPTED', 'US_FILTER_RESETS', 'SNAP_CAR_STATE', 'US_FILTER_OLDEST_TS', 'US_FILTER_MM', 'US_TREND_STATE', 'US_TREND_DELTA_MM', 'US_TREND_DT', 'US_FILTER_LATEST_TS', 'US_FILTER_META'} | {
     "US_DATA", "US_TS", "US_META", "IR_STATUS", "IR_TS", "IR_META",
     "QEI0_POS", "QEI0_PERIOD", "QEI0_VEL", "QEI0_TS", "QEI0_META", "QEI0_INFO",
     "QEI1_POS", "QEI1_PERIOD", "QEI1_VEL", "QEI1_TS", "QEI1_META", "QEI1_INFO",
@@ -241,6 +241,7 @@ def snapshot_registers(shot) -> dict[str, int]:
             "EPOCH": odo.epoch,
         }
         values.update({f"ODOM{i}_{key}": value for key, value in fields.items()})
+    values.update(dict(getattr(shot,'display_processing',())))
     return values
 
 

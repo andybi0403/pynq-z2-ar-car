@@ -8,11 +8,15 @@ Reset/re-arm each transaction so counters and frame pointers cannot carry over.
 import time
 import xml.etree.ElementTree as ET
 from native_video import WIDTH,HEIGHT,FRAME_BYTES
+from video_profile import PROFILE
 from hwh_contract import audit_hwh
 
 
 def audit_wireless_hwh(path):
     audit_hwh(path,require_placeholder=False)
+    if PROFILE=='wireless720_jpeg':
+        from wireless_jpeg_dma import audit_jpeg_hwh
+        return audit_jpeg_hwh(path)
     root=ET.parse(path).getroot();modules={m.get('INSTANCE'):m for m in root.iter('MODULE')}
     def params(instance):return {p.get('NAME'):p.get('VALUE') for p in modules[instance].iter('PARAMETER')}
     p=params('video_vdma')
@@ -20,8 +24,8 @@ def audit_wireless_hwh(path):
                        'C_M_AXI_MM2S_DATA_WIDTH':'64','C_M_AXI_S2MM_DATA_WIDTH':'64',
                        'C_M_AXIS_MM2S_TDATA_WIDTH':'32','C_S_AXIS_S2MM_TDATA_WIDTH':'32'}.items():
         if p.get(name)!=value:raise ValueError('wireless VDMA parameter mismatch: '+name)
-    if params('car_system').get('VIDEO_WIDTH')!='1280' or params('car_system').get('VIDEO_HEIGHT')!='720':
-        raise ValueError('wireless wrapper must be 1280x720')
+    if params('car_system').get('VIDEO_WIDTH')!=str(WIDTH) or params('car_system').get('VIDEO_HEIGHT')!=str(HEIGHT):
+        raise ValueError(f'wireless wrapper must be {WIDTH}x{HEIGHT}')
     if params('video_hp0_ic').get('NUM_SI')!='2':raise ValueError('wireless capture requires two HP0 masters')
     def bus(instance,name):
         b=modules[instance].find(f"./BUSINTERFACES/BUSINTERFACE[@NAME='{name}']")
@@ -35,7 +39,7 @@ def audit_wireless_hwh(path):
     sink=modules['hdmi_axis_to_video'].find("./BUSINTERFACES/BUSINTERFACE[@NAME='video_in']")
     if sink is not None and bus('car_system','M_AXIS')==sink.get('BUSNAME'):
         raise ValueError('HDMI must not backpressure the wireless capture path')
-    return {'profile':'wireless720','width':WIDTH,'height':HEIGHT,'stride':WIDTH*4,'hardware_validated':False}
+    return {'profile':PROFILE,'width':WIDTH,'height':HEIGHT,'stride':WIDTH*4,'hardware_validated':False}
 
 
 class FiniteVDMA:

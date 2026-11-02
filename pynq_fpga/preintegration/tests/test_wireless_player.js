@@ -41,7 +41,7 @@ function reader(bytes,width){let offset=0;return new ByteReader({read:async()=>o
   global.fetch=async()=>{
     calls++;const payload=calls===1?multipart(900):Buffer.concat([multipart(1),multipart(1)]);
     let consumed=false;
-    return {ok:true,headers:{get:()=>calls===1?'first-stream':'second-stream'},body:{getReader:()=>({
+    return {ok:true,headers:{get:name=>name==='X-Video-Session'?(calls===1?'first-stream':'second-stream'):null},body:{getReader:()=>({
       read:async()=>{if(!consumed){consumed=true;return {done:false,value:payload};}
         await new Promise(r=>setImmediate(r));return {done:true};},
       cancel:async()=>{canceled++;}

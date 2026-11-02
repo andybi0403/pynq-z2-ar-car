@@ -45,13 +45,17 @@ module car_axis_osd #(
  wire take_in=!prep_valid||take_font;
  assign s_axis_tready=take_in;
  wire [15:0] px=s_axis_tuser?16'd0:x_q;
+ localparam integer HUD_SCALE=(WIDTH==640 && HEIGHT==360)?2:1;
+ localparam integer HUD_WIDTH=WIDTH*HUD_SCALE;
+ wire [15:0] hx=px*HUD_SCALE;
  wire [15:0] py=s_axis_tuser?16'd0:y_q;
+ wire [15:0] hy=py*HUD_SCALE;
  wire [1:0] draw_risk=s_axis_tuser?state_risk_level:active_risk;
  wire draw_stop=s_axis_tuser?state_stop:active_stop;
  wire draw_locked=s_axis_tuser?state_locked:active_locked;
  wire draw_distance_valid=s_axis_tuser?state_distance_valid:active_distance_valid;
  wire draw_speed_valid=s_axis_tuser?state_speed_valid:active_speed_valid;
- wire draw_all_valid=draw_distance_valid&&draw_speed_valid;
+ wire draw_all_valid=draw_distance_valid;
  wire [11:0] draw_distance=s_axis_tuser?state_distance_mm:active_distance;
  wire [31:0] draw_speed=s_axis_tuser?state_speed_q16:active_speed;
  wire [23:0] risk_color=(draw_risk==2'd0) ? C_GREEN :
@@ -60,14 +64,14 @@ module car_axis_osd #(
  // Fault/STOP selects emergency, never the green safe lamp.
  localparam [23:0] C_GRAY=24'h686868;
  wire [1:0] lamp_active=(draw_stop||!draw_all_valid||draw_risk>=2)?2'd2:draw_risk;
- wire lamp_panel=WIDTH>=560&&px>=WIDTH-264&&px<WIDTH-24&&py>=16&&py<116;
- wire [1:0] lamp_index=px>=WIDTH-104?2'd2:px>=WIDTH-184?2'd1:2'd0;
+ wire lamp_panel=HUD_WIDTH>=560&&hx>=HUD_WIDTH-264&&hx<HUD_WIDTH-24&&hy>=16&&hy<116;
+ wire [1:0] lamp_index=hx>=HUD_WIDTH-104?2'd2:hx>=HUD_WIDTH-184?2'd1:2'd0;
  // Only evaluated inside the bounded panel: local x is 0..79, y is 16..115.
  // Modular 8-bit subtraction is exact there and avoids a 16-bit carry chain.
- localparam [7:0] LAMP_X0=WIDTH-264,LAMP_X1=WIDTH-184,LAMP_X2=WIDTH-104;
- wire [7:0] lamp_local=px[7:0]-(lamp_index==2?LAMP_X2:lamp_index==1?LAMP_X1:LAMP_X0);
+ localparam [7:0] LAMP_X0=HUD_WIDTH-264,LAMP_X1=HUD_WIDTH-184,LAMP_X2=HUD_WIDTH-104;
+ wire [7:0] lamp_local=hx[7:0]-(lamp_index==2?LAMP_X2:lamp_index==1?LAMP_X1:LAMP_X0);
  wire [7:0] lamp_dx=lamp_local>=8'd40 ? lamp_local-8'd40 : 8'd40-lamp_local;
- wire [7:0] lamp_dy=py[7:0]>=8'd48 ? py[7:0]-8'd48 : 8'd48-py[7:0];
+ wire [7:0] lamp_dy=hy[7:0]>=8'd48 ? hy[7:0]-8'd48 : 8'd48-hy[7:0];
  function [4:0] circle_outer(input [4:0] dy);
   begin case(dy)
    5'd0:circle_outer=5'd24;
@@ -129,18 +133,18 @@ module car_axis_osd #(
  wire lamp_hole=prep_lamp_dy<=21&&prep_lamp_dx<=circle_inner(prep_lamp_dy[4:0]);
  wire lamp_selected=lamp_index==lamp_active;
  wire [23:0] lamp_color=!lamp_selected?C_GRAY:lamp_index==0?C_GREEN:lamp_index==1?C_YELLOW:C_RED;
- wire lamp_text=lamp_panel&&py>=80&&py<112&&lamp_local>=8&&lamp_local<72;
- wire [7:0] lamp_tx=lamp_local-8'd8,lamp_ty=py[7:0]-8'd80;
+ wire lamp_text=lamp_panel&&hy>=80&&hy<112&&lamp_local>=8&&lamp_local<72;
+ wire [7:0] lamp_tx=lamp_local-8'd8,lamp_ty=hy[7:0]-8'd80;
  wire [5:0] lamp_glyph=6'd52+{lamp_index,1'b0}+lamp_tx[5];
  // Native 24px Chinese labels; values retain their mm and mm/s units.
  localparam [15:0] TXT_X0=24, TXT_Y0=24;
  // Fourteen 24px cells end before the status panel at the 640px profile.
  // Trailing blank cells must not take priority over a status circle.
- wire text_band = ENABLE_TEXT && px>=24 && px<360 &&
-                  ((py>=24&&py<48)||(py>=64&&py<88));
- wire [15:0] tx=px-TXT_X0;
- wire line0=py<64;
- wire [15:0] ty=py-(line0?16'd24:16'd64);
+ wire text_band = ENABLE_TEXT && hx>=24 && hx<360 &&
+                  (hy>=64&&hy<88); // Speed row intentionally absent.
+ wire [15:0] tx=hx-TXT_X0;
+ wire line0=hy<64;
+ wire [15:0] ty=hy-(line0?16'd24:16'd64);
  wire [4:0] grow=ty[4:0];
  reg [1:0]  cdc_st;
  reg [35:0] cdc_shift;    // {bcd[35:16], bin[15:0]}
@@ -174,14 +178,14 @@ module car_axis_osd #(
  genvar text_index;
  generate for(text_index=0;text_index<14;text_index=text_index+1)begin: text_cells
   localparam [8:0] CELL_START=24+text_index*24,CELL_END=48+text_index*24;
-  assign text_cell[text_index]=px[8:0]>=CELL_START&&px[8:0]<CELL_END;
+  assign text_cell[text_index]=hx[8:0]>=CELL_START&&hx[8:0]<CELL_END;
  end endgenerate
  wire [3:0] gcol;
  assign gcol[0]=|(text_cell&14'h2aaa);
  assign gcol[1]=|(text_cell&14'h0ccc);
  assign gcol[2]=|(text_cell&14'h30f0);
  assign gcol[3]=|(text_cell&14'h3f00);
- wire [4:0] gx=px[4:0]-{~gcol[1:0],3'b000};
+ wire [4:0] gx=hx[4:0]-{~gcol[1:0],3'b000};
  reg [5:0] glyph;
  reg fg_white;
  always @(*) begin
@@ -309,7 +313,7 @@ module car_axis_osd #(
     prep_lamp_panel<=lamp_panel;prep_lamp_selected<=lamp_selected;
     prep_lamp_dx<=lamp_dx;prep_lamp_dy<=lamp_dy;prep_lamp_color<=lamp_color;
     prep_band<=text_band||lamp_text;
-    prep_distance_background<=text_band&&!line0&&px<312;prep_lamp_text<=lamp_text;
+    prep_distance_background<=text_band&&!line0&&hx<312;prep_lamp_text<=lamp_text;
     prep_color<=lamp_text?(lamp_selected?C_WHITE:24'hd0d7de):text_color;
     prep_glyph<=lamp_text?lamp_glyph:glyph;
     prep_row<=lamp_text?lamp_ty[4:0]:grow;

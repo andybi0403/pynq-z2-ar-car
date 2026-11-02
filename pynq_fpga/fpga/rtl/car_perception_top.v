@@ -15,6 +15,7 @@ module car_perception_top(
  output wire osd_odometry_valid_o,output wire osd_car_valid_o,output wire osd_car_locked_o,
  output wire [15:0] osd_car_fault_o,input wire [15:0] osd_errors_i,input wire [31:0] osd_frames_i,
  output wire [63:0] osd_live_ticks_o,
+ output wire [1:0] osd_ir_o,output wire osd_ir_valid_o,
  input wire [31:0] display_frame_id_i,display_frame_state_i,
  input wire [63:0] display_frame_ticks_i,
  input wire [63:0] display_frame_sof_i,
@@ -62,6 +63,7 @@ module car_perception_top(
  wire [2:0] ir_status=ext_mode?ext_ir_status:local_ir_status;
  wire ir_valid=ext_mode?ext_ir_valid:local_ir_valid;
  wire [31:0] ir_ts=ext_mode?ext_ir_ts:local_ir_ts;
+
  wire [15:0] ir_seq=ext_mode?ext_ir_seq:local_ir_seq;
 
  wire [31:0] q0_pos,q0_period,q0_vel,q0_ts,q0_info,q1_pos,q1_period,q1_vel,q1_ts,q1_info;
@@ -71,17 +73,37 @@ module car_perception_top(
  wire [31:0] odo0_ts;wire odo0_valid,odo0_fault;wire [15:0] odo0_epoch,odo0_seq;
  wire signed [63:0] odo1_disp;wire [63:0] odo1_path;
  wire [31:0] odo1_ts;wire odo1_valid,odo1_fault;wire [15:0] odo1_epoch,odo1_seq;
- car_qei_core encoders(.clk(clk),.rst(rst),.odo_clear(odo_clear),.now_ticks(ticks[31:0]),.qei0_a(qei0_a),.qei0_b(qei0_b),
-  .qei1_a(qei1_a),.qei1_b(qei1_b),.qei0_dir(q0_dir_cfg),.qei0_filter(q0_filter_cfg),
-  .qei0_scale(q0_scale_cfg),.qei0_zero(q0_zero_cfg),.qei1_dir(q1_dir_cfg),.qei1_filter(q1_filter_cfg),
-  .qei1_scale(q1_scale_cfg),.qei1_zero(q1_zero_cfg),.q0_pos(q0_pos),.q0_period(q0_period),.q0_vel(q0_vel),
-  .q0_ts(q0_ts),.q0_valid(q0_valid),.q0_seq(q0_seq),.q0_info(q0_info),.q0_update(q0_update),
-  .q1_pos(q1_pos),.q1_period(q1_period),.q1_vel(q1_vel),.q1_ts(q1_ts),.q1_valid(q1_valid),
-  .q1_seq(q1_seq),.q1_info(q1_info),.q1_update(q1_update),
-  .odo0_disp(odo0_disp),.odo0_path(odo0_path),.odo0_ts(odo0_ts),
-  .odo0_valid(odo0_valid),.odo0_fault(odo0_fault),.odo0_epoch(odo0_epoch),.odo0_seq(odo0_seq),
-  .odo1_disp(odo1_disp),.odo1_path(odo1_path),.odo1_ts(odo1_ts),
-  .odo1_valid(odo1_valid),.odo1_fault(odo1_fault),.odo1_epoch(odo1_epoch),.odo1_seq(odo1_seq));
+ // Plain motor profile: reserved measurement registers remain invalid.
+ assign q0_pos=0;
+ assign q0_period=0;
+ assign q0_vel=0;
+ assign q0_ts=0;
+ assign q0_info=0;
+ assign q0_valid=0;
+ assign q0_seq=0;
+ assign q0_update=0;
+ assign odo0_disp=0;
+ assign odo0_path=0;
+ assign odo0_ts=0;
+ assign odo0_valid=0;
+ assign odo0_fault=0;
+ assign odo0_epoch=0;
+ assign odo0_seq=0;
+ assign q1_pos=0;
+ assign q1_period=0;
+ assign q1_vel=0;
+ assign q1_ts=0;
+ assign q1_info=0;
+ assign q1_valid=0;
+ assign q1_seq=0;
+ assign q1_update=0;
+ assign odo1_disp=0;
+ assign odo1_path=0;
+ assign odo1_ts=0;
+ assign odo1_valid=0;
+ assign odo1_fault=0;
+ assign odo1_epoch=0;
+ assign odo1_seq=0;
 
  // Match host qei_quality: a fresh divider result does not repair a missed
  // edge, diagnostic overrun, odometry fault or saturated velocity. Keep raw
@@ -100,6 +122,7 @@ module car_perception_top(
   .risk_level(risk_level),.reason_bits(risk_reasons),.required_mm(risk_required),.risk_ts(risk_ts),
   .risk_valid(risk_valid),.risk_seq(risk_seq),.risk_update(risk_update));
  assign risk_stop_o=risk_stop;assign risk_level_o=risk_level;assign risk_reasons_o=risk_reasons;
+ assign osd_ir_o=ir_status[1:0];assign osd_ir_valid_o=ir_valid&&ir_status[2];
  assign osd_distance_mm_o=us_data[11:0];assign osd_distance_valid_o=us_valid;
  wire signed [32:0] osd_speed_sum=$signed({q0_vel[31],q0_vel})+$signed({q1_vel[31],q1_vel});
  assign osd_speed_q16_o=$signed(osd_speed_sum)>>>1;
@@ -131,6 +154,39 @@ module car_perception_top(
  assign odo_clear=wr_en&&(wr_addr==`CAR_REG_ODOM_CTRL)&&wr_strb[0]&&wr_data[0];
  wire snap_trigger=wr_en&&(wr_addr==`CAR_REG_CTRL)&&wr_strb[0]&&wr_data[0];
  wire time_latch=wr_en&&(wr_addr==`CAR_REG_CTRL)&&wr_strb[0]&&wr_data[1];
+ // Display processing is a separate consumer; raw samples remain authoritative for control.
+ wire display_clear=wr_en&&wr_addr==`CAR_REG_EXT_SENSOR_MODE&&wr_strb==4'hf;
+ reg display_seen;reg [15:0] display_last_seq;
+ wire display_event=!display_seen||us_seq!=display_last_seq;
+ always @(posedge clk)begin
+  if(rst||display_clear)begin display_seen<=0;display_last_seq<=0;end
+  else if(display_event)begin display_seen<=1;display_last_seq<=us_seq;end
+ end
+ wire f_valid,t_valid;wire [11:0] f_mm;wire [1:0] f_count,t_state;
+ wire [15:0] f_seq;wire [31:0] f_latest,f_oldest,t_dt,f_accepted,f_rejected,f_resets;
+ wire signed [15:0] t_delta;
+ car_ultrasonic_display_filter display_processing(
+  .clk(clk),.rst(rst),.clear_session(display_clear),.now_ticks(ticks[31:0]),
+  .sample_event(display_event),.source_valid(us_valid),.sample_mm(us_data[11:0]),
+  .sample_seq(us_seq),.sample_ts(us_ts),.filter_valid(f_valid),.filtered_mm(f_mm),
+  .sample_count(f_count),.source_seq(f_seq),.latest_ts(f_latest),.oldest_ts(f_oldest),
+  .trend_state(t_state),.trend_valid(t_valid),.trend_dt(t_dt),.trend_delta_mm(t_delta),
+  .accepted_count(f_accepted),.rejected_count(f_rejected),.reset_count(f_resets),.busy());
+ reg [31:0] s_processing[0:10];integer processing_index;
+ always @(posedge clk)begin
+  if(rst)for(processing_index=0;processing_index<11;processing_index=processing_index+1)
+   s_processing[processing_index]<=0;
+  else if(snap_trigger)begin
+   s_processing[0]<={20'd0,f_mm};s_processing[1]<=f_latest;s_processing[2]<=f_oldest;
+   s_processing[3]<={f_valid,13'd0,f_count,f_seq};
+   s_processing[4]<={t_valid,29'd0,t_state};s_processing[5]<=t_dt;
+   s_processing[6]<={{16{t_delta[15]}},t_delta};s_processing[7]<=f_accepted;
+   s_processing[8]<=f_rejected;s_processing[9]<=f_resets;
+   s_processing[10]<={30'd0,osd_car_valid_o,osd_car_locked_o};
+  end
+ end
+
+
  reg snap_done,time_done;reg [15:0] snap_epoch;reg [31:0] time_lo,time_hi,scratch;
  reg [31:0] s_us_data,s_us_ts,s_us_meta,s_us_err,s_ir_status,s_ir_ts,s_ir_meta;
  reg [31:0] s_q0_pos,s_q0_period,s_q0_vel,s_q0_ts,s_q0_meta,s_q0_info;
@@ -246,6 +302,18 @@ module car_perception_top(
  end
  always @(*) begin
   case(rd_addr)
+   `CAR_REG_US_FILTER_MM:rd_data=s_processing[0];
+   `CAR_REG_US_FILTER_LATEST_TS:rd_data=s_processing[1];
+   `CAR_REG_US_FILTER_OLDEST_TS:rd_data=s_processing[2];
+   `CAR_REG_US_FILTER_META:rd_data=s_processing[3];
+   `CAR_REG_US_TREND_STATE:rd_data=s_processing[4];
+   `CAR_REG_US_TREND_DT:rd_data=s_processing[5];
+   `CAR_REG_US_TREND_DELTA_MM:rd_data=s_processing[6];
+   `CAR_REG_US_FILTER_ACCEPTED:rd_data=s_processing[7];
+   `CAR_REG_US_FILTER_REJECTED:rd_data=s_processing[8];
+   `CAR_REG_US_FILTER_RESETS:rd_data=s_processing[9];
+   `CAR_REG_SNAP_CAR_STATE:rd_data=s_processing[10];
+
    `CAR_REG_EXT_SENSOR_MODE:rd_data={31'd0,ext_mode};
    `CAR_REG_EXT_US_DATA:rd_data=ext_us_data_stage;
    `CAR_REG_EXT_US_AGE:rd_data=ext_us_age_stage;
@@ -272,6 +340,7 @@ module car_perception_top(
    `CAR_REG_DISPLAY_CAR_STATE:rd_data={car_state[31:2],osd_car_valid_o,car_state[0]};
    `CAR_REG_DISPLAY_CAR_AGE:rd_data=car_age_stage;
    `CAR_REG_DISPLAY_CAR_TS:rd_data=car_ts;
+   `CAR_REG_DEMO_PROFILE:rd_data=32'd1;
    `CAR_REG_ID_VERSION:rd_data=`CAR_INTEGRATED_ID;`CAR_REG_CTRL:rd_data=0;
    `CAR_REG_STATUS:rd_data={30'b0,time_done,snap_done};`CAR_REG_SNAP_EPOCH:rd_data={16'b0,snap_epoch};
    `CAR_REG_TS_LIVE_LO:rd_data=ticks[31:0];`CAR_REG_TS_LIVE_HI:rd_data=ticks[63:32];

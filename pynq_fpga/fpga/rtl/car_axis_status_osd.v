@@ -24,6 +24,8 @@ module car_axis_status_osd #(
  assign s_axis_tready=take;
  reg [15:0] x,y;
  wire [15:0] px=s_axis_tuser?16'd0:x,py=s_axis_tuser?16'd0:y;
+ localparam integer HUD_SCALE=(WIDTH==640 && HEIGHT==360)?2:1;
+ wire [15:0] hx=px*HUD_SCALE,hy=py*HUD_SCALE;
  reg [15:0] reasons,car_fault;
  reg car_valid,car_locked,odo_valid,net_negative;
  reg [1:0] direction;
@@ -47,21 +49,21 @@ module car_axis_status_osd #(
  reg [2:0] row;reg [15:0] ty;reg row_band;
  always @(*) begin
   row=0;ty=0;row_band=0;
-  if(py>=104&&py<128)begin row=0;ty=py-104;row_band=1;end
-  else if(py>=136&&py<160)begin row=1;ty=py-136;row_band=1;end
-  else if(py>=168&&py<192)begin row=2;ty=py-168;row_band=1;end
-  else if(py>=200&&py<224)begin row=3;ty=py-200;row_band=1;end
-  else if(py>=232&&py<256)begin row=4;ty=py-232;row_band=1;end
-  else if(py>=264&&py<288)begin row=5;ty=py-264;row_band=1;end
+  if(hy>=104&&hy<128)begin row=0;ty=hy-104;row_band=1;end
+  else if(hy>=136&&hy<160)begin row=1;ty=hy-136;row_band=1;end
+  else if(hy>=168&&hy<192)begin row=2;ty=hy-168;row_band=1;end
+  else if(hy>=200&&hy<224)begin row=3;ty=hy-200;row_band=1;end
+  else if(hy>=232&&hy<256)begin row=4;ty=hy-232;row_band=1;end
+  else if(hy>=264&&hy<288)begin row=5;ty=hy-264;row_band=1;end
  end
- wire band=row_band&&px>=24&&px<408;
+ wire band=row_band&&(row!=1)&&(row!=5)&&hx>=24&&hx<408; // Hide net displacement and speed-derived direction.
  // Decode the sixteen bounded 24px cells with parallel comparisons. A
  // constant divider followed by the BCD selector was the critical path.
  wire [15:0] cell_select;
  genvar cell_index;
  generate for(cell_index=0;cell_index<16;cell_index=cell_index+1)begin: cells
   localparam [8:0] CELL_START=24+cell_index*24,CELL_END=48+cell_index*24;
-  assign cell_select[cell_index]=px[8:0]>=CELL_START&&px[8:0]<CELL_END;
+  assign cell_select[cell_index]=hx[8:0]>=CELL_START&&hx[8:0]<CELL_END;
  end endgenerate
  wire [3:0] column;
  assign column[0]=|(cell_select&16'haaaa);
@@ -70,7 +72,7 @@ module car_axis_status_osd #(
  assign column[3]=|(cell_select&16'hff00);
  // Cell origins modulo 32 are 24,16,8,0. In the active cell the modular
  // subtraction is exactly its 0..23 pixel offset, with no divider.
- wire [4:0] gx=px[4:0]-{~column[1:0],3'b000};
+ wire [4:0] gx=hx[4:0]-{~column[1:0],3'b000};
  reg [5:0] glyph;reg healthy;
  function [5:0] hexglyph(input [3:0] value);
   begin case(value)

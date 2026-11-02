@@ -25,7 +25,7 @@ def inspect(directory,*,board=False,camera='/dev/video0',uart='/dev/ttyPS1'):
     dependencies={}
     if board:
         if sys.platform!='linux':failures.append('board deployment requires the PYNQ Linux environment')
-        wireless=package.get('video_profile')=='wireless720'
+        wireless=package.get('video_profile') in ('wireless720','wireless360','wireless720_jpeg')
         required=[('pynq','pynq'),('numpy','numpy'),('serial','pyserial')]
         if wireless:required.append(('aiohttp','aiohttp'))
         for module,distribution in required:
@@ -44,7 +44,7 @@ def inspect(directory,*,board=False,camera='/dev/video0',uart='/dev/ttyPS1'):
                 dependencies['ffmpeg']['version_line']=result.stdout.splitlines()[0] if result.stdout else None
             except (OSError,subprocess.TimeoutExpired):failures.append('FFmpeg version probe failed or timed out')
         if wireless:
-            native=folder/'native-build/libcar_video.so'
+            native=folder/'native/libcar_video.so'
             dependencies['native_video']={'path':str(native),'available':native.is_file()}
             if not native.is_file():failures.append('build pinned ARM libcar_video.so before wireless startup')
         for label,name in [('camera',camera),('uart',uart)]:

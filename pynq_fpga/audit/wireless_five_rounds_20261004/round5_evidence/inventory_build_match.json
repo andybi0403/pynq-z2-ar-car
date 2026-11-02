@@ -1,7 +1,0 @@
-{
-  "schema": "car-inventory-build-match/v1",
-  "passed": true,
-  "files": 310,
-  "lines": 96895,
-  "build": "v09_wireless720_five_20261004_r3"
-}

@@ -13,7 +13,8 @@ set hdmi_xdc [file join $pre_dir constraints task7_8_integrated.xdc]
 set pynq_ip_repo [file join $project_root third_party PYNQ boards ip]
 set rtl_dir [file join $project_root fpga rtl]
 set axil_dir [file join $project_root third_party verilog-axi rtl]
-set wireless [expr {[info exists ::env(PYNQ_VIDEO_PROFILE)] && $::env(PYNQ_VIDEO_PROFILE) eq "wireless720"}]
+set wireless [expr {[info exists ::env(PYNQ_VIDEO_PROFILE)] && $::env(PYNQ_VIDEO_PROFILE) in {wireless720 wireless360 wireless720_jpeg}}]
+set hardware_jpeg [expr {[info exists ::env(PYNQ_VIDEO_PROFILE)] && $::env(PYNQ_VIDEO_PROFILE) eq "wireless720_jpeg"}]
 
 set_param board.repoPaths [list $board_repo]
 set board_part tul.com.tw:pynq-z2:part0:1.0
@@ -28,12 +29,17 @@ set_property ip_repo_paths [list $pynq_ip_repo] [current_project]
 update_ip_catalog
 add_files -norecurse $rtl_adapter
 if {$wireless} {add_files -norecurse [file join $pre_dir rtl rgb24_to_axis32.v]}
+if {$hardware_jpeg} {
+ add_files -norecurse [file join $pre_dir rtl car_axis_jpeg.v]
+ add_files -norecurse [glob [file join $project_root third_party mjpegZero rtl *.v]]
+}
 add_files -norecurse [glob [file join $axil_dir axil_reg_if*.v]]
 add_files -norecurse [glob [file join $rtl_dir *.v]]
 add_files -norecurse [file join $rtl_dir car_reg_defs.vh]
 add_files -norecurse [file join $rtl_dir font_8x8_minimal.mem]
 add_files -norecurse [file join $rtl_dir font_16x16_hud.mem]
 add_files -norecurse [file join $rtl_dir font_24x24_hud.mem]
+add_files -norecurse [file join $rtl_dir font_24x24_demo.mem]
 add_files -norecurse [file join $rtl_dir font_32x32_hud.mem]
 add_files -norecurse [file join $rtl_dir font_8x8_status.mem]
 set_property include_dirs [list $rtl_dir] [get_filesets sources_1]
@@ -49,12 +55,17 @@ set_property -dict [list CONFIG.PCW_USE_M_AXI_GP0 {1} CONFIG.PCW_USE_S_AXI_HP0 {
 set rst [create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_100m]
 set gp [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:* gp_control_ic]
 set_property -dict [list CONFIG.NUM_SI {1} CONFIG.NUM_MI {5}] $gp
+if {$hardware_jpeg} {set_property CONFIG.NUM_MI {7} $gp}
 set car_system [create_bd_cell -type module -reference car_board_video_wrapper car_system]
-if {$wireless} {set_property -dict [list CONFIG.VIDEO_WIDTH {1280} CONFIG.VIDEO_HEIGHT {720}] $car_system}
+if {$wireless} {
+ set video_width 1280;set video_height 720
+ if {$::env(PYNQ_VIDEO_PROFILE) eq "wireless360"} {set video_width 640;set video_height 360}
+ set_property -dict [list CONFIG.VIDEO_WIDTH $video_width CONFIG.VIDEO_HEIGHT $video_height] $car_system
+}
 
 set vdma [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_vdma:* video_vdma]
 set_property -dict [list CONFIG.c_include_mm2s {1} CONFIG.c_include_s2mm {0} CONFIG.c_num_fstores {3} CONFIG.c_m_axi_mm2s_data_width {64} CONFIG.c_m_axis_mm2s_tdata_width {32} CONFIG.c_mm2s_genlock_mode {0}] $vdma
-if {$wireless} {
+if {$wireless && !$hardware_jpeg} {
  set_property -dict [list CONFIG.c_include_s2mm {1} CONFIG.c_m_axi_s2mm_data_width {64} CONFIG.c_s_axis_s2mm_tdata_width {32} CONFIG.c_s2mm_genlock_mode {0} CONFIG.c_use_fsync {0}] $vdma
 }
 set video_irq [create_bd_cell -type inline_hdl -vlnv xilinx.com:inline_hdl:ilconcat:1.0 video_irq_concat]
@@ -109,11 +120,32 @@ connect_bd_net [get_bd_pins $hpd_gpio/ip2intc_irpt] [get_bd_pins $video_irq/In1]
 connect_bd_net [get_bd_pins $video_irq/dout] [get_bd_pins $ps/IRQ_F2P]
 connect_bd_intf_net [get_bd_intf_pins $adapter/M_AXIS] [get_bd_intf_pins $car_system/S_AXIS]
 if {$wireless} {
+ if {$hardware_jpeg} {
+ set jpeg [create_bd_cell -type module -reference car_axis_jpeg jpeg_encoder]
+ set jpeg_width [create_bd_cell -type ip -vlnv xilinx.com:ip:axis_dwidth_converter:* jpeg_width]
+ set_property -dict [list CONFIG.S_TDATA_NUM_BYTES {1} CONFIG.M_TDATA_NUM_BYTES {4} CONFIG.HAS_TKEEP {1} CONFIG.HAS_TLAST {1}] $jpeg_width
+ set jpeg_dma [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:* jpeg_dma]
+ set jpeg_config [list CONFIG.c_include_sg {0} CONFIG.c_include_mm2s {0} CONFIG.c_include_s2mm {1} CONFIG.c_m_axi_s2mm_data_width {64} CONFIG.c_s_axis_s2mm_tdata_width {32} CONFIG.c_sg_length_width {23} CONFIG.c_s2mm_burst_size {16}]
+ set_property -dict $jpeg_config $jpeg_dma
+ foreach {key required} $jpeg_config {
+  if {[get_property $key $jpeg_dma] ne $required} {error "JPEG DMA configuration readback differs: $key"}
+ }
+ connect_bd_intf_net [get_bd_intf_pins $car_system/M_AXIS] [get_bd_intf_pins $jpeg/S_AXIS]
+ connect_bd_net [get_bd_pins $car_system/video_frame_id] [get_bd_pins $jpeg/frame_id]
+ connect_bd_net [get_bd_pins $car_system/video_frame_valid] [get_bd_pins $jpeg/frame_valid]
+ connect_bd_intf_net [get_bd_intf_pins $jpeg/M_AXIS] [get_bd_intf_pins $jpeg_width/S_AXIS]
+ connect_bd_intf_net [get_bd_intf_pins $jpeg_width/M_AXIS] [get_bd_intf_pins $jpeg_dma/S_AXIS_S2MM]
+ connect_bd_intf_net [get_bd_intf_pins $jpeg_dma/M_AXI_S2MM] [get_bd_intf_pins $mem/S01_AXI]
+ connect_bd_intf_net [get_bd_intf_pins $gp/M05_AXI] [get_bd_intf_pins $jpeg/S_AXI]
+ connect_bd_intf_net [get_bd_intf_pins $gp/M06_AXI] [get_bd_intf_pins $jpeg_dma/S_AXI_LITE]
+ connect_bd_net [get_bd_pins $jpeg_dma/s2mm_introut] [get_bd_pins $video_irq/In2]
+ } else {
  set capture_adapter [create_bd_cell -type module -reference rgb24_to_axis32 video_capture_adapter]
  connect_bd_intf_net [get_bd_intf_pins $car_system/M_AXIS] [get_bd_intf_pins $capture_adapter/S_AXIS]
  connect_bd_intf_net [get_bd_intf_pins $capture_adapter/M_AXIS] [get_bd_intf_pins $vdma/S_AXIS_S2MM]
  connect_bd_intf_net [get_bd_intf_pins $vdma/M_AXI_S2MM] [get_bd_intf_pins $mem/S01_AXI]
  connect_bd_net [get_bd_pins $vdma/s2mm_introut] [get_bd_pins $video_irq/In2]
+ }
  # HDMI debug uses the existing independent profile, never a READY fanout.
  set blank_data [create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 hdmi_blank_data]
  set_property -dict [list CONFIG.CONST_WIDTH {24} CONFIG.CONST_VAL {0}] $blank_data
@@ -134,8 +166,13 @@ connect_bd_net $clk [get_bd_pins $rst/slowest_sync_clk] [get_bd_pins $gp/ACLK] [
 connect_bd_net $clk [get_bd_pins $car_system/aclk] [get_bd_pins $vdma/s_axi_lite_aclk] [get_bd_pins $vdma/m_axi_mm2s_aclk] [get_bd_pins $vdma/m_axis_mm2s_aclk]
 connect_bd_net $clk [get_bd_pins $mem/aclk] [get_bd_pins $adapter/aclk] [get_bd_pins $vidout/aclk]
 if {$wireless} {
+ if {$hardware_jpeg} {
+ connect_bd_net $clk [get_bd_pins $jpeg/aclk] [get_bd_pins $jpeg_width/aclk] [get_bd_pins $jpeg_dma/s_axi_lite_aclk] [get_bd_pins $jpeg_dma/m_axi_s2mm_aclk] [get_bd_pins $gp/M05_ACLK] [get_bd_pins $gp/M06_ACLK]
+ connect_bd_net $resetn [get_bd_pins $jpeg/aresetn] [get_bd_pins $jpeg_width/aresetn] [get_bd_pins $jpeg_dma/axi_resetn] [get_bd_pins $gp/M05_ARESETN] [get_bd_pins $gp/M06_ARESETN]
+ } else {
  connect_bd_net $clk [get_bd_pins $capture_adapter/aclk] [get_bd_pins $vdma/m_axi_s2mm_aclk] [get_bd_pins $vdma/s_axis_s2mm_aclk]
  connect_bd_net $resetn [get_bd_pins $capture_adapter/aresetn]
+ }
 }
 connect_bd_net $clk [get_bd_pins $dynclk/REF_CLK_I] [get_bd_pins $dynclk/s00_axi_aclk] [get_bd_pins $vtc/s_axi_aclk] [get_bd_pins $hpd_gpio/s_axi_aclk]
 connect_bd_net [get_bd_pins $dynclk/PXL_CLK_O] [get_bd_pins $vidout/vid_io_out_clk] [get_bd_pins $vtc/clk] [get_bd_pins $rgb2dvi/PixelClk]
@@ -154,7 +191,11 @@ assign_bd_address -offset 0x43C10000 -range 0x00010000 -target_address_space [ge
 assign_bd_address -offset 0x43C20000 -range 0x00010000 -target_address_space [get_bd_addr_spaces $ps/Data] [get_bd_addr_segs $vtc/ctrl/Reg] -force
 assign_bd_address -offset 0x41230000 -range 0x00010000 -target_address_space [get_bd_addr_spaces $ps/Data] [get_bd_addr_segs $hpd_gpio/S_AXI/Reg] -force
 assign_bd_address -offset 0x00000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces $vdma/Data_MM2S] [get_bd_addr_segs $ps/S_AXI_HP0/HP0_DDR_LOWOCM] -force
-if {$wireless} {assign_bd_address -offset 0x00000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces $vdma/Data_S2MM] [get_bd_addr_segs $ps/S_AXI_HP0/HP0_DDR_LOWOCM] -force}
+if {$hardware_jpeg} {
+ assign_bd_address -offset 0x43C30000 -range 0x00001000 -target_address_space [get_bd_addr_spaces $ps/Data] [get_bd_addr_segs $jpeg/S_AXI/reg0] -force
+ assign_bd_address -offset 0x40400000 -range 0x00010000 -target_address_space [get_bd_addr_spaces $ps/Data] [get_bd_addr_segs $jpeg_dma/S_AXI_LITE/Reg] -force
+ assign_bd_address -offset 0x00000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces $jpeg_dma/Data_S2MM] [get_bd_addr_segs $ps/S_AXI_HP0/HP0_DDR_LOWOCM] -force
+} elseif {$wireless} {assign_bd_address -offset 0x00000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces $vdma/Data_S2MM] [get_bd_addr_segs $ps/S_AXI_HP0/HP0_DDR_LOWOCM] -force}
 
 validate_bd_design
 save_bd_design

@@ -1,0 +1,197 @@
+{
+  "schema": "demo-resilience-software-patch/v1",
+  "hardware": "PENDING",
+  "control_mode": "direct_manual",
+  "pl_role": "telemetry only; independent UART control worker",
+  "video_policy": "1280x720 genuine PL pixels; two independent complete-frame native decoders, merged chroma upsampling, capture/output 25fps; PL JPEG 4:2:2 Q85; one source copy, identity-bound completion trailer; bounded decode/PL overlap; 200ms maximum frame age",
+  "journal_policy": "bounded asynchronous writer; batch 1s or 256KiB; critical FIFO flush; loss/error invalidates evidence; bounded immutable pickle snapshot on producer; JSON formatting on writer",
+  "policy": {
+    "forward_stop_mm": 250,
+    "unknown_range": "advisory; prior detected near retained until valid >250mm",
+    "network_intent_lease_ms": 500,
+    "late_network_packet": "drop without renewing lease",
+    "socket_disconnected": "stop and require manual rearm",
+    "control_loop_max_age_ms": 200,
+    "single_100ms_control_jitter": "advisory",
+    "http_status_failure": "independent from acknowledged control",
+    "internal_tab_change": "zero output; retain ownership",
+    "console_duration_default_s": 0
+  },
+  "fpga_build": "C:\\Users\\39909\\Desktop\\FPGA\\_b\\vs720tactical_r6d_artifacts",
+  "fpga_source_changes": [],
+  "post_build_source_changes": [],
+  "bit_sha256": "1100bf3bb64501bf4e825ad75517125155206a4b4ed97d28d89a4911e09bbc0e",
+  "hwh_sha256": "fe4b04d9e8502253b35cc324398773f59319c01681207e023d0abf072b3a070e",
+  "software_changes_from_r7": [
+    {
+      "path": "pynq_fpga/host/car_regs.py",
+      "base_r7_sha256": "06fbdd5c95b98015b5dd2f50f720175239b1132667cd4d6858ee395207e86a5b",
+      "sha256": "60b33518c33c52c44127b48eae14f16355124a2594156aec09b3a3444942630f"
+    },
+    {
+      "path": "pynq_fpga/host/control_supervisor.py",
+      "base_r7_sha256": "5f796495316354b6b98224e5d3e3346fb5b9839129c67c5e42daa8fe72159e8c",
+      "sha256": "5dbf1f97d270ed9ec67202cf0bb537d70f9b7e2f4b110d21b94d6bcddf1afea7"
+    },
+    {
+      "path": "pynq_fpga/host/perception_client.py",
+      "base_r7_sha256": "435480b73971c5081f31d4929b90fc92e9a4098b625f9487e9e5f44f000a00d0",
+      "sha256": "c52a306d5548e29df1961d6893f23ce5430d978af1e0c543d4126b2327717115"
+    },
+    {
+      "path": "pynq_fpga/host/perception_replay.py",
+      "base_r7_sha256": "99a0b6a3697b33ed768db2caaaddf58de0ede0fa2188afce84c8a8244a892059",
+      "sha256": "cf7880e589d064b3b6d1fbbbef87f29aaa51cddcf55e6251467a982a9133bf17"
+    },
+    {
+      "path": "pynq_fpga/host/c_build/safe_control.h",
+      "base_r7_sha256": "ffb2d3c830d3b5d7cb85c2527666dabacb03b84956feceadeb30861d6e11662a",
+      "sha256": "d823c468470440821e6a468bca2dc9db63afa3cf5a7a3d42ec2ee98048a43c4b"
+    },
+    {
+      "path": "pynq_fpga/host/c_build/safe_control_prod.c",
+      "base_r7_sha256": "fcabcccf3d4fb4900654b3b3a672977b5dd5e5c06a3f150f9044b2ae13de4364",
+      "sha256": "d6821ca25160719136fac5497b9dec363641a41d7b3508d6a6c3c5e010226776"
+    },
+    {
+      "path": "pynq_fpga/host/tests/test_hybrid_c_loop.py",
+      "base_r7_sha256": "e6afd6e826b3dd3371c2769661698d8b864c408bf0a8668dcbf57d7b43ac3a53",
+      "sha256": "108e6ecd193e6b376b54f0f7249639fc9dad7bd38977d1ed0c2d703872a0fe2d"
+    },
+    {
+      "path": "pynq_fpga/host/tests/test_supervisor_c_loop.py",
+      "base_r7_sha256": "2a07663679ef3a00161471b49b1d6f569b409785d236f038c24df5fb491219c5",
+      "sha256": "202949f57ba83169fb972f1c23348b02045c3fbcc7cb49cff7aa009b3cbc7bf6"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/async_journal.py",
+      "base_r7_sha256": null,
+      "sha256": "13ce8e4e8d7ebb4847ec83e04091125a483ea4d78231178c5357e934083729e8"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/console_backend.py",
+      "base_r7_sha256": "fb97563982c66aa37f94e4fd4fdff0287b8d18665e4ad67c08469b1391bffccb",
+      "sha256": "6491cad3acdfdce9d3c2b627d59054e539e301e068cafade111c65512d9d3940"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/console_ui.js",
+      "base_r7_sha256": "379253ffcf76dc9ce629f0eb66951c7bd337d6271c39cd4152c8f91596b7f902",
+      "sha256": "0c8110df2af6628009a0b204eca210271e4c329382ef338d2a6df0ff0d4a31d3"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/deployment_check.py",
+      "base_r7_sha256": "6d87edcb357d21341eee676a8fa0f8f71885cff23a7b7030fe0767dff4a26b08",
+      "sha256": "081db83d0672559ee65a609bfc2f47018a7ce17431bbea55600be345d4e62dc8"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/frame_metadata.py",
+      "base_r7_sha256": "706d70081a98e8c8a499e52726af8dcbbd6b5be8ce5bdcfa8d1f40be3b580422",
+      "sha256": "c0234df44d719a652a9ac067aa84d7e7dded1e639ffe1de69097ae0acb59fe2d"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/jpeg_parallel.py",
+      "base_r7_sha256": null,
+      "sha256": "0bc3e07f045b7640c37d1c947ab3a109d144b7c8d6db37460e5a7f9a80df5df4"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/native_video.py",
+      "base_r7_sha256": "8884e54e6ea74a622cc0c5e566a6714cc27712831c5447cfe820d9b1968de84e",
+      "sha256": "a14f00b530c94ae06bd61321b8267b4e5135cb6a028196eb521288db982136af"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/runtime_identity.py",
+      "base_r7_sha256": "f300dfe3c0a7b40c51f6bd20be440da3e311d15a851c090e0e8775c680399670",
+      "sha256": "904ec7d6f7fc8207bc1d14e41a296a0fad6d4c4dceba8dcb468c5502dd728d7c"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/start_console.sh",
+      "base_r7_sha256": "a1041c5270432d1e91eeebdaa7e5e7235e7a09c2088ac2bd8ce2b9590e05d3b5",
+      "sha256": "ae31ababda93ec7409727975c2eb990dd5081e48985768a6767978d95cd2f14f"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/start_sensor_console.sh",
+      "base_r7_sha256": "eb7407c3f1a116f94438ce02d85aaab9ca07943cb67a09a8d8a1d28373221ae5",
+      "sha256": "5d0ea98bd88853a282438bc3077add56c0f6869b282f489b8533e6376ed014df"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/system_runtime.py",
+      "base_r7_sha256": "dc3aa168983cdd7a49b8079f847b984458b3d773f373a308d3071071a8e4b5f1",
+      "sha256": "622eaad18fca958bdaebbb42f9cb77bbf786254cff81f9518e84ce7494c17487"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/tactical_state.py",
+      "base_r7_sha256": null,
+      "sha256": "603a820581f41ff261150d4e81a740b067212badc7cc872ed56c7b887d8f3fdd"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/trial_control.py",
+      "base_r7_sha256": "3e7a4fbceb9b8b837c42c57f2ca19424e572a2f9bf06e43a2e56aecdb672eff9",
+      "sha256": "2fb64ddef7f0f82f4e51a26b237280bf414d15beb5e083b07e79ea7615144495"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/video_profile.py",
+      "base_r7_sha256": null,
+      "sha256": "214417625be338c65e11919be6bcf26e46fe0d08d5981e98c5d93463d136397c"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/wireless_benchmark.py",
+      "base_r7_sha256": "e62dde269d5cf98cd6e7b894e5da32d41e35f7d0f78ce021694e0b3bdbd456e5",
+      "sha256": "f90a2fdfd5ae5fe327850ab03025a5799cdaf1184a1993952cbbe28e0a2da833"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/wireless_core.py",
+      "base_r7_sha256": "07ee66ac472c6c81b305d4fdc9707eb8188196329a41d7db66b79e5c32dbf71d",
+      "sha256": "95537d8c508263f4d8417f3ad1038a4fa53e745f2fbd87a324a43f1f13296461"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/wireless_dma.py",
+      "base_r7_sha256": "b4acb53f4fa6651e2891155b2a7f57811b495a662759faf1c470fe2a64f12ac6",
+      "sha256": "d2ea4503cd1c04f33b4214c675d769f49523405ebf0410f3a72877f12e8d0c3f"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/wireless_jpeg_dma.py",
+      "base_r7_sha256": null,
+      "sha256": "bf33332693d94c8d843aadad5229e21d00107e4a525c17ac6616485658b4377c"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/wireless_page.html",
+      "base_r7_sha256": "b3769dd2899024e611512b7064deb43ddad3668446a6c3c16b81f603f4707d7f",
+      "sha256": "bc8f6ab003f9d341f5af41905025c17e37796408117d55e6a5efa49be87de4af"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/wireless_player.js",
+      "base_r7_sha256": "af311255fe7348dbd9d92286b66b2d49c4a595e765f6a2c46ff0d5b41515d829",
+      "sha256": "4eb8a4a0df7fef993da1d77c15417b08dbe8a00c7fae278101c14dfb62b9806e"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/wireless_policy.py",
+      "base_r7_sha256": "d77452b64e522800194c71dd4835acebc9e085dcaf8ba137c853e2f1d9d304e3",
+      "sha256": "46094887bc993490a9c48fa176aa114c91803020585ee4d74e1235a83634c963"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/wireless_runtime.py",
+      "base_r7_sha256": "e6b865455da42b479115cb68ae5deade216b91eef70ae5725243a46b4f751928",
+      "sha256": "acadd5a6fe4cfca4b03ffce24f20fb0cdcced18572dee64b98145413730884a5"
+    },
+    {
+      "path": "pynq_fpga/preintegration/host/wireless_server.py",
+      "base_r7_sha256": "77bbd174086147d62d1d1c6222e8c5982aa17a68554e06afdb5e830f736edfaa",
+      "sha256": "752a0448f945cd5967d8a6f0df8d5c0f92d35c36b6a7ffb6d638e5c077d63ce5"
+    },
+    {
+      "path": "stm32预备程序/pc/pynq_link.py",
+      "base_r7_sha256": "1519b1f4efc46fdd805d180673b366b8fc5b53d3fa336a62bef3f99041ea09eb",
+      "sha256": "f086c20600e2575181752c81303d17b4e3b629bff2babd973f7e8ac2e7da0c01"
+    },
+    {
+      "path": "stm32_pynq对接版/Source/APP/safe_control.c",
+      "base_r7_sha256": "fcabcccf3d4fb4900654b3b3a672977b5dd5e5c06a3f150f9044b2ae13de4364",
+      "sha256": "d6821ca25160719136fac5497b9dec363641a41d7b3508d6a6c3c5e010226776"
+    },
+    {
+      "path": "stm32_pynq对接版/Source/APP/safe_control.h",
+      "base_r7_sha256": "ffb2d3c830d3b5d7cb85c2527666dabacb03b84956feceadeb30861d6e11662a",
+      "sha256": "d823c468470440821e6a468bca2dc9db63afa3cf5a7a3d42ec2ee98048a43c4b"
+    }
+  ]
+}

@@ -139,6 +139,8 @@ class ControlSupervisor:
                 sample_s = now - elapsed32(ticks, shot.ultrasonic.timestamp) / 100_000_000
                 self.link.update_sample(sample.valid, sample.distance_mm,
                                         sample.infrared_mask, sample_s)
+                if hasattr(self.link, "update_control_observation"):
+                    self.link.update_control_observation(now)
                 if hasattr(self.link, "status_snapshot"):
                     car, car_sequence, car_time = self.link.status_snapshot()
                 else:
@@ -151,11 +153,9 @@ class ControlSupervisor:
                 risk_caught_up = elapsed32(shot.risk.timestamp, shot.command_timestamp) < 0x80000000
                 allowed = fresh and decision.permit and command_matches and risk_caught_up
                 safe_hold = bool(allowed and intent.left == 0 and intent.right == 0
-                                 and sample.distance_mm >= 250
-                                 and shot.qei0_velocity_q16 == 0
-                                 and shot.qei1_velocity_q16 == 0
+                                 and (not sample.valid or sample.distance_mm > 250)
                                  and car_fresh and car["left"] == 0 and car["right"] == 0
-                                 and car.get("mm", 0) >= 250)
+                                 and not (car.get("fault", 0) & 4))
                 if allowed and car_fresh:
                     self._fault_stop_sent = False
                 if not allowed or not car_fresh:
@@ -212,7 +212,7 @@ class ControlSupervisor:
                     "decision_reasons": list(decision.reasons),
                     "requested_pwm": [intent.left, intent.right] if intent else [0, 0],
                     "output_pwm": list(outputs), "car_fresh": car_fresh,
-                    "car": dict(car) if car_fresh else None,
+                    "car": dict(car) if car_fresh else None, "car_received_s": car_time, "car_sequence": car_sequence,
                     "stop_reason": self.stop_reason if self._phase == 'LOCKED' else None,
                     "command_matches": command_matches, "risk_caught_up": risk_caught_up,
                 }

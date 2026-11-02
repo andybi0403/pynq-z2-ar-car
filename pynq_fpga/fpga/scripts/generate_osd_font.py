@@ -6,14 +6,15 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 ROOT = Path(__file__).resolve().parents[1]
-CHARS = '0123456789- :+~ms/cxABCDEF速度距离路程位移原因码锁车故障方向无效前测正反停是否安全注意紧急'
+CHARS = '0123456789- :+~ms/cxABCDEF速度距离估算位移原因码锁车故障方向无效前测正反停是否安全注意紧急'
 
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--font', type=Path, required=True)
     p.add_argument('--size', type=int, choices=(16,24,32), default=16)
+    p.add_argument('--demo', action='store_true', help='Four-row driving HUD, independent glyph map')
     args = p.parse_args()
-    chars = list(dict.fromkeys(CHARS))
+    chars = list(dict.fromkeys('0123456789- : .cm前方距离是否锁车辆左右状态正常过近无效周边势图滤波接远稳定未知采样中' if args.demo else CHARS))
     assert len(chars) <= 64
     size=args.size
     stride=16 if size==16 else 32
@@ -36,6 +37,7 @@ def main():
             rows.append(fg if size==16 else (fg<<size)|outline)
     rows += [0] * (64*stride-len(rows))
     basename=f'font_{size}x{size}_hud'
+    if args.demo:basename=f'font_{size}x{size}_demo'
     word_digits=4 if size==16 else size//2
     (ROOT/f'rtl/{basename}.mem').write_text(''.join(f'{r:0{word_digits}x}\n' for r in rows), encoding='ascii')
     (ROOT/f'rtl/{basename}.json').write_text(json.dumps(dict(chars=chars, size=size,

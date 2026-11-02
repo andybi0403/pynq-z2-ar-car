@@ -23,9 +23,9 @@ module tb_car_frame_metadata;
   begin checks=checks+1;if(!condition) $fatal(1,"check %0d: %s",checks,message);end
  endtask
  initial begin
-  words[0]=24'hd3a95c;words[1]=24'h010012;words[2]=24'h345678;words[3]=24'habcd12;
-  words[4]=24'h00f3e8;words[5]=24'hff0000;words[6]=24'h0000ff;
-  words[7]=24'hfe0000;words[8]=24'hffffff;words[9]=24'h00ffff;
+  words[0]=24'hd3a95c;words[1]=24'h020012;words[2]=24'h345678;words[3]=24'habcd12;
+  words[4]=24'h04d3e8;words[5]=0;words[6]=0;
+  words[7]=0;words[8]=0;words[9]=0;
   words[10]=24'h030000;words[11]=0;words[12]=0;words[13]=24'h000201;
   words[14]=24'hbcdef0;words[15]=24'h56789a;words[16]=24'h001234;
   words[17]=24'hffffff;for(i=0;i<17;i=i+1) words[17]=words[17]^words[i];
@@ -72,8 +72,8 @@ module tb_car_frame_metadata;
     if(valid) begin
      check(fid==expected_id[received]&&epoch==16'habcd,"new frame id and snapshot epoch");
      check(ticks==64'h123456789abcdef0,"64-bit PL reception time");
-     check(distance==1000&&dv&&vv&&ov,"historical flags");
-     check(speed==32'hffff0000&&displacement==-64'sd131072&&path==196608,"signed physical values");
+     check(distance==1000&&dv&&!vv&&ov,"historical flags");
+     check(speed==0&&displacement==0&&path==196608,"signed physical values");
      check(level==1&&!stop&&reasons==16'h0201,"historical risk reasons");
     end
    end

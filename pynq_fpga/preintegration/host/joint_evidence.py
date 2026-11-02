@@ -48,7 +48,7 @@ def acquisition_failures(raw, *, require_odometry=False, require_infrared=True):
     Odometry also retains its last edge time while stationary.
     """
     failures=[]
-    for name in ('US','IR','QEI0','QEI1','RISK'):
+    for name in ('US','IR','RISK'):
         if name=='IR' and not require_infrared:continue
         if not raw[name+'_META'] & 0x80000000:
             failures.append(name.lower()+' acquisition invalid')
@@ -56,16 +56,7 @@ def acquisition_failures(raw, *, require_odometry=False, require_infrared=True):
         failures.append('ultrasonic acquisition fault')
     if require_infrared and (not raw['IR_STATUS'] & 4 or raw['IR_STATUS'] & 3):
         failures.append('infrared unstable or obstacle present')
-    for channel in (0, 1):
-        if f'QEI{channel}_INFO' not in raw:
-            failures.append(f'qei{channel} diagnostic missing')
-        else:
-            failures.extend(f'qei{channel} {reason}' for reason in raw_fault_reasons(raw, channel))
-    if require_odometry:
-        for channel in range(2):
-            meta=raw[f'ODOM{channel}_META']
-            if not meta & 0x80000000 or meta & 0x40000000:
-                failures.append(f'odometry{channel} invalid or faulted')
+    # QEI and measured odometry are not part of the demo acquisition contract.
     return failures
 
 
@@ -142,7 +133,7 @@ def inspect(journal, summary, *, minimum_duration_s=1800, require_hardware=True,
         raise ValueError('mixed session identities')
     if report.get('hardware') is not header['hardware']:raise ValueError('summary changed hardware classification')
     if config_changes==0 and report.get('identity')!=header.get('identity'):raise ValueError('summary changed identity')
-    if expected_identity is not None and header.get('identity')!=expected_identity:raise ValueError('package/configuration identity mismatch')
+    if expected_identity is not None and any(header.get('identity',{}).get(k)!=v for k,v in expected_identity.items()):raise ValueError('package/configuration identity mismatch')
     started=integer(header.get('started_host_ns'),'start');ended=integer(end.get('ended_host_ns'),'end')
     duration=(ended-started)/1e9
     cleanup=number(report.get('cleanup_duration_s',0),'cleanup duration')
@@ -163,7 +154,7 @@ def inspect(journal, summary, *, minimum_duration_s=1800, require_hardware=True,
         if selected>=0:
             a=anchors[selected]
             broker.publish(host_before_ns=a['host_before_ns'],host_after_ns=a['host_after_ns'],pl_ticks64=a['pl_ticks64'],
-                           registers=a['registers'],epoch=a['epoch'])
+                           registers=a['registers'],epoch=a['epoch'],display_estimate=a.get('display_estimate'))
         recomputed=broker.associate(integer(item.get('frame_id'),'frame id'),received,submitted)
         if recomputed['valid']:
             recomputed['display_metadata_words']=encode_frame_metadata(recomputed)
@@ -191,11 +182,8 @@ def inspect(journal, summary, *, minimum_duration_s=1800, require_hardware=True,
         else:digests.extend(code.values())
         if any(not isinstance(value,str) or not re.fullmatch('[0-9a-f]{64}',value) for value in digests):
             failures.append('artifact/runtime hash binding is invalid')
-        try:
-            from calibration_config import CalibrationConfig
-            configuration=CalibrationConfig.from_payload(identity.get('calibration',{}))
-            if configuration.measured is not True:failures.append('calibration is nominal rather than measured')
-        except (ValueError,TypeError,KeyError):failures.append('measured calibration provenance is missing')
+        if identity.get('calibration',{}).get('source')!='plain_motor_demo':
+            failures.append('ordinary-motor profile provenance is missing')
     if duration<minimum_duration_s:failures.append('active session shorter than required duration')
     if config_changes:failures.append('calibration changed during acceptance interval; rerun with fixed configuration')
     if end.get('failures') or report.get('failures') or report.get('passed') is not True:failures.append('session recorded failures')
@@ -272,13 +260,13 @@ def inspect(journal, summary, *, minimum_duration_s=1800, require_hardware=True,
     if drop_rate>.05:failures.append('inferred decoded-frame drop rate exceeded 5 percent')
     if timing['receive_to_submit_ms']['p95'] is None or timing['receive_to_submit_ms']['p95']>max_submit_p95_ms:failures.append('software submission p95 exceeded threshold')
     if timing['clock_uncertainty_ms']['max'] is None or timing['clock_uncertainty_ms']['max']>max_uncertainty_ms:failures.append('clock uncertainty exceeded threshold')
-    for name in ('us','qei0','qei1','risk'):
+    for name in ('us','risk'):
         if timing[name+'_age_ms']['max'] is None or timing[name+'_age_ms']['max']>=200:
             failures.append(f'{name} frame-associated sample exceeded 200ms age')
     return {'schema':'car-joint-audit/v1','hardware':header['hardware'],'passed':not failures,
             'failures':sorted(set(failures)),'duration_s':duration,'samples':len(anchors),'frames':frame_count,
             'control_gap_ms':distribution(gaps),'association_metrics':timing,'video_metrics':video,
-            'acquisition_health_checked':True,'odometry_health_required':require_hardware,
+            'acquisition_health_checked':True,'odometry_health_required':False,'mileage_is_estimated':True,
             'sampled_osd_acceptance_ms':distribution(osd_latencies),
             'sampled_displayed_frame_age_ms':distribution(display_ages),
             'osd_timing_scope':'sampled PL base-OSD SOF acceptance, may omit intermediate frames; not HDMI scanout',
@@ -298,12 +286,11 @@ if __name__=='__main__':
     parser.add_argument('--package-dir',type=Path)
     parser.add_argument('--calibration',type=Path)
     args=parser.parse_args()
-    if (args.package_dir is None)!=(args.calibration is None):
-        parser.error('--package-dir and --calibration must be supplied together')
+    if args.calibration is not None:parser.error('ordinary-motor demo does not use encoder calibration')
     if args.package_dir is not None and args.expected_identity is not None:
         parser.error('select verified package files or a software expected identity')
     if not args.software_only and args.package_dir is None:
-        parser.error('hardware audit requires --package-dir and --calibration from the tested deployment')
+        parser.error('hardware audit requires --package-dir from the tested deployment')
     try:
         expected=(expected_identity_from_package(args.package_dir,args.calibration) if args.package_dir else
                   json.loads(args.expected_identity.read_text(encoding='utf-8')) if args.expected_identity else None)

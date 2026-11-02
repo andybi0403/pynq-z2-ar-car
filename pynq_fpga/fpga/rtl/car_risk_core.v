@@ -1,3 +1,4 @@
+// Plain motor demo only: US/intent freshness retained, QEI is not a prerequisite.
 // Fail-safe forward-motion risk core. No AXI and no private counter.
 // Arithmetic and metadata travel through the same pipelined transaction.
 `resetall
@@ -6,7 +7,7 @@
 module car_risk_core #(
  parameter integer DATA_MAX_AGE_TICKS=20_000_000, parameter integer COMMAND_LEASE_TICKS=25_000_000,
  parameter integer REACTION_MS=150, parameter integer BRAKE_DECEL_MMPS2=500,
- parameter integer BASE_MARGIN_MM=100, parameter integer YELLOW_BAND_MM=100,
+ parameter integer BASE_MARGIN_MM=250, parameter integer YELLOW_BAND_MM=100,
  parameter integer MAX_SPEED_MMPS=5000
 )(
  input wire clk,input wire rst,input wire [31:0] now_ticks,input wire enable,
@@ -56,11 +57,6 @@ module car_risk_core #(
   // 200 ms. Disconnection cannot be distinguished from a static level by
   // this RTL; validity/stability and the electrical fail-safe are separate.
   if(ir_valid&&ir_status[1:0]!=0) faults_now[R_IR_OBSTACLE]=1;
-  if(!q0_valid) faults_now[R_Q0_INVALID]=1;
-  if(!q1_valid) faults_now[R_Q1_INVALID]=1;
-  if(q0_valid&&(now_ticks-q0_ts)>=DATA_MAX_AGE_TICKS) faults_now[R_Q0_STALE]=1;
-  if(q1_valid&&(now_ticks-q1_ts)>=DATA_MAX_AGE_TICKS) faults_now[R_Q1_STALE]=1;
-  if(command_forward&&(q0_vel[31]||q1_vel[31])) faults_now[R_DIRECTION]=1;
  end
  reg [12:0] s0_speed;reg [11:0] s0_distance;reg s0_forward;
  reg s0_fraction;
@@ -87,7 +83,7 @@ module car_risk_core #(
  wire [31:0] brake_mm=(s2a_brake+((1<<RECIP_SHIFT)-1))>>RECIP_SHIFT;
  reg [31:0] s3_reaction_mm,s3_brake_mm;reg [11:0] s3_distance;reg s3_forward;
  reg [15:0] s3_faults;reg [98:0] s3_signature;reg [31:0] s3_now;reg s3_valid;
- wire [31:0] required_next=BASE_MARGIN_MM+s3_reaction_mm+s3_brake_mm;
+ wire [31:0] required_next=BASE_MARGIN_MM; // Fixed clearance; no measured-speed braking model.
  // Register the long reciprocal/add chain before policy comparisons.  Apart
  // from improving timing, this makes the arithmetic result and source tuple
  // an explicit pipeline transaction.
@@ -100,9 +96,10 @@ module car_risk_core #(
    reasons_next[R_DISTANCE]=1;
   // v0.11: IR invalid/obstacle bits remain observable warnings. They never
   // grant/revoke driving permission, alter the distance policy or request STOP.
-  if((reasons_next[11:0]&12'hf5f)!=0||reasons_next[R_DIRECTION]) level_next=RISK_FAULT;
+  if((reasons_next[11:0]&12'hf47)!=0||reasons_next[R_DIRECTION]) level_next=RISK_FAULT;
   else if(reasons_next[R_DISTANCE]) level_next=RISK_RED;
-  else if(s4_forward&&s4_distance<=s4_required+YELLOW_BAND_MM) level_next=RISK_YELLOW;
+  else if(s4_faults[R_US_INVALID]||s4_faults[R_US_STALE]||
+          (s4_forward&&s4_distance<=s4_required+YELLOW_BAND_MM)) level_next=RISK_YELLOW;
   else level_next=RISK_GREEN;
   stop_next=(level_next==RISK_RED)||(level_next==RISK_FAULT);
  end

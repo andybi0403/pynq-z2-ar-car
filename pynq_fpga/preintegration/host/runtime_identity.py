@@ -7,9 +7,9 @@ import sys
 
 RUNTIME_FILES=tuple(name+'.py' for name in (
     'lab_acceptance','board_runtime','frame_pipeline','overlay_session','frame_association',
-    'system_runtime','control_supervisor','calibration_config','status_server','association_metrics',
+    'video_profile','system_runtime','async_journal','control_supervisor','calibration_config','status_server','association_metrics',
     'joint_evidence','hwh_contract','perception_client','qei_calibration','perception_replay','car_regs',
-    'pynq_link','runtime_identity','frame_metadata','deployment_check','qei_quality','motion_display'))
+    'pynq_link','runtime_identity','frame_metadata','tactical_state','deployment_check','qei_quality','motion_display','demo_mileage'))
 
 
 def sha256(path):
@@ -56,10 +56,11 @@ def expected_identity_from_package(directory, calibration_file):
     hwh=folder/'task7_8_LAB_ONLY.hwh'
     manifest=folder/'lab_manifest.json'
     package=verify_package(bit,hwh,manifest)
-    calibration=CalibrationConfig.load(calibration_file)
+    if calibration_file is not None:raise ValueError('demo profile does not accept encoder calibration')
+    calibration={'source':'plain_motor_demo','encoder_required':False,'measured':False}
     return {'bit_sha256':sha256(bit),'hwh_sha256':sha256(hwh),
             'manifest_sha256':sha256(manifest),
             'runtime_sources':{name:sha256(folder/name) for name in RUNTIME_FILES},
-            'calibration':calibration.payload(),
+            'calibration':calibration,
             'build_parameters':package.get('build_parameters'),
             'sensor_source':package.get('sensor_source','stm32_uart_v3')}

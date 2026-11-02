@@ -18,7 +18,7 @@ class FrameAssociator:
         self.lock = threading.RLock()
 
     def publish(self, *, host_before_ns, host_after_ns, pl_ticks64,
-                registers, epoch):
+                registers, epoch, display_estimate=None):
         if not 0 <= host_before_ns <= host_after_ns or not 0 <= pl_ticks64 < 1 << 64:
             raise ValueError("invalid clock bracket")
         with self.lock:
@@ -29,6 +29,7 @@ class FrameAssociator:
                     "anchor_uncertainty_ns": (host_after_ns - host_before_ns + 1) // 2,
                     "pl_ticks64": pl_ticks64, "epoch": epoch,
                     "registers": dict(registers)}
+            if display_estimate is not None:item["display_estimate"]=dict(display_estimate)
             self.history.append(item)
             return item
 

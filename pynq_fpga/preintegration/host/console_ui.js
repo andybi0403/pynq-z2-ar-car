@@ -8,32 +8,34 @@
  const reasons={qei0_invalid:'左前轮编码器无效',qei1_invalid:'右前轮编码器无效',ir_invalid:'红外样本无效或过期',us_invalid:'超声波样本无效或过期',command_invalid:'尚未接管有效驾驶意图',risk_stop:'风险核当前要求停车',intent_expired_or_missing:'等待新的驾驶意图',STM32_latched:'STM32 已锁车',PL_perception_denied:'感知条件不允许驾驶'};
  const steps=[
   ['系统介绍','介绍 PYNQ 的实时感知和 AR 处理、PS 的管理与传输、STM32 的底盘执行。','展示同一页面中的视频、仪表与实际锁车反馈。'],
-  ['实时感知','观察距离、左右红外、双轮编码器、速度与里程。','遮挡再移开左右红外；手转测量轮时观察真实计数。'],
+  ['实时感知','观察障碍物距离、左右红外和本次估算里程。','遮挡再移开左右红外，观察对应提示变化。'],
   ['AR 画面对比','切换摄像头原图和真实 PL 处理图，再冻结同一帧进行比较。','说明历史画面中的数据不用于当前车辆控制。'],
-  ['手动操控','完成标定与安全条件检查后，接管、手动解锁，再按住方向键。','松手停车；实际 PWM 和 LOCK 以 STM32 回包为准。'],
+  ['手动操控','完成感知与实际反馈检查后，接管、手动解锁，再按住方向键。','松手停车；实际 PWM 和 LOCK 以 STM32 回包为准。'],
   ['安全响应','分别演示红外遮挡告警、超声波前方障碍停车，以及失焦停车。','红外只提示；流程按钮不会自动驱动车辆，需要操作者现场执行。'],
   ['结果展示','结束记录并导出会话数据、联调报告与演示摘要。','软件演示完成和整车实物验收分别记录。']
  ];
  function info(text,bad=false){$('driveReadiness').textContent=text;$('driveReadiness').className=bad?'notice bad':'muted';}
  function download(name,value,type='application/json'){const blob=new Blob([typeof value==='string'?value:JSON.stringify(value,null,2)],{type});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
  function event(name,detail){events.unshift({time:new Date().toLocaleTimeString('zh-CN',{hour12:false}),name,detail:String(detail)});events=events.slice(0,200);$('eventRows').replaceChildren(...events.map(e=>{const tr=document.createElement('tr');for(const v of [e.time,e.name,e.detail]){const td=document.createElement('td');td.textContent=v;tr.append(td);}return tr;}));}
- function fresh(){return !replay&&state?.running===true&&state?.telemetry_fresh===true&&performance.now()-updated<750&&connected&&lastSnapshot!==null;}
+ function fresh(){return !replay&&state?.running===true&&state?.console?.profile==='plain_motor_demo'&&(state?.console?.control_mode==='direct_manual'?state.console.control_fresh===true:state?.telemetry_fresh===true)&&performance.now()-updated<1500&&connected&&lastSnapshot!==null;}
+ function driveFresh(){return !replay&&state?.running===true&&state?.console?.profile==='plain_motor_demo'&&connected&&claimed&&synced&&socket?.readyState===1&&performance.now()-lastControlAckMs<500;}
  function clearDrive(){held=null;press=null;document.querySelectorAll('[data-drive]').forEach(b=>b.classList.remove('active'));}
- function drive(direction,identity){if(!fresh()||!claimed||!synced||!state.console?.motion_ready||held)return;held=direction;press=identity;document.querySelector(`[data-drive=${direction}]`)?.classList.add('active');}
- function intent(){if(!held)return [0,0];if(!fresh()||!claimed||!state.console?.motion_ready){stop();return [0,0];}const limit=Math.min(400,state.console?.pwm_limit||0),p=Math.max(0,Math.min(limit,Number($('drivePwm').value)||0));return ({w:[p,p],s:[-p,-p],a:[0,p],d:[p,0]})[held]||[0,0];}
- function controls(){const live=fresh(),c=state?.console;
-  for(const id of ['raw','processed','freeze','mode','fps','quality','apply'])$(id).disabled=!connected||!!replay;
+ function neutral(){clearDrive();if(connected&&claimed&&!replay)send({type:'intent',seq:++seq,client_ms:performance.now(),left:0,right:0});}
+ function drive(direction,identity){if(!driveFresh()||!claimed||!synced||!state.console?.motion_ready||held)return;held=direction;press=identity;document.querySelector(`[data-drive=${direction}]`)?.classList.add('active');}
+ function intent(){if(!held)return [0,0];if(!driveFresh()||!claimed||!state.console?.motion_ready){stop();return [0,0];}const limit=Math.min(2400,state.console?.pwm_limit||0),p=Math.max(0,Math.min(limit,Number($('drivePwm').value)||0));return ({w:[p,p],s:[-p,-p],a:[0,p],d:[p,0]})[held]||[0,0];}
+ function controls(){const live=fresh(),driving=driveFresh(),c=state?.console;
+  for(const id of ['raw','processed','freeze','mode','fps','quality','apply','tacticalEnabled'])$(id).disabled=!connected||!!replay;
   $('claim').disabled=!live||!synced||claimed||state?.control_available===false;
+  $('claim').textContent=claimed?'已接管':'接管控制';
+  $('release').textContent=c?.control_mode==='direct_manual'?'直接驾驶解锁':'安全解锁';
   $('release').disabled=!(live&&claimed&&synced&&c?.release_ready);
-  $('setDriveMode').disabled=!live||!c?.motion_supported;
-  $('driveMode').disabled=!live||!c?.motion_supported;
-  $('calStart').disabled=!live;$('calEnd').disabled=!live||!calStart;
-  $('calApply').disabled=!live||!calibration||state?.motor_disconnected!==true||c?.mode!=='observe';
+  $('calStart').disabled=true;$('calEnd').disabled=true;
+  $('calApply').disabled=true;
   $('motorApply').disabled=!live||!c;
   $('recordStart').disabled=!live||recording;$('recordStop').disabled=!recording;
   $('recordJson').disabled=$('recordCsv').disabled=!rows.length;
-  document.querySelectorAll('[data-drive]').forEach(b=>b.disabled=!(live&&claimed&&synced&&c?.motion_ready));
-  if(!live||!c?.motion_ready){if(held)stop();clearDrive();}
+  document.querySelectorAll('[data-drive]').forEach(b=>b.disabled=!(driving&&c?.motion_ready));
+  if(!driving||!c?.motion_ready){if(held)stop();clearDrive();}
  }
  function render(s,{historical=false}={}){state=s;updated=performance.now();const a=s.latest?.status||{},c=s.latest?.control||{},conf=s.console||{},live=s.running===true&&s.telemetry_fresh===true;
   const ir=a.infrared,irKnown=live&&ir?.valid===true,mask=irKnown?ir.mask:0;
@@ -42,35 +44,50 @@
   $('sourceLabel').textContent=historical?'历史回放 · 控制已撤销':live?(s.hardware===false?'本地验证数据 · 非实车':'实车数据 · 当前会话'):'连接中断 · 等待新鲜回传';
   $('offlineBar').className='notice '+(historical||!live?'warn':'');
   $('speedMain').textContent=live&&a.speed_valid&&Number.isFinite(a.speed_mm_s)?a.speed_mm_s.toFixed(1)+' mm/s':'— mm/s';
-  $('travelMain').textContent=live&&a.odometry_valid&&Number.isFinite(a.travelled_mm)?a.travelled_mm.toFixed(1)+' mm':'— mm';
+  $('travelMain').textContent=Number.isFinite(a.mileage_estimate?.travelled_mm)?a.mileage_estimate.travelled_mm.toFixed(1)+' mm':'— mm';
   $('displacementMain').textContent=live&&a.odometry_valid&&Number.isFinite(a.displacement_mm)?a.displacement_mm.toFixed(1)+' mm':'— mm';
-  const risk=live&&Number.isInteger(a.risk_level)?a.risk_level:null;
+  const risk=live&&a.car_valid&&(a.car?.fault&4)?2:live&&Number.isInteger(a.risk_level)?a.risk_level:null;
   $('riskMain').textContent=risk===null?'未知':['安全','注意','紧急','数据无效'][risk]||'未知';$('riskMain').className=risk===0?'risk-good':risk===1?'risk-warn':risk===null?'':'risk-bad';
   const r=[...(conf.blockers||[]),...(c.decision_reasons||[]).map(x=>reasons[x]||x)];
-  $('riskExplain').textContent=live?(r.length?[...new Set(r)].join(' · '):'当前感知数据有效，实际执行状态以 STM32 为准'):'等待本次会话的有效测量';
-  $('motionBadge').textContent=historical?'历史回放':conf.mode==='manual'?'手动驾驶':s.control_available===false?'仅视频':'仅观察';
+  $('riskExplain').textContent=live?(r.length?[...new Set(r)].join(' · '):!a.distance_valid?'超声波距离未知，不能判断前方是否有障碍；请目视驾驶':'当前感知数据有效，实际执行状态以 STM32 为准'):'等待本次会话的有效测量';
+  $('motionBadge').textContent=historical?'历史回放':s.control_available===false?'仅视频':c.phase==='ARMED'?'可驾驶':'已锁车';
   $('scopeBadge').textContent=historical?'记录回放':live?'实时会话':'未连接';
-  $('driveMode').value=conf.mode||'observe';
   const phase=c.phase==='ARMED'?'已解锁，可按住方向键':c.phase==='WAIT_UNLOCK'?'等待 STM32 实际解锁反馈':'已锁车';
-  info(historical?'历史回放不开放控制':conf.operator_error||conf.fault||(!conf.motion_supported?'当前板端服务未开放驾驶；完整操控需部署配套控制服务':phase+(r.length?' · '+[...new Set(r)].join(' · '):'')),Boolean(conf.fault));
-  $('keys').textContent=conf.mode==='manual'?'WASD 或按住方向按钮；松手／失焦／断链即停车。首轮限速由板端执行，单次最长 '+(conf.max_burst_s||1)+' 秒。':'仅观察模式可以查看视频和传感器。驾驶需有效实测标定、实际锁车反馈及手动解锁。';
-  $('calState').textContent=`动力${s.motor_disconnected===true?'已断开':s.motor_disconnected===false?'已连接':'状态未知'} · SCALE ${conf.scales?.join(' / ')||'未回读'} · ${conf.calibration_measured?'已加载实测标定':'等待实测标定'}`;
+  info(historical?'历史回放不开放控制':conf.fault||(c.stop_reason&&c.stop_reason!=='intent_expired_or_missing'?('已锁车：'+(reasons[c.stop_reason]||c.stop_reason)):null)||conf.operator_error||(!conf.motion_supported?'当前板端服务未开放驾驶；完整操控需部署配套控制服务':phase+(r.length?' · '+[...new Set(r)].join(' · '):'')),Boolean(conf.fault));
+  $('keys').textContent='WASD 或按住方向按钮；按住行驶、松手归零。短暂失焦归零，断联和急停锁车。默认 PWM 1800，可自行调节；视频异常仅提示。';
+  $('calState').textContent=`动力${s.motor_disconnected===true?'已断开':s.motor_disconnected===false?'已连接':'状态未知'} · 本次里程按实际 PWM 与持续时间估算`;
   if(document.activeElement!==$('motorPhysical'))$('motorPhysical').value=s.motor_disconnected?'disconnected':'connected';
   const action=conf.action||s.action;if(action)$('calResult').textContent=action.applied===false?'操作未完成：'+(action.error||'请查看诊断'):action.applied?'操作已应用并记录':'';
-  const key=JSON.stringify([c.phase,a.car?.lock,a.car?.fault,a.risk_level,conf.mode,conf.fault,s.telemetry_fresh]);
-  if(!historical&&key!==eventKey){eventKey=key;event('状态变化',`${phase} · ${$('riskMain').textContent} · ${conf.mode==='manual'?'手动驾驶':'仅观察'}`);}
-  if(!historical){history.push({at:Date.now(),distance:live&&a.distance_valid?a.distance_mm:null,speed:live&&a.speed_valid?a.speed_mm_s:null});history=history.filter(v=>v.at>Date.now()-60000).slice(-150);
+  const key=JSON.stringify([c.phase,a.car?.lock,a.car?.fault,a.risk_level,conf.fault,s.telemetry_fresh]);
+  if(!historical&&key!==eventKey){eventKey=key;event('状态变化',`${phase} · ${$('riskMain').textContent} · 接管后手动解锁`);}
+  if(!historical){history.push({at:Date.now(),distance:live&&a.distance_valid?a.distance_mm:null,filtered:live&&a.ultrasonic_processing?.filter_valid?a.ultrasonic_processing.filtered_mm:null,speed:live&&a.speed_valid?a.speed_mm_s:null});history=history.filter(v=>v.at>Date.now()-60000).slice(-150);
    if(recording){const row={observed_at:new Date().toISOString(),state:s},size=JSON.stringify(row).length;if(rows.length>=4000||bytes+size>24*1024*1024){recording=false;event('记录结束','已达到本地容量上限，请导出保存');}else{rows.push(row);bytes+=size;}recordLabel();}
   }
+  if(s.display_settings&&document.activeElement!==$('tacticalEnabled'))$('tacticalEnabled').checked=s.display_settings.tactical_enabled===true;
   drawCharts();controls();renderDemo();
  }
- function disconnected(message='尚未连接小车'){state=null;updated=0;clearDrive();$('infraredNotice').textContent='红外数据未知 · 仅提示，不参与停车和解锁判断';$('infraredNotice').className='notice';$('sourceLabel').textContent='未连接小车 · 当前没有实测数据';$('connection').textContent='离线查看 · 尚未连接小车';$('keys').textContent='连接后可查看视频与传感器；具备实测标定和驾驶条件后手动接管。';$('calState').textContent='未连接 · 等待板端标定信息';$('offlineBar').className='notice';for(const id of ['speedMain','travelMain','displacementMain'])$(id).textContent='—';$('riskMain').textContent='未知';$('riskExplain').textContent=message;$('motionBadge').textContent='未连接';$('scopeBadge').textContent='离线查看';info('连接后核对实际传感器、标定和执行器状态');if(recording){recording=false;event('记录暂停','连接已中断，已保留已采集的数据');recordLabel();}controls();drawCharts();}
+ function disconnected(message='尚未连接小车'){state=null;updated=0;clearDrive();$('infraredNotice').textContent='红外数据未知 · 仅提示，不参与停车和解锁判断';$('infraredNotice').className='notice';$('sourceLabel').textContent='未连接小车 · 当前没有实测数据';$('connection').textContent='离线查看 · 尚未连接小车';$('keys').textContent='连接后可查看视频与传感器；核对感知与实际执行反馈后手动接管。';$('calState').textContent='未连接 · 等待执行反馈';$('offlineBar').className='notice';for(const id of ['speedMain','travelMain','displacementMain'])$(id).textContent='—';$('riskMain').textContent='未知';$('riskExplain').textContent=message;$('motionBadge').textContent='未连接';$('scopeBadge').textContent='离线查看';info('连接后核对实际传感器和执行器状态');if(recording){recording=false;event('记录暂停','连接已中断，已保留已采集的数据');recordLabel();}controls();drawCharts();}
  function draw(canvas,key,label){const ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;ctx.clearRect(0,0,w,h);ctx.fillStyle='#f7fafc';ctx.fillRect(0,0,w,h);ctx.font='13px Microsoft YaHei';ctx.strokeStyle='#dce5ed';ctx.fillStyle='#607083';const valid=history.map(v=>v[key]).filter(Number.isFinite),lo=Math.min(0,...valid),hi=Math.max(1,...valid),span=hi-lo;for(let n=0;n<4;n++){const y=18+n*(h-46)/3;ctx.beginPath();ctx.moveTo(50,y);ctx.lineTo(w-12,y);ctx.stroke();ctx.fillText((hi-n*span/3).toFixed(0),5,y+4);}ctx.fillText(valid.length?'60 秒前                                        现在':'等待有效实测数据',50,h-8);ctx.strokeStyle=key==='distance'?'#087e8b':'#1559a6';ctx.lineWidth=2;ctx.beginPath();let pen=false;const end=Date.now();for(const point of history){const value=point[key];if(!Number.isFinite(value)){pen=false;continue;}const x=50+(w-62)*(point.at-(end-60000))/60000,y=18+(hi-value)/span*(h-46);if(pen)ctx.lineTo(x,y);else ctx.moveTo(x,y);pen=true;}ctx.stroke();}
- function drawCharts(){draw($('distanceTrend'),'distance');draw($('speedTrend'),'speed');}
+ function drawCharts(){
+  const canvas=$('distanceTrend'),ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;
+  ctx.clearRect(0,0,w,h);ctx.fillStyle='#f7fafc';ctx.fillRect(0,0,w,h);
+  const values=history.flatMap(p=>[p.distance,p.filtered]).filter(Number.isFinite),maximum=Math.max(1,...values);
+  ctx.font='13px Microsoft YaHei';ctx.strokeStyle='#dce5ed';ctx.fillStyle='#607083';
+  for(let n=0;n<4;n++){const y=18+n*(h-46)/3;ctx.beginPath();ctx.moveTo(50,y);ctx.lineTo(w-12,y);ctx.stroke();ctx.fillText((maximum*(1-n/3)).toFixed(0),5,y+4);}
+  const end=replay?Date.parse(replay.rows[replayIndex].observed_at):Date.now();
+  for(const [key,color] of [['distance','#89939f'],['filtered','#087e8b']]){
+   ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();let pen=false;
+   for(const p of history){const value=p[key];if(!Number.isFinite(value)){pen=false;continue;}
+    const x=50+(w-62)*(p.at-(end-60000))/60000,y=18+(maximum-value)/maximum*(h-46);
+    if(pen)ctx.lineTo(x,y);else ctx.moveTo(x,y);pen=true;}
+   ctx.stroke();
+  }
+ }
+
  function recordLabel(){$('recordState').replaceChildren();const dot=document.createElement('i');dot.className='record-dot'+(recording?' on':'');$('recordState').append(dot,document.createTextNode(recording?'正在记录':'未记录'));$('recordInfo').textContent=`本地保留 ${rows.length} 条观察 · ${(bytes/1024/1024).toFixed(2)} MB · 不包含连接令牌`;controls();}
  function recordingPayload(){return {schema:'car-console-recording/v1',exported_at:new Date().toISOString(),source:'actual-session-observations',scope:'观察记录，不等同于整车验收',rows};}
  function startRecord(){if(!fresh()||recording)return;if(rows.length)download('小车上一段记录-'+Date.now()+'.json',recordingPayload());rows=[];bytes=0;recording=true;event('开始记录','本次实际会话');recordLabel();}
- function setTab(next){if(claimed)stop();tab=next;document.body.dataset.tab=tab;document.querySelectorAll('.console-nav [data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));const show=(node,tabs)=>node?.classList.toggle('hidden-panel',!tabs.includes(tab));
+ function setTab(next){if(claimed)neutral();tab=next;document.body.dataset.tab=tab;document.querySelectorAll('.console-nav [data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));const show=(node,tabs)=>node?.classList.toggle('hidden-panel',!tabs.includes(tab));
   show($('driveSummary'),['overview','demo']);show($('trends'),['overview']);
   for(const name of ['calibrationPanel'])show($(name),['sensors']);
   for(const name of ['recordPanel','eventPanel'])show($(name),['records']);show($('demoPanel'),['demo']);
@@ -81,24 +98,25 @@
  function getCounts(){const a=state?.latest?.status,e=a?.encoder,cfg=state?.console?.qei_configuration;if(!fresh()||!e||!Number.isInteger(e.left?.position)||!Number.isInteger(e.right?.position))throw Error('需要新鲜的双轮实际计数');for(const wheel of [e.left,e.right])if((wheel.faults||[]).some(v=>/illegal|overflow|saturat|odometry/i.test(v)))throw Error('编码器有非法跳变或溢出，请先排除输入异常');if(!cfg||cfg.length!==2)throw Error('需要板端当前编码器方向与滤波配置');return {counts:[e.left.position,e.right.position],at:new Date().toISOString(),epoch:state.latest?.control?.epoch,configuration:structuredClone(cfg),session:a.stm32_link?.session_hex};}
  function calibrationFile(item){if(item?.schema!=='car-wheel-calibration/v1'||item.measured!==true||typeof item.provenance!=='string'||!item.provenance.trim())throw Error('需要带实测来源的有效双轮标定文件');if(item.contract_version!==11||item.channel_map?.left!=='QEI0_left_front'||item.channel_map?.right!=='QEI1_right_front')throw Error('标定协议版本或左右轮映射不匹配');for(const name of ['left','right']){const w=item[name];if(!Number.isInteger(w?.scale)||w.scale<1||w.scale>0xffffffff||![0,1].includes(w.direction)||!Number.isInteger(w.filter_ticks)||w.filter_ticks<0||w.filter_ticks>1000000||!Number.isInteger(w.zero_ticks)||w.zero_ticks<66||w.zero_ticks>19000000)throw Error('轮尺度、方向或滤波参数无效');}calibration=item;$('calDownload').disabled=false;controls();$('calResult').textContent='标定文件已就绪，尚未写入板卡';}
  async function action(path,value,target='calResult'){if(!fresh()){$(target).textContent='请先连接小车并取得新鲜反馈';return;}try{stop();const answer=await(await api(path,value)).json();$(target).textContent=answer.queued?'已提交，等待板端处理':'操作完成';}catch(e){$(target).textContent=e.message;}}
- function replayRender(){if(!replay)return;const row=replay.rows[replayIndex],s=row.state;renderHealth(s);renderSensors(s);renderLink(s);renderMotion(s.latest?.status||{},s.telemetry_fresh===true);renderInterconnect(s.interconnect_test);render(s,{historical:true});$('replayPosition').value=replayIndex;$('replayTime').textContent=`${replayIndex+1} / ${replay.rows.length} · ${row.observed_at}`;}
+ function replayRender(){if(!replay)return;const row=replay.rows[replayIndex],s=row.state;
+ history=replay.rows.slice(Math.max(0,replayIndex-149),replayIndex+1).map(r=>{const a=r.state.latest?.status||{};return {at:Date.parse(r.observed_at),distance:a.distance_valid?a.distance_mm:null,filtered:a.ultrasonic_processing?.filter_valid?a.ultrasonic_processing.filtered_mm:null};});renderHealth(s);renderSensors(s);renderLink(s);renderMotion(s.latest?.status||{},s.telemetry_fresh===true);renderInterconnect(s.interconnect_test);render(s,{historical:true});$('replayPosition').value=replayIndex;$('replayTime').textContent=`${replayIndex+1} / ${replay.rows.length} · ${row.observed_at}`;}
  function replayStop(){clearInterval(replayTimer);replayTimer=null;$('replayPlay').textContent='播放';}
  async function enterReplay(file){if(file.size>32*1024*1024)throw Error('回放文件上限为 32MB');const item=JSON.parse(await file.text());if(item.schema!=='car-console-recording/v1'||!Array.isArray(item.rows)||!item.rows.length||item.rows.length>4000||item.rows.some(r=>!r||typeof r.observed_at!=='string'||!r.state||typeof r.state!=='object'||!r.state.latest||typeof r.state.latest!=='object'))throw Error('不是有效的控制台记录文件');stop();closeSocket();allowWebSocket=false;connected=false;sessionGeneration++;player?.stop();clearVideo('历史数据回放 · 视频暂停');replay=item;replayIndex=0;replayStop();$('replayTools').hidden=false;$('replayPosition').max=item.rows.length-1;recording=false;setTab('records');replayRender();event('进入回放','已撤销控制，历史数据不可解锁或运动');}
- window.ConsoleApp={render,disconnected,clearDrive,intent,get isPlayback(){return replay!==null;}};
- document.querySelectorAll('[data-drive]').forEach(b=>{b.addEventListener('pointerdown',e=>{e.preventDefault();if(b.disabled)return;b.setPointerCapture(e.pointerId);drive(b.dataset.drive,e.pointerId);});for(const kind of ['pointerup','pointercancel','lostpointercapture'])b.addEventListener(kind,e=>{if(press===e.pointerId)stop();});});
+ window.ConsoleApp={render,disconnected,clearDrive,intent,refreshControls:controls,get isPlayback(){return replay!==null;}};
+ document.querySelectorAll('[data-drive]').forEach(b=>{b.addEventListener('pointerdown',e=>{e.preventDefault();if(b.disabled)return;b.setPointerCapture(e.pointerId);drive(b.dataset.drive,e.pointerId);});for(const kind of ['pointerup','pointercancel','lostpointercapture'])b.addEventListener(kind,e=>{if(press===e.pointerId)neutral();});});
  window.addEventListener('keydown',e=>{if(e.target?.closest('input,textarea,select,[contenteditable]'))return;const key=e.key.toLowerCase();if(key.length===1&&'wasd'.includes(key)){e.preventDefault();if(!e.repeat)drive(key,e.code);}});
- window.addEventListener('keyup',e=>{if(press===e.code)stop();});
+ window.addEventListener('keyup',e=>{if(press===e.code)neutral();});
  for(const id of ['globalStop','padStop'])$(id).onclick=()=>stop();
  $('release').onclick=()=>{if(fresh()&&claimed&&state.console?.release_ready)send({type:'release',seq:++seq,client_ms:performance.now()});};
  $('drivePwm').oninput=()=>{$('drivePwmValue').textContent=$('drivePwm').value;};
- $('setDriveMode').onclick=()=>action('/api/console/mode',{mode:$('driveMode').value},'driveReadiness');
  $('motorApply').onclick=()=>{if(!$('motorConfirmed').checked){$('calResult').textContent='请先核对并勾选物理连接状态';return;}action('/api/console/motor-state',{disconnected:$('motorPhysical').value==='disconnected',confirmed:true});$('motorConfirmed').checked=false;};
  $('connectionSettings').onclick=()=>{$('connectView').hidden=false;$('connectView').scrollIntoView({block:'start'});};
  $('present').onclick=()=>{presenting=!presenting;document.body.classList.toggle('presenting',presenting);$('present').textContent=presenting?'退出演示视图':'演示视图';setTab('demo');};
  document.querySelectorAll('.console-nav [data-tab]').forEach(b=>b.onclick=()=>setTab(b.dataset.tab));
  $('recordStart').onclick=startRecord;$('recordStop').onclick=()=>{recording=false;event('结束记录',`${rows.length} 条观察`);recordLabel();};
  $('recordJson').onclick=()=>download('小车会话-'+Date.now()+'.json',recordingPayload());
- $('recordCsv').onclick=()=>{const table=[['observed_at','epoch','distance_mm','distance_valid','speed_mm_s','speed_valid','travelled_mm','risk_level','actual_lock','actual_left_pwm','actual_right_pwm','car_valid']];for(const row of rows){const a=row.state.latest?.status||{},c=a.car_valid?a.car:null;table.push([row.observed_at,a.epoch,a.distance_valid?a.distance_mm:'',a.distance_valid,a.speed_valid?a.speed_mm_s:'',a.speed_valid,a.odometry_valid?a.travelled_mm:'',a.risk_level,c?.lock??'',c?.left??'',c?.right??'',a.car_valid]);}download('小车数据-'+Date.now()+'.csv','\ufeff'+table.map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\r\n'),'text/csv;charset=utf-8');};
+ $('tacticalEnabled').onchange=async e=>{try{await api('/api/display/settings',{tactical_enabled:e.target.checked});}catch(err){e.target.checked=!e.target.checked;info(err.message,true);}};
+ $('recordCsv').onclick=()=>{const table=[['observed_at','epoch','distance_mm','distance_valid','estimated_travelled_mm','mileage_estimated','risk_level','actual_lock','actual_left_pwm','actual_right_pwm','car_valid','filtered_distance_mm','filter_valid','trend','filter_source_sequence']];for(const row of rows){const a=row.state.latest?.status||{},c=a.car_valid?a.car:null;table.push([row.observed_at,a.epoch,a.distance_valid?a.distance_mm:'',a.distance_valid,a.mileage_estimate?.travelled_mm??'',true,a.risk_level,c?.lock??'',c?.left??'',c?.right??'',a.car_valid,a.ultrasonic_processing?.filter_valid?a.ultrasonic_processing.filtered_mm:'',a.ultrasonic_processing?.filter_valid??'',a.ultrasonic_processing?.trend??'',a.ultrasonic_processing?.sample_sequence??'']);}download('小车数据-'+Date.now()+'.csv','\ufeff'+table.map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\r\n'),'text/csv;charset=utf-8');};
  $('replayFile').onchange=async e=>{try{if(e.target.files[0])await enterReplay(e.target.files[0]);}catch(err){$('recordInfo').textContent=err.message;}e.target.value='';};
  $('replayPosition').oninput=()=>{replayStop();replayIndex=Number($('replayPosition').value);replayRender();};
  $('replayPlay').onclick=()=>{if(replayTimer){replayStop();return;}if(!replay)return;$('replayPlay').textContent='暂停';replayTimer=setInterval(()=>{if(replayIndex>=replay.rows.length-1){replayStop();return;}replayIndex++;replayRender();},500);};

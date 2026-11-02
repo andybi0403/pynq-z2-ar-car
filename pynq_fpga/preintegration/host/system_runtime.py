@@ -14,7 +14,7 @@ from pathlib import Path
 import sys
 import threading
 import queue
-import copy
+from async_journal import AsyncJournal, snapshot_copy
 import time
 import uuid
 
@@ -39,6 +39,7 @@ from control_supervisor import ControlSupervisor
 from calibration_config import CalibrationConfig
 from qei_quality import BENCH_FILTER_TICKS, QeiDisplayFilter, raw_fault_reasons
 from motion_display import MotionDisplayEstimator, MeasuredDriveModel
+from demo_mileage import DemoMileage
 import car_regs as reg
 
 
@@ -81,7 +82,7 @@ def wait_for_acquisition(client, *, timeout_s=5, stable_s=.3, require_infrared=T
         raise ValueError('invalid acquisition readiness interval')
     deadline=time.monotonic()+timeout_s
     ready_since=None; previous_epoch=None; checks=0; failures=['no samples']
-    require_odometry=bool(client.io.read32(reg.QEI0_SCALE) and client.io.read32(reg.QEI1_SCALE))
+    require_odometry=False
     try:
         while time.monotonic()<deadline:
             # New stationary bench command, not a renewed driving request.
@@ -89,9 +90,10 @@ def wait_for_acquisition(client, *, timeout_s=5, stable_s=.3, require_infrared=T
             ticks,shot,_=client.sample_and_decide()
             checks+=1
             failures=acquisition_failures(snapshot_registers(shot),require_odometry=require_odometry,require_infrared=require_infrared)
+            failures=[f for f in failures if f not in ('us acquisition invalid', 'ultrasonic acquisition fault')]
             if shot.epoch==previous_epoch:failures.append('snapshot epoch froze')
             previous_epoch=shot.epoch
-            for name,sample in [('US',shot.ultrasonic),('QEI0',shot.qei0),('QEI1',shot.qei1),('RISK',shot.risk)]:
+            for name,sample in [('RISK',shot.risk)]:
                 if not sample_fresh(sample,ticks):failures.append(name+' stale')
             if shot.qei0_velocity_q16 or shot.qei1_velocity_q16:
                 failures.append('wheels are not stationary')
@@ -204,10 +206,10 @@ class SensorInterconnectMonitor:
                 if channel.get("valid"):
                     self.qei_valid[index] += 1
 
-            self.last_snapshot = copy.deepcopy(status)
+            self.last_snapshot = snapshot_copy(status)
             self.last_observe_ns = now_ns
 
-    def snapshot(self, *, video_frames=0, link_diagnostics=None):
+    def snapshot(self, *, video_frames=0, link_diagnostics=None, require_locked_zero=True):
         link = link_diagnostics or {}
         with self._lock:
             elapsed = max(0.0, (time.monotonic_ns() - self.started_ns) / 1e9)
@@ -237,14 +239,16 @@ class SensorInterconnectMonitor:
                 "encoder_left_moved": self.qei_advances[0] > 0,
                 "encoder_right_moved": self.qei_advances[1] > 0,
             }
+            not_applicable=["encoder_left_moved","encoder_right_moved"]
+            if not require_locked_zero:not_applicable.append("locked_zero")
+            for name in not_applicable:conditions.pop(name)
             action_required = [
-                name for name in ("infrared_left_exercised", "infrared_right_exercised",
-                                  "encoder_left_moved", "encoder_right_moved")
+                name for name in ("infrared_left_exercised", "infrared_right_exercised")
                 if not conditions[name]
             ]
             hard_failures = [
                 name for name in ("protocol_errors_zero", "transport_error_absent", "locked_zero")
-                if not conditions[name] and (name!='locked_zero' or self.car_valid>0)
+                if name in conditions and not conditions[name] and (name!='locked_zero' or self.car_valid>0)
             ]
             passed = all(conditions.values())
             if hard_failures:
@@ -256,7 +260,7 @@ class SensorInterconnectMonitor:
             else:
                 state = "action_required"
             return {
-                "schema": "car-sensor-interconnect-test/v1",
+                "schema": "car-sensor-interconnect-test/v1", "not_applicable":not_applicable,
                 "state": state,
                 "passed": passed,
                 "elapsed_s": elapsed,
@@ -315,6 +319,7 @@ class JointRunner:
         self.schedule_max_lag_ms = 0.0
         self.interval_s = interval_s
         self.control = self.create_control(client, link)
+        self.demo_mileage = DemoMileage.load(HERE/'demo_mileage.json')
         self.speed_display = QeiDisplayFilter()
         self.motion_display = MotionDisplayEstimator(model=display_model,stationary_assumed=display_stationary)
         self.intent_mailbox = intent_mailbox
@@ -333,6 +338,12 @@ class JointRunner:
         self._intent_seq = 0
         self._worker = None
         self._journal = None
+        self._journal_pending = []
+        self._journal_pending_bytes = 0
+        self._journal_last_flush = time.monotonic()
+        self._journal_flush_count = 0
+        self._journal_record_count = 0
+        self._journal_control_key = None
         self._last_display_car_seq = None
         self.actions = queue.Queue(maxsize=4)
         self.action_status = None
@@ -363,9 +374,58 @@ class JointRunner:
             raise RuntimeError('STM32 reported nonzero PWM in LAB_ONLY session')
 
     def log(self, item):
+        writer = getattr(self, '_async_journal', None)
+        if writer is not None:
+            critical = item.get('type') not in ('sample', 'status', 'wireless_frame',
+                'wireless_performance', 'video_display_sample')
+            if item.get('type') == 'sample':
+                control = item.get('control') or {}; car = control.get('car') or {}
+                key = (control.get('phase'),control.get('stop_reason'),
+                    tuple(control.get('requested_pwm') or ()),car.get('lock'),car.get('fault'))
+                with self._journal_lock:
+                    critical |= key != self._journal_control_key
+                    self._journal_control_key = key
+            if not writer.submit(item, critical=critical):
+                with self._state_lock:
+                    if 'journal evidence incomplete' not in self.failures:
+                        self.failures.append('journal evidence incomplete')
+            return
+        # Serialize outside the shared writer lock. Keep every record; batch
+        # routine telemetry for at most one second of healthy logging activity.
+        line = json.dumps(item, separators=(',', ':')) + "\n"
+        routine = item.get('type') in ('sample', 'status', 'wireless_frame',
+                                      'wireless_performance', 'video_display_sample')
         with self._journal_lock:
-            self._journal.write(json.dumps(item, sort_keys=True) + "\n")
-            self._journal.flush()
+            if item.get('type') == 'sample':
+                control = item.get('control') or {}
+                car = control.get('car') or {}
+                key = (control.get('phase'), control.get('stop_reason'),
+                       tuple(control.get('requested_pwm') or ()),
+                       car.get('lock'), car.get('fault'))
+                routine = routine and key == self._journal_control_key
+                self._journal_control_key = key
+            self._journal_pending.append(line)
+            self._journal_pending_bytes += len(line)  # JSON defaults to ASCII.
+            self._journal_record_count += 1
+            now = time.monotonic()
+            if (not routine or now - self._journal_last_flush >= 1.0
+                    or self._journal_pending_bytes >= 262144):
+                self._journal.write(''.join(self._journal_pending))
+                self._journal.flush()
+                self._journal_pending.clear()
+                self._journal_pending_bytes = 0
+                self._journal_last_flush = now
+                self._journal_flush_count += 1
+
+    def journal_status(self):
+        if getattr(self, '_async_journal', None) is not None:
+            return self._async_journal.snapshot()
+        with self._journal_lock:
+            return {'policy': 'batch_1s_or_256KiB_critical_immediate',
+                    'records': self._journal_record_count,
+                    'flushes': self._journal_flush_count,
+                    'pending_records': len(self._journal_pending),
+                    'pending_bytes': self._journal_pending_bytes}
 
     def fail(self, reason):
         with self._state_lock:
@@ -433,9 +493,11 @@ class JointRunner:
         ticks64 = self.client.read_pl_ticks64()
         after = time.monotonic_ns()
         registers = snapshot_registers(shot)
+        estimate=self.demo_mileage.update(decision.get('car'),decision.get('car_sequence'),decision.get('car_received_s'),
+            decision['host_monotonic_s'],getattr(self.link,'session',None))
         anchor = self.associator.publish(
             host_before_ns=before, host_after_ns=after, pl_ticks64=ticks64,
-            registers=registers, epoch=shot.epoch,
+            registers=registers, epoch=shot.epoch, display_estimate=estimate,
         )
         event = {"type": "sample", "index": self.samples,
                  "host_monotonic_ns": after, "pl_ticks64": ticks64,
@@ -456,19 +518,22 @@ class JointRunner:
         display_valid = all(value.valid for value in display_speeds)
         presentation = self.motion_display.update(shot,display_speeds,ticks64,car=car,car_age_s=car_age)
         presentation['expires_monotonic_ns'] = time.monotonic_ns()+int(presentation['valid_for_s']*1e9)
-        status = {"epoch": shot.epoch, "distance_mm": shot.ultrasonic.data & 4095,
+        presentation={'available':estimate['available'],'mode':'pwm_time_estimate','travelled_mm':estimate['travelled_mm'],
+                      'estimated':True,'display_only':True,'valid_for_s':.7,'expires_monotonic_ns':time.monotonic_ns()+700_000_000}
+        from tactical_state import state_from_registers
+        status = {"ultrasonic_processing":state_from_registers(registers,ticks),"mileage_estimate":estimate,"profile":"plain_motor_demo","epoch": shot.epoch, "distance_mm": shot.ultrasonic.data & 4095,
                   "published_monotonic_ns": time.monotonic_ns(),
                   "distance_valid": sample_fresh(shot.ultrasonic, ticks) and ((shot.ultrasonic.data>>12)&15)==0,
-                  "speed_mm_s": sum(value.value_q16 for value in display_speeds)/131072 if display_valid else None,
-                  "speed_valid": display_valid,
+                  "speed_mm_s": None,
+                  "speed_valid": False,
                   "raw_speed_mm_s": (shot.qei0_velocity_q16+shot.qei1_velocity_q16)/131072,
                   "speed_filter": "median3_clean_batches_direction_reset_display_only",
                   "speed_quality_reasons": [f'qei{i}_{reason}' for i,value in enumerate(display_speeds) for reason in value.reasons],
                   "speed_source_timestamps": [value.source_timestamp for value in display_speeds],
                   "speed_source_ages_ticks": [None if value.source_timestamp is None else ((ticks-value.source_timestamp)&0xffffffff) for value in display_speeds],
-                  "displacement_mm": shot.displacement_q16/65536,
-                  "travelled_mm": shot.travelled_q16/65536,
-                  "odometry_valid": shot.odometry_valid,
+                  "displacement_mm": None,
+                  "travelled_mm": estimate["travelled_mm"],
+                  "odometry_valid": False, "mileage_estimate_valid": estimate["available"],
                   "motion_display": presentation,
                   "risk_level": (shot.risk_state >> 1) & 3,
                   "risk_reasons": (shot.risk_state >> 16) & 65535,
@@ -556,7 +621,7 @@ class JointRunner:
 
     def status_snapshot(self):
         with self._state_lock:
-            result = copy.deepcopy({"running": self._journal is not None and not self.stop_event.is_set(),
+            result = snapshot_copy({"running": self._journal is not None and not self.stop_event.is_set(),
                     "hardware": self.hardware, "motion_allowed": False,
                     "motor_disconnected": self.motor_disconnected,
                     "control_timing": self.timing_status(),
@@ -591,6 +656,7 @@ class JointRunner:
         result["interconnect_test"] = self.interconnect_monitor.snapshot(
             video_frames=self.frames,
             link_diagnostics=status.get("stm32_link"),
+            require_locked_zero=getattr(self,"console_mode","observe")!="manual",
         )
         return result
 
@@ -602,6 +668,7 @@ class JointRunner:
     def enqueue_action(self, kind, payload=None):
         if self.stop_event.is_set() or self._journal is None:
             raise RuntimeError("session is not running")
+        if kind == "calibration":raise ValueError("普通电机演示版不使用双轮标定")
         if kind not in ("stop", "calibration"):
             raise ValueError("unsupported operator action")
         item = {"kind": kind}
@@ -613,11 +680,12 @@ class JointRunner:
         return {"queued": True, "kind": kind}
 
     def run(self, duration_s):
-        if not math.isfinite(duration_s) or duration_s <= 0:
-            raise ValueError("duration must be positive and finite")
+        if not math.isfinite(duration_s) or duration_s < 0 or (duration_s == 0 and not getattr(self,"allow_unbounded_session",False)):
+            raise ValueError("positive duration required; only the console accepts 0 for no session timer")
         if self.evidence_session is None:
             self.evidence_session = EvidenceSession(self.output_dir)
         self._journal = self.evidence_session.open_journal('joint.jsonl')
+        self._async_journal = AsyncJournal(self._journal)
         self._started = time.monotonic()
         self._started_ns = time.monotonic_ns()
         self.session_id = str(uuid.uuid4())
@@ -640,7 +708,7 @@ class JointRunner:
             if self.video is not None:
                 self._worker = threading.Thread(target=self._video_loop, daemon=True)
                 self._worker.start()
-            deadline = self._started + duration_s
+            deadline = self._started + duration_s if duration_s else math.inf
             next_tick = time.monotonic() + self.interval_s
             while time.monotonic() < deadline and not self.stop_event.is_set():
                 delay = min(next_tick, deadline) - time.monotonic()
@@ -691,7 +759,14 @@ class JointRunner:
                       "cleanup_ended_host_ns":time.monotonic_ns(),
                       "session_id":self.session_id,"samples":self.samples,"frames":self.frames,
                       "failures":self.failures})
-            self._journal.close()
+            writer = getattr(self, '_async_journal', None)
+            try:
+                if writer is not None: writer.close()
+            except Exception as exc:
+                with self._state_lock: self.failures.append(str(exc))
+            if writer is None or not writer.worker.is_alive():
+                self._journal.close()
+            self._async_journal = None
             self._journal = None
         result = {"schema": "car-joint-summary/v1", "hardware": self.hardware,
                   "identity": self.identity, "duration_requested_s": duration_s,

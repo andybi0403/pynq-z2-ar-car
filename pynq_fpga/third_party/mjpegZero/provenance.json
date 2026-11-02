@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/lcapossio/mjpegZero",
+  "commit": "90bc0c46d2c2c4bda1020113f306a5f17dcc5f2f",
+  "license": "Apache-2.0 with Commons Clause and educational/research grant; see LICENSE",
+  "upstream_sha256": {
+    "axi4_lite_regs.v": "27f4353eda238689ae9b476190fc931623aa12d00ee4545d7cf94279746ab557",
+    "bitstream_packer.v": "2d286b628b392d13c3d876cf93bbf301a4b5629c62f676b5d254ffadee64644c",
+    "bram_sdp.v": "7b608427a48f42f33ea13e1277a5efe28a61fb26b87d197f96765b285000a4e5",
+    "dct_1d.v": "9edc43739c355b223f98ccd2725cc3ac9058292adb8eb1969da036d9d8ff5061",
+    "dct_2d.v": "36f79842f7451d05e3b12bd70bdc543d982ddea01adf3a3743559798054aa0f1",
+    "huffman_encoder.v": "c1244467f0656a3df703bfacbfb4271c47b6a8c37be375d2debba6061f07fee4",
+    "input_buffer.v": "21af206b918c31062ec1b4128aab571b3fcbdcd87ce9dd227a88da40c74a8058",
+    "jfif_writer.v": "dfed40030480dc4efe46b262f2928e49875d02d06be90061cc7b5d6d0c1faab9",
+    "mjpegzero_enc_top.v": "7152b270c1bf452f1b980a8da1a544de2dd837544ca90b3d0027bb99a8dd7eca",
+    "quantizer.v": "5d5a9879bd8500fdc11b57ba37d890df9cb96ca3e7786ed6eac62a55b0450807",
+    "rgb_to_ycbcr.v": "cffbacbfb2749e3187f32a7f426f6e169e917ba7767ec276c137a6b9ff87744a",
+    "zigzag_reorder.v": "09a248986aafdf79292d2f4dc7cdd70786953a818a1ef843d737049dc6f9a701"
+  },
+  "local_patches": [
+    "Expose existing ctrl_soft_reset as session_soft_reset output to reset the transport FIFO with the encoder. No encoder arithmetic changed.",
+    "dct_1d.v, rgb_to_ycbcr.v and quantizer.v: use_dsp=no module attributes. Arithmetic, registers, handshake and numerical behavior unchanged. LUT mapping avoids unpipelined DSP warnings; routed timing remains mandatory."
+  ]
+}

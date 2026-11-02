@@ -3,31 +3,21 @@
 #include <stdint.h>
 #include <stddef.h>
 
-/*
- * PYNQ 完整对接版：超声波与红外全部接在 PYNQ 板上，STM32 不再直接
- * 测量任何传感器。距离、距离有效性和红外位图都由 PYNQ 的 $P 驱动帧
- * 上报，STM32 只负责执行驱动输出和独立安全兜底。
- *
- * 所有距离单位是 mm，时间单位是 ms，PWM 是底盘原程序使用的比较值。
- * STOP 和 RELEASE 不取同一个值，是为了形成“回差”：
- * 距离小于 200 mm 时只禁止前进，恢复到 250 mm 以上才解除前进限制，
- * 避免物体刚好在临界值附近时前进输出反复启停。后退和转向仍可用于脱离障碍。
- */
-#define SAFE_STOP_MM 200u
+/* Isolated candidate: only fresh valid distances at or below 250 mm
+ * set the forward obstacle block. Unknown distances do not clear a block.
+ * Communications and motion lease remain independent. Not deployed. */
+#define SAFE_STOP_MM 250u
 #define SAFE_RELEASE_MM 250u
 #define SAFE_CLEAR_MS 300u
-/*
- * PYNQ 按 100 ms 周期发送 $P 帧。两个阈值构成双保险：
- *   数据年龄 200 ms（约 2 帧）内没有“距离有效”的新数据 → 传感器故障锁车；
- *   运动租约 250 ms（约 2.5 帧）内没有任何有效 $P 帧 → 通信故障锁车。
- * 数据年龄先于租约触发，因此任一通道静默都会在 250 ms 内停车。
- */
+/* Sensor age defines whether a distance can update the obstacle block.
+ * Command age remains an independent motion lease. */
 #define SAFE_SENSOR_AGE_MS 200u
 #define SAFE_COMMAND_MS 250u
 #define SAFE_MAX_PWM 2400
-/* Hardware adapter binds its data UART only after CRC-valid Q1, until reset.
- * Independent diagnostic RX never owns data/control; HALT/PSTOP still lock.
- * This replaces the former any-byte USB takeover and idle-release policy. */
+/* Hardware adapter selects a single TX after CRC-valid Q1. Only a locked,
+ * zero-output owner silent for >=2000 ms can yield to another valid query.
+ * Handover clears pending drive/release state and keeps the car locked.
+ * Other-port drive/release and noise never own control; HALT/PSTOP lock. */
 
 /* 蓝牙协议中的运动命令。数值顺序与原车协议保持一致。 */
 enum { STOP=0, FORWARD, BACKWARD, LEFT, RIGHT, SPIN_LEFT, SPIN_RIGHT };

@@ -28,29 +28,21 @@ void safe_source_handover(SafeControl *s) {
 void safe_tick(SafeControl *s, uint32_t now) {
     uint8_t fault=0;
 
-    /* 每个控制周期都重新检查故障，而不是只在收到 $P 帧时检查。 */
-    /* IR is advisory only, including during manual unlock. Its real bitmap
-     * remains available in telemetry; it must never latch or gate motors. */
-    if (!s->valid || (uint32_t)(now-s->sample_ms)>=SAFE_SENSOR_AGE_MS)
-        fault |= FAULT_SENSOR;
-    else if (s->distance_mm<=SAFE_STOP_MM) {
-        /* 超声波近障是“方向性限制”：只屏蔽正向输出，不锁死整车。 */
-        s->distance_blocked=1;
-        s->reason |= FAULT_DISTANCE;
-    } else if (s->distance_blocked && s->distance_mm>=SAFE_RELEASE_MM) {
-        /* 使用释放阈值形成回差，避免临界距离来回切换。 */
-        s->distance_blocked=0;
-        s->reason &= (uint8_t)~FAULT_DISTANCE;
+    /* An invalid or stale range is unknown, not a clear measurement. It does
+     * not create a sensor stop, and cannot clear a prior near-obstacle block. */
+    if (s->valid && (uint32_t)(now-s->sample_ms)<SAFE_SENSOR_AGE_MS) {
+        if (s->distance_mm<=SAFE_STOP_MM) {
+            s->distance_blocked=1;
+            s->reason |= FAULT_DISTANCE;
+        } else if (s->distance_blocked && s->distance_mm>SAFE_STOP_MM) {
+            s->distance_blocked=0;
+            s->reason &= (uint8_t)~FAULT_DISTANCE;
+        }
     }
-
-    /* command_ms 是“运动租约”：持续收不到新 $P 帧就停车。 */
     if (s->command!=STOP && (uint32_t)(now-s->command_ms)>=SAFE_COMMAND_MS)
         fault |= FAULT_LINK;
     if (fault) safe_fault(s,fault);
-
-    /* 距离足够大且数据未过期，才开始人工解锁计时；红外只告警。 */
-    if (s->valid && s->distance_mm>=SAFE_RELEASE_MM &&
-        (uint32_t)(now-s->sample_ms)<SAFE_SENSOR_AGE_MS) {
+    if (!s->distance_blocked) {
         if (!s->clear_tracking) { s->clear_tracking=1; s->clear_ms=now; }
     } else s->clear_tracking=0;
 }

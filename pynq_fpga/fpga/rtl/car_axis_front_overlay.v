@@ -26,7 +26,8 @@ module car_axis_front_overlay #(
  reg seen_edges,anchor_valid;
  reg [15:0] min_edge_x,min_edge_y,label_x,label_y;
  reg [15:0] b_x,b_y,c_x,c_y;
- localparam integer LABEL_WIDTH=288;
+ localparam integer HUD_SCALE=(WIDTH==640 && HEIGHT==360)?2:1;
+ localparam integer LABEL_WIDTH=288/HUD_SCALE;
 
  reg [15:0] x,y;
  wire [15:0] px=s_axis_tuser?16'd0:x,py=s_axis_tuser?16'd0:y;
@@ -66,8 +67,8 @@ module car_axis_front_overlay #(
  wire [27:0] conversion_next={dabble(conversion[27:12]),conversion[11:0]}<<1;
  reg [47:0] font[0:2047];
  initial $readmemh("font_24x24_hud.mem",font);
- wire label=anchor_valid&&py>=label_y&&py<label_y+24&&px>=label_x&&px<label_x+LABEL_WIDTH;
- wire [15:0] tx=px-label_x,ty=py-label_y;
+ wire label=anchor_valid&&py>=label_y&&py<label_y+24/HUD_SCALE&&px>=label_x&&px<label_x+LABEL_WIDTH;
+ wire [15:0] tx=(px-label_x)*HUD_SCALE,ty=(py-label_y)*HUD_SCALE;
  // Twelve bounded 24px cells, decoded without a pixel-path divider.
  wire [11:0] label_cell;
  genvar label_index;
@@ -142,7 +143,7 @@ module car_axis_front_overlay #(
     if(c_user)begin
      anchor_valid<=seen_edges;
      label_x<=min_edge_x>WIDTH-LABEL_WIDTH?WIDTH-LABEL_WIDTH:min_edge_x;
-     label_y<=min_edge_y>=28?min_edge_y-28:0;
+     label_y<=min_edge_y>=28/HUD_SCALE?min_edge_y-28/HUD_SCALE:0;
      seen_edges<=0;min_edge_x<=WIDTH;min_edge_y<=HEIGHT;
     end else if(c_roi&&magnitude>=EDGE_THRESHOLD)begin
      seen_edges<=1;

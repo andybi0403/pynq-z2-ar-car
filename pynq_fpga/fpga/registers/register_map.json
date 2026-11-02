@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "contract_version": 11,
-  "integrated_id": "0xC425100B",
+  "contract_version": 14,
+  "integrated_id": "0xC425100E",
   "address_width": 12,
   "data_width": 32,
   "regions": [
@@ -44,6 +44,11 @@
       "name": "external_sensors",
       "start": "0x300",
       "end": "0x33F"
+    },
+    {
+      "name": "display_processing",
+      "start": "0x340",
+      "end": "0x37F"
     }
   ],
   "registers": [
@@ -51,8 +56,8 @@
       "name": "ID_VERSION",
       "offset": "0x000",
       "access": "RO",
-      "reset": "0xC425100A",
-      "description": "magic/type=integrated/version=0A; STM32 sensor injection supported"
+      "reset": "0xC425100E",
+      "description": "v0.14 display-only median/trend and tactical overlay"
     },
     {
       "name": "CTRL",
@@ -109,6 +114,13 @@
       "access": "RW",
       "reset": "0xA55A5A5A",
       "description": "WSTRB test register"
+    },
+    {
+      "name": "DEMO_PROFILE",
+      "offset": "0x024",
+      "access": "RO",
+      "reset": "1",
+      "description": "1 = ordinary-motor demo; QEI/odometry invalid, fixed 250 mm forward stop; presentation mileage is estimated"
     },
     {
       "name": "US_DATA",
@@ -248,7 +260,7 @@
       "offset": "0x0C0",
       "access": "RO",
       "reset": "0",
-        "description": "bit0 stop; bits2:1 distance/control risk level; bits31:16 reasons. v0.11: reason bits5/7 are IR advisory-only; IR invalid/obstacle never affect stop, level or manual release"
+      "description": "bit0 stop; bits2:1 distance/control risk level; bits31:16 reasons. v0.11: reason bits5/7 are IR advisory-only; IR invalid/obstacle never affect stop, level or manual release"
     },
     {
       "name": "RISK_REQUIRED_MM",
@@ -683,6 +695,83 @@
       "access": "RW",
       "reset": "0",
       "description": "staged PL time latch high32; delayed or wrapped commits cannot rejuvenate samples"
+    },
+    {
+      "name": "US_FILTER_MM",
+      "offset": "0x340",
+      "access": "RO",
+      "reset": "0",
+      "description": "atomic global snapshot: us_filter_mm"
+    },
+    {
+      "name": "US_FILTER_LATEST_TS",
+      "offset": "0x344",
+      "access": "RO",
+      "reset": "0",
+      "description": "atomic global snapshot: us_filter_latest_ts"
+    },
+    {
+      "name": "US_FILTER_OLDEST_TS",
+      "offset": "0x348",
+      "access": "RO",
+      "reset": "0",
+      "description": "atomic global snapshot: us_filter_oldest_ts"
+    },
+    {
+      "name": "US_FILTER_META",
+      "offset": "0x34C",
+      "access": "RO",
+      "reset": "0",
+      "description": "atomic global snapshot: us_filter_meta"
+    },
+    {
+      "name": "US_TREND_STATE",
+      "offset": "0x350",
+      "access": "RO",
+      "reset": "0",
+      "description": "atomic global snapshot: us_trend_state"
+    },
+    {
+      "name": "US_TREND_DT",
+      "offset": "0x354",
+      "access": "RO",
+      "reset": "0",
+      "description": "atomic global snapshot: us_trend_dt"
+    },
+    {
+      "name": "US_TREND_DELTA_MM",
+      "offset": "0x358",
+      "access": "RO",
+      "reset": "0",
+      "description": "atomic global snapshot: us_trend_delta_mm"
+    },
+    {
+      "name": "US_FILTER_ACCEPTED",
+      "offset": "0x35C",
+      "access": "RO",
+      "reset": "0",
+      "description": "atomic global snapshot: us_filter_accepted"
+    },
+    {
+      "name": "US_FILTER_REJECTED",
+      "offset": "0x360",
+      "access": "RO",
+      "reset": "0",
+      "description": "atomic global snapshot: us_filter_rejected"
+    },
+    {
+      "name": "US_FILTER_RESETS",
+      "offset": "0x364",
+      "access": "RO",
+      "reset": "0",
+      "description": "atomic global snapshot: us_filter_resets"
+    },
+    {
+      "name": "SNAP_CAR_STATE",
+      "offset": "0x368",
+      "access": "RO",
+      "reset": "0",
+      "description": "atomic global snapshot: snap_car_state"
     }
   ]
 }

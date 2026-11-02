@@ -1,0 +1,25 @@
+{
+  "schema": "native-video-build/v3",
+  "abi": 3,
+  "codec": "libjpeg-turbo/3.1.2",
+  "hardware": "ARM Cortex-A9",
+  "library_sha256": "0969093e604164ed454659e729b0352669aec4c8b4c1a39368c881da64af0987",
+  "source_sha256": "d20d4d71ff269053f333a6b326c4ff8ea08afbdeaf91bdd247bd76eacf750d99",
+  "build_evidence": "C:\\Users\\39909\\Desktop\\FPGA\\demo_plain_motor\\pending_video_720_20261031\\native_stage.json",
+  "profiles": [
+    "wireless720",
+    "wireless360",
+    "wireless720_jpeg"
+  ],
+  "extensions": [
+    "wv_decode_parallel",
+    "wv_codec_configure_region",
+    "wv_decode_flags_supported"
+  ],
+  "decode_flags": {
+    "bit_0": "IFAST DCT",
+    "bit_1": "merged chroma upsampling, full spatial resolution"
+  },
+  "parallel_decode_pixels": "byte-identical to strict full-frame decode in real C270 board measurement",
+  "camera_exposure_us": 20000
+}

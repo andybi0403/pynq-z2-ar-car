@@ -24,7 +24,8 @@ class ConsoleHealthTests(unittest.TestCase):
         renderer=text[start:end]
         script="const assert=require('node:assert/strict');const elements={};const el=id=>elements[id]??={};const setPill=(node,text,kind='')=>{node.textContent=text;node.className='pill '+kind;};const finite=v=>Number.isFinite(v)?v:null;\n"+renderer+r'''
 const live={running:true,telemetry_fresh:true,control_available:true,latest:{status:{distance_valid:true,distance_mm:321,car_valid:true,car:{lock:1,left:0,right:0,fault:1},stm32_link:{link_fresh:true,sensor:{us_age_ms:12}}}},video:{fps_since_start:{captured:12}}};
-renderHealth(live);assert.equal(el('distanceCard').textContent,'321 mm');assert.equal(el('lockCard').textContent,'已锁车');assert.equal(el('leftPwmCard').textContent,'0');assert.match(el('cameraHealth').textContent,/实际采集/);assert.match(el('uartHealth').textContent,/回包新鲜/);
+live.latest.status.ultrasonic_processing={filter_valid:true,filtered_mm:320,sample_count:3,trend:'stable'};
+renderHealth(live);assert.equal(el('distanceCard').textContent,'32.0 cm');assert.match(el('distanceSub').textContent,/32.1 cm.*稳定/);assert.equal(el('lockCard').textContent,'已锁车');assert.equal(el('leftPwmCard').textContent,'0');assert.match(el('cameraHealth').textContent,/实际采集/);assert.match(el('uartHealth').textContent,/回包新鲜/);
 renderHealth({...live,telemetry_fresh:false});assert.equal(el('distanceCard').textContent,'—');assert.equal(el('leftPwmCard').textContent,'—');assert.equal(el('lockCard').textContent,'未收到');
 renderHealth({...live,video:{error:'device busy'}});assert.match(el('cameraHealth').textContent,/device busy/);assert.doesNotMatch(el('cameraHealth').textContent,/未连接/);
 renderHealth({...live,latest:{status:{distance_valid:true,car_valid:true}}});assert.equal(el('distanceCard').textContent,'—');assert.equal(el('lockCard').textContent,'未收到');

@@ -1,5 +1,6 @@
 `timescale 1ns/1ps
 module tb_car_board_video_wrapper;
+ localparam WIDTH=1280,HEIGHT=720;
  reg clk=0,aresetn=0;
  always #5 clk=~clk;
  reg us_echo=0,ir_l_raw=1,ir_r_raw=1,q0a=0,q0b=0,q1a=0,q1b=0;
@@ -13,9 +14,9 @@ module tb_car_board_video_wrapper;
  wire [23:0] mdata;wire mvalid,muser,mlast;reg mready=1;
  integer errors=0,checks=0;
  integer age_case;reg [63:0] age_now,age_stamp;reg [31:0] rd;reg [23:0] held_data;reg held_user,held_last;
- integer capture_file=0,captured=0,j;reg [23:0] prefix[0:17];reg [63:0] reception_ticks;
+ integer capture_file=0,captured=0,j;reg [23:0] prefix[0:23];reg [63:0] reception_ticks;
 
- car_board_video_wrapper dut(
+ car_board_video_wrapper #(.VIDEO_WIDTH(WIDTH),.VIDEO_HEIGHT(HEIGHT)) dut(
   .aclk(clk),.aresetn(aresetn),.us_echo(us_echo),.us_trig(us_trig),
   .ir_l_raw(ir_l_raw),.ir_r_raw(ir_r_raw),.qei0_a(q0a),.qei0_b(q0b),.qei1_a(q1a),.qei1_b(q1b),
   .qei_oe_n(qei_oe_n),
@@ -35,26 +36,30 @@ module tb_car_board_video_wrapper;
 
  always @(posedge clk) if(capture_file!=0&&mvalid&&mready) begin
   $fdisplay(capture_file,"%06x",mdata);captured=captured+1;
-  if(captured%640==1) check("full-frame SOF geometry",muser===(captured==1));
-  if(captured%640==0) check("full-frame EOL geometry",mlast===1'b1);
+  check("full-frame SOF geometry",muser===(captured==1));
+  check("full-frame EOL geometry",mlast===(captured%WIDTH==0));
  end
  task frame(input integer number);begin
   if(number<3) reception_ticks=dut.live_ticks;
-  prefix[0]=24'hd3a95c;prefix[1]=24'h010012;
+  prefix[0]=24'hd3a95c;prefix[1]=24'h030018;
   prefix[2]=number==1?24'h345678:24'h345679;prefix[3]=number==1?24'habcd12:24'habce12;
-  prefix[4]=number==1?24'h0373e8:24'h0072ee;
+  prefix[4]=number==1?24'h0713e8:24'h0452ee;
   prefix[5]=number==1?24'hff0000:24'h070000;prefix[6]=number==1?24'h0000ff:0;
   prefix[7]=number==1?24'hfe0000:24'h2a0000;prefix[8]=number==1?24'hffffff:0;
   prefix[9]=number==1?24'h00ffff:0;prefix[10]=number==1?24'h030000:24'h630000;
   prefix[11]=0;prefix[12]=0;prefix[13]=number==1?24'h000201:24'h000e13;
   prefix[14]=reception_ticks[23:0];prefix[15]=reception_ticks[47:24];prefix[16]={8'd0,reception_ticks[63:48]};
-  prefix[17]=24'hffffff;for(j=0;j<17;j=j+1)prefix[17]=prefix[17]^prefix[j];
+  prefix[17]=number==1?24'h3db3e8:24'h35b2ee;
+  prefix[18]=reception_ticks[23:0];prefix[19]={16'd0,reception_ticks[31:24]};
+  prefix[20]=reception_ticks[23:0];prefix[21]={16'd0,reception_ticks[31:24]};
+  prefix[22]=24'h030001;
+  prefix[23]=24'hffffff;for(j=0;j<23;j=j+1)prefix[23]=prefix[23]^prefix[j];
   capture_file=$fopen($sformatf("display_chain_f%0d.rgb",number),"w");captured=0;
-  for(j=0;j<640*480;j=j+1) begin
+  for(j=0;j<WIDTH*HEIGHT;j=j+1) begin
    @(negedge clk);
-   sdata=j<18?prefix[j]:
-       number==1&&j%640>=220&&j%640<410&&j/640>=165&&j/640<300?24'hf0f0f0:24'h112233;
-   svalid=1;suser=j==0;slast=j%640==639;
+   sdata=j<24?prefix[j]:
+       number==1&&j%WIDTH>=220&&j%WIDTH<410&&j/WIDTH>=165&&j/WIDTH<300?24'hf0f0f0:24'h112233;
+   svalid=1;suser=j==0;slast=j%WIDTH==WIDTH-1;
    do @(posedge clk);while(!sready);
    if(j==1000) begin
     // Latest safety changes after SOF must not change this frame's latched
@@ -64,7 +69,7 @@ module tb_car_board_video_wrapper;
    end
   end
   @(negedge clk);svalid=0;suser=0;slast=0;
-  wait(captured==640*480);@(negedge clk);$fclose(capture_file);capture_file=0;
+  wait(captured==WIDTH*HEIGHT);@(negedge clk);$fclose(capture_file);capture_file=0;
   rdreg('h2a0,rd);check("decoded frame ID via AXI",rd===(number==1?32'h12345678:32'h12345679));
   rdreg('h2a4,rd);check("snapshot epoch and fresh metadata via AXI",rd===(number==1?32'habcd0003:number==4?32'habce0001:32'habce0003));
   rdreg('h2a8,rd);check("reception timestamp low via AXI",rd===reception_ticks[31:0]);
@@ -77,15 +82,19 @@ module tb_car_board_video_wrapper;
 
  task stalled_sof_freshness;begin
   reception_ticks=dut.live_ticks;
-  for(j=0;j<18;j=j+1)prefix[j]=0;
-  prefix[0]=24'hd3a95c;prefix[1]=24'h010012;prefix[2]=1;prefix[3]=24'h000100;
-  prefix[4]=24'h0013e8;prefix[14]=reception_ticks[23:0];prefix[15]=reception_ticks[47:24];
-  prefix[16]={8'd0,reception_ticks[63:48]};prefix[17]=24'hffffff;
-  for(j=0;j<17;j=j+1)prefix[17]=prefix[17]^prefix[j];
+  for(j=0;j<24;j=j+1)prefix[j]=0;
+  prefix[0]=24'hd3a95c;prefix[1]=24'h030018;prefix[2]=1;prefix[3]=24'h000100;
+  prefix[4]=24'h0413e8;prefix[14]=reception_ticks[23:0];prefix[15]=reception_ticks[47:24];
+  prefix[16]={8'd0,reception_ticks[63:48]};
+  prefix[17]=24'h3db3e8;
+  prefix[18]=reception_ticks[23:0];prefix[19]={16'd0,reception_ticks[31:24]};
+  prefix[20]=reception_ticks[23:0];prefix[21]={16'd0,reception_ticks[31:24]};
+  prefix[22]=24'h030001;prefix[23]=24'hffffff;
+  for(j=0;j<23;j=j+1)prefix[23]=prefix[23]^prefix[j];
   // Fill/block the downstream base stage so the front SOF is accepted first.
   // Capture is disabled for this directed fixture; reset flushes it afterwards.
   force dut.base_ready=1'b0;force dut.osd.m_axis_tvalid=1'b1;
-  for(j=0;j<18;j=j+1)begin
+  for(j=0;j<24;j=j+1)begin
    @(negedge clk);sdata=prefix[j];svalid=1;suser=j==0;slast=0;
    do @(posedge clk);while(!sready);
   end
@@ -104,7 +113,7 @@ module tb_car_board_video_wrapper;
  initial begin
   repeat(5) begin @(posedge clk); check("QEI shifter disabled during reset",qei_oe_n===1'b1); end
   @(negedge clk);aresetn=1;repeat(8)@(posedge clk);
-  check("QEI shifter enabled after reset",qei_oe_n===1'b0);
+  check("unused QEI shifter stays disabled in ordinary motor profile",qei_oe_n===1'b1);
   // Independent 64-bit reference, exact window boundary and low-word carry.
   check("fresh equality",dut.recent_frame(64'd0,64'd0));
   check("last valid tick",dut.recent_frame(64'd19999999,64'd0));
@@ -124,7 +133,7 @@ module tb_car_board_video_wrapper;
     dut.recent_frame(age_now,age_stamp)===(age_now>=age_stamp&&(age_now-age_stamp)<64'd20000000));
   end
 
-  rdreg('h000,rd);check("production ID through wrapper",rd===32'hc425100b);
+  rdreg('h000,rd);check("production ID through wrapper",rd===32'hc425100e);
 
   // One SOF/EOL sample proves that the production OSD, not a placeholder,
   // is connected in the AXIS path.  The fail-safe default may recolour it.

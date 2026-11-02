@@ -22,12 +22,12 @@ def current_identity():
                    'preintegration/rtl', 'preintegration/tb',
                    'preintegration/constraints', 'preintegration/vivado',
                    'preintegration/board_repo', 'third_party/verilog-axi/rtl',
-                   'third_party/PYNQ/boards/ip', 'fpga/scripts', 'host',
-                   'preintegration/host', 'preintegration/tests', 'preintegration/camera', 'preintegration/native']
+                   'third_party/PYNQ/boards/ip', 'fpga/scripts',
+                   'preintegration/camera', 'preintegration/native', 'third_party/mjpegZero']
     extensions = {'.v', '.sv', '.vh', '.mem', '.json', '.tcl', '.xdc', '.xml', '.vhd', '.coe',
                   '.py', '.ps1', '.cmd', '.c', '.h', '.s', '.ld', '.html', '.txt', '.cmake', '.js', '.jsonl'}
     files = [Path(__file__).resolve()]
-    files.append(ROOT/'host/c_build/build_car_c_dll.ps1')
+    # Runtime files are independently bound by the package manifest; this captures FPGA build inputs.
     files.extend(p for p in ROOT.joinpath('preintegration').iterdir()
                  if p.is_file() and p.suffix.lower() in {'.py','.ps1'})
     for directory in directories:
@@ -35,6 +35,9 @@ def current_identity():
                      if p.is_file() and p.suffix.lower() in extensions
                      and not p.is_relative_to(ROOT/'host/c_build'))
     sources={p.relative_to(ROOT).as_posix():sha256(p) for p in sorted(set(files))}
+    for name in ('LICENSE','README.md'):
+        path=ROOT/'third_party/mjpegZero'/name
+        if path.is_file():sources[path.relative_to(ROOT).as_posix()]=sha256(path)
     # Capture authoritative C/PC inputs, not generated DLL/build-identity files.
     for child in ROOT.parent.iterdir():
         if not child.is_dir():continue
@@ -67,7 +70,7 @@ def current_identity():
     return {'schema': 'car-build-source/v1', 'sensor_source': 'stm32_uart_v3',
             'stm32_firmware': firmware, 'integrated_id': spec['integrated_id'],
             'contract_version': spec['contract_version'], 'tick_hz': 100_000_000,
-            'risk_parameters': params,
+            'risk_parameters': params,'motor_profile':'plain_motor_demo','speed_feedback_required':False,'fixed_forward_stop_mm':params['BASE_MARGIN_MM'],
             'video_profile': os.environ.get('PYNQ_VIDEO_PROFILE','hdmi640'),
             'sources': sources}
 

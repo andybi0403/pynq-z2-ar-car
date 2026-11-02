@@ -106,6 +106,7 @@ class PerceptionSnapshot:
     odometry1: Odometry = Odometry()
     qei0_info: int = 0
     qei1_info: int = 0
+    display_processing: tuple = ()
 
     @property
     def displacement_q16(self) -> int:
@@ -250,6 +251,7 @@ class PerceptionClient:
 
         Returns the readback ``(left_scale, right_scale)``.
         """
+        raise ContractError("encoder calibration is unavailable in this demo profile")
         self.verify_contract()
         left = _validated_qei_scale(left_scale, "left_scale")
         right = _validated_qei_scale(right_scale, "right_scale")
@@ -277,6 +279,7 @@ class PerceptionClient:
         register.  Later per-side measured calibration overrides these
         values through ``configure_qei_scales``.
         """
+        raise ContractError("encoder calibration is unavailable in this demo profile")
         if profile_name not in QEI_SCALE_PROFILES:
             raise ContractError(
                 f"unknown QEI scale profile: {profile_name!r}; "
@@ -293,6 +296,7 @@ class PerceptionClient:
 
     def configure_qei_filters(self, left_ticks: int, right_ticks: int, *, motor_disconnected=False):
         """Explicit uncalibrated LAB setup; never silently replace calibration."""
+        raise ContractError("encoder calibration is unavailable in this demo profile")
         if motor_disconnected is not True:
             raise ValueError('QEI filtering requires disconnected motor power')
         for value in (left_ticks, right_ticks):
@@ -370,6 +374,7 @@ class PerceptionClient:
                 risk=risk,
                 command_state=self.io.read32(reg.CMD_STATE) & 0x3,
                 command_timestamp=self.io.read32(reg.CMD_TS) & 0xFFFFFFFF,
+                display_processing=tuple((name,self.io.read32(getattr(reg,name)) & 0xffffffff) for name in ('US_FILTER_MM', 'US_FILTER_LATEST_TS', 'US_FILTER_OLDEST_TS', 'US_FILTER_META', 'US_TREND_STATE', 'US_TREND_DT', 'US_TREND_DELTA_MM', 'US_FILTER_ACCEPTED', 'US_FILTER_REJECTED', 'US_FILTER_RESETS', 'SNAP_CAR_STATE')),
                 odometry0=self._odometry(0),
                 odometry1=self._odometry(1),
                 qei0_info=self.io.read32(reg.QEI0_INFO) & 0xFFFFFFFF,
@@ -394,6 +399,7 @@ class PerceptionClient:
 
     def reset_odometry(self) -> None:
         """Explicit reset; caller must stop motors before requesting this."""
+        raise ContractError("encoder calibration is unavailable in this demo profile")
         self.verify_contract()
         shot = self.snapshot()
         now = self.read_pl_ticks64() & 0xFFFFFFFF
@@ -526,6 +532,7 @@ class PerceptionClient:
     def sample_and_decide(self) -> tuple[int, PerceptionSnapshot, SafetyDecision]:
         """Read one stable snapshot and conservatively decide forward permit."""
         self.verify_contract()
+        if self.io.read32(reg.DEMO_PROFILE)!=1:raise ContractError("ordinary-motor demo profile required")
         link = getattr(self, '_sensor_link', None)
         if link is not None:
             self.commit_external_sensors(link.sensor_snapshot(), link._clock())
@@ -584,11 +591,8 @@ def evaluate_snapshot(
         elif elapsed32(now_ticks, sample.timestamp) >= data_max_age_ticks:
             reasons.append(f"{name}_stale")
 
-    require_fresh("us", shot.ultrasonic)
-    require_fresh("qei0", shot.qei0)
-    require_fresh("qei1", shot.qei1)
-    for channel in (0, 1):
-        reasons.extend(f'qei{channel}_{reason}' for reason in snapshot_fault_reasons(shot, channel))
+    # Unknown ultrasonic range is reported, but does not itself deny motion.
+    # QEI is intentionally absent in the independent v0.12 demo profile.
     require_fresh("risk", shot.risk)
     if not (shot.command_state & 0x2):
         reasons.append("command_invalid")

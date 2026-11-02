@@ -42,7 +42,7 @@ class PLRegisters:
         self.level=0;self.reasons=0;self.valid=True;self.error=False
         self.tick_offset=0xFFFFFF00
         self.sample_ts=self.ticks()
-        self.mem={reg.ID_VERSION:reg.INTEGRATED_ID,reg.STATUS:3,reg.SNAP_EPOCH:0}
+        self.mem={reg.DEMO_PROFILE:1,reg.ID_VERSION:reg.INTEGRATED_ID,reg.STATUS:3,reg.SNAP_EPOCH:0}
         self.command_writes=[]
     def ticks(self):return (int(self.clock()*100_000_000)+getattr(self,'tick_offset',0))&0xFFFFFFFF
     def read32(self, offset):
@@ -61,8 +61,8 @@ class PLRegisters:
                 self.mem.update({reg.SNAP_EPOCH:self.epoch,
                     reg.US_DATA:self.mm,reg.US_TS:self.sample_ts,reg.US_META:0x80000001 if self.valid else 1,
                     reg.IR_STATUS:(4 if self.ir_valid else 0)|self.ir,reg.IR_TS:now,reg.IR_META:0x80000001 if self.ir_valid else 1,
-                    reg.QEI0_TS:now,reg.QEI0_META:0x80000001,
-                    reg.QEI1_TS:now,reg.QEI1_META:0x80000001,
+                    reg.QEI0_TS:now,reg.QEI0_META:0,
+                    reg.QEI1_TS:now,reg.QEI1_META:0,
                     reg.RISK_STATE:risk,reg.RISK_TS:now,reg.RISK_META:0x80000001,
                     reg.CMD_STATE:self.command,reg.CMD_TS:self.command_ts})
             if value&2:

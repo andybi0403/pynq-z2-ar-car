@@ -4,8 +4,7 @@ import time
 import threading
 from pathlib import Path
 
-WIDTH, HEIGHT, FPS = 1280, 720, 30
-FRAME_BYTES = WIDTH * HEIGHT * 4
+from video_profile import WIDTH, HEIGHT, FPS, FRAME_BYTES
 
 
 class CameraWarmingUp(TimeoutError):
@@ -42,8 +41,12 @@ class NativeLibrary:
         }
         for name,(args,result) in types.items():
             f=getattr(self.lib,name);f.argtypes=args;f.restype=result
-        if self.lib.wv_version()!=b"car-video/2;libjpeg-turbo/3.1.2":
+        if self.lib.wv_version()!=b"car-video/3;libjpeg-turbo/3.1.2":
             raise RuntimeError("native ABI or pinned codec version mismatch")
+        self.lib.wv_codec_configure.argtypes=[C.c_void_p,C.c_uint,C.c_uint]
+        self.lib.wv_codec_configure.restype=C.c_int
+        self.lib.wv_camera_open_config.argtypes=[C.c_char_p,C.c_void_p,C.c_uint,C.c_uint,C.c_uint,C.c_uint]
+        self.lib.wv_camera_open_config.restype=C.c_void_p
         if hasattr(self.lib,'wv_encode_profile'):
             self.lib.wv_encode_profile.argtypes=[C.c_void_p,C.c_void_p,C.c_ulong,C.c_int,C.c_int,C.c_int,
                                                 C.POINTER(C.c_void_p),C.POINTER(C.c_ulong)]
@@ -51,30 +54,40 @@ class NativeLibrary:
         if hasattr(self.lib,'wv_decode_profile'):
             self.lib.wv_decode_profile.argtypes=[C.c_void_p,C.c_char_p,C.c_ulong,C.c_void_p,C.c_ulong,C.c_int,C.c_int]
             self.lib.wv_decode_profile.restype=C.c_int
+        if hasattr(self.lib,'wv_decode_flags_supported'):
+            self.lib.wv_decode_flags_supported.argtypes=[]
+            self.lib.wv_decode_flags_supported.restype=C.c_int
 
 
 def writable_pointer(buffer):
     view=memoryview(buffer).cast('B')
     if not view.contiguous or view.readonly or len(view)!=FRAME_BYTES:
-        raise ValueError('writable contiguous 1280x720 BGR0 buffer required')
+        raise ValueError(f'writable contiguous {WIDTH}x{HEIGHT} BGR0 buffer required')
     owner=(C.c_ubyte*len(view)).from_buffer(view)
     return owner, C.cast(owner,C.c_void_p)
 
 
 class Codec:
-    def __init__(self, native,*,decode_dct='islow',reuse_decoder=False):
+    def __init__(self, native,*,decode_dct='islow',reuse_decoder=False,decode_upsampling='fancy'):
         if decode_dct not in ('islow','ifast'):raise ValueError('invalid decode DCT')
+        if decode_upsampling not in ('fancy','merged'):raise ValueError('invalid decode upsampling')
+        if decode_upsampling=='merged':
+            if not hasattr(native.lib,'wv_decode_flags_supported') or not native.lib.wv_decode_flags_supported()&2:
+                raise RuntimeError('merged decode requires the verified native extension')
         self.lib=native.lib;self.handle=self.lib.wv_codec_open()
         self.decode_dct=decode_dct;self.reuse_decoder=reuse_decoder
+        self.decode_flags=int(decode_dct=='ifast')|(2 if decode_upsampling=='merged' else 0)
         self.restart_padding_warnings=0
         if not self.handle:raise MemoryError('native codec allocation failed')
+        if self.lib.wv_codec_configure(self.handle,WIDTH,HEIGHT):
+            self.close();raise ValueError('native dimensions rejected')
     def decode_into(self,jpeg,buffer):
         if not self.handle:raise RuntimeError('codec is closed')
         owner,pointer=writable_pointer(buffer)
-        if self.reuse_decoder or self.decode_dct!='islow':
+        if self.reuse_decoder or self.decode_flags:
             if not hasattr(self.lib,'wv_decode_profile'):raise RuntimeError('decode profile extension requires native rebuild')
             result=self.lib.wv_decode_profile(self.handle,jpeg,len(jpeg),pointer,FRAME_BYTES,
-                                              int(self.decode_dct=='ifast'),int(self.reuse_decoder))
+                                              self.decode_flags,int(self.reuse_decoder))
         else:result=self.lib.wv_decode(self.handle,jpeg,len(jpeg),pointer,FRAME_BYTES)
         self.restart_padding_warnings=0
         if result<0:
@@ -112,7 +125,7 @@ class Camera:
         self.lock=threading.Lock()
     def __enter__(self):
         error=C.create_string_buffer(256)
-        self.handle=self.lib.wv_camera_open(self.device.encode(),error,len(error))
+        self.handle=self.lib.wv_camera_open_config(self.device.encode(),error,len(error),WIDTH,HEIGHT,FPS)
         if not self.handle:raise RuntimeError(error.value.decode(errors='replace'))
         self.last_sequence=None;self.generation+=1
         self.opened_at=time.monotonic()

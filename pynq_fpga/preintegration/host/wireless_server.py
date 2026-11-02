@@ -8,6 +8,7 @@ import threading
 import time
 from aiohttp import web,WSMsgType
 from wireless_core import ControlGate
+from video_profile import WIDTH,HEIGHT,PROFILE,MAX_FRAME_AGE_NS
 
 
 class WirelessServer:
@@ -47,8 +48,10 @@ class WirelessServer:
         return response
     async def status(self,request):
         self.check(request)
-        state=self.runner.status_snapshot();state['video']=self.hub.stats()
+        state=self.runner.status_snapshot();state['video']=self.hub.cached_stats()
+        state['display_settings']={'tactical_enabled':bool(getattr(self.runner,'tactical_enabled',True))}
         state['remote_control']=self.gate.status()
+        state['server_monotonic_ns']=time.monotonic_ns()
         return web.json_response(state,headers={'Cache-Control':'no-store'})
     async def player_script(self,request):
         return web.FileResponse(Path(__file__).with_name('wireless_player.js'))
@@ -60,6 +63,16 @@ class WirelessServer:
         try:settings=self.hub.policy.configure(await request.json())
         except (ValueError,TypeError) as exc:raise web.HTTPBadRequest(text=str(exc))
         return web.json_response(settings)
+    async def display_settings(self,request):
+        self.check(request,request.method=='POST')
+        if request.method=='POST':
+            try:payload=await request.json()
+            except (ValueError,TypeError):raise web.HTTPBadRequest(text='显示设置格式错误')
+            if not isinstance(payload,dict) or set(payload)!={'tactical_enabled'} or type(payload['tactical_enabled']) is not bool:
+                raise web.HTTPBadRequest(text='态势图开关须为布尔值')
+            self.runner.tactical_enabled=payload['tactical_enabled']
+        return web.json_response({'tactical_enabled':bool(getattr(self.runner,'tactical_enabled',True))})
+
     async def video_feedback(self,request):
         self.check(request,True)
         try:
@@ -69,6 +82,9 @@ class WirelessServer:
             if type(payload.get('visible')) is not bool:raise ValueError('visible must be boolean')
             self.hub.policy.observe(receiver=payload)
         except (ValueError,TypeError) as exc:raise web.HTTPBadRequest(text=str(exc))
+        events=payload.get('frame_events',[])
+        if not isinstance(events,list) or len(events)>128:raise web.HTTPBadRequest(text='invalid frame trace')
+        self.runner.log({'type':'browser_video_feedback','host_monotonic_ns':time.monotonic_ns(),'receiver':payload})
         return web.json_response({'recorded':True})
     async def snapshot(self,request):
         self.check(request,True)
@@ -80,7 +96,7 @@ class WirelessServer:
         return web.json_response({'frame_id':frame.frame_id,'captured_monotonic_ns':frame.captured_ns,
              'raw_jpeg_base64':base64.b64encode(frame.raw).decode(),
              'processed_jpeg_base64':base64.b64encode(frame.processed).decode(),
-             'historical_snapshot':frame.historical},headers={'Cache-Control':'no-store'})
+             'historical_snapshot':frame.historical,'width':WIDTH,'height':HEIGHT,'video_profile':PROFILE},headers={'Cache-Control':'no-store'})
     async def video(self,request):
         self.check(request);view=request.query.get('view','processed')
         if view not in ('raw','processed'):raise web.HTTPBadRequest(text='invalid view')
@@ -90,13 +106,13 @@ class WirelessServer:
         stream_identity=secrets.token_hex(12);self.video_session=stream_identity
         response=web.StreamResponse(headers={'Content-Type':'multipart/x-mixed-replace; boundary=carframe',
                                                'Cache-Control':'no-store','X-Accel-Buffering':'no',
-                                               'X-Video-Session':stream_identity})
+                                               'X-Video-Session':stream_identity,'X-Video-Width':str(WIDTH),'X-Video-Height':str(HEIGHT),'X-Video-Profile':PROFILE})
         try:
             await response.prepare(request);last=-1
             while not self.hub.closed:
                 frame=await asyncio.to_thread(self.hub.next,view,last,.5)
                 if frame is None:continue
-                if time.monotonic_ns()-frame.captured_ns>500_000_000:
+                if time.monotonic_ns()-frame.captured_ns>MAX_FRAME_AGE_NS:
                     last=frame.frame_id;continue
                 jpeg=frame.raw if view=='raw' else frame.processed
                 header=(f'--carframe\r\nContent-Type: image/jpeg\r\nContent-Length: {len(jpeg)}\r\n'
@@ -106,7 +122,8 @@ class WirelessServer:
                 started=time.monotonic_ns()
                 for chunk in (header,jpeg,b'\r\n'):
                     await asyncio.wait_for(response.write(chunk),timeout=.25)
-                send_ms=(time.monotonic_ns()-started)/1e6
+                sent_ns=time.monotonic_ns();send_ms=(sent_ns-started)/1e6
+                self.runner.log({'type':'wireless_send','frame_id':frame.frame_id,'captured_monotonic_ns':frame.captured_ns,'send_started_ns':started,'send_completed_ns':sent_ns})
                 self.hub.observe('network_write',send_ms,amount=0);self.hub.policy.observe(cost_ms=send_ms)
                 last=frame.frame_id;self.hub.observe('sent')
                 with self.hub.condition:self.hub.bytes_sent+=len(jpeg)
@@ -115,6 +132,9 @@ class WirelessServer:
         finally:
             if self.video_task is task:self.video_task=None;self.video_session=None
         return response
+    def video_blocks_control(self):
+        return bool(self.hub.error and getattr(self.runner,'video_required_for_control',True))
+
     async def control(self,request):
         self.check(request,True)
         ws=web.WebSocketResponse(max_msg_size=4096,autoping=True,timeout=1)
@@ -142,7 +162,7 @@ class WirelessServer:
                     self.gate.revoke('video_only_control_disabled')
                     await ws.send_json({'type':'error','error':'当前为视频测试会话，未连接执行器控制'})
                     continue
-                if isinstance(payload,dict) and payload.get('type') in ('claim','intent','release') and self.hub.error:
+                if isinstance(payload,dict) and payload.get('type') in ('claim','intent','release') and self.video_blocks_control():
                     self.gate.revoke('video_unavailable: '+self.hub.error)
                     await ws.send_json({'type':'error','error':'视频不可用，已撤销控制：'+self.hub.error})
                     continue
@@ -188,6 +208,7 @@ class WirelessServer:
         app.router.add_get('/assets/wireless_player.js',self.player_script)
         app.router.add_get('/assets/console_ui.js',self.console_script)
         app.router.add_get('/api/video/settings',self.video_settings);app.router.add_post('/api/video/settings',self.video_settings)
+        app.router.add_get('/api/display/settings',self.display_settings);app.router.add_post('/api/display/settings',self.display_settings)
         app.router.add_post('/api/video/feedback',self.video_feedback)
         app.router.add_get('/api/status',self.status);app.router.add_get('/api/video',self.video)
         app.router.add_post('/api/snapshot',self.snapshot);app.router.add_get('/api/control',self.control)
@@ -201,7 +222,7 @@ class WirelessServer:
         await self.site.start();self.port=self.site._server.sockets[0].getsockname()[1]
         async def watchdog():
             while True:
-                if self.hub.error and self.gate.owner is not None:
+                if self.video_blocks_control() and self.gate.owner is not None:
                     self.gate.revoke('video_unavailable: '+self.hub.error)
                 self.gate.maintain();await asyncio.sleep(.05)
         self.watchdog_task=asyncio.create_task(watchdog())

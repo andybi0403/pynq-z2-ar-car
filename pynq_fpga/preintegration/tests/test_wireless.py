@@ -222,8 +222,12 @@ class CodecTests(unittest.TestCase):
                 codec.decode_into(original[:point]+b'\x00'*count+original[point:],decoded)
                 self.assertEqual(decoded,baseline)
                 self.assertEqual(codec.restart_padding_warnings,1)
+            for count in (1,2,3,4):
+                codec.decode_into(original[:-2]+b'\x00'*count+original[-2:],decoded)
+                self.assertEqual(decoded,baseline)
+                self.assertEqual(codec.restart_padding_warnings,0 if count==1 else 1)
             for bad in (original[:-50]+b'\xff\xd9',
-                        original[:-2]+b'\x00\x00'+original[-2:]):
+                        original[:-2]+b'\x00'*5+original[-2:]):
                 with self.assertRaises(RuntimeError):codec.decode_into(bad,decoded)
             codec.decode_into(original,decoded)
             self.assertEqual(codec.restart_padding_warnings,0)
@@ -244,7 +248,7 @@ class CodecTests(unittest.TestCase):
             self.assertEqual(image.size,(1280,720));self.assertEqual(image.layer[1][1:3],(1,1))
             with self.assertRaises(RuntimeError):codec.decode_into(b'badJPEG',buffer)
             wrong=io.BytesIO();Image.new('RGB',(640,480)).save(wrong,format='JPEG')
-            with self.assertRaisesRegex(RuntimeError,'1280x720'):codec.decode_into(wrong.getvalue(),buffer)
+            with self.assertRaisesRegex(RuntimeError,'dimensions.*profile'):codec.decode_into(wrong.getvalue(),buffer)
             with self.assertRaises(ValueError):codec.encode(buffer[:-1])
     def test_host_capture_explicitly_unavailable(self):
         with self.assertRaisesRegex(RuntimeError,'Linux'):Camera(NativeLibrary(NATIVE)).__enter__()
@@ -255,7 +259,7 @@ class CameraStartupTests(unittest.TestCase):
         from types import SimpleNamespace
         from native_video import CameraFrameRejected
         closed=[]
-        lib=SimpleNamespace(wv_camera_open=lambda *args:42,wv_camera_close=lambda h:closed.append(h),
+        lib=SimpleNamespace(wv_camera_open_config=lambda *args:42,wv_camera_close=lambda h:closed.append(h),
                             wv_camera_read=lambda *args:-2)
         camera=Camera(SimpleNamespace(lib=lib));camera.__enter__()
         with self.assertRaises(CameraFrameRejected) as error:camera.read()
@@ -270,7 +274,7 @@ class CameraStartupTests(unittest.TestCase):
         def read(handle,storage,size,info,timeout):
             ctypes.cast(info,ctypes.POINTER(FrameInfo)).contents.captured_ns=stamp[0]
             return 4
-        lib=SimpleNamespace(wv_camera_open=lambda *args:42,
+        lib=SimpleNamespace(wv_camera_open_config=lambda *args:42,
             wv_camera_close=lambda *args:None,wv_camera_read=read)
         camera=Camera(SimpleNamespace(lib=lib))
         with patch('native_video.time.monotonic',return_value=0):camera.__enter__()
@@ -286,7 +290,7 @@ class CameraStartupTests(unittest.TestCase):
 
     def test_first_frame_wait_is_bounded_and_steady_timeout_stays_strict(self):
         from types import SimpleNamespace
-        lib=SimpleNamespace(wv_camera_open=lambda *args:42,
+        lib=SimpleNamespace(wv_camera_open_config=lambda *args:42,
             wv_camera_close=lambda *args:None,wv_camera_read=lambda *args:0)
         camera=Camera(SimpleNamespace(lib=lib))
         with patch('native_video.time.monotonic',return_value=100):camera.__enter__()
@@ -304,6 +308,19 @@ class CameraStartupTests(unittest.TestCase):
 
 
 class HTTPTests(unittest.IsolatedAsyncioTestCase):
+    async def test_optional_video_fault_does_not_revoke_live_zero_intent(self):
+        self.runner.video_required_for_control=False
+        self.hub.set_error('decode: rejected camera JPEG')
+        async with self.client.ws_connect(self.base+'/api/control',headers=self.auth) as ws:
+            await self.claim_after_precise_sync(ws)
+            self.mail.consume()
+            await asyncio.sleep(.08)  # Exercise the independent server watchdog too.
+            await ws.send_json(dict(type='intent',seq=1,left=0,right=0,client_ms=time.monotonic()*1000))
+            self.assertEqual((await ws.receive_json())['type'],'ack')
+            self.assertIsNotNone(self.server.gate.owner)
+            self.assertEqual(self.mail.consume()[0],'intent')
+        self.assertIsNone(self.server.gate.owner)
+
     async def test_video_only_websocket_cannot_claim_or_deliver_intent(self):
         self.runner.control_available=False
         async with self.client.ws_connect(self.base+'/api/control',headers=self.auth) as ws:
@@ -322,7 +339,7 @@ class HTTPTests(unittest.IsolatedAsyncioTestCase):
         asyncio.get_running_loop().set_debug(False)
         from types import SimpleNamespace
         self.tmp=tempfile.TemporaryDirectory();self.hub=VideoHub();self.mail=IntentMailbox()
-        self.runner=SimpleNamespace(output_dir=Path(self.tmp.name),status_snapshot=lambda:{'running':True,'motion_allowed':False},
+        self.runner=SimpleNamespace(log=lambda event:None,output_dir=Path(self.tmp.name),status_snapshot=lambda:{'running':True,'motion_allowed':False},
                                     reset_interconnect_test=lambda:{'state':'collecting','samples':0})
         self.server=WirelessServer(self.runner,self.hub,self.mail,'127.0.0.1',0)
         await self.server.start_async();self.base=f'http://127.0.0.1:{self.server.port}'

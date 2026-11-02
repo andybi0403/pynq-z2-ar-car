@@ -49,7 +49,7 @@ class ProductionHybridTests(unittest.TestCase):
             self.send(hybrid_frame('Q1',123,seq),now)
             self.send(hybrid_frame('D1',123,seq,500,500),now)
         self.assertEqual(self.s.sample_ms,400)
-        self.assertTrue(self.s.latched);self.assertTrue(self.s.reason&8)
+        self.assertFalse(self.s.latched);self.assertFalse(self.s.reason&8)
     def test_corruption_and_wrong_session_lock_actual_outputs(self):
         self.arm();self.send(hybrid_frame('D1',123,2,600,600),400)
         packet=hybrid_frame('D1',123,3,600,600).replace(b'600',b'601',1)

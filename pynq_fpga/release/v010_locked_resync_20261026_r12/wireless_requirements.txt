@@ -1,2 +1,0 @@
-aiohttp>=3.12,<4
-# Use the PYNQ image's NumPy/PYNQ installation; do not replace its system ABI.

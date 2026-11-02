@@ -58,6 +58,11 @@ class StartupTests(unittest.TestCase):
 
     def test_video_only_never_constructs_uart_or_applies_readiness_gate(self):
         self.video_only_case([])
+    def test_720p_snapshot_cadence_matches_query_period(self):
+        with patch.object(runtime,'PROFILE','wireless720_jpeg'):
+            self.video_only_case([])
+    def test_video_only_service_can_run_until_explicit_stop(self):
+        self.video_only_case(['--duration','0'])
     def test_headless_does_not_construct_browser_or_discover_network(self):
         with patch('socket.socket') as socket:
             self.video_only_case(['--headless'])
@@ -77,12 +82,13 @@ class StartupTests(unittest.TestCase):
                  patch.object(runtime,'validate_ip_dict'),patch.object(runtime,'PerceptionClient',return_value=client), \
                  patch.object(runtime,'PynqMMIO'),patch.object(runtime,'wait_for_acquisition') as ready, \
                  patch.object(runtime,'session_identity',return_value={}),patch('pynq_link.HybridCarLink') as uart, \
-                 patch.object(runtime,'WirelessBoardVideo'),patch.object(runtime,'Camera'), \
+                 patch.object(runtime,'WirelessBoardVideo'),patch.object(runtime,'HardwareJpegBoardVideo'),patch.object(runtime,'Camera'), \
                  patch.object(runtime,'VideoOnlyRunner',return_value=runner),patch.object(runtime,'WirelessServer') as server:
                 server.return_value.__enter__.return_value=SimpleNamespace(port=8080,token='offline')
                 self.assertEqual(runtime.main(['--video-only','--native',str(native),'--evidence-dir',str(Path(tmp)/'session')]+extra),0)
                 uart.assert_not_called();ready.assert_not_called()
-                runner.run.assert_called_once_with(1800)
+                runner.run.assert_called_once_with(0 if '--duration' in extra else 1800)
+                self.assertEqual(runtime.VideoOnlyRunner.call_args.kwargs['interval_s'],.1 if runtime.PROFILE=='wireless360' else .05)
                 if '--headless' in extra:server.assert_not_called()
     def test_video_only_rejects_calibration_before_hardware(self):
         with patch.object(runtime,'verify_package') as verify:
@@ -92,16 +98,15 @@ class StartupTests(unittest.TestCase):
         with patch.object(runtime,'verify_package') as verify:
             with self.assertRaises(SystemExit) as error:runtime.main(['--motor-disconnected','--video-mode','manual','--fps','23'])
             self.assertEqual(error.exception.code,2);verify.assert_not_called()
-    def test_calibration_precedes_readiness_after_new_overlay(self):
-        events=[];config=MagicMock();config.apply.side_effect=lambda *a,**k:events.append('calibration')
-        config.payload.return_value={'source':'offline fixture'}
+    def test_plain_motor_readiness_follows_new_overlay(self):
+        events=[];config=MagicMock()
         client=MagicMock();runner=MagicMock();runner.run.return_value={'passed':True}
         library=SimpleNamespace(lib=SimpleNamespace(wv_version=lambda:b'car-video/2;libjpeg-turbo/3.1.2'))
         with tempfile.TemporaryDirectory() as tmp:
             native=Path(tmp)/'native.fixture';native.write_bytes(b'fixture')
             with patch.object(runtime,'verify_package'),patch.object(runtime,'verify_wireless',return_value={}), \
                  patch.object(runtime,'NativeLibrary',return_value=library),patch.object(runtime,'DeviceLease'), \
-                 patch.object(runtime,'open_verified_overlay',return_value=SimpleNamespace(ip_dict={})), \
+                 patch.object(runtime,'open_verified_overlay',side_effect=lambda *a:events.append('overlay') or SimpleNamespace(ip_dict={})), \
                  patch.object(runtime,'validate_ip_dict'),patch.object(runtime,'PerceptionClient',return_value=client), \
                  patch.object(runtime,'PynqMMIO'),patch.object(runtime.CalibrationConfig,'load',return_value=config), \
                  patch.object(runtime,'wait_for_acquisition',side_effect=lambda c,**kw:events.append('ready') or {}), \
@@ -109,8 +114,14 @@ class StartupTests(unittest.TestCase):
                  patch.object(runtime,'WirelessBoardVideo'),patch.object(runtime,'Camera'), \
                  patch.object(runtime,'WirelessRunner',return_value=runner),patch.object(runtime,'WirelessServer') as server:
                 server.return_value.__enter__.return_value=SimpleNamespace(port=8080,token='offline')
-                self.assertEqual(runtime.main(['--motor-disconnected','--calibration','fixture','--native',str(native),'--evidence-dir',str(Path(tmp)/'session')]),0)
-            self.assertEqual(events,['calibration','ready']);config.apply.assert_called_once_with(client,motor_disconnected=True)
+                self.assertEqual(runtime.main(['--motor-disconnected','--native',str(native),'--evidence-dir',str(Path(tmp)/'session')]),0)
+            self.assertEqual(events,['overlay','ready']);config.apply.assert_not_called()
+
+    def test_plain_motor_rejects_encoder_calibration_before_hardware(self):
+        with patch.object(runtime,'verify_package') as verify:
+            with self.assertRaises(SystemExit) as error:
+                runtime.main(['--motor-disconnected','--calibration','fixture'])
+            self.assertEqual(error.exception.code,2);verify.assert_not_called()
 
 
 if __name__=='__main__':unittest.main()

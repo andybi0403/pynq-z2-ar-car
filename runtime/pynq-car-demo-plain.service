@@ -1,0 +1,16 @@
+[Unit]
+Description=PYNQ ordinary-motor first demonstration (independent profile)
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/xilinx/v013_plain_motor_demo_20261028_r7
+Environment=SENSOR_CONSOLE_MOTOR_MODE=connected
+ExecStart=/bin/sh /home/xilinx/v013_plain_motor_demo_20261028_r7/start_console.sh --video-mode manual --fps 10 --quality 65
+Restart=no
+TimeoutStopSec=15
+KillMode=control-group
+
+[Install]
+WantedBy=multi-user.target

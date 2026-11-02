@@ -1,6 +1,7 @@
 """Headless 720p capture -> PL -> JPEG, with independent control ownership."""
 from contextlib import ExitStack
 import argparse
+import sys
 import hashlib
 import json
 import math
@@ -15,10 +16,14 @@ from system_runtime import (JointRunner,DeviceLease,open_verified_overlay,valida
     EvidenceSession,write_new_json)
 from lab_acceptance import verify_package
 from native_video import NativeLibrary,Camera,Codec,CameraWarmingUp,CameraFrameRejected
+from video_profile import PROFILE,WIDTH,HEIGHT,MAX_FRAME_AGE_NS
 from wireless_core import VideoHub,IntentMailbox,EncodedFrame
 from wireless_dma import WirelessBoardVideo,audit_wireless_hwh
+from wireless_jpeg_dma import HardwareJpegBoardVideo
+from jpeg_parallel import Parallel720Decoder
 from wireless_server import WirelessServer
 from frame_metadata import encode,prefix_bgr0
+from tactical_state import state_from_registers
 from calibration_config import CalibrationConfig
 from qei_quality import BENCH_FILTER_TICKS
 from motion_display import MeasuredDriveModel
@@ -27,16 +32,17 @@ from perception_replay import snapshot_registers
 
 HERE=Path(__file__).resolve().parent
 WIRELESS_FILES=('wireless_runtime.py','wireless_core.py','wireless_dma.py','wireless_server.py',
+                'wireless_jpeg_dma.py','jpeg_parallel.py',
                 'wireless_policy.py','wireless_player.js',
-                'native_video.py','wireless_page.html','wireless_benchmark.py','wireless_requirements.txt',
-                'native/CMakeLists.txt','native/car_video.c','WIRELESS_SETUP.md',
+                'video_profile.py','tactical_state.py','native_video.py','wireless_page.html','wireless_benchmark.py','wireless_requirements.txt',
+                'native/CMakeLists.txt','native/car_video.c','native/libcar_video.so','native/build_receipt.json','WIRELESS_SETUP.md',
                 'start_sensor_console.sh','SENSOR_CONSOLE_GUIDE.md','console_launcher.html','prepare_console.py',
-                'console_backend.py','console_ui.js','trial_control.py','start_console.sh')
+                'console_backend.py','console_ui.js','trial_control.py','start_console.sh','demo_mileage.json')
 
 
 def verify_wireless(manifest,hwh):
     package=json.loads(Path(manifest).read_text(encoding='utf-8-sig'))
-    if package.get('video_profile')!='wireless720':raise ValueError('a wireless720 candidate is required')
+    if package.get('video_profile')!=PROFILE:raise ValueError('candidate video profile must match process profile')
     hashes=package.get('wireless_files',{})
     if set(hashes)!=set(WIRELESS_FILES):raise ValueError('wireless source inventory mismatch')
     for name,expected in hashes.items():
@@ -55,6 +61,8 @@ class WirelessRunner(JointRunner):
         super().__init__(*args,**kwargs);self.native=native;self.hub=hub
         self.children=[];self.pipeline_safe=True;self.video_shutdown_confirmed=True
         self.jpeg_profile=jpeg_profile
+        self.tactical_enabled=True
+        self.hardware_jpeg=bool(getattr(self.video,'hardware_jpeg',False))
         self.decode_dct=decode_dct;self.reuse_decoder=reuse_decoder
         self.cpu_wall=time.monotonic();self.cpu_time=time.process_time()
         self.system_cpu_previous=None
@@ -63,10 +71,21 @@ class WirelessRunner(JointRunner):
     def status_snapshot(self):
         result=super().status_snapshot()
         with self._state_lock:result['video_faults']=list(self.video_faults)
+        result['journal']=self.journal_status()
         return result
 
     def step(self):
         super().step()
+        if self.link is not None and hasattr(self.link,'diagnostics'):
+            diagnostic=self.link.diagnostics()
+            if diagnostic.get('transport_error') and diagnostic.get('running') is False:
+                # A dead UART worker cannot recover by continuing stale polls.
+                # Exit through normal STOP/cleanup; systemd starts a new locked
+                # session. Neither ownership nor cached intent crosses restart.
+                self.control.stop()
+                if self.intent_mailbox is not None:self.intent_mailbox.stop()
+                self.fail('STM32 transport worker terminated: '+str(diagnostic['transport_error']))
+                return
         resets = getattr(self.link,'locked_resync_count',0)
         if resets != getattr(self,'_logged_locked_resyncs',0):
             self.control.stop()
@@ -101,19 +120,32 @@ class WirelessRunner(JointRunner):
             process_percent=(cpu-self.cpu_time)/elapsed*50
             self.hub.record_cpu({'two_core_percent':process_percent,
                                   'system_total_percent':system_percent,
-                                  'memory':memory,'dma_reserved_bytes':7*1280*720*4,
+                                  'memory':memory,'dma_reserved_bytes':getattr(self.video,'reserved_bytes',7*WIDTH*HEIGHT*4),
                                   'interval_s':elapsed,'scope':'process + Linux aggregate /proc/stat'})
             self.hub.policy.observe(backlogged=process_percent>80 or (system_percent is not None and system_percent>80),source='cpu')
             self.cpu_wall=now;self.cpu_time=cpu
-            self.log({'type':'wireless_performance','host_monotonic_ns':time.monotonic_ns(),**self.hub.stats()})
+            self.log({'type':'wireless_performance','host_monotonic_ns':time.monotonic_ns(),**self.hub.cached_stats()})
+
+    def stop_for_video_fault(self):
+        # The ordinary-motor console permits local, line-of-sight driving.
+        # Video validity stays honest; actuator/sensor/intent guards are independent.
+        if getattr(self,'video_required_for_control',True):self.intent_mailbox.stop()
 
     def _video_loop(self):
-        captured=queue.Queue(maxsize=1);jobs=queue.Queue(maxsize=3);free=queue.Queue(maxsize=3)
+        captured=queue.Queue(maxsize=1);jobs=queue.Queue(maxsize=1);free=queue.Queue(maxsize=3)
         def put_until_stop(target,item):
             while not self.stop_event.is_set():
                 try:target.put(item,timeout=.05);return True
                 except queue.Full:pass
             return False
+        decode_admission=threading.Lock();last_queued_id=[-1]
+        def put_frame_job(job):
+            if not self.hardware_jpeg:return put_until_stop(jobs,job)
+            with decode_admission:
+                if job[0]<=last_queued_id[0]:
+                    self.hub.observe('decode_completion_superseded');return False
+                if not put_until_stop(jobs,job):return False
+                last_queued_id[0]=job[0];return True
         def capture():
             previous_dropped=0;backoff=.25
             while not self.stop_event.is_set():
@@ -126,9 +158,10 @@ class WirelessRunner(JointRunner):
                             except CameraFrameRejected as exc:
                                 self.hub.observe('camera_frame_rejected')
                                 self.hub.set_error('capture frame: '+exc.reason)
-                                self.intent_mailbox.stop()
+                                self.stop_for_video_fault()
                                 self.log_frame_fault(exc.reason,exc.frame_id,exc.jpeg,exc.diagnostics)
                                 continue
+                            item[3].user_received_host_ns=time.monotonic_ns()
                             self.hub.observe('captured');backoff=.25
                             self.hub.observe('camera_dropped',amount=self.source.dropped-previous_dropped)
                             previous_dropped=self.source.dropped
@@ -139,15 +172,15 @@ class WirelessRunner(JointRunner):
                                 captured.put_nowait(item)
                 except Exception as exc:
                     if self.stop_event.is_set():return
-                    self.hub.set_error('capture: '+str(exc));self.intent_mailbox.stop()
+                    self.hub.set_error('capture: '+str(exc));self.stop_for_video_fault()
                     fault={'type':'wireless_video_fault','host_monotonic_ns':time.monotonic_ns(),
-                           'reason':str(exc),'action':'revoke_remote_intent_and_retry_camera'}
+                           'reason':str(exc),'action':'retry_camera_video_optional' if not getattr(self,'video_required_for_control',True) else 'revoke_remote_intent_and_retry_camera'}
                     with self._state_lock:self.video_faults.append(fault)
                     self.log(fault);self.hub.observe('camera_reconnects')
                     self.stop_event.wait(backoff);backoff=min(2,backoff*2)
         def encoder():
             try:
-                with Codec(self.native) as codec:
+                with (nullcontext(None) if self.hardware_jpeg else Codec(self.native)) as codec:
                     while not self.stop_event.is_set():
                         try:
                             job=jobs.get(timeout=.05)
@@ -160,13 +193,26 @@ class WirelessRunner(JointRunner):
                         except queue.Empty:continue
                         frame_id,stamp,jpeg,historical,index=job
                         processed=None
+                        if time.monotonic_ns()-stamp>MAX_FRAME_AGE_NS:
+                            if index is not None:free.put_nowait(index)
+                            self.hub.observe('encode_age_rejected');continue
                         if index is not None:
                             try:
                                 started=time.monotonic_ns()
                                 historical['encode_started_host_ns']=started
-                                historical['PL_done_to_encode_start_ms']=(started-historical['pl_completed_host_ns'])/1e6
-                                self.hub.observe('encode_wait',historical['PL_done_to_encode_start_ms'],amount=0)
-                                processed=codec.encode(self.video.outputs[index],quality=historical['jpeg_quality'],profile=self.jpeg_profile)
+                                if self.hardware_jpeg:
+                                    historical['submitted_host_ns']=started
+                                    historical['receive_to_submit_ms']=(started-stamp)/1e6
+                                    historical['decode_to_PL_start_ms']=(started-historical['decode_completed_host_ns'])/1e6
+                                    processed=self.video.dma.transfer(frame_id,self.video.inputs[index],self.video.outputs[index],quality=historical['jpeg_quality'])
+                                    historical.update(processing_state='real_PL_JPEG_DMA',pl_completed_host_ns=time.monotonic_ns(),dma_timing_ms=self.video.dma.last_timings)
+                                    historical['pl_process_ms']=(historical['pl_completed_host_ns']-started)/1e6
+                                    self.hub.observe('processed',historical['pl_process_ms'])
+                                    self.association_metrics.observe(historical)
+                                else:
+                                    historical['PL_done_to_encode_start_ms']=(started-historical['pl_completed_host_ns'])/1e6
+                                    self.hub.observe('encode_wait',historical['PL_done_to_encode_start_ms'],amount=0)
+                                    processed=codec.encode(self.video.outputs[index],quality=historical['jpeg_quality'],profile=self.jpeg_profile)
                                 cost=(time.monotonic_ns()-started)/1e6
                                 historical['encode_ms']=cost
                                 self.hub.observe('encoded',cost);self.hub.policy.observe(cost_ms=cost,source='encode')
@@ -175,6 +221,9 @@ class WirelessRunner(JointRunner):
                         historical['capture_to_encoded_ms']=(historical['encoded_host_ns']-stamp)/1e6
                         if self.stop_event.is_set():
                             break
+                        if historical['encoded_host_ns']-stamp>MAX_FRAME_AGE_NS:
+                            self.hub.observe('publication_age_rejected');continue
+                        historical['published_host_ns']=time.monotonic_ns()
                         if not self.hub.publish(EncodedFrame(frame_id,stamp,jpeg,processed,historical)):
                             self.hub.observe('stale_completed_frame')
                             continue
@@ -182,68 +231,91 @@ class WirelessRunner(JointRunner):
                         self.log({'type':'wireless_frame',**historical})
             except Exception as exc:
                 if not self.stop_event.is_set():self.fail('encoder: '+str(exc));self.hub.close(str(exc))
+        def decode_frames():
+            try:
+                decoder_context=Codec(self.native,decode_dct=self.decode_dct,reuse_decoder=True if self.hardware_jpeg else self.reuse_decoder,
+                                      decode_upsampling='merged' if self.hardware_jpeg else 'fancy')
+                with decoder_context as decoder:
+                    input_index=0
+                    while not self.stop_event.is_set():
+                        # Leave the capture slot replacing old images while the
+                        # encoder has a waiting job. Do not spend decode/PL time
+                        # producing more output that will only be superseded.
+                        if jobs.full():
+                            self.stop_event.wait(.005)
+                            continue
+                        try:frame_id,stamp,jpeg,info=captured.get(timeout=.05)
+                        except queue.Empty:continue
+                        if time.monotonic_ns()-stamp>100_000_000:
+                            self.hub.observe('decode_dropped');self.hub.observe('capture_age_rejected');continue
+                        if not self.hub.policy.admit(force=self.hub.snapshot_requested):
+                            self.hub.observe('rate_limited');continue
+                        historical=self.associator.associate(frame_id,stamp)
+                        settings=self.hub.policy.settings()
+                        historical.update(captured_monotonic_ns=stamp,user_received_host_ns=getattr(info,'user_received_host_ns',stamp),
+                            jpeg_quality=settings['jpeg_quality'],
+                            jpeg_profile=self.jpeg_profile,
+                            jpeg_subsampling='4:2:2' if self.hardware_jpeg else '4:2:0' if self.jpeg_profile in ('balanced','balanced_fast') or (self.jpeg_profile=='legacy' and settings['jpeg_quality']<85) else '4:4:4',
+                            output_fps=settings['output_fps'],
+                            timestamp_scope='V4L2_monotonic_capture_timestamp_not_measured_exposure',
+                            capture_sequence=info.sequence,negotiated_width=info.width,negotiated_height=info.height,
+                            capture_generation=getattr(self.source,'generation',0),
+                            negotiated_fps=info.fps_den/info.fps_num,processing_state='raw_passthrough')
+                        if not historical['valid']:
+                            # The camera may return a pre-session queued frame; do not attach future sensors.
+                            self.hub.observe('decode_dropped');self.hub.observe('association_rejected');continue
+                        index=None
+                        if self.hub.needs_encode():
+                            try:index=free.get(timeout=.05)
+                            except queue.Empty:
+                                self.hub.observe('encode_dropped');self.hub.policy.observe(backlogged=True,source='pipeline');continue
+                            source=self.video.inputs[index if self.hardware_jpeg else input_index];input_index=(input_index+1)%3
+                            try:
+                                started=time.monotonic_ns()
+                                historical['decode_started_host_ns']=started
+                                try:decoder.decode_into(jpeg,source)
+                                except RuntimeError as exc:
+                                    free.put_nowait(index);self.hub.observe('corrupt_jpeg')
+                                    self.hub.set_error('decode: '+str(exc));self.stop_for_video_fault()
+                                    self.log_frame_fault(str(exc),frame_id,jpeg,{'capture_sequence':info.sequence,'v4l2_flags':info.flags})
+                                    continue
+                                historical['decode_completed_host_ns']=time.monotonic_ns()
+                                historical['decode_ms']=(historical['decode_completed_host_ns']-started)/1e6
+                                self.hub.observe('decoded',historical['decode_ms'])
+                                self.hub.observe('jpeg_restart_padding_warnings',amount=decoder.restart_padding_warnings)
+                                historical['tactical_enabled']=self.tactical_enabled
+                                words=encode(historical);prefix=prefix_bgr0(words)
+                                memoryview(source).cast('B')[:len(prefix)]=prefix
+                                if self.hardware_jpeg:
+                                    historical.update(display_metadata_words=words,processing_state='decoded_awaiting_PL_JPEG')
+                                    if not put_frame_job((frame_id,stamp,jpeg,historical,index)):
+                                        free.put_nowait(index)
+                                    continue
+                                started=time.monotonic_ns()
+                                historical['submitted_host_ns']=started
+                                historical['receive_to_submit_ms']=(started-stamp)/1e6
+                                self.video.dma.transfer(frame_id,source,self.video.outputs[index])
+                                historical['pl_process_ms']=(time.monotonic_ns()-started)/1e6
+                                self.hub.observe('processed',historical['pl_process_ms'])
+                                historical.update(processing_state='real_PL_S2MM',pl_completed_host_ns=time.monotonic_ns(),
+                                                  display_metadata_words=words,dma_timing_ms=getattr(self.video.dma,'last_timings',{}))
+                                self.association_metrics.observe(historical)
+                            except Exception:
+                                free.put_nowait(index);raise
+                        if not put_frame_job((frame_id,stamp,jpeg,historical,index)):
+                            if index is not None:free.put_nowait(index)
+            except Exception as exc:
+                if not self.stop_event.is_set():self.fail('wireless decode: '+str(exc));self.hub.close(str(exc))
         try:
             self.video_shutdown_confirmed=False
             self.video.start()
             for index in range(3):free.put_nowait(index)
             self.children=[threading.Thread(target=capture,name='uvc-capture',daemon=True),
                            threading.Thread(target=encoder,name='jpeg-encode',daemon=True)]
+            if self.hardware_jpeg:
+                self.children.append(threading.Thread(target=decode_frames,name='jpeg-decode-2',daemon=True))
             for child in self.children:child.start()
-            with Codec(self.native,decode_dct=self.decode_dct,reuse_decoder=self.reuse_decoder) as decoder:
-                input_index=0
-                while not self.stop_event.is_set():
-                    try:frame_id,stamp,jpeg,info=captured.get(timeout=.05)
-                    except queue.Empty:continue
-                    if time.monotonic_ns()-stamp>100_000_000:
-                        self.hub.observe('decode_dropped');self.hub.observe('capture_age_rejected');continue
-                    if not self.hub.policy.admit(force=self.hub.snapshot_requested):
-                        self.hub.observe('rate_limited');continue
-                    historical=self.associator.associate(frame_id,stamp)
-                    settings=self.hub.policy.settings()
-                    historical.update(captured_monotonic_ns=stamp,
-                        jpeg_quality=settings['jpeg_quality'],
-                        jpeg_profile=self.jpeg_profile,
-                        jpeg_subsampling='4:2:0' if self.jpeg_profile in ('balanced','balanced_fast') or (self.jpeg_profile=='legacy' and settings['jpeg_quality']<85) else '4:4:4',
-                        output_fps=settings['output_fps'],
-                        timestamp_scope='V4L2_monotonic_capture_timestamp_not_measured_exposure',
-                        capture_sequence=info.sequence,negotiated_width=info.width,negotiated_height=info.height,
-                        capture_generation=getattr(self.source,'generation',0),
-                        negotiated_fps=info.fps_den/info.fps_num,processing_state='raw_passthrough')
-                    if not historical['valid']:
-                        # The camera may return a pre-session queued frame; do not attach future sensors.
-                        self.hub.observe('decode_dropped');self.hub.observe('association_rejected');continue
-                    index=None
-                    if self.hub.needs_encode():
-                        try:index=free.get(timeout=.05)
-                        except queue.Empty:
-                            self.hub.observe('encode_dropped');self.hub.policy.observe(backlogged=True,source='pipeline');continue
-                        source=self.video.inputs[input_index];input_index=(input_index+1)%3
-                        try:
-                            started=time.monotonic_ns()
-                            try:decoder.decode_into(jpeg,source)
-                            except RuntimeError as exc:
-                                free.put_nowait(index);self.hub.observe('corrupt_jpeg')
-                                self.hub.set_error('decode: '+str(exc));self.intent_mailbox.stop()
-                                self.log_frame_fault(str(exc),frame_id,jpeg,{'capture_sequence':info.sequence,'v4l2_flags':info.flags})
-                                continue
-                            historical['decode_ms']=(time.monotonic_ns()-started)/1e6
-                            self.hub.observe('decoded',historical['decode_ms'])
-                            self.hub.observe('jpeg_restart_padding_warnings',amount=decoder.restart_padding_warnings)
-                            words=encode(historical);prefix=prefix_bgr0(words)
-                            memoryview(source).cast('B')[:len(prefix)]=prefix
-                            started=time.monotonic_ns()
-                            historical['submitted_host_ns']=started
-                            historical['receive_to_submit_ms']=(started-stamp)/1e6
-                            self.video.dma.transfer(frame_id,source,self.video.outputs[index])
-                            historical['pl_process_ms']=(time.monotonic_ns()-started)/1e6
-                            self.hub.observe('processed',historical['pl_process_ms'])
-                            historical.update(processing_state='real_PL_S2MM',pl_completed_host_ns=time.monotonic_ns(),
-                                              display_metadata_words=words,dma_timing_ms=getattr(self.video.dma,'last_timings',{}))
-                            self.association_metrics.observe(historical)
-                        except Exception:
-                            free.put_nowait(index);raise
-                    if not put_until_stop(jobs,(frame_id,stamp,jpeg,historical,index)):
-                        if index is not None:free.put_nowait(index)
+            decode_frames()
         except Exception as exc:
             if not self.stop_event.is_set():self.fail('wireless video: '+str(exc));self.hub.close(str(exc))
         finally:
@@ -286,6 +358,9 @@ class VideoOnlyRunner(WirelessRunner):
     control_available = False
 
     def step(self):
+        # Keep display risk snapshots clocked while explicitly invalidating
+        # driving intent. This writes PL only; no UART or actuator is opened.
+        self.client.set_command(forward=False,valid=False)
         _, shot, _ = self.client.sample_and_decide()
         before = time.monotonic_ns()
         ticks = self.client.read_pl_ticks64()
@@ -300,6 +375,7 @@ class VideoOnlyRunner(WirelessRunner):
                  'epoch':shot.epoch,'registers':registers,'clock_anchor':anchor,
                  'status':{'published_monotonic_ns':after,'car_valid':False,
                            'distance_valid':False,'speed_valid':False,
+                           'ultrasonic_processing':state_from_registers(registers,ticks),
                            'odometry_valid':False,'pl_stop':None,'motion_display':presentation},
                  'control':'unavailable_in_video_only_session'}
         with self._state_lock:
@@ -318,8 +394,8 @@ class VideoOnlyRunner(WirelessRunner):
         raise RuntimeError('video-only session cannot control or calibrate hardware')
 
     def run(self, duration_s):
-        if not math.isfinite(duration_s) or duration_s <= 0:
-            raise ValueError('positive finite duration required')
+        if not math.isfinite(duration_s) or duration_s < 0:
+            raise ValueError('nonnegative finite duration required; zero runs until stopped')
         if self.evidence_session is None:
             self.evidence_session = EvidenceSession(self.output_dir)
         started = time.monotonic()
@@ -334,7 +410,7 @@ class VideoOnlyRunner(WirelessRunner):
             self.step()
             self._worker=threading.Thread(target=self._video_loop,name='video-pipeline',daemon=True)
             self._worker.start()
-            while time.monotonic()-started<duration_s and not self.stop_event.wait(self.interval_s):
+            while (duration_s==0 or time.monotonic()-started<duration_s) and not self.stop_event.wait(self.interval_s):
                 self.step()
         except KeyboardInterrupt:
             self.fail('operator interrupted video session')
@@ -360,19 +436,19 @@ class VideoOnlyRunner(WirelessRunner):
         return result
 
 
-def main(argv=None):
+def _run_main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--bit',type=Path,default=HERE/'task7_8_LAB_ONLY.bit')
     parser.add_argument('--hwh',type=Path,default=HERE/'task7_8_LAB_ONLY.hwh')
     parser.add_argument('--manifest',type=Path,default=HERE/'lab_manifest.json')
-    parser.add_argument('--native',type=Path,default=HERE/'native-build/libcar_video.so')
+    parser.add_argument('--native',type=Path,default=HERE/'native/libcar_video.so')
     parser.add_argument('--camera-device',default='/dev/video0');parser.add_argument('--port',default='/dev/ttyPS1')
     parser.add_argument('--bind',default='0.0.0.0');parser.add_argument('--web-port',type=int,default=8080)
     parser.add_argument('--duration',type=float,default=1800)
     parser.add_argument('--video-mode',choices=['auto','manual','fixed'],default='auto')
     parser.add_argument('--fps',type=int,default=30)
     parser.add_argument('--quality',type=int,default=85)
-    parser.add_argument('--jpeg-profile',choices=['balanced','balanced_fast','detail','legacy'],default='balanced')
+    parser.add_argument('--jpeg-profile',choices=['balanced','balanced_fast','detail','legacy','hardware_422'],default='balanced')
     parser.add_argument('--decode-dct',choices=['islow','ifast'],default='islow')
     parser.add_argument('--reuse-decoder',action='store_true')
     parser.add_argument('--calibration',type=Path,help='existing versioned wheel calibration JSON')
@@ -387,6 +463,8 @@ def main(argv=None):
     parser.add_argument('--headless',action='store_true',help='run without browser server or network address discovery')
     parser.add_argument('--evidence-dir',type=Path,default=HERE/'evidence/wireless')
     args=parser.parse_args(argv)
+    if PROFILE=='wireless720_jpeg':args.jpeg_profile='hardware_422'
+    elif args.jpeg_profile=='hardware_422':parser.error('hardware JPEG requires its matching FPGA profile')
     if sum((args.motor_disconnected,args.motor_connected_zero_output,args.motor_connected))>1:parser.error('select one physical motor state')
     if args.motor_connected and not args.full_console:parser.error('--motor-connected requires --full-console')
     if args.full_console and (args.video_only or args.headless or args.motor_connected_zero_output):parser.error('full console requires connected sensors and browser service')
@@ -395,12 +473,13 @@ def main(argv=None):
     if args.motor_connected and args.calibration:parser.error('apply calibration with physically disconnected motors first; use console workflow')
     if args.video_only and args.calibration:parser.error('video-only sessions cannot apply calibration')
     if args.display_stationary and not args.motor_disconnected:parser.error('stationary display requires --motor-disconnected')
-    if not math.isfinite(args.duration) or args.duration<=0:parser.error('positive finite duration required')
+    if not math.isfinite(args.duration) or args.duration<0 or (args.duration==0 and not (args.full_console or args.video_only)):parser.error('positive finite duration required; console and video-only permit 0 for no session timer')
     if not 0<=args.web_port<=65535:parser.error('web port must be 0..65535')
     hub=VideoHub()
     try:hub.policy.configure({'mode':args.video_mode,'fps':args.fps,'quality':args.quality})
     except ValueError as exc:parser.error(str(exc))
-    calibration=CalibrationConfig.load(args.calibration) if args.calibration else None
+    if args.calibration or args.display_model or args.display_stationary:parser.error('demo profile uses its dedicated estimated-mileage configuration')
+    calibration=None
     display_model=MeasuredDriveModel.load(args.display_model) if args.display_model else None
     verify_package(args.bit,args.hwh,args.manifest);hashes=verify_wireless(args.manifest,args.hwh)
     if args.full_console:
@@ -413,8 +492,6 @@ def main(argv=None):
         overlay=open_verified_overlay(args.bit,args.hwh);validate_ip_dict(overlay.ip_dict)
         client=PerceptionClient(PynqMMIO(CONTROL_BASE,CONTROL_LENGTH));client.verify_contract()
         if calibration:calibration.apply(client,motor_disconnected=True)
-        elif args.motor_disconnected and not (client.io.read32(reg.QEI0_SCALE) or client.io.read32(reg.QEI1_SCALE)):
-            client.configure_qei_filters(BENCH_FILTER_TICKS,BENCH_FILTER_TICKS,motor_disconnected=True)
         link=None
         if not args.video_only:
             from pynq_link import HybridCarLink
@@ -439,17 +516,21 @@ def main(argv=None):
         else:
             client.io.write32(reg.EXT_SENSOR_MODE,1)
             startup={'scope':'video_only','control_readiness_tested':False}
-        identity=session_identity(args.bit,args.hwh,args.manifest,calibration.payload() if calibration else {'source':'live registers; physical calibration pending'})
+        identity=session_identity(args.bit,args.hwh,args.manifest,calibration.payload() if calibration else {'source':'plain_motor_demo','encoder_required':False,'measured':False})
         identity.update(wireless_sources=hashes,native_binary_sha256=hashlib.sha256(args.native.read_bytes()).hexdigest(),
-                        native_version=native.lib.wv_version().decode(),video_profile='wireless720')
+                        native_version=native.lib.wv_version().decode(),video_profile=PROFILE)
         identity['sensor_source']='stm32_uart_v3'
         mailbox=TrialMailbox() if args.full_console else IntentMailbox()
         runner_class=ConsoleRunner if args.full_console else VideoOnlyRunner if args.video_only else WirelessRunner
-        runner=runner_class(client,link,video=WirelessBoardVideo(overlay),source=Camera(native,args.camera_device),
+        video_class=HardwareJpegBoardVideo if PROFILE=='wireless720_jpeg' else WirelessBoardVideo
+        runner=runner_class(client,link,video=video_class(overlay),source=Camera(native,args.camera_device),
               native=native,hub=hub,jpeg_profile=args.jpeg_profile,decode_dct=args.decode_dct,reuse_decoder=args.reuse_decoder,
               intent_mailbox=mailbox,output_dir=args.evidence_dir,identity=identity,hardware=True,
               display_model=display_model,display_stationary=args.display_stationary,evidence_session=evidence_session,
-              motor_disconnected=args.motor_disconnected,diagnostic_timing=args.diagnostic_startup)
+              motor_disconnected=args.motor_disconnected,diagnostic_timing=args.diagnostic_startup,
+              # Match the 20Hz UART query cadence. At 10Hz, a healthy older
+              # sample can expire between commits and repeatedly reset median3.
+              interval_s=.1 if PROFILE=='wireless360' else .05)
         runner.startup_readiness=startup
         write_new_json(args.evidence_dir/'startup_readiness.json', startup)
         invoked=False
@@ -478,5 +559,16 @@ def main(argv=None):
         write_new_json(args.evidence_dir/'wireless_summary.json', summary)
         return 0 if summary['passed'] else 1
 
+
+def main(argv=None):
+    # Native codec calls release the GIL. A shorter cooperative quantum limits
+    # delay when they reacquire it alongside telemetry, HTTP and journal work.
+    # Restore the embedding process's setting on every exit, including errors.
+    previous=sys.getswitchinterval()
+    try:
+        if PROFILE in ('wireless360','wireless720_jpeg'):sys.setswitchinterval(.001)
+        return _run_main(argv)
+    finally:
+        sys.setswitchinterval(previous)
 
 if __name__=='__main__':raise SystemExit(main())

@@ -1,4 +1,4 @@
-// A bounded 18-pixel prefix buffer; never stores a whole video frame.
+// A bounded 24-pixel prefix buffer; never stores a whole video frame.
 // Decoded historical state is stable before the replayed SOF handshake.
 // An invalid header explicitly invalidates metadata instead of reusing state.
 `resetall
@@ -16,13 +16,17 @@ module car_axis_frame_metadata(
  output reg [31:0] speed_q16,output reg speed_valid,
  output reg signed [63:0] displacement_q16,output reg [63:0] path_q16,
  output reg odometry_valid,output reg [1:0] risk_level,output reg risk_stop,
- output reg [15:0] risk_reasons,output reg [15:0] header_errors
+ output reg [15:0] risk_reasons,output reg [15:0] header_errors,
+ output wire [11:0] filtered_mm,output wire filter_valid,
+ output wire [1:0] filter_sample_count,output wire [1:0] trend_state,output wire trend_valid,
+ output wire [1:0] display_ir,output wire display_ir_valid,
+ output wire display_car_locked,display_car_valid,tactical_enabled
 );
  localparam [1:0] CAPTURE=0,REPLAY=1,STREAM=2;
  reg [1:0] state;
  reg [4:0] count,replay_index,buffer_length;
- reg [23:0] pixels[0:17];
- reg users[0:17],lasts[0:17];
+ reg [23:0] pixels[0:23];
+ reg users[0:23],lasts[0:23];
  reg [23:0] checksum;
  reg malformed;
  wire new_frame=state==STREAM && s_axis_tuser;
@@ -31,14 +35,27 @@ module car_axis_frame_metadata(
  assign m_axis_tdata=state==REPLAY ? (metadata_valid?24'd0:pixels[replay_index]):s_axis_tdata;
  assign m_axis_tuser=state==REPLAY ? users[replay_index]:s_axis_tuser;
  assign m_axis_tlast=state==REPLAY ? lasts[replay_index]:s_axis_tlast;
- wire header_ok=count==17 && !malformed && !s_axis_tuser && !s_axis_tlast &&
-  pixels[0]==24'hd3a95c && pixels[1]==24'h010012 &&
+ reg [1:0] sample_count;
+ assign filter_sample_count=metadata_valid?sample_count:2'd0;
+ reg [23:0] features;
+ reg [31:0] filter_latest,filter_oldest;
+ wire [31:0] latest_age=frame_pl_ticks[31:0]-filter_latest;
+ wire [31:0] oldest_age=frame_pl_ticks[31:0]-filter_oldest;
+ assign filtered_mm=features[11:0];
+ assign filter_valid=metadata_valid&&features[12]&&latest_age<32'd20_000_000&&oldest_age<32'd50_000_000;
+ assign trend_state=features[14:13];assign trend_valid=filter_valid&&features[15]&&trend_state!=0;
+ assign display_ir=features[17:16];assign display_ir_valid=metadata_valid&&features[18];
+ assign display_car_locked=features[19];assign display_car_valid=metadata_valid&&features[20];
+ assign tactical_enabled=metadata_valid&&features[21];
+ wire header_ok=count==23 && !malformed && !s_axis_tuser && !s_axis_tlast &&
+  pixels[0]==24'hd3a95c && pixels[1]==24'h030018 &&
   (checksum^s_axis_tdata)==24'hffffff &&
-  pixels[4][23:18]==0 && pixels[6][23:8]==0 && pixels[9][23:16]==0 &&
-  pixels[12][23:16]==0 && pixels[13][23:16]==0 && pixels[16][23:16]==0;
+  pixels[4][23:19]==0 && pixels[4][18]==1 && pixels[4][13]==0 && pixels[6][23:8]==0 && pixels[9][23:16]==0 &&
+  pixels[12][23:16]==0 && pixels[13][23:16]==0 && pixels[16][23:16]==0 && pixels[17][23:22]==0 && pixels[19][23:8]==0 && pixels[21][23:8]==0 && pixels[22][23:18]==0;
  always @(posedge clk) begin
   if(rst) begin
    state<=CAPTURE;count<=0;replay_index<=0;buffer_length<=0;checksum<=0;malformed<=0;
+   sample_count<=0;features<=0;filter_latest<=0;filter_oldest<=0;
    metadata_valid<=0;frame_id<=0;snapshot_epoch<=0;frame_pl_ticks<=0;
    distance_mm<=0;distance_valid<=0;speed_q16<=0;speed_valid<=0;
    displacement_q16<=0;path_q16<=0;odometry_valid<=0;risk_level<=3;risk_stop<=1;
@@ -62,10 +79,12 @@ module car_axis_frame_metadata(
     pixels[count]<=s_axis_tdata;users[count]<=s_axis_tuser;lasts[count]<=s_axis_tlast;
     checksum<=checksum^s_axis_tdata;
     if((count==0&&!s_axis_tuser)||(count!=0&&s_axis_tuser)) malformed<=1;
-    if(count==17 || s_axis_tlast) begin
+    if(count==23 || s_axis_tlast) begin
      state<=REPLAY;buffer_length<=count+1'b1;replay_index<=0;metadata_valid<=header_ok;
      count<=0;
      if(header_ok) begin
+      sample_count<=pixels[22][17:16];features<=pixels[17];filter_latest<={pixels[19][7:0],pixels[18]};
+      filter_oldest<={pixels[21][7:0],pixels[20]};
       frame_id<={pixels[3][7:0],pixels[2]};snapshot_epoch<=pixels[3][23:8];
       frame_pl_ticks<={pixels[16][15:0],pixels[15],pixels[14]};
       distance_mm<=pixels[4][11:0];distance_valid<=pixels[4][12];speed_valid<=pixels[4][13];

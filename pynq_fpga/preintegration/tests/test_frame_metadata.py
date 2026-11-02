@@ -3,7 +3,7 @@ import sys
 import unittest
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'host'))
-from frame_metadata import encode,decode,stamp_bgr0
+from frame_metadata import encode,decode,stamp_bgr0,WORDS
 
 
 def association():
@@ -28,22 +28,32 @@ class MetadataTests(unittest.TestCase):
             self.assertFalse(result['speed_valid'])
             self.assertTrue(result['distance_valid'])
 
-    def test_exact_wire_layout_signed_physics_and_64bit_time(self):
+    def test_exact_wire_layout_ordinary_motor_and_64bit_time(self):
         words=encode(association())
-        self.assertEqual(words[:17],[0xd3a95c,0x010012,0x345678,0xabcd12,0x00f3e8,
-                                    0xff0000,0x0000ff,0xfe0000,0xffffff,0x00ffff,
-                                    0x030000,0,0,0x000201,0xbcdef0,0x56789a,0x001234])
+        self.assertEqual(words[:17],[0xd3a95c,0x030018,0x345678,0xabcd12,0x0493e8,
+                                    0,0,0,0,0,0,0,0,0x000201,0xbcdef0,0x56789a,0x001234])
         decoded=decode(words)
-        self.assertEqual(decoded['speed_q16'],-65536)
-        self.assertEqual(decoded['displacement_q16'],-131072)
-        self.assertEqual(decoded['path_q16'],196608)
+        self.assertEqual(decoded['speed_q16'],0)
+        self.assertEqual(decoded['displacement_q16'],0)
+        self.assertEqual(decoded['path_q16'],0)
         self.assertEqual(decoded['frame_id'],0x12345678)
         self.assertEqual(decoded['estimated_frame_pl_ticks64'],0x123456789abcdef0)
-        self.assertTrue(decoded['odometry_valid'])
+        self.assertFalse(decoded['odometry_valid'])
+        self.assertFalse(decoded['filter_valid'])
+        self.assertEqual(len(words),24)
+
+    def test_explicit_host_mileage_estimate_is_labelled_and_not_qei(self):
+        item=association()
+        item['clock_anchor']={'display_estimate':{'available':True,'estimated':True,'travelled_mm':3}}
+        result=decode(encode(item))
+        self.assertTrue(result['mileage_estimated'])
+        self.assertTrue(result['odometry_valid'])
+        self.assertFalse(result['speed_valid'])
+        self.assertEqual(result['path_q16'],196608)
 
     def test_corrupted_word_version_reserved_bits_and_range_rejected(self):
         words=encode(association())
-        for index in range(18):
+        for index in range(WORDS):
             changed=words[:];changed[index]^=1
             with self.assertRaises(ValueError):decode(changed)
         # Even recomputing the checksum cannot legitimise reserved bits.
@@ -64,11 +74,11 @@ class MetadataTests(unittest.TestCase):
     def test_stamping_preserves_source_and_every_nonreserved_pixel(self):
         source=bytes(range(256))*4
         stamped=stamp_bgr0(source,association(),width=64,height=4)
-        self.assertEqual(stamped[72:],source[72:])
+        self.assertEqual(stamped[96:],source[96:])
         self.assertEqual(source,bytes(range(256))*4)
-        words=[int.from_bytes(stamped[i:i+4],'little') for i in range(0,72,4)]
+        words=[int.from_bytes(stamped[i:i+4],'little') for i in range(0,96,4)]
         self.assertEqual(decode(words)['epoch'],0xabcd)
-        self.assertTrue(all(stamped[index*4+3]==0 for index in range(18)))
+        self.assertTrue(all(stamped[index*4+3]==0 for index in range(WORDS)))
         with self.assertRaises(ValueError):stamp_bgr0(source,association(),width=8,height=32)
         item=association();item['valid']=False
         with self.assertRaises(ValueError):stamp_bgr0(source,item,width=64,height=4)

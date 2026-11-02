@@ -3,16 +3,32 @@ from supervisor_c_fixture import SupervisorCFixture
 
 
 class SupervisorProductionCTests(unittest.TestCase):
-    def test_illegal_qei_with_valid_zero_speed_stops_actual_c_and_never_auto_restarts(self):
+    def test_driving_priority_starting_pwm_supports_forward_reverse_and_right(self):
+        h=SupervisorCFixture();self.fixture=h
+        h.control.LEASE_S=.5;h.link.CMD_MAX_AGE=.5;h.control.yellow_pwm_limit=2400
+        h.arm()
+        for left,right in ((1800,1800),(-1800,-1800),(1800,0),(0,0)):
+            h.drive(left,right)
+            self.assertFalse(h.c.s.latched)
+
+    def test_500ms_user_lease_absorbs_short_gap_but_never_replays_after_expiry(self):
+        h=SupervisorCFixture();self.fixture=h
+        h.control.LEASE_S=.5;h.link.CMD_MAX_AGE=.5
+        h.arm();h.drive(1800,1800);h.heartbeat=False
+        h.advance(300)
+        self.assertFalse(h.c.s.latched)
+        self.assertEqual(h.c.log[-1][3:5],(1800,1800))
+        h.advance(300)
+        self.assertTrue(h.c.s.latched)
+
+    def test_disabled_encoder_diagnostics_do_not_gate_actual_c(self):
         import car_regs as reg
-        h=self.moving();start=h.ms()
+        h=self.moving()
         h.pl.mem[reg.QEI1_INFO]=255<<4
         h.advance(150)
-        self.assertTrue(h.c.s.latched)
-        self.assertLessEqual(h.first_stop_after(start)-start,130)
-        self.assertIn('qei1_illegal_transition',h.control.last['decision_reasons'])
-        h.pl.mem[reg.QEI1_INFO]=0;h.intent=(0,0);h.advance(500)
-        self.assertTrue(h.c.s.latched);self.assertEqual(h.c.log[-1][3:5],(0,0))
+        self.assertFalse(h.c.s.latched)
+        self.assertTrue(h.control.last['permit'])
+        self.assertNotIn('qei1_illegal_transition',h.control.last['decision_reasons'])
 
     def moving(self, **kwargs):
         fixture=SupervisorCFixture(**kwargs);self.fixture=fixture
@@ -55,17 +71,19 @@ class SupervisorProductionCTests(unittest.TestCase):
         h=self.moving();start=h.ms();h.control_enabled=False;h.advance(500)
         self.assertTrue(h.c.s.latched)
         self.assertLessEqual(h.first_stop_after(start)-start,380)
-        self.assertTrue(any(kind=='idle' for t,kind,_ in h.sent if t>=start))
+        self.assertTrue(any(kind=='stop' for t,kind,_ in h.sent if t>=start))
 
     def test_uart_blackout_actual_c_backstop(self):
         h=self.moving();start=h.ms();h.uart_enabled=False;h.advance(400)
         self.assertTrue(h.c.s.latched)
         self.assertLessEqual(h.first_stop_after(start)-start,240)
 
-    def test_frozen_pl_sample_real_client_and_c_stop(self):
-        h=self.moving();start=h.ms();h.pl.sampling=False;h.advance(400)
-        self.assertTrue(h.c.s.latched)
-        self.assertLessEqual(h.first_stop_after(start)-start,330)
+    def test_frozen_range_preserves_real_age_without_stopping_actual_c(self):
+        h=self.moving();start=h.clock();h.pl.sampling=False;h.advance(400)
+        self.assertFalse(h.c.s.latched)
+        self.assertLessEqual(h.link._sample_ms,start)
+        self.assertGreater(h.link._control_observation_s,start)
+        self.assertEqual(h.c.log[-1][3:5],(900,900))
 
     def test_ir_obstacle_is_visible_without_stopping_actual_c(self):
         h=self.moving();h.pl.ir=1;h.advance(250)
@@ -81,7 +99,8 @@ class SupervisorProductionCTests(unittest.TestCase):
         self.assertEqual(h.c.log[-1][3:5],(900,900))
         self.assertTrue(h.control.last['permit'])
         h.pl.valid=False;h.advance(250)
-        self.assertTrue(h.c.s.latched)
+        self.assertFalse(h.c.s.latched)
+        self.assertFalse(h.link._cmd[2])
 
     def test_mmio_failure_still_sends_stop_to_c(self):
         h=self.moving();start=h.ms();h.pl.error=True;h.advance(150)

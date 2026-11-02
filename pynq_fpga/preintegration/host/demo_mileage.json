@@ -1,0 +1,8 @@
+{
+  "schema": "car-demo-mileage/v1",
+  "measured": false,
+  "mm_per_pwm_second": 0.25,
+  "provenance": "首轮演示的可调估算系数：PWM 400 对应估算 100 mm/s；这是人为设置的初值，不是电机规格或实测结果。",
+  "integration": "trapezoid of mean absolute actual left/right PWM between fresh STM32 reports; missing intervals excluded",
+  "control_use": false
+}

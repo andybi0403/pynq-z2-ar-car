@@ -2,12 +2,14 @@
 from collections import deque
 from bisect import bisect_left
 from dataclasses import dataclass
-import copy
+from async_journal import snapshot_copy
 import math
 import secrets
 import threading
 import time
+from types import SimpleNamespace
 from wireless_policy import VideoPolicy
+from video_profile import WIDTH,HEIGHT,FPS,PROFILE
 
 
 @dataclass(frozen=True)
@@ -61,7 +63,7 @@ class VideoHub:
             if self.latest is not None and frame.frame_id<=self.latest.frame_id:
                 raise ValueError('repeated or out-of-order frame publication')
             # Atomically preserve both images and the SAME historical identity.
-            frame=EncodedFrame(frame.frame_id,frame.captured_ns,frame.raw,frame.processed,copy.deepcopy(frame.historical))
+            frame=EncodedFrame(frame.frame_id,frame.captured_ns,frame.raw,frame.processed,snapshot_copy(frame.historical))
             self.latest=frame
             self.error=None
             if frame.processed is not None:
@@ -112,50 +114,82 @@ class VideoHub:
             if sample['system_total_percent'] is not None:
                 self.cpu_totals[2]+=sample['system_total_percent']*duration;self.cpu_totals[3]+=duration
     def stats(self):
+        # Snapshot only bounded data under the publication lock. Percentiles,
+        # minute history and JSON consumers must not block frame publication.
         with self.condition:
-            now_ns=time.monotonic_ns()
-            seconds=max(.001,(now_ns-self.start_ns)/1e9)
-            percentiles={}
-            for name,values in self.times.items():
-                ordered=sorted(values)
-                percentiles[name]={f'p{p}_ms':ordered[min(len(ordered)-1,math.ceil(len(ordered)*p/100)-1)] for p in (50,95,99)}
-            return {'width':1280,'height':720,'nominal_fps':30,'jpeg_quality':self.policy.settings()['jpeg_quality'],
-                    'output_policy':self.policy.settings(),
-                    'subsampling':self.latest.historical.get('jpeg_subsampling','unknown') if self.latest else 'unknown',
-                    'jpeg_profile':self.latest.historical.get('jpeg_profile','unknown') if self.latest else 'unknown',
-                    'counts':dict(self.counts),
-                    'fps_since_start':{k:self.counts[k]/seconds for k in ('captured','processed','encoded','published','sent')},
-                    'first_event_ns':dict(self.first_event_ns),
-                    'active_fps':{name:self.counts[name]/max(.001,(time.monotonic_ns()-stamp)/1e9)
-                                  for name,stamp in self.first_event_ns.items()},
-                    'active_fps_scope':'per_stage_first_event_to_now; includes recovery; not browser FPS',
-                    'latency':percentiles,'view':self.view,'error':self.error,
-                    # Event times are appended in monotonic order. Copy once
-                    # for binary search instead of reading the clock per event
-                    # while holding the publication lock.
-                    'rolling_60s_fps':{name:(len(stamps)-bisect_left(list(stamps),now_ns-60_000_000_000))/min(seconds,60)
-                                      for name,stamps in self.rate_events.items()},
-                    'process_cpu':self.cpu_sample,
-                    'average_process_two_core_percent':self.cpu_totals[0]/self.cpu_totals[1] if self.cpu_totals[1] else None,
-                    'average_system_total_percent':self.cpu_totals[2]/self.cpu_totals[3] if self.cpu_totals[3] else None,
-                    'full_minute_fps':{str(m):{name:self.minute_counts.get(m,{}).get(name,0)/60
-                                             for name in ('captured','processed','encoded','published','sent')}
-                                       for m in range(max(0,int(seconds//60)-119),int(seconds//60))},
-                    'minute_history_scope':'last_120_full_minutes_since_service_start; no warmup exclusion',
-                    'browser_rtt_scope':'client_reported_ack_roundtrip_not_wheel_stop',
-                    'sent_payload_mbps':self.bytes_sent*8/seconds/1e6,
-                    'hardware_performance_validated':False}
+            snapshot = SimpleNamespace(
+                start_ns=self.start_ns, bytes_sent=self.bytes_sent,
+                view=self.view, error=self.error,
+                policy=self.policy, latest=self.latest,
+                times={k:tuple(v) for k,v in self.times.items()},
+                counts=dict(self.counts), first_event_ns=dict(self.first_event_ns),
+                rate_events={k:tuple(v) for k,v in self.rate_events.items()},
+                cpu_sample=self.cpu_sample, cpu_totals=tuple(self.cpu_totals),
+                minute_counts={k:dict(v) for k,v in self.minute_counts.items()})
+        now_ns=time.monotonic_ns()
+        seconds=max(.001,(now_ns-snapshot.start_ns)/1e9)
+        percentiles={}
+        for name,values in snapshot.times.items():
+            ordered=sorted(values)
+            percentiles[name]={f'p{p}_ms':ordered[min(len(ordered)-1,math.ceil(len(ordered)*p/100)-1)] for p in (50,95,99)}
+        return {'width':WIDTH,'height':HEIGHT,'nominal_fps':FPS,'profile':PROFILE,'jpeg_quality':snapshot.policy.settings()['jpeg_quality'],
+                'output_policy':snapshot.policy.settings(),
+                'subsampling':snapshot.latest.historical.get('jpeg_subsampling','unknown') if snapshot.latest else 'unknown',
+                'jpeg_profile':snapshot.latest.historical.get('jpeg_profile','unknown') if snapshot.latest else 'unknown',
+                'counts':dict(snapshot.counts),
+                'fps_since_start':{k:snapshot.counts[k]/seconds for k in ('captured','processed','encoded','published','sent')},
+                'first_event_ns':dict(snapshot.first_event_ns),
+                'active_fps':{name:snapshot.counts[name]/max(.001,(time.monotonic_ns()-stamp)/1e9)
+                              for name,stamp in snapshot.first_event_ns.items()},
+                'active_fps_scope':'per_stage_first_event_to_now; includes recovery; not browser FPS',
+                'latency':percentiles,'view':snapshot.view,'error':snapshot.error,
+                # Event times are appended in monotonic order. Copy once
+                # for binary search instead of reading the clock per event
+                # while holding the publication lock.
+                'rolling_60s_fps':{name:(len(stamps)-bisect_left(list(stamps),now_ns-60_000_000_000))/min(seconds,60)
+                                  for name,stamps in snapshot.rate_events.items()},
+                'process_cpu':snapshot.cpu_sample,
+                'average_process_two_core_percent':snapshot.cpu_totals[0]/snapshot.cpu_totals[1] if snapshot.cpu_totals[1] else None,
+                'average_system_total_percent':snapshot.cpu_totals[2]/snapshot.cpu_totals[3] if snapshot.cpu_totals[3] else None,
+                'full_minute_fps':{str(m):{name:snapshot.minute_counts.get(m,{}).get(name,0)/60
+                                         for name in ('captured','processed','encoded','published','sent')}
+                                   for m in range(max(0,int(seconds//60)-119),int(seconds//60))},
+                'minute_history_scope':'last_120_full_minutes_since_service_start; no warmup exclusion',
+                'browser_rtt_scope':'client_reported_ack_roundtrip_not_wheel_stop',
+                'sent_payload_mbps':snapshot.bytes_sent*8/seconds/1e6,
+                'stats_generated_ns':now_ns,'hardware_performance_validated':False}
+
+    def cached_stats(self):
+        """HTTP gets an immutable cached result; expensive work stays off-loop."""
+        with self.condition:
+            if not hasattr(self, '_stats_worker'):
+                self._stats_cache = {'warming_up': True, 'stats_generated_ns': 0}
+                self._stats_stop = threading.Event()
+                self._stats_worker = threading.Thread(target=self._refresh_stats,
+                    name='video-statistics', daemon=True)
+                self._stats_worker.start()
+            return self._stats_cache
+
+    def _refresh_stats(self):
+        while not self._stats_stop.is_set():
+            value = self.stats()
+            with self.condition:
+                self._stats_cache = value
+                if self.closed:
+                    return
+            self._stats_stop.wait(1.)
 
 
 class IntentMailbox:
     """One latest intent plus a priority STOP, consumed only by control owner."""
-    def __init__(self,clock=time.monotonic):
+    def __init__(self,clock=time.monotonic,packet_max_age_ms=100):
+        self.packet_max_age_ms=packet_max_age_ms
         self.clock=clock;self.lock=threading.Lock();self.pending=None;self.stop_pending=False
         self.sequence=0
     def submit(self,left,right,age_upper_ms=0):
         with self.lock:
             now=self.clock()
-            self.sequence+=1;self.pending=(self.sequence,left,right,now,now+(100-age_upper_ms)/1000)
+            self.sequence+=1;self.pending=(self.sequence,left,right,now,now+(self.packet_max_age_ms-age_upper_ms)/1000)
     def stop(self):
         with self.lock:self.pending=None;self.stop_pending=True
     def consume(self):
@@ -170,8 +204,10 @@ class IntentMailbox:
 
 class ControlGate:
     """One WS owner. Four-timestamp sync bounds uncertainty; old packets fail shut."""
-    def __init__(self,mailbox,*,clock=time.monotonic,motion_allowed=False):
+    def __init__(self,mailbox,*,clock=time.monotonic,motion_allowed=False,packet_max_age_ms=100,sync_rtt_ms=50,intent_lease_ms=250, tolerate_timing_jitter=False):
         self.mailbox=mailbox;self.clock=clock;self.motion_allowed=motion_allowed
+        self.packet_max_age_ms=packet_max_age_ms;self.sync_rtt_ms=sync_rtt_ms;self.intent_lease_ms=intent_lease_ms
+        self.tolerate_timing_jitter=tolerate_timing_jitter
         self.lock=threading.RLock();self.owner=None;self.sessions={};self.rejected=0
         self.last_event={'reason':'startup_no_owner','server_ms':self.clock()*1000}
     def revoke(self,reason):
@@ -199,8 +235,8 @@ class ControlGate:
             if self.owner is None:return
             s=self.sessions.get(self.owner);now=self.clock()*1000
             if (s is None or s['sync'] is None or now-s['sync'][2]>3000 or
-                    now-s.get('last_intent_ms',-math.inf)>=250):
-                self.revoke('clock_sync_expired' if s is None or s['sync'] is None or now-s['sync'][2]>3000 else 'intent_lease_expired_250ms')
+                    now-s.get('last_intent_ms',-math.inf)>=self.intent_lease_ms):
+                self.revoke('clock_sync_expired' if s is None or s['sync'] is None or now-s['sync'][2]>3000 else 'intent_lease_expired_'+str(self.intent_lease_ms)+'ms')
     @staticmethod
     def number(value):
         if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value):
@@ -216,7 +252,13 @@ class ControlGate:
                     if challenge is None or payload.get('nonce')!=challenge[0]:raise ValueError('sync nonce mismatch')
                     c2=self.number(payload.get('received_ms'));c3=self.number(payload.get('sent_ms'))
                     s1=challenge[1];rtt=now-s1-(c3-c2)
-                    if not 0<=c3-c2<=50 or not 0<=rtt<=50:raise ValueError('clock uncertainty exceeds limit')
+                    if (self.tolerate_timing_jitter and 0<=c3-c2 and 0<=rtt
+                            and (c3-c2>50 or rtt>self.sync_rtt_ms)):
+                        # Retain the previous measured sync until its ORIGINAL expiry.
+                        # A delayed challenge never renews intent or clock validity.
+                        s['challenge']=None;self.rejected+=1;self.maintain()
+                        return {'type':'dropped','reason':'sync_jitter'}
+                    if not 0<=c3-c2<=50 or not 0<=rtt<=self.sync_rtt_ms:raise ValueError('clock uncertainty exceeds limit')
                     offset=((s1-c2)+(now-c3))/2
                     old=s['sync']
                     if old is not None and abs(offset-old[0])>old[1]+rtt/2+5:raise ValueError('client clock jumped')
@@ -228,7 +270,7 @@ class ControlGate:
                 if sync is None or now-sync[2]>3000:raise ValueError('clock sync expired')
                 if kind=='claim':
                     age=now-(self.number(payload.get('client_ms'))+sync[0])
-                    if age+sync[1]>100 or age-sync[1]<-5:raise ValueError('stale/future claim')
+                    if age+sync[1]>self.packet_max_age_ms or age+sync[1]<-5:raise ValueError('stale/future claim')
                     if self.owner not in (None,key):raise ValueError('control is owned by another connection')
                     self.mailbox.stop();self.owner=key;s['last_intent_ms']=now
                     self.last_event={'reason':'controller_claimed','server_ms':now}
@@ -240,7 +282,11 @@ class ControlGate:
                 if seq<=s['seq']:raise ValueError('replayed/out-of-order intent')
                 if not -2400<=left<=2400 or not -2400<=right<=2400:raise ValueError('PWM out of range')
                 age=now-(self.number(payload.get('client_ms'))+sync[0])
-                if age+sync[1]>100 or age-sync[1]<-5:raise ValueError('stale/future intent')
+                if self.tolerate_timing_jitter and age+sync[1]>self.packet_max_age_ms:
+                    # Consume the sequence but discard PWM; do not extend last_intent_ms.
+                    s['seq']=seq;self.rejected+=1
+                    return {'type':'dropped','reason':'stale_intent','seq':seq}
+                if age+sync[1]>self.packet_max_age_ms or age+sync[1]<-5:raise ValueError('stale/future intent')
                 if not self.motion_allowed and (left or right):raise ValueError('LAB_ONLY prohibits nonzero PWM')
                 s['seq']=seq;s['last_intent_ms']=now;self.mailbox.submit(left,right,max(0,age+sync[1]))
                 return {'type':'ack','seq':seq,'received_ms':now}

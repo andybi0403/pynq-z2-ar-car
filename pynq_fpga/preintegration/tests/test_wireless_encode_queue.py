@@ -4,14 +4,14 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'host'));sys.path.insert(0,str(ROOT/'preintegration/host'))
 class EncoderQueueTests(unittest.TestCase):
-    def test_latest_waiting_job_and_exact_DMA_buffer_return(self):
+    def test_busy_encoder_defers_decode_and_exact_DMA_buffer_return(self):
         import io,threading,time
         from types import SimpleNamespace
         from unittest.mock import patch
         import wireless_runtime as runtime
         from wireless_core import VideoHub,IntentMailbox
         encoding=threading.Event();release_old=threading.Event();queued3=threading.Event();finished3=threading.Event()
-        decoded2=threading.Event();encoded=[];queues=[];jpeg=b'\xff\xd8fixture\xff\xd9'
+        decoded2=threading.Event();encoded=[];decoded=[];queues=[];jpeg=b'\xff\xd8fixture\xff\xd9'
         OriginalQueue=runtime.queue.Queue
         class Queue(OriginalQueue):
          def __init__(self,*args,**kwargs):self.free_indices=set();super().__init__(*args,**kwargs);queues.append(self)
@@ -19,7 +19,7 @@ class EncoderQueueTests(unittest.TestCase):
           if type(item) is int:
            assert item not in self.free_indices,'DMA output buffer returned twice';self.free_indices.add(item)
           super()._put(item)
-          if isinstance(item,tuple) and len(item)==5 and item[0]==3:queued3.set()
+          if isinstance(item,tuple) and len(item)==4 and item[0]==3:queued3.set()
          def _get(self):
           item=super()._get()
           if type(item) is int:self.free_indices.remove(item)
@@ -29,6 +29,7 @@ class EncoderQueueTests(unittest.TestCase):
           self.inputs=[bytearray(128) for _ in range(3)];self.outputs=[bytearray(128) for _ in range(3)]
           self.dma=SimpleNamespace(transfer=self.transfer);self.stopped=False
          def transfer(self,fid,src,dst):
+          decoded.append(fid)
           dst[0]=fid
           if fid==2:decoded2.set()
          def start(self):pass
@@ -67,17 +68,21 @@ class EncoderQueueTests(unittest.TestCase):
         worker=threading.Thread(target=runner._video_loop,daemon=True)
         try:
          with patch.object(runtime,'Codec',Codec),patch.object(runtime,'encode',return_value=[]),patch.object(runtime,'prefix_bgr0',return_value=b'\0'*72),patch.object(runtime.queue,'Queue',Queue):
-          worker.start();assert queued3.wait(3),'two waiting DMA output jobs were not queued'
+          worker.start();assert queued3.wait(3),'third camera frame never reached capture slot'
+          time.sleep(.02)
+          assert decoded==[1,2],f'busy encoder allowed unnecessary PL work: {decoded}'
           release_old.set();assert finished3.wait(3)
+          deadline=time.monotonic()+1
+          while runner.frames<3 and time.monotonic()<deadline:time.sleep(.002)
           runner.stop_event.set();worker.join(4)
           assert not worker.is_alive();assert not runner.failures,runner.failures
-          assert encoded==[1,3],f'expected active and latest queued JPEG, got {encoded}'
-          assert hub.counts['encode_queue_replaced']==1
-          assert len(hub.times['encode_wait'])==2,'active/latest jobs need measured encoder-wait intervals'
+          assert encoded==[1,2,3],f'expected admitted jobs to finish without replacement, got {encoded}'
+          assert hub.counts.get('encode_queue_replaced',0)==0
+          assert len(hub.times['encode_wait'])==3,'all admitted jobs need measured encoder-wait intervals'
           assert all(value>=0 for value in hub.times['encode_wait'])
           pools=[q for q in queues if q.free_indices]
           assert len(pools)==1 and pools[0].free_indices=={0,1,2},'all DMA outputs must return exactly once'
           assert video.stopped
-         print('ENCODE_QUEUE_PASS superseded job skipped; latest encoded; all three DMA buffers returned exactly once')
+         print('ENCODE_QUEUE_PASS busy encoder defers PL work; all three DMA buffers returned exactly once')
         finally:
          runner.stop_event.set();release_old.set();worker.join(4)

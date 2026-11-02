@@ -31,6 +31,7 @@ $SrcRtl = @(
     (Join-Path $RtlDir "car_snapshot.v"),
     (Join-Path $RtlDir "car_axil_regs.v"),
     (Join-Path $RtlDir "car_ultrasonic.v"),
+    (Join-Path $RtlDir "car_ultrasonic_display_filter.v"),
     (Join-Path $RtlDir "car_ir.v"),
     (Join-Path $RtlDir "car_sensors_core.v"),
     (Join-Path $RtlDir "car_sensors_top.v"),
@@ -45,6 +46,8 @@ $SrcRtl = @(
     (Join-Path $RtlDir "car_axis_front_overlay.v"),
     (Join-Path $RtlDir "car_axis_status_osd.v"),
     (Join-Path $RtlDir "car_axis_frame_metadata.v"),
+    (Join-Path $RtlDir "car_axis_demo_hud.v"),
+    (Join-Path $RtlDir "car_axis_tactical.v"),
     (Join-Path $RtlDir "car_board_video_wrapper.v")
 )
 $SrcTb = Join-Path $TbDir $TbFile
@@ -68,6 +71,7 @@ Copy-Item -LiteralPath (Join-Path $RtlDir 'font_8x8_minimal.mem') -Destination $
 Copy-Item -LiteralPath (Join-Path $RtlDir 'font_8x8_status.mem') -Destination $WorkDir -Force
 Copy-Item -LiteralPath (Join-Path $RtlDir 'font_16x16_hud.mem') -Destination $WorkDir -Force
 Copy-Item -LiteralPath (Join-Path $RtlDir 'font_24x24_hud.mem') -Destination $WorkDir -Force
+Copy-Item -LiteralPath (Join-Path $RtlDir 'font_24x24_demo.mem') -Destination $WorkDir -Force
 Copy-Item -LiteralPath (Join-Path $RtlDir 'font_32x32_hud.mem') -Destination $WorkDir -Force
 Set-Location $WorkDir
 

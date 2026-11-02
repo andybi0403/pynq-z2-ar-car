@@ -27,6 +27,7 @@ import time
 import math
 import re
 import secrets
+import os
 
 try:
     import serial
@@ -119,6 +120,8 @@ class CarLink:
         self._cmd = (0, 0, False, 0, 0)   # L,R,V,MM,IR（上游请求缓存）
         self._cmd_ms = None               # 上游 drive() 最近更新时刻
         self._sample_ms = None            # PL 真实传感器样本时刻
+        self._control_observation_enabled = False
+        self._control_observation_s = None
         self._rxbuf = bytearray()         # 接收字节缓存（跨 read 调用）
         self._rx_ms = None                # 缓存非空时的最近字节时刻
         self._stop_flag = False
@@ -166,6 +169,12 @@ class CarLink:
             self._cmd = (left, right, bool(valid), mm, ir & 3)
             self._sample_ms = sample_ts
 
+    def update_control_observation(self, observed_s):
+        """Demo supervisor liveness, independent of real range sampling age."""
+        with self._lock:
+            self._control_observation_enabled = True
+            self._control_observation_s = observed_s
+
     def update_command(self, left, right):
         """仅在收到新的驾驶意图时调用；不会刷新传感器年龄。"""
         if not all(-SAFE_MAX_PWM <= v <= SAFE_MAX_PWM for v in (left, right)):
@@ -176,6 +185,21 @@ class CarLink:
             self._cmd_ms = self._clock()
             if self._await_new_intent:
                 self._new_intent = True
+
+    def _write_bytes(self, packet):
+        # pyserial's timed POSIX write checks its timeout after os.write,
+        # even when the complete packet was accepted. A scheduling pause can
+        # therefore report a false timeout after a successful submission.
+        # The real UART descriptor is already nonblocking. Submit once and
+        # retain every caller's full-length check; never retry a partial frame
+        # or replay a motion command after EAGAIN.
+        fileno = getattr(self.ser, 'fileno', None)
+        if os.name == 'posix' and callable(fileno):
+            descriptor = fileno()
+            if type(descriptor) is not int or descriptor < 0 or os.get_blocking(descriptor):
+                raise OSError('UART requires a nonblocking descriptor')
+            return os.write(descriptor, packet)
+        return self.ser.write(packet)
 
     def close(self):
         if self._closed:
@@ -199,7 +223,7 @@ class CarLink:
         error = None
         try:
             # No worker can race this final STOP with an old drive frame.
-            written = self.ser.write(b'$PSTOP#')
+            written = self._write_bytes(b'$PSTOP#')
             if written is not None and written != 7:
                 raise OSError('short UART STOP write during shutdown')
         except (OSError, ValueError) as exc:
@@ -239,13 +263,21 @@ class CarLink:
         self._thread = threading.Thread(target=self._loop, daemon=True)
         self._thread.start()
 
-    def _decide(self, now):
+    def _decide(self, now=None):
         """在锁内取快照并判定本拍应发送的内容。
         返回 (frame_kind, payload)：kind ∈ {'stop','rel','idle','idle_ok','drive'}。"""
         with self._lock:
+            # Production must read time under the same lock as the state.
+            # UART query writes release the GIL: a control update can be newer
+            # than the outer TX-loop timestamp. That is not a clock rollback.
+            # Explicit time remains available for deterministic replay callers.
+            if now is None:
+                now = self._clock()
             cmd = self._cmd
             cmd_age = (now - self._cmd_ms) if self._cmd_ms is not None else float('inf')
             sample_age = (now - self._sample_ms) if self._sample_ms is not None else float('inf')
+            control_stamp = self._control_observation_s if self._control_observation_enabled else self._sample_ms
+            control_age = now-control_stamp if control_stamp is not None else float('inf')
             if self._stop_flag:
                 self._stop_flag = False
                 self.suppressed = True
@@ -253,11 +285,11 @@ class CarLink:
                 self._await_new_intent = False
                 self._new_intent = False   # STOP 取消待决解锁与旧意图
                 return 'stop', None
-            stale = (not math.isfinite(sample_age) or not math.isfinite(cmd_age)
-                     or not 0 <= sample_age < self.SAMPLE_MAX_AGE
+            stale = (not math.isfinite(control_age) or not math.isfinite(cmd_age)
+                     or not 0 <= control_age < self.SAMPLE_MAX_AGE
                      or not 0 <= cmd_age < self.CMD_MAX_AGE)
             if stale:
-                # 撤销运动许可：零速 + V=0（STM32 按传感器无效锁存停车）。
+                # Explicit STOP on stale supervisor/intent; never rely on invalid range to stop.
                 # 旧值不得继续充当新鲜样本重发；恢复需重新提交采样/零速请求，
                 # 满足安全保持后PREL，最后再提交一条新的驾驶请求。
                 self.suppressed = True
@@ -266,18 +298,12 @@ class CarLink:
                 self._rel_flag = False
                 self._await_new_intent = False
                 self._new_intent = False
-                return 'idle', None
-            if not cmd[2]:
-                self.suppressed = True
-                self._rel_flag = False
-                self._await_new_intent = False
-                self._new_intent = False
-                return 'idle', None
+                return 'stop', None
             # IR is advisory: transmit its real bitmap without suppressing
             # requests or cancelling a manual release. US/leases still guard.
             if self._rel_flag:
                 self._rel_flag = False
-                if cmd[3] >= 250:
+                if not cmd[2] or cmd[3] > 250:
                     # Release authorizes the stopped state, never cached motion.
                     # 心跳维持 V=1 零速并续租（样本与命令都保持新鲜：STM32 不因
                     # 数据超龄/租约反复锁存——DEF-A-01/A-02）。
@@ -315,7 +341,7 @@ class CarLink:
 
     def _send_once(self, now):
         """One production TX transaction, also used by deterministic C tests."""
-        kind, payload = self._decide(now)
+        kind, payload = self._decide()
         if kind == 'stop':
             frame = b"$PSTOP#"
         elif kind == 'rel':
@@ -327,7 +353,7 @@ class CarLink:
                 frame = build_p(L, R, V, MM, self._seq, IR, self.proto)
             else:
                 frame = build_p(0, 0, False, 0, self._seq, 0, self.proto)
-        written = self.ser.write(frame)
+        written = self._write_bytes(frame)
         if written is not None and written != len(frame):
             raise OSError('short UART write')
         return kind
@@ -543,7 +569,7 @@ class HybridCarLink(CarLink):
                 self.session = new_session if new_session != self.session else self.session % 0xffffffff + 1
                 self._resync_requested = False
         if resync:
-            written = self.ser.write(b'$PSTOP#')
+            written = self._write_bytes(b'$PSTOP#')
             if written is not None and written != 7:raise OSError('short resynchronization STOP write')
         self._query_seq = (self._query_seq + 1) & 0xffffffff
         request = self._query_seq
@@ -552,13 +578,13 @@ class HybridCarLink(CarLink):
                              if 0 <= now - stamp < self.REQUEST_MAX_AGE}
             self._pending[request] = now
         packet = hybrid_frame('Q1', self.session, request)
-        written = self.ser.write(packet)
+        written = self._write_bytes(packet)
         if written is not None and written != len(packet):
             raise OSError('short sensor query write')
         with self._lock:
             self.query_tx_count += 1
         # This opt-in mode can only query and STOP, including after recovery.
-        kind, payload = ('stop', None) if self.locked_diagnostic else self._decide(now)
+        kind, payload = ('stop', None) if self.locked_diagnostic else self._decide()
         self._control_seq = (self._control_seq + 1) & 0xffffffff
         if kind == 'rel':
             packet = hybrid_frame('R1', self.session, self._control_seq)
@@ -566,7 +592,7 @@ class HybridCarLink(CarLink):
             packet = hybrid_frame('D1', self.session, self._control_seq, *payload[:2])
         else:
             packet = b'$PSTOP#'
-        written = self.ser.write(packet)
+        written = self._write_bytes(packet)
         if written is not None and written != len(packet):
             raise OSError('short hybrid command write')
         return kind

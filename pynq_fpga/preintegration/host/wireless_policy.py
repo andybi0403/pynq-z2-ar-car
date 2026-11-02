@@ -1,5 +1,6 @@
 """Explicit output targets with bounded hysteresis; capture stays real 720p30."""
 import math
+from video_profile import WIDTH,HEIGHT,FPS,PROFILE
 import threading
 import time
 
@@ -10,9 +11,9 @@ class VideoPolicy:
     LEVELS=((30,0),(24,5),(20,10),(15,20),(10,30))
     def __init__(self,clock=time.monotonic):
         self.clock=clock;self.lock=threading.RLock()
-        self.mode='fixed';self.fps=30;self.quality=75;self.level=0
+        self.mode='fixed';self.fps=FPS;self.quality=75;self.level=0
         self.changed=self.clock();self.good_since=None;self.bad=0;self.next_due=None
-        self.reason='fixed_acceptance_720p30_Q75';self.transitions=0
+        self.reason='fixed_acceptance_'+PROFILE+'_'+str(FPS)+'fps_Q75';self.transitions=0
         self.pressure={}
     def configure(self,payload):
         if not isinstance(payload,dict) or set(payload)-{'mode','fps','quality'}:raise ValueError('invalid video settings')
@@ -21,7 +22,7 @@ class VideoPolicy:
         if type(fps) is not int or fps not in self.FPS_OPTIONS:raise ValueError('unsupported output fps')
         if type(quality) is not int or quality not in self.QUALITY_OPTIONS:raise ValueError('unsupported JPEG quality')
         with self.lock:
-            self.mode=mode;self.fps=30 if mode=='fixed' else fps;self.quality=75 if mode=='fixed' else quality
+            self.mode=mode;self.fps=FPS if mode=='fixed' else fps;self.quality=75 if mode=='fixed' else quality
             self.level=0;self.bad=0;self.good_since=None;self.next_due=None;self.changed=self.clock()
             self.reason='operator_selected_'+mode
             self.pressure={}
@@ -29,15 +30,16 @@ class VideoPolicy:
     def settings(self):
         with self.lock:
             fps,delta=self.LEVELS[self.level] if self.mode=='auto' else (self.fps,0)
-            return {'mode':self.mode,'width':1280,'height':720,'capture_fps':30,
+            return {'mode':self.mode,'width':WIDTH,'height':HEIGHT,'capture_fps':FPS,'profile':PROFILE,
                     'max_fps':self.fps,'max_quality':self.quality,
-                    'output_fps':min(self.fps,fps),'jpeg_quality':max(35,self.quality-delta),
+                    'output_fps':min(self.fps,fps,FPS),'jpeg_quality':max(35,self.quality-delta),
                     'level':self.level,'reason':self.reason,'transitions':self.transitions,
                     'fps_options':list(self.FPS_OPTIONS),'quality_options':list(self.QUALITY_OPTIONS),
                     'raw_quality_scope':'camera_native_JPEG; only output_fps is adjustable',
                     'fixed_acceptance':self.mode=='fixed'}
     def admit(self,now=None,force=False):
         with self.lock:
+            if PROFILE in ('wireless360','wireless720_jpeg') and self.settings()['output_fps']>=FPS:return True
             if force:return True # Same-frame snapshot does not perturb the live cadence.
             now=self.clock() if now is None else now;period=1/self.settings()['output_fps']
             if self.next_due is None:self.next_due=now
