@@ -6,7 +6,7 @@ import time
 from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[3]
-sys.path.insert(0,str(ROOT/'stm32预备程序/pc'))
+sys.path.insert(0,str(ROOT/'stm32_tools/pc'))
 import pynq_link
 from pynq_link import CarLink,MockSerial
 

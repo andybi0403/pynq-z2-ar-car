@@ -3,7 +3,7 @@
   "classification": "CONTROLLED_CONSOLE_NOT_RELEASE",
   "name": "v014_video_720pl_jpeg_20261031_r7",
   "generated_at": "2026-10-31T15:39:28.781496+00:00",
-  "base_manifest_sha256": "8ad7676aa8241d5c708f2c776dac21fe2c56070a3f6afdb83cd32fbd70a96a9a",
+  "base_manifest_sha256": "2e465bb3df9cf6a5422de8be1921083bfc3a417ae1abdc8158f2771dbfbcdd6c",
   "files": {
     "console_backend.py": "6491cad3acdfdce9d3c2b627d59054e539e301e068cafade111c65512d9d3940",
     "console_ui.js": "0c8110df2af6628009a0b204eca210271e4c329382ef338d2a6df0ff0d4a31d3",
@@ -12,9 +12,8 @@
   },
   "desktop_files": {
     "desktop/nominal_scale_plan.json": "7b756eb9a37e8ff0160959c42b001316b990fcb01095f9125bb535480327800e",
-    "desktop/使用说明.md": "2ff44776e535c41ea8845e08921f2635ba2aa5579f9fe0b11e40366df4bcaec0",
-    "desktop/打开完整控制台.pyw": "8ca9c746fef4a2bcc54245687f3befb34e7b2c3b8b78c43fb1103ab7cdbdc5f6",
-    "desktop/tools/car_board_known_hosts": "0227c321f75c44385294e1bcf3b3438576f9a3bb581e82e4f388adff217dd82b",
+    "desktop/usage.md": "c7ea855e604608b7f43dcbf79b9b8c1491ed8cd4b7398759a6422b9c8d44064a",
+    "desktop/open_console.pyw": "8ca9c746fef4a2bcc54245687f3befb34e7b2c3b8b78c43fb1103ab7cdbdc5f6",
     "desktop/tools/car_connection_control.py": "196e9bf0a214b6d3e23938f55103098658750845731d020af2cc0d3c3c09d7ca",
     "desktop/tools/car_deploy_console.py": "cf291dbbf33e48b864f158a759836a7e29051150eab27d0768706c8a60295ac3",
     "desktop/tools/car_network_probe.py": "9ee104ce459badfd0ad590ecdafd49c6d477f542ffb472670a5fedd0534f0512",
@@ -44,5 +43,8 @@
   "encoder_required": false,
   "speed_display": false,
   "mileage": "estimated_actual_pwm_time",
-  "fixed_forward_stop_mm": 250
+  "fixed_forward_stop_mm": 250,
+  "packaging_excluded_desktop_entries": [
+    "desktop/tools/car_board_known_hosts"
+  ]
 }

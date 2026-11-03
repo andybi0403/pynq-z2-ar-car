@@ -5,7 +5,7 @@ from types import SimpleNamespace
 
 PROJECT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT / "host"))
-sys.path.insert(0, str(PROJECT.parent / "stm32预备程序" / "pc"))
+sys.path.insert(0, str(PROJECT.parent / "stm32_tools" / "pc"))
 from control_supervisor import ControlSupervisor
 from perception_client import Sample
 from pynq_link import CarLink, MockSerial, parse_car

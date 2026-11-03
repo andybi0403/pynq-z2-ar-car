@@ -6,7 +6,7 @@
 
 被测组件全部为生产代码：
   - pynq_link.CarLink（注入时钟函数，不做算法复制）
-  - safe_control.c（stm32_pynq对接版 生产策略层，SHA256 记录于 c_build/build.log）
+  - safe_control.c（stm32_pynq_firmware 生产策略层，SHA256 记录于 c_build/build.log）
   - 传输模型：9600bps 8N1 = 每字节 10 bit -> 1.0417 ms/字节，发送端 write()
     到接收端可读之间按帧长折算延迟（阻塞读取场景的下限模型）。
 
@@ -28,7 +28,7 @@ from pathlib import Path
 
 HOST = Path(__file__).resolve().parent
 sys.path.insert(0, str(HOST))
-sys.path.insert(0, str(HOST.parent.parent.parent / "stm32预备程序" / "pc"))
+sys.path.insert(0, str(HOST.parent.parent.parent / "stm32_tools" / "pc"))
 
 from pynq_link import CarLink, MockSerial, build_p, parse_car  # noqa: E402
 

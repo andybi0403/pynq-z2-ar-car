@@ -1,0 +1,80 @@
+{
+  "scope": "Offline English-path package checks; no hardware or full Vivado rebuild",
+  "checks": [
+    {
+      "command": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "returncode": 1,
+      "tests_run": 57,
+      "failures": 1,
+      "errors": 2,
+      "skipped": 1,
+      "limitation": "Requires building safe_control.dll and Windows car_video.dll before running the full suite. No failed assertion in the path-only or tactical checks."
+    },
+    {
+      "command": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "skill/amd-pynq-project-workflow/scripts",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "tests_run": 23,
+      "result": "PASS"
+    },
+    {
+      "command": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_tactical_*.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "summary": "otTests.test_torn_processing_data_rejects_whole_snapshot) ... ok\ntest_video_ir_allows_snapshot_phase_without_renewing_raw_validity (test_tactical_snapshot.TacticalSnapshotTests.test_video_ir_allows_snapshot_phase_without_renewing_raw_validity) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.671s\n\nOK\n"
+    },
+    {
+      "command": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_demo_resilience.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "summary": "_renew_intent (test_demo_resilience.DemoPolicyTests.test_slow_sync_retains_original_clock_and_does_not_renew_intent) ... ok\ntest_socket_disconnect_is_immediate_stop (test_demo_resilience.DemoPolicyTests.test_socket_disconnect_is_immediate_stop) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "check": "all_python_sources_parse",
+      "files": 302,
+      "errors": [],
+      "passed": true
+    },
+    {
+      "check": "runtime_deployment_check_and_console_desktop_hashes",
+      "result": "PASS",
+      "hardware_access": false,
+      "excluded_desktop_entries": [
+        "desktop/tools/car_board_known_hosts"
+      ]
+    }
+  ]
+}

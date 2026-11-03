@@ -16,9 +16,9 @@ class SourceProvenanceTests(unittest.TestCase):
                      'preintegration/tb/tb_axis32_to_rgb24.sv',
                      'fpga/board/board_manifest.json',
                      'host/c_build/build_car_c_dll.ps1',
-                     'workspace/stm32_pynq对接版/safe_startup.c',
-                     'workspace/stm32_pynq对接版/safe_stm32f103c8.ld',
-                     'workspace/stm32预备程序/build_safe.ps1'):
+                     'workspace/stm32_pynq_firmware/safe_startup.c',
+                     'workspace/stm32_pynq_firmware/safe_stm32f103c8.ld',
+                     'workspace/stm32_tools/build_safe.ps1'):
             self.assertIn(name,sources)
 
     def test_new_rtl_test_input_changes_identity_and_is_not_silently_ignored(self):

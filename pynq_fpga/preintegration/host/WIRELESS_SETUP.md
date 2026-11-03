@@ -18,7 +18,7 @@ cmake --build native-build --parallel 2
 sudo env SENSOR_CONSOLE_MOTOR_MODE=disconnected sh start_console.sh
 ```
 
-真实接入动力后改用 SENSOR_CONSOLE_MOTOR_MODE=connected；启动保持锁车。电脑打开 desktop/打开完整控制台.pyw，手动粘贴板端打印的链接与令牌。接管并显式解锁后才能按住方向键。松手、失焦、断链或意图过期停车。首轮 PWM 上限 400、连续按住最长 30 秒。
+真实接入动力后改用 SENSOR_CONSOLE_MOTOR_MODE=connected；启动保持锁车。电脑打开 desktop/open_console.pyw，手动粘贴板端打印的链接与令牌。接管并显式解锁后才能按住方向键。松手、失焦、断链或意图过期停车。首轮 PWM 上限 400、连续按住最长 30 秒。
 
 估算系数 mm_per_pwm_second 默认 0.25，代表人为假定 PWM 400 持续 1 秒估算 100 mm；不是电机规格或实测值。调整参数后必须重新生成包内 manifest。
 

@@ -1,0 +1,210 @@
+{
+  "schema": "car-verification-summary/v1",
+  "release": "v014_video_720pl_jpeg_20261031_r7",
+  "contract": "0xC425100E",
+  "historical_r7_delivery": {
+    "original_record_sha256": "4e9f7b2a1dcc4ca020a6ff5a5222788ed9f7c7882ebc237c9da1af2aac992d30",
+    "result": {
+      "name": "v014_video_720pl_jpeg_20261031_r7",
+      "recorded_at": "2026-10-31T15:48:17.809927+00:00",
+      "deployment": "ACTIVE",
+      "fix": "720p snapshot interval 100ms to 50ms; display IR age 200ms with raw invalid bits preserved",
+      "raw_us_deadline_ms": 200,
+      "raw_ir_deadline_ms": 100,
+      "display_ir_deadline_ms": 200,
+      "firmware_changed": false,
+      "fpga_changed": false,
+      "fpga_reused_from": "v014_video_720pl_jpeg_20261031_r6",
+      "offline_python_tests": 180,
+      "offline_browser_scenarios": 27,
+      "fresh_locked_zero_startup_samples": 25,
+      "startup_video_errors": [
+        "decode: Corrupt JPEG data: 4 extraneous bytes before marker 0xd9"
+      ],
+      "visual_flicker_acceptance": "USER_TO_VERIFY",
+      "performance_testing": "NOT_RUN",
+      "long_test": "USER_OWNED_NOT_RUN",
+      "motion_sent": false
+    }
+  },
+  "historical_rtl_gates": [
+    {
+      "record": "tactical_filter_gate.json",
+      "original_record_sha256": "ba07756f1d07385a736493818e938cb99ab2dd51946d8481693957669fe02c28",
+      "result": {
+        "pass": true,
+        "samples": 1449,
+        "reset_and_session_clear_with_dirty_history": true,
+        "rtl_sha256": "4913a44f0f2e401ca686593a6b6d7d2684953f2b2df86b70cf941b8067b206d3",
+        "scope": "actual production RTL versus independent median/trend reference; not hardware validation"
+      }
+    },
+    {
+      "record": "tactical_lookup_gate.json",
+      "original_record_sha256": "1e154f5bea676fbc9f2787cdc160e0958395f7392ce17ffa7e109c82ef409a3a",
+      "result": {
+        "pass": true,
+        "boundary_cases": 24664,
+        "distance_deltas": "0..4095mm, both signs",
+        "reference_dt_ticks": [
+          40000000,
+          60000000
+        ],
+        "all_classifications_covered": true,
+        "rtl_sha256": "4913a44f0f2e401ca686593a6b6d7d2684953f2b2df86b70cf941b8067b206d3",
+        "scope": "production ROM/registered classifier versus exact wide arithmetic; not hardware validation"
+      }
+    },
+    {
+      "record": "tactical_metadata_gate.json",
+      "original_record_sha256": "a77231e0cba511da4ad4f769fbe863ca62a89463475b6ae8ffee366b7d0f5ee8",
+      "result": {
+        "pass": true,
+        "frames": 6,
+        "metadata_words": 24,
+        "sources": {
+          "pynq_fpga/fpga/rtl/car_axis_frame_metadata.v": "0e6ecef52327ffa2283f75bb8aae3fd13b6c488d3944ca7aab280d3213487441",
+          "pynq_fpga/preintegration/host/frame_metadata.py": "c0234df44d719a652a9ac067aa84d7e7dded1e639ffe1de69097ae0acb59fe2d",
+          "pynq_fpga/preintegration/host/tactical_state.py": "603a820581f41ff261150d4e81a740b067212badc7cc872ed56c7b887d8f3fdd"
+        },
+        "scope": "production Python/RTL ABI with backpressure; not board validation"
+      }
+    },
+    {
+      "record": "tactical_overlay_gate.json",
+      "original_record_sha256": "4feef0ea4b166f11ec6ccac0703680069e7e3089aab9c4fa7eb469289f1f6e95",
+      "result": {
+        "pass": true,
+        "frames": 7,
+        "pixels_compared": 6451200,
+        "geometry": [
+          1280,
+          720
+        ],
+        "midframe_changes_latched": true,
+        "random_backpressure": true,
+        "rtl_sha256": "ca6184aa39746cc7f3ad18717e7f825937d419528d05297575b55b0f38b55d66"
+      }
+    },
+    {
+      "record": "tactical_chain_gate.json",
+      "original_record_sha256": "28c5c6151ff7f13eb83161e8b09a188677af1f517406d0c3024c881acb1f8657",
+      "result": {
+        "pass": true,
+        "geometry": [
+          1280,
+          720
+        ],
+        "frames": 4,
+        "wrapper_checks": 7374863,
+        "map_output_checked": true,
+        "stale_map_disabled": true,
+        "outputs": [
+          {
+            "frame": 1,
+            "sha256": "230c980535b2c5e7a478de7bb74e6993e2795212800f283c23536f5370f8edd5"
+          },
+          {
+            "frame": 2,
+            "sha256": "32ab20bb0dfcf9320156031ddbe2f1c5f3d921425e89bc19fab51966c3ef2739"
+          },
+          {
+            "frame": 3,
+            "sha256": "a85ad32636e93c5b934699c36c698f56d13fb9793a513907e6ed6592165a98d2"
+          },
+          {
+            "frame": 4,
+            "sha256": "d93e8d701a47747d3a7099c1a14af3b5dafe943970606e4bd33f628d9f20f56d"
+          }
+        ],
+        "scope": "production wrapper simulation; not board validation",
+        "sources": {
+          "pynq_fpga/fpga/rtl/car_axil_regs.v": "e2b8cff8ed49d882a9d11fc4c58a7b674ac7e38c4d31a6951edaa8d8ed87d9fb",
+          "pynq_fpga/fpga/rtl/car_axis_demo_hud.v": "8326a7061f883a3c5642c7e9aeba220f243030d25cd9193f24526b13a60b67a5",
+          "pynq_fpga/fpga/rtl/car_axis_frame_metadata.v": "0e6ecef52327ffa2283f75bb8aae3fd13b6c488d3944ca7aab280d3213487441",
+          "pynq_fpga/fpga/rtl/car_axis_front_overlay.v": "f8e1580970052fe382b0ab8a0a7bb6966d240c394ab24c9aa86035468217ff3e",
+          "pynq_fpga/fpga/rtl/car_axis_osd.v": "928df454702ddc45c2fae65ed1165f34bc4404b442e64f4f4d40216022225595",
+          "pynq_fpga/fpga/rtl/car_axis_status_osd.v": "ad8c5bdc283496088cf7f65261d73a3ff0539be0f6f07874d21bac81547923a9",
+          "pynq_fpga/fpga/rtl/car_axis_tactical.v": "ca6184aa39746cc7f3ad18717e7f825937d419528d05297575b55b0f38b55d66",
+          "pynq_fpga/fpga/rtl/car_board_video_wrapper.v": "c56265331a628da7c700b71beb7f443afc91bab83711cb00dc612921f570d148",
+          "pynq_fpga/fpga/rtl/car_ir.v": "5b9e831568a0728353a524d5c71489447ef45bb36d4228d1c42585eb3780e4cc",
+          "pynq_fpga/fpga/rtl/car_perception_top.v": "f809efbb5d4fd8e1ff9ad12dd9849749ed52a10e9349ce508f4ab9bbd4c381f0",
+          "pynq_fpga/fpga/rtl/car_qei.v": "341a89efef86529ba75e6337755587fdf025d05f29847f22d1864ab7e2dcaff1",
+          "pynq_fpga/fpga/rtl/car_qei_core.v": "52826a246776ded65527d4c12d606f27be82ee0f001972dbe7f2e0b5e681d350",
+          "pynq_fpga/fpga/rtl/car_qei_odometry.v": "34df585a0bccbefee7ba67c72a791f8c2ba4da19c014a12b45f244f1543dbb70",
+          "pynq_fpga/fpga/rtl/car_qei_top.v": "1466414c262cce0e52dce32c3233513d0b8a9bd29524e271cc722bf9865d14fa",
+          "pynq_fpga/fpga/rtl/car_qei_velocity.v": "f015ad1085eae40f11451d422ad33df7aacb59289aa525a6f5109d07536eaded",
+          "pynq_fpga/fpga/rtl/car_risk_core.v": "2a47bd0b3ec2f57fca96a977d39d366208fbe90dbc26e53a5491306bb8097154",
+          "pynq_fpga/fpga/rtl/car_sensors_core.v": "ee4569c1798a7134c5b728b368db458ab308e358c91601559729335696b28103",
+          "pynq_fpga/fpga/rtl/car_sensors_top.v": "5b1520a729c8d8fa89a7b47ed9617eaa117f4f0e743a8b4f3c33fa9e36a93040",
+          "pynq_fpga/fpga/rtl/car_snapshot.v": "fee6604d6ed2f3a2761c852881b9a82aa05b47b3e8cbfc4f4a8d85310af59d45",
+          "pynq_fpga/fpga/rtl/car_time_counter.v": "d71fcd2b4db9c6ce9ed5776cba4147a3e88c33b1d6996a5a7da7b5acec8a5667",
+          "pynq_fpga/fpga/rtl/car_ultrasonic.v": "bc3a5ab0fc1443858031642b594b935a2314da4fe893a5c0cf44c4c149a11b07",
+          "pynq_fpga/fpga/rtl/car_ultrasonic_display_filter.v": "4913a44f0f2e401ca686593a6b6d7d2684953f2b2df86b70cf941b8067b206d3",
+          "pynq_fpga/fpga/rtl/car_reg_defs.vh": "0399adbe6909a61599c8e51e4401af54fa2fa56fd896dd18c28066c7eb10e7c2",
+          "pynq_fpga/fpga/rtl/font_16x16_hud.mem": "51df349080c8cd77674a9fc4c1913ed8b80bfb570855322c622990baea00d6c5",
+          "pynq_fpga/fpga/rtl/font_24x24_demo.mem": "df265066d2d3e047a88359df9471e354306b4c36e24fc7a81cd3e4879964095e",
+          "pynq_fpga/fpga/rtl/font_24x24_hud.mem": "6a9638059e4ab0adb4717e4f4c343cd93d918f07d7b6f40b6c01bf7278c3a164",
+          "pynq_fpga/fpga/rtl/font_32x32_hud.mem": "54232b48b44c3b7c39c86a7a588386e90dab694fa37013b5942c6dd7c2fd2923",
+          "pynq_fpga/fpga/rtl/font_8x8_minimal.mem": "9aeeb57c77474ff33efb6da9b2d36ad3a6da72bf655db561a0266c271fe86c11",
+          "pynq_fpga/fpga/rtl/font_8x8_status.mem": "8360c4b1037b51af71aa47a2f695a523472f858d0689683a59f0a6e57a17e665",
+          "pynq_fpga/fpga/tb/tb_car_board_video_wrapper.sv": "2baa6c3ccc5525b5ce223683857deedfe368fe0db6763b3a67667973eb7f1903"
+        }
+      }
+    }
+  ],
+  "scope": "Historical results with source bindings, not a new board test. See README.md for current packaging checks.",
+  "historical_r6_delivery": {
+    "original_record_sha256": "10ecdfa3ff618bca7e7f49bace19e5e9a41cff7b02c976f3fd86bf12312cbb59",
+    "result": {
+      "schema": "car-tactical-delivery/v1",
+      "name": "v014_video_720pl_jpeg_20261031_r6",
+      "recorded_at": "2026-10-31T15:24:57.227710+00:00",
+      "deployment": "ACTIVE_FPGA_AND_VIDEO",
+      "contract": "0xC425100E",
+      "timing": {
+        "wns_ns": 0.071,
+        "tns_ns": 0,
+        "whs_ns": 0.022,
+        "ths_ns": 0
+      },
+      "offline_python_tests": 177,
+      "offline_browser_scenarios": 27,
+      "actual_frame_id": 1898,
+      "actual_geometry": [
+        1280,
+        720
+      ],
+      "processing_state": "real_PL_JPEG_DMA",
+      "performance": {
+        "relative_pass": null,
+        "relative_status": "NOT_VALIDATED_USER_STOPPED_TESTING",
+        "scope": "r5 baseline window closed before completion; user stopped further testing; r6 short recording metrics retained",
+        "candidate": {
+          "frames": 1061,
+          "fps": 17.503562635509848,
+          "interval_p50_ms": 48.79999999701977,
+          "interval_p95_ms": 125.1000000089407,
+          "interval_p99_ms": 207,
+          "max_gap_ms": 700.0999999940395,
+          "hidden_frames": 0
+        },
+        "absolute_internal_23fps_gate": false,
+        "long_test": "USER_OWNED_NOT_RUN",
+        "testing_state": "STOPPED_BY_USER"
+      },
+      "fresh_locked_zero_samples": 0,
+      "stm32_firmware_changed": false,
+      "stm32_reflashed": false,
+      "sensor_and_actuator_acceptance": "DEFERRED_BY_USER_BATTERY_CHARGING",
+      "long_test": "USER_OWNED_NOT_RUN",
+      "motion_sent": false,
+      "testing_state": "STOPPED_BY_USER",
+      "user_deferred": [
+        "STM32 sensor and actuator acceptance while battery charging",
+        "continued performance testing",
+        "user-owned long test"
+      ]
+    }
+  }
+}

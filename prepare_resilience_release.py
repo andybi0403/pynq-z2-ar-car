@@ -16,13 +16,13 @@ for name,before in binding['source_identity']['sources'].items():
             native_receipt=json.loads((ROOT/'runtime/native/build_receipt.json').read_text('utf8'))
             assert native_receipt['source_sha256']==sha(p) and native_receipt['library_sha256']==sha(ROOT/'runtime/native/libcar_video.so'), 'native rebuild required'
         else:
-            assert rel=='stm32预备程序/pc/pynq_link.py',f'unexpected build-source drift: {rel}'
+            assert rel=='stm32_tools/pc/pynq_link.py',f'unexpected build-source drift: {rel}'
         changes.append(dict(path=rel,before=before,after=sha(p)))
 base=ROOT.parents[1]/'dist/v012_plain_motor_demo_20261028_r7_source.zip'
 software=[]
 with zipfile.ZipFile(base) as z:
     prefix=z.namelist()[0].split('/')[0]+'/'
-    for folder in ['pynq_fpga/host','pynq_fpga/preintegration/host','stm32预备程序/pc','stm32_pynq对接版/Source/APP']:
+    for folder in ['pynq_fpga/host','pynq_fpga/preintegration/host','stm32_tools/pc','stm32_pynq_firmware/Source/APP']:
         for p in (ROOT/folder).rglob('*'):
             if not p.is_file() or '__pycache__' in p.parts or p.suffix not in ('.py','.js','.html','.sh','.c','.h'):continue
             rel=p.relative_to(ROOT).as_posix()

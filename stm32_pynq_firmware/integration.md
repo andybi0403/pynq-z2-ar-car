@@ -4,10 +4,10 @@
 
 > 9月18日验收修订：当前实现与测试以 `pynq_fpga/nightly/interface_contract.md` 和任务1—4验收报告为准；旧方案中的工期、参数和硬件能力描述不等于实测结果。
 
-> 版本：V1.1（2026-09-19 安全审查增量修复）。位置：`stm32_pynq对接版/`。固件：`build_safe/safe_car.elf`（text 7772 / data 84 / bss 3188（2026-09-19重建）；以 `powershell -ExecutionPolicy Bypass -File build_safe.ps1` 的实际输出为准）。
+> 版本：V1.1（2026-09-19 安全审查增量修复）。位置：`stm32_pynq_firmware/`。固件：`build_safe/safe_car.elf`（text 7772 / data 84 / bss 3188（2026-09-19重建）；以 `powershell -ExecutionPolicy Bypass -File build_safe.ps1` 的实际输出为准）。
 >
 > 本版在 V1.0 基础上完成安全审查修复：校验位置绑定（i==n-4，拒绝 N 与校验和之间的插入字符，含 $P,0,0,1,1000,0,0,X,2E# 类反例回归测试）、USB 字节活动独立计时（usb_byte_ms 由 USB ISR 逐字节刷新，专用于空闲释放判断，不再与有效帧时间混用）、$CAR 回传改为实际执行 PWM。原 V1.0 记录的 text 7652 / bss 3180 为修复前数字，已由本次构建结果取代。
-> 与演示版（`stm32预备程序/`）并行维护：演示版保留本地超声波+红外，用于 PYNQ 到货前的蓝牙/USB 台架演示；**本版是传感器全部上 PYNQ 后的最终比赛固件**。
+> 与演示版（`stm32_tools/`）并行维护：演示版保留本地超声波+红外，用于 PYNQ 到货前的蓝牙/USB 台架演示；**本版是传感器全部上 PYNQ 后的最终比赛固件**。
 
 ## 1. 本版的角色划分（对照 codex《BST-4WD改装说明》第 10 节逐条落实）
 

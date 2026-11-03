@@ -22,7 +22,7 @@ HERE = Path(__file__).resolve().parent
 if not (HERE / "perception_client.py").is_file():
     PROJECT = HERE.parents[1]
     sys.path.insert(0, str(PROJECT / "host"))
-    sys.path.insert(0, str(PROJECT.parent / "stm32预备程序" / "pc"))
+    sys.path.insert(0, str(PROJECT.parent / "stm32_tools" / "pc"))
 
 from board_runtime import Task78BoardRuntime, validate_ip_dict
 from overlay_session import DeviceLease, open_verified_overlay, artifact_identity

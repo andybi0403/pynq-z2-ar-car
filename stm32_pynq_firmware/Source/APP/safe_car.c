@@ -155,7 +155,7 @@ void EXTI15_10_IRQHandler(void) {
         }
     }
 }
-/* Transplanted from stm32预备程序/Source/APP/safe_car.c ultrasonic().
+/* Transplanted from stm32_tools/Source/APP/safe_car.c ultrasonic().
  * Only additions: real observation sequence increments for UART freshness. */
 static void ultrasonic(uint32_t now) {
     uint32_t key=irq_save();

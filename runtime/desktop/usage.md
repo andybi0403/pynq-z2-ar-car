@@ -10,6 +10,6 @@
 
 服务名为 pynq-car-demo-plain.service，路径 /home/xilinx/v013_plain_motor_demo_20261028_r3。随包服务初始记录电机动力已断开，供静态验证。实际连接动力后，应在页面据实确认连接状态，再接管、解锁；这项记录不是物理断电装置。
 
-桌面入口 desktop/打开完整控制台.pyw。USB 调试线用于调试和更新，浏览器控制仍需要电脑与 PYNQ 的网络连接。
+桌面入口 desktop/open_console.pyw。USB 调试线用于调试和更新，浏览器控制仍需要电脑与 PYNQ 的网络连接。
 
 估算里程来自实际 PWM 回包与人为设定系数，只用于展示，不能当作实测里程。离线测试及 FPGA 构建结果在配套源码包 validation/ 与 build/r3_artifacts 中；实物制动、地面行驶和现场网络仍需联合验证。

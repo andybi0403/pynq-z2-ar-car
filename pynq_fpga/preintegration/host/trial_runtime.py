@@ -11,7 +11,7 @@ import time
 HERE = Path(__file__).resolve().parent
 if not (HERE/'perception_client.py').exists():
     sys.path.insert(0, str(HERE.parents[1]/'host'))
-    sys.path.insert(0, str(HERE.parents[2]/'stm32预备程序/pc'))
+    sys.path.insert(0, str(HERE.parents[2]/'stm32_tools/pc'))
 
 from overlay_session import DeviceLease, open_verified_overlay
 from board_runtime import validate_ip_dict

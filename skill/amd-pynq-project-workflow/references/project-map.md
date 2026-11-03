@@ -29,7 +29,7 @@ G1共用会话、G2控制闭环、G3帧关联、G4里程/标定接口、G5显示
 | PL生产源码、TB | `pynq_fpga/fpga/rtl/`、`pynq_fpga/fpga/tb/`；顶层`car_perception_top.v`与`car_board_video_wrapper.v` |
 | PS感知、控制、标定 | `pynq_fpga/host/perception_client.py`、`control_supervisor.py`、`calibration_config.py`、`qei_calibration.py` |
 | 联合视频、界面、日志 | `pynq_fpga/preintegration/host/system_runtime.py`、`overlay_session.py`、`frame_association.py`、`frame_metadata.py`、`status_server.py`、`joint_evidence.py` |
-| STM32权威实现 | `stm32_pynq对接版/Source/APP/safe_control.c`及头文件；`stm32预备程序/`演示版单独维护；权威PC链路`stm32预备程序/pc/pynq_link.py` |
+| STM32权威实现 | `stm32_pynq_firmware/Source/APP/safe_control.c`及头文件；`stm32_tools/`演示版单独维护；权威PC链路`stm32_tools/pc/pynq_link.py` |
 | 两份固件验证/构建 | 两份固件目录内`tests/run_tests.cmd`、`build_safe.ps1`；主机C DLL夹具是测试产物，不替代权威固件 |
 | 板级约束与验收 | `pynq_fpga/fpga/board/board_manifest.json`、`board_electrical_review.md`、`no_motor_acceptance.md`；`docs/03_硬件与接线/13_下一步上板与联合验收流程_20260930.md` |
 | PYNQ原始板级依据 | `pynq-z2资料/引脚约束文件/pynq-z2_v1.0.xdc`、`原理图/PYNQ-Z2_PA_v3.pdf`、`原理图/TUL_PYNQ Schematic_R12.pdf`、`board_files/pynq-z2/A.0/` |
@@ -39,7 +39,7 @@ G1共用会话、G2控制闭环、G3帧关联、G4里程/标定接口、G5显示
 
 | 时间/主题 | 原始记录 | 可以提炼的经验 |
 |---|---|---|
-| 9月9日底盘串口 | `stm32预备程序/最小串口测试说明.md`、`USART2旁路测试说明.md` | 最小固件、核心板脱离底板、发送器开关和旁路对照缩小故障范围 |
+| 9月9日底盘串口 | `stm32_tools/最小串口测试说明.md`、`USART2旁路测试说明.md` | 最小固件、核心板脱离底板、发送器开关和旁路对照缩小故障范围 |
 | 9月17日方案/固件审查 | `9.17夜间任务队列/10_固件与方案V2安全审查报告_20260917.md` | 租约、协议、针脚、视频回写、CPR、量纲与赛题覆盖缺口 |
 | 9月18日实现验收 | `9.18夜间任务队列/01_上次错误与防回退要求.md`、`pynq_fpga/nightly/acceptance_20260918/任务1-4验收与修改报告.md` | 确定性预期、真实背压、全局快照、批次配对、测试变异 |
 | 9月19日多轮复验 | `pynq_fpga/audit/zcode_round4_final_20260919/FINAL_AUDIT_ROUND4.md`及前三轮审查/修复目录 | 独立反例与篡改矩阵、失败门禁、关闭历史问题而保留硬件缺口 |

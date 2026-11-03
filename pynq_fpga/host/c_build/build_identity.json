@@ -1,8 +1,8 @@
 {
     "schema":  "car-production-c-build/v1",
-    "source":  "C:\\Users\\39909\\Desktop\\FPGA\\demo_plain_motor\\pending_ultrasonic_250mm\\integrated_project\\stm32_pynq对接版\\Source\\APP\\safe_control.c",
+    "source":  "C:\\Users\\39909\\Desktop\\FPGA\\demo_plain_motor\\pending_ultrasonic_250mm\\integrated_project\\stm32_pynq_firmware\\Source\\APP\\safe_control.c",
     "source_sha256":  "d6821ca25160719136fac5497b9dec363641a41d7b3508d6a6c3c5e010226776",
-    "header":  "C:\\Users\\39909\\Desktop\\FPGA\\demo_plain_motor\\pending_ultrasonic_250mm\\integrated_project\\stm32_pynq对接版\\Source\\APP\\safe_control.h",
+    "header":  "C:\\Users\\39909\\Desktop\\FPGA\\demo_plain_motor\\pending_ultrasonic_250mm\\integrated_project\\stm32_pynq_firmware\\Source\\APP\\safe_control.h",
     "header_sha256":  "d823c468470440821e6a468bca2dc9db63afa3cf5a7a3d42ec2ee98048a43c4b",
     "dll_sha256":  "3301013790809a971991de920b9852c3463dbc40ca4e109c2e22ecaa1d8daff6",
     "compiler_command":  "cl /nologo /W4 /wd4819 /WX /TC /LD /O2 \"C:\\Users\\39909\\Desktop\\FPGA\\demo_plain_motor\\pending_ultrasonic_250mm\\integrated_project\\pynq_fpga\\host\\c_build\\safe_control_prod.c\" \"C:\\Users\\39909\\Desktop\\FPGA\\demo_plain_motor\\pending_ultrasonic_250mm\\integrated_project\\pynq_fpga\\host\\c_build\\hybrid_protocol_prod.c\" /Fe\"C:\\Users\\39909\\Desktop\\FPGA\\demo_plain_motor\\pending_ultrasonic_250mm\\integrated_project\\pynq_fpga\\host\\c_build\\safe_control.dll\" /FoC:\\Users\\39909\\Desktop\\FPGA\\demo_plain_motor\\pending_ultrasonic_250mm\\integrated_project\\pynq_fpga\\host\\c_build\\obj\\ /link /EXPORT:safe_init /EXPORT:safe_tick /EXPORT:safe_fault /EXPORT:safe_source_handover /EXPORT:safe_frame /EXPORT:safe_pframe /EXPORT:safe_outputs /EXPORT:hybrid_receive /EXPORT:hybrid_report /EXPORT:hybrid_crc16 /EXPORT:safe_local_sample"

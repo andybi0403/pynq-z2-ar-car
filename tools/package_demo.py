@@ -41,8 +41,8 @@ def main():
  shutil.copy2(ROOT/'pynq_fpga/third_party/mjpegZero/provenance.json',license_dir/'mjpegZero_provenance.json')
  shutil.copy2(ROOT/'assets/font/OFL.txt',license_dir/'NotoSansSC_OFL.txt')
  for name in ['bin','hex','elf']:
-  shutil.copy2(ROOT/'stm32_pynq对接版/build_safe'/('safe_car.'+name),RUNTIME/('stm32_hybrid_v3.'+name))
- shutil.copy2(ROOT/'stm32预备程序/pc/pynq_link.py',RUNTIME/'pynq_link.py')
+  shutil.copy2(ROOT/'stm32_pynq_firmware/build_safe'/('safe_car.'+name),RUNTIME/('stm32_hybrid_v3.'+name))
+ shutil.copy2(ROOT/'stm32_tools/pc/pynq_link.py',RUNTIME/'pynq_link.py')
  for p in artifacts.iterdir():
   if p.is_file():shutil.copy2(p,RUNTIME/p.name)
  for name in ['car_video.c','CMakeLists.txt']:
@@ -71,7 +71,7 @@ def main():
    runtime_files={n:sha(RUNTIME/n) for n in RUNTIME_FILES},wireless_files={n:sha(RUNTIME/n) for n in WIRELESS_FILES},
    profile={'name':'plain_motor_demo','encoders_required':False,'speed_display':False,'mileage':'estimated_actual_pwm_time','fixed_forward_stop_mm':250},
    physical_validation={k:False for k in manifest['physical_validation']},
-   sensor_console={'schema':'car-sensor-console/v4','offline_launcher':'desktop/打开完整控制台.pyw','hardware_result':'PENDING','encoder_required':False},
+   sensor_console={'schema':'car-sensor-console/v4','offline_launcher':'desktop/open_console.pyw','hardware_result':'PENDING','encoder_required':False},
    software_patch_history=[{'file':'software_patch_manifest.json','sha256':sha(RUNTIME/'software_patch_manifest.json'),'scope':'host/video changes bound to selected FPGA source identity'}],software_revision={'kind':'DIRECT_MANUAL_ISOLATED','name':args.name,'base_package':'v012_plain_motor_demo_20261028_r7','base_manifest_sha256':base_hash,'fpga_rebuilt':identity['video_profile'] in ('wireless360','wireless720_jpeg'),'fpga_reused_from':None if identity['video_profile'] in ('wireless360','wireless720_jpeg') else 'v013_plain_motor_demo_20261028_r3','validation':'validation/resilience_tests.json; validation/browser/browser-results.json; hardware pending'},
    firmware_revision={'kind':'US_250_UNKNOWN_ADVISORY','base_package':'v012_plain_motor_demo_20261028_r7','recompiled':False,'reflashed':False,'firmware_reused_from':'v013_plain_motor_demo_20261028_r3','wire_protocol':'Q1/S1/D1/R1 unchanged'})
  for key in ['bit','hwh']:
@@ -80,7 +80,7 @@ def main():
   manifest['software_revision'].update(fpga_rebuilt=False,fpga_reused_from=args.reuse_fpga_from)
  for ext in ['bin','hex','elf']:
   p=RUNTIME/('stm32_hybrid_v3.'+ext)
-  assert sha(p)==sha(ROOT/'stm32_pynq对接版/build_safe'/('safe_car.'+ext))
+  assert sha(p)==sha(ROOT/'stm32_pynq_firmware/build_safe'/('safe_car.'+ext))
   manifest['artifacts']['stm32_'+ext]={'file':p.name,'bytes':p.stat().st_size,'sha256':sha(p)}
  build=artifacts.with_name(artifacts.name.removesuffix('_artifacts'))
  log_bytes=(build/'build_console.log').read_bytes()
@@ -112,7 +112,7 @@ def main():
   rel=name.removeprefix('workspace/') if name.startswith('workspace/') else 'pynq_fpga/'+name
   p=ROOT/rel
   if p.is_file():selected.add(p)
- for name in ['runtime','tests','tools','validation','assets','delivery_docs','pynq_fpga/preintegration/tests','pending_joint_stop_100mm','stm32_pynq对接版/Source','stm32预备程序/pc']:
+ for name in ['runtime','tests','tools','validation','assets','delivery_docs','pynq_fpga/preintegration/tests','pending_joint_stop_100mm','stm32_pynq_firmware/Source','stm32_tools/pc']:
   for p in (ROOT/name).rglob('*'):
    if p.is_file() and portable(p) and p.suffix not in ['.pyc','.dll','.obj','.lib','.exp','.exe','.o','.pdb']:selected.add(p)
  for name in ['pynq_fpga/host','pynq_fpga/preintegration/host']:
@@ -122,7 +122,7 @@ def main():
    if p.is_file() and (p.name in ['LICENSE','COPYING','THIRD_PARTY_LIC','AUTHORS','README.md']):selected.add(p)
  for p in ROOT.iterdir():
   if p.is_file() and p.name!='delivery_manifest.json':selected.add(p)
- for name in ['bin','hex','elf']:selected.add(ROOT/'stm32_pynq对接版/build_safe'/('safe_car.'+name))
+ for name in ['bin','hex','elf']:selected.add(ROOT/'stm32_pynq_firmware/build_safe'/('safe_car.'+name))
  with zipfile.ZipFile(archives[1],'x',zipfile.ZIP_DEFLATED) as z:
   for p in sorted(selected):z.write(p,args.name+'_source/'+p.relative_to(ROOT).as_posix())
  receipt={'schema':'plain-motor-delivery/v1','name':args.name,'created_at':stamp,'integrated_id':'0xC425100E',

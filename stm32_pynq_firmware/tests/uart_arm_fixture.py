@@ -11,8 +11,8 @@ from unicorn import Uc, UC_ARCH_ARM, UC_MODE_THUMB, UC_MODE_MCLASS, UC_HOOK_MEM_
 from unicorn.arm_const import UC_ARM_REG_SP,UC_ARM_REG_LR,UC_ARM_REG_R0,UC_ARM_REG_PC
 
 ROOT=Path(__file__).resolve().parents[2]
-PACKAGE=ROOT/'stm32_pynq对接版/build_safe'
-sys.path.insert(0,str(ROOT/'stm32预备程序/pc'))
+PACKAGE=ROOT/'stm32_pynq_firmware/build_safe'
+sys.path.insert(0,str(ROOT/'stm32_tools/pc'))
 from pynq_link import HybridCarLink,parse_sensor_report
 BIN=(PACKAGE/'safe_car.bin').read_bytes()
 with (PACKAGE/'safe_car.elf').open('rb') as stream:

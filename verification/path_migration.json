@@ -1,0 +1,501 @@
+{
+  "schema": "source-path-migration/v1",
+  "scope": "English path normalization and packaging documentation only; no algorithm or firmware changes",
+  "rename_components": {
+    "stm32_pynq对接版": "stm32_pynq_firmware",
+    "stm32预备程序": "stm32_tools",
+    "使用说明.md": "usage.md",
+    "对接版说明.md": "integration.md",
+    "打开完整控制台.pyw": "open_console.pyw"
+  },
+  "automatic_path_changes": [
+    {
+      "original_path": "prepare_resilience_release.py",
+      "path": "prepare_resilience_release.py",
+      "original_sha256": "9ed1592c1ef7fd8cf2cc22760ee010b9f9f73ed0eb24035858173be0eaba620e",
+      "sha256": "df517a27a01b1561e3489913c3f3f9b0e0c1db1dd357837c57347f621eaf9e06"
+    },
+    {
+      "original_path": "README.md",
+      "path": "README.md",
+      "original_sha256": "e0c610e00d973b0ca7d24694ac3864e08602f1df91a58db267aecaac6a98c02d",
+      "sha256": "33706fd600681354bec5b309ed1d256107c30cb9d2b27c18a7364d8f8c54b933"
+    },
+    {
+      "original_path": "runtime/console_manifest.json",
+      "path": "runtime/console_manifest.json",
+      "original_sha256": "c839b9c0084b13abae67450c446dd365b20d50f31a2e10b9f80b66803690840c",
+      "sha256": "613f18cd2279942f3187b94522ff72333becfe7825acf43095c42f2421d7ee99"
+    },
+    {
+      "original_path": "runtime/lab_acceptance.py",
+      "path": "runtime/lab_acceptance.py",
+      "original_sha256": "e7ca984dd14ff401d69f669c5b056cab7fa4c39c0bbeb3ff0f0023184e4c618e",
+      "sha256": "5499aeaad6fbfd1cfbb3e84f3b1d4725dec16093f8c136ac015e3d63a9a2d42f"
+    },
+    {
+      "original_path": "runtime/lab_manifest.json",
+      "path": "runtime/lab_manifest.json",
+      "original_sha256": "8ad7676aa8241d5c708f2c776dac21fe2c56070a3f6afdb83cd32fbd70a96a9a",
+      "sha256": "6842a575741e28c9ce4baa5f15829237d00eafd61e4f5e66d2ae964e2c2d7aef"
+    },
+    {
+      "original_path": "runtime/pynq_link.py",
+      "path": "runtime/pynq_link.py",
+      "original_sha256": "f086c20600e2575181752c81303d17b4e3b629bff2babd973f7e8ac2e7da0c01",
+      "sha256": "85b975d7aab65a5273c027b5ebc8f0fb3a7cba112f82d21727f121bbf0fb255e"
+    },
+    {
+      "original_path": "runtime/README.md",
+      "path": "runtime/README.md",
+      "original_sha256": "2ff44776e535c41ea8845e08921f2635ba2aa5579f9fe0b11e40366df4bcaec0",
+      "sha256": "c7ea855e604608b7f43dcbf79b9b8c1491ed8cd4b7398759a6422b9c8d44064a"
+    },
+    {
+      "original_path": "runtime/SENSOR_CONSOLE_GUIDE.md",
+      "path": "runtime/SENSOR_CONSOLE_GUIDE.md",
+      "original_sha256": "eb34fcd08b2ee8df949e7363acbb9dfe75f6f8e992ff0275a0039ef898ba9ed9",
+      "sha256": "d96341cdaf004c68742d2bb7e8b352e459b1585f0a71d875031d5a602581134e"
+    },
+    {
+      "original_path": "runtime/software_patch_manifest.json",
+      "path": "runtime/software_patch_manifest.json",
+      "original_sha256": "ba2fd985c692db280095fc185c6be3165c4936cf02e4b6eb815f257856b4a379",
+      "sha256": "cd803468816831613035b48a8a91cb733020441901277134cad6fdecc5ccc587"
+    },
+    {
+      "original_path": "runtime/system_runtime.py",
+      "path": "runtime/system_runtime.py",
+      "original_sha256": "622eaad18fca958bdaebbb42f9cb77bbf786254cff81f9518e84ce7494c17487",
+      "sha256": "5aff2af8f2ae534e1c8c6cf54086d23398d524c8dc4ebcb1d0374a0d0e224da3"
+    },
+    {
+      "original_path": "runtime/WIRELESS_SETUP.md",
+      "path": "runtime/WIRELESS_SETUP.md",
+      "original_sha256": "c06f69750ead5204f700ffa4992f18039f0190c7f9be21d2aae89b92f9de413a",
+      "sha256": "d6cc0c4329102eb0d43d7e1742d601708744f557caa90b4908b05052104c9db2"
+    },
+    {
+      "original_path": "stm32_pynq对接版/build_safe.ps1",
+      "path": "stm32_pynq_firmware/build_safe.ps1",
+      "original_sha256": "25911386f995b0a2aba7b507268f97dcf99d8c1cde243e1b92e09beb2e0f20cc",
+      "sha256": "25911386f995b0a2aba7b507268f97dcf99d8c1cde243e1b92e09beb2e0f20cc"
+    },
+    {
+      "original_path": "stm32_pynq对接版/safe_startup.c",
+      "path": "stm32_pynq_firmware/safe_startup.c",
+      "original_sha256": "5051dafd495d0ca52d6a25a02d3622d626513b1cb4c69e8bb0bac5adaa85e8ce",
+      "sha256": "5051dafd495d0ca52d6a25a02d3622d626513b1cb4c69e8bb0bac5adaa85e8ce"
+    },
+    {
+      "original_path": "stm32_pynq对接版/safe_stm32f103c8.ld",
+      "path": "stm32_pynq_firmware/safe_stm32f103c8.ld",
+      "original_sha256": "54e44972588b65524d688b61dd622ef798c2063c4e142b3e5fe2e6d711e726b1",
+      "sha256": "54e44972588b65524d688b61dd622ef798c2063c4e142b3e5fe2e6d711e726b1"
+    },
+    {
+      "original_path": "stm32_pynq对接版/对接版说明.md",
+      "path": "stm32_pynq_firmware/integration.md",
+      "original_sha256": "f7fcd8dd4dd1c0fd5897492b03a78b5f06372d7c0937affa3f64f196ffed4795",
+      "sha256": "e233a682e142b974ec7d9da7a34db10f947ba13e2b4320f723480c4f1c19db21"
+    },
+    {
+      "original_path": "tests/test_uart_clock_race.py",
+      "path": "tests/test_uart_clock_race.py",
+      "original_sha256": "dbf637001904c19c3909eb59bdeac4d193fed1fb5ab2525b23a918d9dab0c6a1",
+      "sha256": "80da77e43c683f1109dc53063203768b2568833d884b253b9fd2c9ce440dfae1"
+    },
+    {
+      "original_path": "tests/test_uart_nonblocking.py",
+      "path": "tests/test_uart_nonblocking.py",
+      "original_sha256": "636bd353a72e2f4c017cf4af43088339e12cab088321d4a87fd5e1e2476d1cff",
+      "sha256": "0be4c72001e06e807a75047be60ff4f09aac0cf923d0351b5501d0cf24597356"
+    },
+    {
+      "original_path": "tools/package_demo.py",
+      "path": "tools/package_demo.py",
+      "original_sha256": "98ba43bd33195195990295ec382fbaa811b4c8c8f4505797d1b7614f16d48464",
+      "sha256": "aeccdfe9cf6826b937f158fcf5a72143188a0d8ebab9e2a29f73e6a9bfb4daec"
+    },
+    {
+      "original_path": "tools/verify_variant.py",
+      "path": "tools/verify_variant.py",
+      "original_sha256": "6633fbd4b3a273cfb43445b2b003958b7c74fea68f96a5ec978ef374c67e615e",
+      "sha256": "23a448862e9f3310c56d87e92dea8b6a7fe4f076bdfb4495564c802d6eaf9d98"
+    },
+    {
+      "original_path": "stm32预备程序/pc/car_console.py",
+      "path": "stm32_tools/pc/car_console.py",
+      "original_sha256": "1112fb1d885ade9e935b304aa1dbe39a8e4bb53b537f3848d63e79437781d5f9",
+      "sha256": "1112fb1d885ade9e935b304aa1dbe39a8e4bb53b537f3848d63e79437781d5f9"
+    },
+    {
+      "original_path": "stm32预备程序/pc/pynq_link.py",
+      "path": "stm32_tools/pc/pynq_link.py",
+      "original_sha256": "f086c20600e2575181752c81303d17b4e3b629bff2babd973f7e8ac2e7da0c01",
+      "sha256": "85b975d7aab65a5273c027b5ebc8f0fb3a7cba112f82d21727f121bbf0fb255e"
+    },
+    {
+      "original_path": "stm32预备程序/pc/test_console.py",
+      "path": "stm32_tools/pc/test_console.py",
+      "original_sha256": "94c3fd46d10f9914ebb2f882c663bd1fa13024efc5ee48208ae1645a73b22edb",
+      "sha256": "94c3fd46d10f9914ebb2f882c663bd1fa13024efc5ee48208ae1645a73b22edb"
+    },
+    {
+      "original_path": "stm32预备程序/pc/test_hybrid_link.py",
+      "path": "stm32_tools/pc/test_hybrid_link.py",
+      "original_sha256": "572c8ed56f5ba07172135b2d068d4c7db73b7b72689d38ae70de0d0c1f56f08c",
+      "sha256": "572c8ed56f5ba07172135b2d068d4c7db73b7b72689d38ae70de0d0c1f56f08c"
+    },
+    {
+      "original_path": "stm32预备程序/pc/test_pynq_link.py",
+      "path": "stm32_tools/pc/test_pynq_link.py",
+      "original_sha256": "695db8be4195d3a4dcdc84ccd87c47cf8394a22ff0dbfc68924b72c652133ff4",
+      "sha256": "695db8be4195d3a4dcdc84ccd87c47cf8394a22ff0dbfc68924b72c652133ff4"
+    },
+    {
+      "original_path": "stm32预备程序/pc/使用说明.md",
+      "path": "stm32_tools/pc/usage.md",
+      "original_sha256": "6531c2739960c53223ef329eb2f58e85734639b87131af62a2b04c52928ff58d",
+      "sha256": "6531c2739960c53223ef329eb2f58e85734639b87131af62a2b04c52928ff58d"
+    },
+    {
+      "original_path": "stm32_pynq对接版/tests/fuzz_build.cmd",
+      "path": "stm32_pynq_firmware/tests/fuzz_build.cmd",
+      "original_sha256": "91a6c50ddf3a11b4dd56fcf824f4db6933b6075aa663f7b0de6650e01bdcfcb1",
+      "sha256": "91a6c50ddf3a11b4dd56fcf824f4db6933b6075aa663f7b0de6650e01bdcfcb1"
+    },
+    {
+      "original_path": "stm32_pynq对接版/tests/requirements-uart-test.txt",
+      "path": "stm32_pynq_firmware/tests/requirements-uart-test.txt",
+      "original_sha256": "802172a85ee64b43be0edbe5fd782d24289a32e96e991e9e1252d163d598c733",
+      "sha256": "802172a85ee64b43be0edbe5fd782d24289a32e96e991e9e1252d163d598c733"
+    },
+    {
+      "original_path": "stm32_pynq对接版/tests/run_tests.cmd",
+      "path": "stm32_pynq_firmware/tests/run_tests.cmd",
+      "original_sha256": "73ba49850566d0247b323a94f475b75e84e0aaeb81400f1bfec3eacab12dfeb8",
+      "sha256": "73ba49850566d0247b323a94f475b75e84e0aaeb81400f1bfec3eacab12dfeb8"
+    },
+    {
+      "original_path": "stm32_pynq对接版/tests/test_hybrid_protocol.c",
+      "path": "stm32_pynq_firmware/tests/test_hybrid_protocol.c",
+      "original_sha256": "8999c37520032cb6bea485585216d0f0ccff7cf38e9fd224e2bb0d1b9f9574f3",
+      "sha256": "8999c37520032cb6bea485585216d0f0ccff7cf38e9fd224e2bb0d1b9f9574f3"
+    },
+    {
+      "original_path": "stm32_pynq对接版/tests/test_safe_control.c",
+      "path": "stm32_pynq_firmware/tests/test_safe_control.c",
+      "original_sha256": "2c66e7b4dc9dc6eb682f2a710103ff5383c2fabd13e70e1ec8e98a0c06c57da8",
+      "sha256": "2c66e7b4dc9dc6eb682f2a710103ff5383c2fabd13e70e1ec8e98a0c06c57da8"
+    },
+    {
+      "original_path": "stm32_pynq对接版/tests/test_uart_roles_arm.py",
+      "path": "stm32_pynq_firmware/tests/test_uart_roles_arm.py",
+      "original_sha256": "82be7fe7940cab0fd90de16f1417afb22f00b15a9891a606c8f7ca16a7055058",
+      "sha256": "82be7fe7940cab0fd90de16f1417afb22f00b15a9891a606c8f7ca16a7055058"
+    },
+    {
+      "original_path": "stm32_pynq对接版/tests/uart_arm_fixture.py",
+      "path": "stm32_pynq_firmware/tests/uart_arm_fixture.py",
+      "original_sha256": "d6bb71860591d7b522cf2e4e5e5739ff93f8305a2a3d06754bcb82ad9405119e",
+      "sha256": "5ab5d7d9bec9817f7edde2d2093b9a7e2014313ab7a78f895c6819fba7712d12"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/APP/hybrid_protocol.c",
+      "path": "stm32_pynq_firmware/Source/APP/hybrid_protocol.c",
+      "original_sha256": "a36c30cd5b7459d54d158cfd7fb0b7312f6da8ac5e913c6a210479a8dfe5704e",
+      "sha256": "a36c30cd5b7459d54d158cfd7fb0b7312f6da8ac5e913c6a210479a8dfe5704e"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/APP/hybrid_protocol.h",
+      "path": "stm32_pynq_firmware/Source/APP/hybrid_protocol.h",
+      "original_sha256": "0be794549dfcdf80c725e468c7c14cad9c0ac7bce0cc42c1f01cc6172cb8977f",
+      "sha256": "0be794549dfcdf80c725e468c7c14cad9c0ac7bce0cc42c1f01cc6172cb8977f"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/APP/main.c",
+      "path": "stm32_pynq_firmware/Source/APP/main.c",
+      "original_sha256": "da18f5717849950d74fae329ab25e8053b421eb556bfaabca16239e452db37a6",
+      "sha256": "da18f5717849950d74fae329ab25e8053b421eb556bfaabca16239e452db37a6"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/APP/safe_car.c",
+      "path": "stm32_pynq_firmware/Source/APP/safe_car.c",
+      "original_sha256": "3c1a6c0349e809bdde5b11b91e0c5db0aebd5eb18e11792cff1d3168b35d38fb",
+      "sha256": "aa4b93cacf57687a3c4480d9434c3539614261a61783bd1598671e6511baf292"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/APP/safe_car.h",
+      "path": "stm32_pynq_firmware/Source/APP/safe_car.h",
+      "original_sha256": "e03534a67204bea64796983f0206483263a86c5effc2ef1ee4afaee2347262c2",
+      "sha256": "e03534a67204bea64796983f0206483263a86c5effc2ef1ee4afaee2347262c2"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/APP/safe_control.c",
+      "path": "stm32_pynq_firmware/Source/APP/safe_control.c",
+      "original_sha256": "d6821ca25160719136fac5497b9dec363641a41d7b3508d6a6c3c5e010226776",
+      "sha256": "d6821ca25160719136fac5497b9dec363641a41d7b3508d6a6c3c5e010226776"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/APP/safe_control.h",
+      "path": "stm32_pynq_firmware/Source/APP/safe_control.h",
+      "original_sha256": "d823c468470440821e6a468bca2dc9db63afa3cf5a7a3d42ec2ee98048a43c4b",
+      "sha256": "d823c468470440821e6a468bca2dc9db63afa3cf5a7a3d42ec2ee98048a43c4b"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/APP/stm32f10x_conf.h",
+      "path": "stm32_pynq_firmware/Source/APP/stm32f10x_conf.h",
+      "original_sha256": "d5b09b9b28176d258d83b5b6193f72501a63c9e0e18d52b7b4e947977d3a5400",
+      "sha256": "d5b09b9b28176d258d83b5b6193f72501a63c9e0e18d52b7b4e947977d3a5400"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/BSP/bsp_iravoid.h",
+      "path": "stm32_pynq_firmware/Source/BSP/bsp_iravoid.h",
+      "original_sha256": "5355a77ec7545788172c76329e26c71d60cf8783485d2a87b47c29427cd2bb80",
+      "sha256": "5355a77ec7545788172c76329e26c71d60cf8783485d2a87b47c29427cd2bb80"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/BSP/bsp_motor.h",
+      "path": "stm32_pynq_firmware/Source/BSP/bsp_motor.h",
+      "original_sha256": "364100189f04afb24eecb5756ef46abbabd30855b9d65bfb86591d7fbe655538",
+      "sha256": "364100189f04afb24eecb5756ef46abbabd30855b9d65bfb86591d7fbe655538"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/BSP/bsp_ultrasonic.h",
+      "path": "stm32_pynq_firmware/Source/BSP/bsp_ultrasonic.h",
+      "original_sha256": "da3423f4cf073db768755d74ad8b02a109ab8ee68b138e1a0d7d3d14c663a7cc",
+      "sha256": "da3423f4cf073db768755d74ad8b02a109ab8ee68b138e1a0d7d3d14c663a7cc"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/CMSIS/core_cm3.h",
+      "path": "stm32_pynq_firmware/Source/CMSIS/core_cm3.h",
+      "original_sha256": "de4668aa9d314d05769dfb29f028e205b50577c6b2150fc6bccb34bd34179bbb",
+      "sha256": "de4668aa9d314d05769dfb29f028e205b50577c6b2150fc6bccb34bd34179bbb"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/CMSIS/stm32f10x.h",
+      "path": "stm32_pynq_firmware/Source/CMSIS/stm32f10x.h",
+      "original_sha256": "4ee722d262c1e7d7505d7dc7eeb8ccaaf67158b51ee4bc177397cd64e74e1b3a",
+      "sha256": "4ee722d262c1e7d7505d7dc7eeb8ccaaf67158b51ee4bc177397cd64e74e1b3a"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/CMSIS/system_stm32f10x.c",
+      "path": "stm32_pynq_firmware/Source/CMSIS/system_stm32f10x.c",
+      "original_sha256": "45f52950f5fc6509920fb26d1362e8457907c2d62fa455cbe3c6ce6daa974a76",
+      "sha256": "45f52950f5fc6509920fb26d1362e8457907c2d62fa455cbe3c6ce6daa974a76"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/CMSIS/system_stm32f10x.h",
+      "path": "stm32_pynq_firmware/Source/CMSIS/system_stm32f10x.h",
+      "original_sha256": "919dc1f5c6bbba74cb712e8ec7cf73f1988eafa9438c706526fb401a2ab4672d",
+      "sha256": "919dc1f5c6bbba74cb712e8ec7cf73f1988eafa9438c706526fb401a2ab4672d"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/FWlib/inc/misc.h",
+      "path": "stm32_pynq_firmware/Source/FWlib/inc/misc.h",
+      "original_sha256": "40c918f726035dfa67a7bfadefac8e922196d7918f915a7f2db1e652625c7e41",
+      "sha256": "40c918f726035dfa67a7bfadefac8e922196d7918f915a7f2db1e652625c7e41"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/FWlib/inc/stm32f10x_dma.h",
+      "path": "stm32_pynq_firmware/Source/FWlib/inc/stm32f10x_dma.h",
+      "original_sha256": "2ba038050d07735a42645f2508e62078c217dc750878097f7f113660e0d58ffb",
+      "sha256": "2ba038050d07735a42645f2508e62078c217dc750878097f7f113660e0d58ffb"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/FWlib/inc/stm32f10x_exti.h",
+      "path": "stm32_pynq_firmware/Source/FWlib/inc/stm32f10x_exti.h",
+      "original_sha256": "661b039483459137a58bfdea7522528b9b6e923d61966d4c7c8a5035bd375f5f",
+      "sha256": "661b039483459137a58bfdea7522528b9b6e923d61966d4c7c8a5035bd375f5f"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/FWlib/inc/stm32f10x_gpio.h",
+      "path": "stm32_pynq_firmware/Source/FWlib/inc/stm32f10x_gpio.h",
+      "original_sha256": "ef945fe7b2e4a8f3bf8fa22d44274085444dec80424f91606a1467ea4e69626f",
+      "sha256": "ef945fe7b2e4a8f3bf8fa22d44274085444dec80424f91606a1467ea4e69626f"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/FWlib/inc/stm32f10x_i2c.h",
+      "path": "stm32_pynq_firmware/Source/FWlib/inc/stm32f10x_i2c.h",
+      "original_sha256": "08b14d416090815765a02e6fecf78cbdd3de4ad330d3bc04b2133f8f4f3f2daa",
+      "sha256": "08b14d416090815765a02e6fecf78cbdd3de4ad330d3bc04b2133f8f4f3f2daa"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/FWlib/inc/stm32f10x_rcc.h",
+      "path": "stm32_pynq_firmware/Source/FWlib/inc/stm32f10x_rcc.h",
+      "original_sha256": "894e140a70b0cdc94e4e96c5011def9dca5a103752783c3bb7cab538fc426f9e",
+      "sha256": "894e140a70b0cdc94e4e96c5011def9dca5a103752783c3bb7cab538fc426f9e"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/FWlib/inc/stm32f10x_tim.h",
+      "path": "stm32_pynq_firmware/Source/FWlib/inc/stm32f10x_tim.h",
+      "original_sha256": "dddf89f9b7134a2f15ed9cc2521589ee9a2e18c0553a6017c71b5d5b394524e5",
+      "sha256": "dddf89f9b7134a2f15ed9cc2521589ee9a2e18c0553a6017c71b5d5b394524e5"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/FWlib/inc/stm32f10x_usart.h",
+      "path": "stm32_pynq_firmware/Source/FWlib/inc/stm32f10x_usart.h",
+      "original_sha256": "9d4c2067e54defd64b000076e6561726d758c872d354bed6eea66a6767c08bce",
+      "sha256": "9d4c2067e54defd64b000076e6561726d758c872d354bed6eea66a6767c08bce"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/FWlib/src/misc.c",
+      "path": "stm32_pynq_firmware/Source/FWlib/src/misc.c",
+      "original_sha256": "152c632e56151b2564121c56ff359d0f041621f0da6ed101d7fd376a139a5c75",
+      "sha256": "152c632e56151b2564121c56ff359d0f041621f0da6ed101d7fd376a139a5c75"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/FWlib/src/stm32f10x_exti.c",
+      "path": "stm32_pynq_firmware/Source/FWlib/src/stm32f10x_exti.c",
+      "original_sha256": "5783d10d46275d8baee9f2861cf434b5c12a4bc8f42ed4af9e503c1818941ebe",
+      "sha256": "5783d10d46275d8baee9f2861cf434b5c12a4bc8f42ed4af9e503c1818941ebe"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/FWlib/src/stm32f10x_gpio.c",
+      "path": "stm32_pynq_firmware/Source/FWlib/src/stm32f10x_gpio.c",
+      "original_sha256": "8255650b583b2bab2c320e0974309a6ccf26f661e7ad1b54282c0f0e2b9a1acf",
+      "sha256": "8255650b583b2bab2c320e0974309a6ccf26f661e7ad1b54282c0f0e2b9a1acf"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/FWlib/src/stm32f10x_rcc.c",
+      "path": "stm32_pynq_firmware/Source/FWlib/src/stm32f10x_rcc.c",
+      "original_sha256": "f23bbc9b83e44e69f5dc34f072867f0087a3eb0452034ab09c363088d2354cd9",
+      "sha256": "f23bbc9b83e44e69f5dc34f072867f0087a3eb0452034ab09c363088d2354cd9"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/FWlib/src/stm32f10x_tim.c",
+      "path": "stm32_pynq_firmware/Source/FWlib/src/stm32f10x_tim.c",
+      "original_sha256": "bd12bf18b03b8585ac2ba6bd0e80ec39d8fd0c89307eb54f5a7be38a46894d03",
+      "sha256": "bd12bf18b03b8585ac2ba6bd0e80ec39d8fd0c89307eb54f5a7be38a46894d03"
+    },
+    {
+      "original_path": "stm32_pynq对接版/Source/FWlib/src/stm32f10x_usart.c",
+      "path": "stm32_pynq_firmware/Source/FWlib/src/stm32f10x_usart.c",
+      "original_sha256": "6d7af47017b01eb260fb7699f5c483e0a8576b4c780069a99975b7c6443030dd",
+      "sha256": "6d7af47017b01eb260fb7699f5c483e0a8576b4c780069a99975b7c6443030dd"
+    },
+    {
+      "original_path": "skill/amd-pynq-project-workflow/references/project-map.md",
+      "path": "skill/amd-pynq-project-workflow/references/project-map.md",
+      "original_sha256": "2a30cc1514e39f343a039609025815f1da34c92267d958909b306142ec4e428b",
+      "sha256": "89fba522ecee96f10fa9576b4495ce689aff1f7f2fd7bece8399febbe1cacfa0"
+    },
+    {
+      "original_path": "runtime/desktop/使用说明.md",
+      "path": "runtime/desktop/usage.md",
+      "original_sha256": "2ff44776e535c41ea8845e08921f2635ba2aa5579f9fe0b11e40366df4bcaec0",
+      "sha256": "c7ea855e604608b7f43dcbf79b9b8c1491ed8cd4b7398759a6422b9c8d44064a"
+    },
+    {
+      "original_path": "runtime/desktop/打开完整控制台.pyw",
+      "path": "runtime/desktop/open_console.pyw",
+      "original_sha256": "8ca9c746fef4a2bcc54245687f3befb34e7b2c3b8b78c43fb1103ab7cdbdc5f6",
+      "sha256": "8ca9c746fef4a2bcc54245687f3befb34e7b2c3b8b78c43fb1103ab7cdbdc5f6"
+    },
+    {
+      "original_path": "runtime/uart_recovery_sources/stm32_pynq对接版/tests/test_uart_roles_arm.py",
+      "path": "runtime/uart_recovery_sources/stm32_pynq_firmware/tests/test_uart_roles_arm.py",
+      "original_sha256": "82be7fe7940cab0fd90de16f1417afb22f00b15a9891a606c8f7ca16a7055058",
+      "sha256": "82be7fe7940cab0fd90de16f1417afb22f00b15a9891a606c8f7ca16a7055058"
+    },
+    {
+      "original_path": "runtime/uart_recovery_sources/stm32_pynq对接版/tests/uart_arm_fixture.py",
+      "path": "runtime/uart_recovery_sources/stm32_pynq_firmware/tests/uart_arm_fixture.py",
+      "original_sha256": "d6bb71860591d7b522cf2e4e5e5739ff93f8305a2a3d06754bcb82ad9405119e",
+      "sha256": "5ab5d7d9bec9817f7edde2d2093b9a7e2014313ab7a78f895c6819fba7712d12"
+    },
+    {
+      "original_path": "runtime/uart_recovery_sources/stm32_pynq对接版/Source/APP/safe_car.c",
+      "path": "runtime/uart_recovery_sources/stm32_pynq_firmware/Source/APP/safe_car.c",
+      "original_sha256": "3c1a6c0349e809bdde5b11b91e0c5db0aebd5eb18e11792cff1d3168b35d38fb",
+      "sha256": "aa4b93cacf57687a3c4480d9434c3539614261a61783bd1598671e6511baf292"
+    },
+    {
+      "original_path": "runtime/uart_recovery_sources/stm32_pynq对接版/Source/APP/safe_control.h",
+      "path": "runtime/uart_recovery_sources/stm32_pynq_firmware/Source/APP/safe_control.h",
+      "original_sha256": "ffb2d3c830d3b5d7cb85c2527666dabacb03b84956feceadeb30861d6e11662a",
+      "sha256": "ffb2d3c830d3b5d7cb85c2527666dabacb03b84956feceadeb30861d6e11662a"
+    },
+    {
+      "original_path": "pynq_fpga/preintegration/run_supervisor_fault_matrix.py",
+      "path": "pynq_fpga/preintegration/run_supervisor_fault_matrix.py",
+      "original_sha256": "f114b1e5ac333c268177b768658af591b445de983c6b293a8762c9a0c47c0bb7",
+      "sha256": "eb54b13a15011ed58864e4b7679695addb4a4268488b948b96af63152fa27c7b"
+    },
+    {
+      "original_path": "pynq_fpga/preintegration/host/lab_acceptance.py",
+      "path": "pynq_fpga/preintegration/host/lab_acceptance.py",
+      "original_sha256": "e7ca984dd14ff401d69f669c5b056cab7fa4c39c0bbeb3ff0f0023184e4c618e",
+      "sha256": "5499aeaad6fbfd1cfbb3e84f3b1d4725dec16093f8c136ac015e3d63a9a2d42f"
+    },
+    {
+      "original_path": "pynq_fpga/preintegration/host/SENSOR_CONSOLE_GUIDE.md",
+      "path": "pynq_fpga/preintegration/host/SENSOR_CONSOLE_GUIDE.md",
+      "original_sha256": "eb34fcd08b2ee8df949e7363acbb9dfe75f6f8e992ff0275a0039ef898ba9ed9",
+      "sha256": "d96341cdaf004c68742d2bb7e8b352e459b1585f0a71d875031d5a602581134e"
+    },
+    {
+      "original_path": "pynq_fpga/preintegration/host/system_runtime.py",
+      "path": "pynq_fpga/preintegration/host/system_runtime.py",
+      "original_sha256": "622eaad18fca958bdaebbb42f9cb77bbf786254cff81f9518e84ce7494c17487",
+      "sha256": "5aff2af8f2ae534e1c8c6cf54086d23398d524c8dc4ebcb1d0374a0d0e224da3"
+    },
+    {
+      "original_path": "pynq_fpga/preintegration/host/trial_runtime.py",
+      "path": "pynq_fpga/preintegration/host/trial_runtime.py",
+      "original_sha256": "5e6d4518ba07169ba4345d72eaeda0ab6956d4d073147427407d037e292e871e",
+      "sha256": "cd853ef3e4d2b208e9b1ee14a1271aa8619e894eedd736dac507efcb0216dd56"
+    },
+    {
+      "original_path": "pynq_fpga/preintegration/host/WIRELESS_SETUP.md",
+      "path": "pynq_fpga/preintegration/host/WIRELESS_SETUP.md",
+      "original_sha256": "c06f69750ead5204f700ffa4992f18039f0190c7f9be21d2aae89b92f9de413a",
+      "sha256": "d6cc0c4329102eb0d43d7e1742d601708744f557caa90b4908b05052104c9db2"
+    },
+    {
+      "original_path": "pynq_fpga/preintegration/tests/test_source_provenance.py",
+      "path": "pynq_fpga/preintegration/tests/test_source_provenance.py",
+      "original_sha256": "062325889fab0a914ca5f003ee569c223fbe0e88a22cf5514ccafc8861c8df3f",
+      "sha256": "f42cfd067e08d0d98fa49f8b7af0ae01b14b130602aac1b59de681b2b8c6e5a8"
+    },
+    {
+      "original_path": "pynq_fpga/host/c_build/build_identity.json",
+      "path": "pynq_fpga/host/c_build/build_identity.json",
+      "original_sha256": "eec93b6ebd15e33e01462af4ff1fc2964a7167ac60128e77b86930e9caecf3a3",
+      "sha256": "8f4ad1c5ee93f9e4a6762a47fa4ee680fe08babf643ec17ac8446da7a5f98845"
+    },
+    {
+      "original_path": "pynq_fpga/host/tests/supervisor_c_fixture.py",
+      "path": "pynq_fpga/host/tests/supervisor_c_fixture.py",
+      "original_sha256": "2a2f42b775dcfefc6e174257a70504b17d0899b86cfb871178ab6591de82711d",
+      "sha256": "5ddcf479aa80cfa90d23f2156a946bd49d6f9a2db2a7379eadf120b9f5a8d5e7"
+    },
+    {
+      "original_path": "pynq_fpga/host/tests/test_architecture_invariants.py",
+      "path": "pynq_fpga/host/tests/test_architecture_invariants.py",
+      "original_sha256": "0723c969e9924906eb3a6795abf9eec16821c8fa6fe88ec8195e235f6fd7fdf4",
+      "sha256": "2d7a559541e6bd002cfda28335016da570c9cc49f4fe340d9b909fa67e6be834"
+    },
+    {
+      "original_path": "pynq_fpga/host/tests/test_control_supervisor.py",
+      "path": "pynq_fpga/host/tests/test_control_supervisor.py",
+      "original_sha256": "9f43f0f18162882351cf21bca3f30e4389534e0b489ea95c1d362df7ea78a05e",
+      "sha256": "8c15f72fa34ee8826c273a766a7f0b71ed16a42a855788cd7ae3b6b6f70ff66c"
+    },
+    {
+      "original_path": "pynq_fpga/host/tests/test_night_a_loop.py",
+      "path": "pynq_fpga/host/tests/test_night_a_loop.py",
+      "original_sha256": "3137f1cc48f431264faa7e51fbfee63dd0f581f560f9e11746920e06f4e5127e",
+      "sha256": "e09fb2c38c26c69a83f28a7ea1f74d2f357052a5002ac9f67c740fefa27d0a7b"
+    },
+    {
+      "original_path": "pynq_fpga/host/tests/test_uart_lifecycle.py",
+      "path": "pynq_fpga/host/tests/test_uart_lifecycle.py",
+      "original_sha256": "57d2bdaee3f09580148be147933508a1224d7ab4caa0279c9c58c6b4ccebe286",
+      "sha256": "e657ff64db09d196c11d30b7c6c1bc165537358f23a471f9e13a2b64d14ab7c2"
+    }
+  ],
+  "original_manifest_sha256": "9e5fa4a06a26c7ef9c8835edb1659082ea036dc3be62d6397c75ecd45e9306c1",
+  "note": "Original hashes refer to pre-migration paths. Current hashes are in SOURCE_MANIFEST.json. Documentation and migration verifier are updated separately."
+}

@@ -302,13 +302,13 @@
     }
   },
   "runtime_files": {
-    "lab_acceptance.py": "e7ca984dd14ff401d69f669c5b056cab7fa4c39c0bbeb3ff0f0023184e4c618e",
+    "lab_acceptance.py": "5499aeaad6fbfd1cfbb3e84f3b1d4725dec16093f8c136ac015e3d63a9a2d42f",
     "board_runtime.py": "9717225a350670d3c38f77989346ae4107298d4b070f82e8d9976d2cd337f7dc",
     "frame_pipeline.py": "0b1fde0ddde34456e47b55d53339d6df864ff0d70ea2f36e7377ba7edf2c5f1b",
     "overlay_session.py": "f549686b440e913458ade0ea309556057b172ace3c8e250bbce0855da9104d27",
     "frame_association.py": "bf177c3c247b79c383bac82b88ad6dad6dde58f9228884b7793a3f760d6601ec",
     "video_profile.py": "214417625be338c65e11919be6bcf26e46fe0d08d5981e98c5d93463d136397c",
-    "system_runtime.py": "622eaad18fca958bdaebbb42f9cb77bbf786254cff81f9518e84ce7494c17487",
+    "system_runtime.py": "5aff2af8f2ae534e1c8c6cf54086d23398d524c8dc4ebcb1d0374a0d0e224da3",
     "async_journal.py": "13ce8e4e8d7ebb4847ec83e04091125a483ea4d78231178c5357e934083729e8",
     "control_supervisor.py": "5dbf1f97d270ed9ec67202cf0bb537d70f9b7e2f4b110d21b94d6bcddf1afea7",
     "calibration_config.py": "14dccb7b7b73c115a5d597bfe6e8b2fd3a8d0bcd64de19ae9bd6bb5de785e533",
@@ -320,7 +320,7 @@
     "qei_calibration.py": "732c88ee00028c0a601c7c27adecc0be39d8f530717791dc09ee3416d6e52dd2",
     "perception_replay.py": "cf7880e589d064b3b6d1fbbbef87f29aaa51cddcf55e6251467a982a9133bf17",
     "car_regs.py": "60b33518c33c52c44127b48eae14f16355124a2594156aec09b3a3444942630f",
-    "pynq_link.py": "f086c20600e2575181752c81303d17b4e3b629bff2babd973f7e8ac2e7da0c01",
+    "pynq_link.py": "85b975d7aab65a5273c027b5ebc8f0fb3a7cba112f82d21727f121bbf0fb255e",
     "runtime_identity.py": "904ec7d6f7fc8207bc1d14e41a296a0fad6d4c4dceba8dcb468c5502dd728d7c",
     "frame_metadata.py": "c0234df44d719a652a9ac067aa84d7e7dded1e639ffe1de69097ae0acb59fe2d",
     "tactical_state.py": "603a820581f41ff261150d4e81a740b067212badc7cc872ed56c7b887d8f3fdd",
@@ -397,9 +397,9 @@
     "native/car_video.c": "d20d4d71ff269053f333a6b326c4ff8ea08afbdeaf91bdd247bd76eacf750d99",
     "native/libcar_video.so": "0969093e604164ed454659e729b0352669aec4c8b4c1a39368c881da64af0987",
     "native/build_receipt.json": "e0ebc7820574dd323308e26d4a960cfaee181f6a819b39e458377ec1fddcf09a",
-    "WIRELESS_SETUP.md": "c06f69750ead5204f700ffa4992f18039f0190c7f9be21d2aae89b92f9de413a",
+    "WIRELESS_SETUP.md": "d6cc0c4329102eb0d43d7e1742d601708744f557caa90b4908b05052104c9db2",
     "start_sensor_console.sh": "5d0ea98bd88853a282438bc3077add56c0f6869b282f489b8533e6376ed014df",
-    "SENSOR_CONSOLE_GUIDE.md": "eb34fcd08b2ee8df949e7363acbb9dfe75f6f8e992ff0275a0039ef898ba9ed9",
+    "SENSOR_CONSOLE_GUIDE.md": "d96341cdaf004c68742d2bb7e8b352e459b1585f0a71d875031d5a602581134e",
     "console_launcher.html": "f25a81735ff35685fc6ec0625483e19d9312882cf447286f0e3586b9af2b5201",
     "prepare_console.py": "85eaa0cb70d1315a232e41c6e2e669b4d83ef2769e7fe20684e92fe20662f407",
     "console_backend.py": "6491cad3acdfdce9d3c2b627d59054e539e301e068cafade111c65512d9d3940",
@@ -419,7 +419,7 @@
   "software_patch_history": [
     {
       "file": "software_patch_manifest.json",
-      "sha256": "ba2fd985c692db280095fc185c6be3165c4936cf02e4b6eb815f257856b4a379",
+      "sha256": "cd803468816831613035b48a8a91cb733020441901277134cad6fdecc5ccc587",
       "scope": "host/video changes bound to selected FPGA source identity"
     }
   ],
@@ -434,7 +434,7 @@
   },
   "sensor_console": {
     "schema": "car-sensor-console/v4",
-    "offline_launcher": "desktop/打开完整控制台.pyw",
+    "offline_launcher": "desktop/open_console.pyw",
     "hardware_result": "PENDING",
     "encoder_required": false
   },
@@ -452,5 +452,10 @@
     "speed_display": false,
     "mileage": "estimated_actual_pwm_time",
     "fixed_forward_stop_mm": 250
+  },
+  "packaging_revision": {
+    "name": "english_paths_r2_20261103",
+    "scope": "Path references and package inventories updated; original source_identity remains historical FPGA build provenance",
+    "migration": "../verification/path_migration.json"
   }
 }

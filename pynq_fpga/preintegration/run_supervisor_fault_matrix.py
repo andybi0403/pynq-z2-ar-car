@@ -32,7 +32,7 @@ def run(output):
                         'trace':path.name,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
                         'failures':failures})
     files=[ROOT/'host/control_supervisor.py',ROOT/'host/perception_client.py',
-           ROOT.parent/'stm32预备程序/pc/pynq_link.py',
+           ROOT.parent/'stm32_tools/pc/pynq_link.py',
            ROOT/'host/tests/supervisor_c_fixture.py',ROOT/'host/tests/test_supervisor_c_loop.py',Path(__file__)]
     report={'schema':'car-supervisor-fault-matrix/v1','hardware':False,
             'scope':'actual host/client/UART encoder and compiled production STM32 policy; simulated PL registers and transport',

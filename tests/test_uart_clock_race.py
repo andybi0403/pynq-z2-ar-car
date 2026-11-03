@@ -2,7 +2,7 @@
 from pathlib import Path
 import sys,unittest
 ROOT=Path(__file__).resolve().parents[1]
-sys.path[:0]=[str(ROOT/'pynq_fpga/host/tests'),str(ROOT/'stm32预备程序/pc')]
+sys.path[:0]=[str(ROOT/'pynq_fpga/host/tests'),str(ROOT/'stm32_tools/pc')]
 import test_hybrid_c_loop as hybrid
 from pynq_link import HybridCarLink,MockSerial
 

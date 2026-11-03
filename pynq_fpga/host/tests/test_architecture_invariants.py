@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 REPO = ROOT.parent
 RTL = ROOT / "fpga" / "rtl"
-SAFE_CAR = REPO / "stm32预备程序" / "Source" / "APP" / "safe_car.c"
+SAFE_CAR = REPO / "stm32_tools" / "Source" / "APP" / "safe_car.c"
 ENCODER_FINDINGS = REPO / "docs" / "03_硬件与接线" / \
     "10_霍尔编码器TT马达电气与QEI参数核定_20260919.md"
 

@@ -179,17 +179,17 @@
       "sha256": "752a0448f945cd5967d8a6f0df8d5c0f92d35c36b6a7ffb6d638e5c077d63ce5"
     },
     {
-      "path": "stm32预备程序/pc/pynq_link.py",
+      "path": "stm32_tools/pc/pynq_link.py",
       "base_r7_sha256": "1519b1f4efc46fdd805d180673b366b8fc5b53d3fa336a62bef3f99041ea09eb",
       "sha256": "f086c20600e2575181752c81303d17b4e3b629bff2babd973f7e8ac2e7da0c01"
     },
     {
-      "path": "stm32_pynq对接版/Source/APP/safe_control.c",
+      "path": "stm32_pynq_firmware/Source/APP/safe_control.c",
       "base_r7_sha256": "fcabcccf3d4fb4900654b3b3a672977b5dd5e5c06a3f150f9044b2ae13de4364",
       "sha256": "d6821ca25160719136fac5497b9dec363641a41d7b3508d6a6c3c5e010226776"
     },
     {
-      "path": "stm32_pynq对接版/Source/APP/safe_control.h",
+      "path": "stm32_pynq_firmware/Source/APP/safe_control.h",
       "base_r7_sha256": "ffb2d3c830d3b5d7cb85c2527666dabacb03b84956feceadeb30861d6e11662a",
       "sha256": "d823c468470440821e6a468bca2dc9db63afa3cf5a7a3d42ec2ee98048a43c4b"
     }

@@ -19,13 +19,13 @@ def main():
  verify_wireless(runtime/'lab_manifest.json',runtime/'task7_8_LAB_ONLY.hwh');verify_console(runtime,runtime/'lab_manifest.json')
  assert p['integrated_id']=='0xC425100E' and p['profile']['encoders_required'] is False
  for ext in ['hex','bin','elf']:
-  assert sha(runtime/('stm32_hybrid_v3.'+ext))==sha(ROOT/'stm32_pynq对接版/build_safe'/('safe_car.'+ext))
+  assert sha(runtime/('stm32_hybrid_v3.'+ext))==sha(ROOT/'stm32_pynq_firmware/build_safe'/('safe_car.'+ext))
  inventory=json.loads((runtime/'package_inventory.json').read_text('utf8'))
  for name,expected in inventory['files'].items():assert sha(runtime/name)==expected,name
  binding=json.loads((runtime/'artifact_source_binding.json').read_text('utf8'))
  patch=json.loads((runtime/'software_patch_manifest.json').read_text('utf8'))
  delta={item['path']:item for item in patch['post_build_source_changes']}
- assert set(delta)<={'stm32预备程序/pc/pynq_link.py'}
+ assert set(delta)<={'stm32_tools/pc/pynq_link.py'}
  for item in binding['artifacts'].values():assert sha(runtime/item['file'])==item['sha256']
  for name,expected in binding['source_identity']['sources'].items():
   rel=name.removeprefix('workspace/') if name.startswith('workspace/') else 'pynq_fpga/'+name

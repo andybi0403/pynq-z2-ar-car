@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'host'))
-sys.path.insert(0,str(ROOT.parent/'stm32预备程序/pc'))
+sys.path.insert(0,str(ROOT.parent/'stm32_tools/pc'))
 from test_night_a_loop import CLoop, FakeTransport, SimClock
 from pynq_link import CarLink, MockSerial
 from perception_client import PerceptionClient

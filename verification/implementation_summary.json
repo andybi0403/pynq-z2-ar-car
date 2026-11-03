@@ -1,0 +1,43 @@
+{
+  "release": "r6 FPGA, reused by r7",
+  "clock_mhz": 100,
+  "timing_stage": "routed",
+  "wns_ns": 0.071,
+  "tns_ns": 0,
+  "whs_ns": 0.022,
+  "ths_ns": 0,
+  "resource_stage": "placed",
+  "resources": {
+    "lut": [
+      23633,
+      53200
+    ],
+    "ff": [
+      18881,
+      106400
+    ],
+    "bram_tiles": [
+      25.5,
+      140
+    ],
+    "dsp": [
+      2,
+      220
+    ]
+  },
+  "original_reports": {
+    "timing": {
+      "file": "timing_LAB_ONLY.rpt",
+      "sha256": "2cd6ace53c69d391f47cb0c90b5f98c5ffe7fd3705ac0a3ce485b458eb3a4b02"
+    },
+    "resources": {
+      "file": "preintegration_bd_wrapper_utilization_placed.rpt",
+      "sha256": "77a4595173443d43f0a32ac54d4a2c8778408ed9217bc80abb941a65ed219779"
+    }
+  },
+  "artifacts": {
+    "task7_8_LAB_ONLY.bit": "1100bf3bb64501bf4e825ad75517125155206a4b4ed97d28d89a4911e09bbc0e",
+    "task7_8_LAB_ONLY.hwh": "fe4b04d9e8502253b35cc324398773f59319c01681207e023d0abf072b3a070e"
+  },
+  "scope": "Extracted historical implementation summary; not a new synthesis or route run."
+}

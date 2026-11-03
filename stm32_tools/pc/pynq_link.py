@@ -3,9 +3,9 @@
 PYNQ-Z2 与 STM32 底盘的 UART 链路模块（协议 V2.1，安全修订版）。
 
 支持两个固件版本的帧格式：
-  - PYNQ 完整对接版（stm32_pynq对接版/，超声波+红外全部在 PYNQ 上）：
+  - PYNQ 完整对接版（stm32_pynq_firmware/，超声波+红外全部在 PYNQ 上）：
       $P,<L>,<R>,<V>,<MMM>,<IR>,<N>,<C>#   ← 默认格式
-  - 演示版（stm32预备程序/，超声波仍在 STM32 上）：
+  - 演示版（stm32_tools/，超声波仍在 STM32 上）：
       $P,<L>,<R>,<V>,<MMM>,<N>,<C>#
 构造函数用 proto='pynq' 或 'demo' 选择，默认对接版。
 
